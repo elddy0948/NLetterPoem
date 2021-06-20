@@ -27,6 +27,7 @@ class NLPTextField: UITextField {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .secondarySystemBackground
+        placeholder = textFieldType.rawValue
         
         layer.cornerRadius = 16
         layer.masksToBounds = true

@@ -7,7 +7,8 @@ class SignInViewController: UIViewController {
     private(set) var emailTextField: NLPTextField!
     private(set) var passwordTextField: NLPTextField!
     private let logoImageView = NLPLogoImageView(frame: .zero)
-    
+    private(set) var signinButton: NLPButton!
+    private(set) var signupButton: NLPButton!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -27,6 +28,8 @@ class SignInViewController: UIViewController {
     private func configureSignInStackView() {
         emailTextField = NLPTextField(type: .email)
         passwordTextField = NLPTextField(type: .password)
+        signinButton = NLPButton(title: "로그인")
+        signupButton = NLPButton(title: "회원가입")
         
         signinStackView = UIStackView()
         signinStackView.distribution = .equalSpacing
@@ -36,6 +39,8 @@ class SignInViewController: UIViewController {
         
         signinStackView.addArrangedSubview(emailTextField)
         signinStackView.addArrangedSubview(passwordTextField)
+        signinStackView.addArrangedSubview(signinButton)
+        signinStackView.addArrangedSubview(signupButton)
     }
     
     private func configureLayout() {
@@ -50,6 +55,8 @@ class SignInViewController: UIViewController {
             signinStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             emailTextField.heightAnchor.constraint(equalToConstant: 52),
             passwordTextField.heightAnchor.constraint(equalToConstant: 52),
+            signinButton.heightAnchor.constraint(equalToConstant: 52),
+            signupButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
 }

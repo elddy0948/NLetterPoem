@@ -24,6 +24,7 @@ class SignUpViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(logoImageView)
         view.addSubview(signupStackView)
+        signupButton.delegate = self
     }
     
     private func configureSignupStackView() {
@@ -50,5 +51,34 @@ class SignUpViewController: UIViewController {
             signupStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             signupStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
+    }
+    
+    private func createUser() -> User? {
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              let nickname = nicknameTextField.text else {
+            return nil
+        }
+        return User(email: email, password: password, profilePhotoURL: "", nickname: nickname, bio: "")
+    }
+}
+
+extension SignUpViewController: NLPButtonDelegate {
+    func didTappedButton(_ sender: NLPButton) {
+        guard let user = createUser() else { return }
+        DatabaseManager.shared.checkUserExist(with: user) { [weak self] isUserExist in
+            guard let self = self else { return }
+            if isUserExist {
+                print("user exist!")
+                return
+            } else {
+                self.insertUserInDatabase(with: user)
+            }
+        }
+    }
+    private func insertUserInDatabase(with user: User) {
+        DatabaseManager.shared.createUser(with: user) { user in
+            print(user)
+        }
     }
 }

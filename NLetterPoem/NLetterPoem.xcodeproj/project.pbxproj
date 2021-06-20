@@ -19,6 +19,7 @@
 		B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE586267EFD7D001848A5 /* NLPTextField.swift */; };
 		B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE588267F04BE001848A5 /* NLPLogoImageView.swift */; };
 		B42EE58C267F0505001848A5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE58B267F0505001848A5 /* Constants.swift */; };
+		B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE58D267F0D57001848A5 /* SignUpViewController.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 		B42EE586267EFD7D001848A5 /* NLPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTextField.swift; sourceTree = "<group>"; };
 		B42EE588267F04BE001848A5 /* NLPLogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPLogoImageView.swift; sourceTree = "<group>"; };
 		B42EE58B267F0505001848A5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B42EE58D267F0D57001848A5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			children = (
 				B478751C2671F540002FE83F /* ViewController.swift */,
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
+				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				B478751D2671F540002FE83F /* ViewController.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
+				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,

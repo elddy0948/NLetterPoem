@@ -1,6 +1,12 @@
 import UIKit
 
+protocol NLPButtonDelegate: AnyObject {
+    func didTappedButton(_ sender: NLPButton)
+}
+
 class NLPButton: UIButton {
+    
+    weak var delegate: NLPButtonDelegate?
     
     init(title: String) {
         super.init(frame: .zero)
@@ -27,5 +33,11 @@ class NLPButton: UIButton {
         layer.masksToBounds = true
         layer.borderWidth = 3
         layer.borderColor = UIColor.systemGray.cgColor
+        
+        addTarget(self, action: #selector(didTappedButton(_:)), for: .touchUpInside)
+    }
+    
+    @objc func didTappedButton(_ sender: NLPButton) {
+        delegate?.didTappedButton(sender)
     }
 }

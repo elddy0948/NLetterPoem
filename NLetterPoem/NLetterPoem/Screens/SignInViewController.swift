@@ -31,6 +31,9 @@ class SignInViewController: UIViewController {
         signinButton = NLPButton(title: "로그인")
         signupButton = NLPButton(title: "회원가입")
         
+        signinButton.delegate = self
+        signupButton.delegate = self
+        
         signinStackView = UIStackView()
         signinStackView.distribution = .equalSpacing
         signinStackView.axis = .vertical
@@ -58,5 +61,16 @@ class SignInViewController: UIViewController {
             signinButton.heightAnchor.constraint(equalToConstant: 52),
             signupButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+    }
+}
+
+extension SignInViewController: NLPButtonDelegate {
+    func didTappedButton(_ sender: NLPButton) {
+        if sender == signinButton {
+            print("did tap signin!")
+        } else if sender == signupButton {
+            let viewController = SignUpViewController()
+            present(viewController, animated: true, completion: nil)
+        }
     }
 }

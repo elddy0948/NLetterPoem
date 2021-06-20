@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
     
@@ -62,13 +63,24 @@ class SignInViewController: UIViewController {
             signupButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
+    
+    private func signinUser() {
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text else {
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            print(result)
+        }
+    }
 }
 
 //MARK: - NLPButtonDelegate
 extension SignInViewController: NLPButtonDelegate {
     func didTappedButton(_ sender: NLPButton) {
         if sender == signinButton {
-            print("did tap signin!")
+            signinUser()
         } else if sender == signupButton {
             let viewController = SignUpViewController()
             present(viewController, animated: true, completion: nil)

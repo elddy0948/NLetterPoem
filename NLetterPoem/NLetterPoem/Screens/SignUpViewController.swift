@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     
@@ -72,10 +73,18 @@ extension SignUpViewController: NLPButtonDelegate {
                 print("user exist!")
                 return
             } else {
+                self.insertUserInFirebaseAuth(with: user)
                 self.insertUserInDatabase(with: user)
             }
         }
     }
+    
+    private func insertUserInFirebaseAuth(with user: User) {
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { result, error in
+            print(result)
+        }
+    }
+    
     private func insertUserInDatabase(with user: User) {
         DatabaseManager.shared.createUser(with: user) { user in
             print(user)

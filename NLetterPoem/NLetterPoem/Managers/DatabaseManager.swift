@@ -31,13 +31,14 @@ final class DatabaseManager {
     }
     
     func checkUserExist(with user: User, completed: @escaping (Bool) -> Void) {
-        db.collection("users").document(user.email).getDocument(source: .cache) { document, error in
+        db.collection("users").document(user.email).getDocument { document, error in
             guard let document = document else {
                 completed(false)
                 return
             }
             
             if document.exists {
+                print("Hello")
                 completed(true)
             } else {
                 completed(false)

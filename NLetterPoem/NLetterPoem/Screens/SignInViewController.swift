@@ -6,6 +6,7 @@ class SignInViewController: UIViewController {
     private var signinStackView: UIStackView!
     private(set) var emailTextField: NLPTextField!
     private(set) var passwordTextField: NLPTextField!
+    private let logoImageView = NLPLogoImageView(frame: .zero)
     
     
     //MARK: - Lifecycle
@@ -18,6 +19,7 @@ class SignInViewController: UIViewController {
     
     private func configure() {
         view.addSubview(signinStackView)
+        view.addSubview(logoImageView)
         view.backgroundColor = .systemBackground
         navigationItem.title = "로그인"
     }
@@ -39,11 +41,15 @@ class SignInViewController: UIViewController {
     private func configureLayout() {
         let padding: CGFloat = 8
         NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            logoImageView.widthAnchor.constraint(equalToConstant: 150),
+            logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signinStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             signinStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             signinStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            signinStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             emailTextField.heightAnchor.constraint(equalToConstant: 52),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 52)
+            passwordTextField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
 }

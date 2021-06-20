@@ -64,6 +64,7 @@ class SignInViewController: UIViewController {
     }
 }
 
+//MARK: - NLPButtonDelegate
 extension SignInViewController: NLPButtonDelegate {
     func didTappedButton(_ sender: NLPButton) {
         if sender == signinButton {

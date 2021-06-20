@@ -2,14 +2,16 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    //MARK: - Views
     private var signupStackView: UIStackView!
     private let logoImageView = NLPLogoImageView(frame: .zero)
     private(set) var emailTextField = NLPTextField(type: .email)
     private(set) var passwordTextField = NLPTextField(type: .password)
-    private(set) var nicknameTextField = NLPTextField(type: .normal)
+    private(set) var nicknameTextField = NLPTextField(type: .nickname)
     private(set) var signupButton = NLPButton(title: "가입하기")
     private var views: [UIView]!
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSignupStackView()
@@ -17,6 +19,7 @@ class SignUpViewController: UIViewController {
         configureLayout()
     }
     
+    //MARK: - Privates
     private func configure() {
         view.backgroundColor = .systemBackground
         view.addSubview(logoImageView)

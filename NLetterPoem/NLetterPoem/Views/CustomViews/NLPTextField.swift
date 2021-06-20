@@ -5,12 +5,11 @@ class NLPTextField: UITextField {
     enum FieldType: String {
         case email = "Email"
         case password = "Password"
-        case normal = "Normal"
+        case nickname = "Nickname"
     }
     
     //MARK: - Properties
     var textFieldType: FieldType!
-    
     
     //MARK: - Initializer
     init(type: FieldType) {

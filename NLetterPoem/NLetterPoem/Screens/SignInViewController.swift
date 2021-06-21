@@ -23,7 +23,8 @@ class SignInViewController: UIViewController {
         view.addSubview(signinStackView)
         view.addSubview(logoImageView)
         view.backgroundColor = .systemBackground
-        navigationItem.title = "로그인"
+        navigationController?.isNavigationBarHidden = true
+        
     }
     
     private func configureSignInStackView() {
@@ -67,11 +68,17 @@ class SignInViewController: UIViewController {
     private func signinUser() {
         guard let email = emailTextField.text,
               let password = passwordTextField.text else {
+            showAlert(title: "⚠️", message: SigninError.emptyField)
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            print(result)
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            guard let self = self else { return }
+            if let error = error {
+                self.showAlert(title: "⚠️", message: SigninError.failedSignIn)
+                debugPrint(error)
+            }
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

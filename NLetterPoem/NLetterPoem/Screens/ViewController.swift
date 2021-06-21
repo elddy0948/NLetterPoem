@@ -15,6 +15,11 @@ class ViewController: UIViewController {
         checkIsSignIn()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(Auth.auth().currentUser?.email)
+    }
+    
     private func checkIsSignIn() {
         if Auth.auth().currentUser == nil {
             let viewController = UINavigationController(rootViewController: SignInViewController())

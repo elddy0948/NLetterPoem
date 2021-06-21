@@ -74,20 +74,26 @@ extension SignUpViewController: NLPButtonDelegate {
                 return
             } else {
                 self.insertUserInFirebaseAuth(with: user)
-                self.insertUserInDatabase(with: user)
             }
         }
     }
     
     private func insertUserInFirebaseAuth(with user: User) {
-        Auth.auth().createUser(withEmail: user.email, password: user.password) { result, error in
-            print(result)
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { [weak self] result, error in
+            guard let self = self else { return }
+            if let error = error {
+                debugPrint(error)
+                return
+            }
+            self.insertUserInDatabase(with: user)
         }
     }
     
     private func insertUserInDatabase(with user: User) {
-        DatabaseManager.shared.createUser(with: user) { user in
-            print(user)
+        DatabaseManager.shared.createUser(with: user) { [weak self] user in
+            guard let self = self else { return }
+            debugPrint(user)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

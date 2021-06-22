@@ -2,10 +2,10 @@ import UIKit
 import Firebase
 
 class LaunchViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemRed
+        view.backgroundColor = .systemBackground
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -27,12 +27,7 @@ class LaunchViewController: UIViewController {
             guard let self = self else { return }
             if nlpUser != nil {
                 NLPUser.shared = nlpUser
-                self.dismiss(animated: true) {
-                    guard let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
-                        return
-                    }
-                    window.rootViewController = NLPTabBarController()
-                }
+                self.dismissAndReplaceRootViewController()
             }
         }
     }
@@ -41,5 +36,14 @@ class LaunchViewController: UIViewController {
         let viewController = UINavigationController(rootViewController: SignInViewController())
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true, completion: nil)
+    }
+    
+    private func dismissAndReplaceRootViewController() {
+        dismiss(animated: true) {
+            guard let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
+                return
+            }
+            window.rootViewController = NLPTabBarController()
+        }
     }
 }

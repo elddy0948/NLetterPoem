@@ -21,6 +21,9 @@
 		B42EE58C267F0505001848A5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE58B267F0505001848A5 /* Constants.swift */; };
 		B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE58D267F0D57001848A5 /* SignUpViewController.swift */; };
 		B42EE591267F176F001848A5 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE590267F176F001848A5 /* DatabaseManager.swift */; };
+		B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494062681A1A50075D16C /* MyPageViewController.swift */; };
+		B45494092681A1B60075D16C /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageView.swift */; };
+		B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940A2681A4400075D16C /* NLPTabBarController.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* ViewController.swift */; };
@@ -40,6 +43,9 @@
 		B42EE58B267F0505001848A5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B42EE58D267F0D57001848A5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B42EE590267F176F001848A5 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		B45494062681A1A50075D16C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		B45494082681A1B60075D16C /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		B454940A2681A4400075D16C /* NLPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTabBarController.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +81,7 @@
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
 				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
 				B478751C2671F540002FE83F /* ViewController.swift */,
+				B45494062681A1A50075D16C /* MyPageViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -84,6 +91,7 @@
 			children = (
 				B4C6404426806D7E007A7B59 /* Storyboards */,
 				B42EE583267EFD4E001848A5 /* CustomViews */,
+				B45494082681A1B60075D16C /* MyPageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -91,6 +99,7 @@
 		B42EE583267EFD4E001848A5 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				B454940A2681A4400075D16C /* NLPTabBarController.swift */,
 				B42EE584267EFD6D001848A5 /* NLPButton.swift */,
 				B42EE586267EFD7D001848A5 /* NLPTextField.swift */,
 				B42EE588267F04BE001848A5 /* NLPLogoImageView.swift */,
@@ -256,6 +265,7 @@
 			files = (
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B478752E2671FA8E002FE83F /* User.swift in Sources */,
+				B45494092681A1B60075D16C /* MyPageView.swift in Sources */,
 				B42EE591267F176F001848A5 /* DatabaseManager.swift in Sources */,
 				B478751D2671F540002FE83F /* ViewController.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
@@ -263,9 +273,11 @@
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
+				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,
 				B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */,
 				B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */,
+				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

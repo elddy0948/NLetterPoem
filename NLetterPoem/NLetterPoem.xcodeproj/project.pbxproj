@@ -25,6 +25,7 @@
 		B45494092681A1B60075D16C /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageView.swift */; };
 		B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940A2681A4400075D16C /* NLPTabBarController.swift */; };
 		B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940C2681B3480075D16C /* LaunchViewController.swift */; };
+		B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		B45494082681A1B60075D16C /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		B454940A2681A4400075D16C /* NLPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTabBarController.swift; sourceTree = "<group>"; };
 		B454940C2681B3480075D16C /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfilePhotoImageView.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				B42EE584267EFD6D001848A5 /* NLPButton.swift */,
 				B42EE586267EFD7D001848A5 /* NLPTextField.swift */,
 				B42EE588267F04BE001848A5 /* NLPLogoImageView.swift */,
+				B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				B478751D2671F540002FE83F /* ViewController.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
+				B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,

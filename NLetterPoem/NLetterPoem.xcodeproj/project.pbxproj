@@ -104,11 +104,11 @@
 		B42EE583267EFD4E001848A5 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				B454940A2681A4400075D16C /* NLPTabBarController.swift */,
 				B42EE584267EFD6D001848A5 /* NLPButton.swift */,
-				B42EE586267EFD7D001848A5 /* NLPTextField.swift */,
 				B42EE588267F04BE001848A5 /* NLPLogoImageView.swift */,
 				B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */,
+				B454940A2681A4400075D16C /* NLPTabBarController.swift */,
+				B42EE586267EFD7D001848A5 /* NLPTextField.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";

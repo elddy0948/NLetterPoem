@@ -9,22 +9,24 @@ import UIKit
 
 class MyPageViewController: UIViewController {
     
-    private(set) var myPageView = MyPageView()
+    private(set) var myPageView: MyPageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        layoutUI()
+        configureMyPageView()
     }
     
     private func configure() {
         tabBarItem.title = "마이페이지"
         tabBarItem.image = UIImage(systemName: SFSymbols.personFill)
         view.backgroundColor = .systemBackground
-        view.addSubview(myPageView)
     }
     
-    private func layoutUI() {
+    private func configureMyPageView() {
+        myPageView = MyPageView()
+        view.addSubview(myPageView)
+        
         NSLayoutConstraint.activate([
             myPageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             myPageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

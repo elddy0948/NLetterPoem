@@ -6,9 +6,14 @@ class NLPProfilePhotoImageView: UIImageView {
     private let placeholder = UIImage(systemName: SFSymbols.personCircle)
     
     //MARK: - initializer
+    init(size: CGFloat) {
+        super.init(frame: .zero)
+        configure(with: size)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configure(with: 0)
     }
     
     required init?(coder: NSCoder) {
@@ -16,13 +21,14 @@ class NLPProfilePhotoImageView: UIImageView {
     }
     
     //MARK: - Privates
-    private func configure() {
+    private func configure(with size: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         image = placeholder
         
-        layer.cornerRadius = frame.width / 2
         layer.masksToBounds = true
+        layer.cornerRadius = size / 2
         
-        backgroundColor = .systemGray
+        heightAnchor.constraint(equalToConstant: size).isActive = true
+        widthAnchor.constraint(equalToConstant: size).isActive = true
     }
 }

@@ -7,7 +7,7 @@ class ViewController: UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
+        configure()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -18,6 +18,12 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print(Auth.auth().currentUser?.email)
+    }
+    
+    private func configure() {
+        view.backgroundColor = .systemBackground
+        tabBarItem.title = "홈"
+        tabBarItem.image = UIImage(systemName: "house.fill")
     }
     
     private func checkIsSignIn() {

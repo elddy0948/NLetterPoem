@@ -16,8 +16,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
+        window?.rootViewController = createTabbarController()
         window?.makeKeyAndVisible()
+    }
+    
+    func createTabbarController() -> UITabBarController {
+        let tabbarController = UITabBarController()
+        tabbarController.tabBar.tintColor = .systemGreen
+        tabbarController.viewControllers = [ViewController()]
+        return tabbarController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

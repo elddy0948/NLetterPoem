@@ -3,12 +3,13 @@ import Firebase
 
 final class DatabaseManager {
     static let shared = DatabaseManager()
+    static var user: NLPUser?
     private let db = Firestore.firestore()
     private var ref: DocumentReference? = nil
     
     private init() {}
     
-    func createUser(with user: User, completed: @escaping (User?) -> Void) {
+    func createUser(with user: NLPUser, completed: @escaping (NLPUser?) -> Void) {
         db.collection("users").document(user.email).setData([
             "email": user.email,
             "password": user.password,
@@ -30,7 +31,7 @@ final class DatabaseManager {
         })
     }
     
-    func checkUserExist(with user: User, completed: @escaping (Bool) -> Void) {
+    func checkUserExist(with user: NLPUser, completed: @escaping (Bool) -> Void) {
         db.collection("users").document(user.email).getDocument { document, error in
             guard let document = document else {
                 completed(false)
@@ -42,6 +43,21 @@ final class DatabaseManager {
                 completed(true)
             } else {
                 completed(false)
+            }
+        }
+    }
+    
+    func fetchUserInfo(with email: String, completed: @escaping (NLPUser?) -> Void) {
+        db.collection("users").document(email).getDocument { document, error in
+            let data = document?.data()
+            let decoder = JSONDecoder()
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: data as Any)
+                let user = try decoder.decode(NLPUser.self, from: jsonData)
+                completed(user)
+            } catch {
+                print(error)
+                completed(nil)
             }
         }
     }

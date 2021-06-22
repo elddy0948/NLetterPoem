@@ -54,13 +54,13 @@ class SignUpViewController: UIViewController {
         ])
     }
     
-    private func createUser() -> User? {
+    private func createUser() -> NLPUser? {
         guard let email = emailTextField.text,
               let password = passwordTextField.text,
               let nickname = nicknameTextField.text else {
             return nil
         }
-        return User(email: email, password: password, profilePhotoURL: "", nickname: nickname, bio: "")
+        return NLPUser(email: email, password: password, profilePhotoURL: "", nickname: nickname, bio: "")
     }
 }
 
@@ -78,7 +78,7 @@ extension SignUpViewController: NLPButtonDelegate {
         }
     }
     
-    private func insertUserInFirebaseAuth(with user: User) {
+    private func insertUserInFirebaseAuth(with user: NLPUser) {
         Auth.auth().createUser(withEmail: user.email, password: user.password) { [weak self] result, error in
             guard let self = self else { return }
             if let error = error {
@@ -89,7 +89,7 @@ extension SignUpViewController: NLPButtonDelegate {
         }
     }
     
-    private func insertUserInDatabase(with user: User) {
+    private func insertUserInDatabase(with user: NLPUser) {
         DatabaseManager.shared.createUser(with: user) { [weak self] user in
             guard let self = self else { return }
             debugPrint(user)

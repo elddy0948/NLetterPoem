@@ -13,10 +13,8 @@ class MyPageViewController: UIViewController {
     }
     
     private func configure() {
-        tabBarItem.title = "마이페이지"
-        tabBarItem.image = UIImage(systemName: SFSymbols.personFill)
         view.backgroundColor = .systemBackground
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: SFSymbols.gearShapeFill), style: .plain, target: self, action: #selector(didTapSettingButton(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill, style: .plain, target: self, action: #selector(didTapSettingButton(_:)))
         navigationController?.navigationBar.tintColor = .label
     }
     

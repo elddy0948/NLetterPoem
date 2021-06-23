@@ -37,6 +37,7 @@
 		B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478752D2671FA8E002FE83F /* NLPUser.swift */; };
 		B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404526806DAE007A7B59 /* NLPError.swift */; };
 		B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404826806F13007A7B59 /* ViewController+Ext.swift */; };
+		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		B478752D2671FA8E002FE83F /* NLPUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPUser.swift; sourceTree = "<group>"; };
 		B4C6404526806DAE007A7B59 /* NLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPError.swift; sourceTree = "<group>"; };
 		B4C6404826806F13007A7B59 /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
+		B4CB3770268310CA00CD4F10 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
 				B478751C2671F540002FE83F /* ViewController.swift */,
 				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
+				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */,
 				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,
+				B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

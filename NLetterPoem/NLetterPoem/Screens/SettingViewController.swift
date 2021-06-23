@@ -25,9 +25,10 @@ class SettingViewController: UIViewController {
         settingTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
-    private func didTapSignout() {
+    private func didTapSignout() {"house.fill"
         do {
             try Auth.auth().signOut()
+            NLPUser.shared = nil
             showLauchViewController()
         } catch {
             debugPrint(error)
@@ -63,6 +64,7 @@ extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.selectionStyle = .none
+        settingList[indexPath.row] == "로그아웃" ? (cell.textLabel?.textColor = .systemRed) : (cell.textLabel?.textColor = .label)
         cell.textLabel?.text = settingList[indexPath.row]
         return cell
     }

@@ -3,7 +3,7 @@ import UIKit
 class NLPProfilePhotoImageView: UIImageView {
     
     //MARK: - Properties
-    private let placeholder = UIImage(systemName: SFSymbols.personCircle)
+    private let placeholder = SFSymbols.personCircle
     
     //MARK: - initializer
     init(size: CGFloat) {
@@ -24,6 +24,7 @@ class NLPProfilePhotoImageView: UIImageView {
     private func configure(with size: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         image = placeholder
+        tintColor = .label
         
         layer.masksToBounds = true
         layer.cornerRadius = size / 2

@@ -16,6 +16,7 @@ class MyPageView: UIView {
         configure()
         configureProfilePhotoImageView()
         configureNicknameLabel()
+        configureBioLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -24,7 +25,6 @@ class MyPageView: UIView {
     
     //MARK: - Privates
     private func configure() {
-        backgroundColor = .systemGreen
         translatesAutoresizingMaskIntoConstraints = false
         guard let user = NLPUser.shared else { return }
         self.user = user
@@ -32,11 +32,11 @@ class MyPageView: UIView {
     
     private func configureProfilePhotoImageView() {
         let padding: CGFloat = 16
-        profilePhotoImageView = NLPProfilePhotoImageView(size: 150)
+        profilePhotoImageView = NLPProfilePhotoImageView(size: 100)
         addSubview(profilePhotoImageView)
         
         NSLayoutConstraint.activate([
-            profilePhotoImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            profilePhotoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             profilePhotoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
         ])
     }
@@ -51,6 +51,19 @@ class MyPageView: UIView {
             nicknameLabel.leadingAnchor.constraint(equalTo: profilePhotoImageView.trailingAnchor, constant: padding),
             nicknameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             nicknameLabel.heightAnchor.constraint(equalToConstant: 20)
+        ])
+    }
+    
+    private func configureBioLabel() {
+        let padding: CGFloat = 16
+        bioLabel = NLPProfileLabel(type: .bio, text: "This is test Bio!")
+        addSubview(bioLabel)
+        
+        NSLayoutConstraint.activate([
+            bioLabel.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 8),
+            bioLabel.leadingAnchor.constraint(equalTo: profilePhotoImageView.trailingAnchor, constant: padding),
+            bioLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            bioLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
         ])
     }
 }

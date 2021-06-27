@@ -23,6 +23,7 @@
 		B42EE591267F176F001848A5 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE590267F176F001848A5 /* DatabaseManager.swift */; };
 		B43BBC392682F2D100B4A8DC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC382682F2D100B4A8DC /* SettingViewController.swift */; };
 		B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC3B2682F31000B4A8DC /* SettingView.swift */; };
+		B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */; };
 		B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494062681A1A50075D16C /* MyPageViewController.swift */; };
 		B45494092681A1B60075D16C /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageView.swift */; };
 		B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940A2681A4400075D16C /* NLPTabBarController.swift */; };
@@ -38,6 +39,8 @@
 		B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404526806DAE007A7B59 /* NLPError.swift */; };
 		B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404826806F13007A7B59 /* ViewController+Ext.swift */; };
 		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
+		B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */; };
+		B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CDD1EA268841630086AADE /* NLPPoem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,7 @@
 		B42EE590267F176F001848A5 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		B43BBC382682F2D100B4A8DC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B43BBC3B2682F31000B4A8DC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionView.swift; sourceTree = "<group>"; };
 		B45494062681A1A50075D16C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		B45494082681A1B60075D16C /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		B454940A2681A4400075D16C /* NLPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTabBarController.swift; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 		B4C6404526806DAE007A7B59 /* NLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPError.swift; sourceTree = "<group>"; };
 		B4C6404826806F13007A7B59 /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
 		B4CB3770268310CA00CD4F10 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
+		B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfileCardView.swift; sourceTree = "<group>"; };
+		B4CDD1EA268841630086AADE /* NLPPoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,7 @@
 				B454940A2681A4400075D16C /* NLPTabBarController.swift */,
 				B42EE586267EFD7D001848A5 /* NLPTextField.swift */,
 				B45494102681C6B80075D16C /* NLPProfileLabel.swift */,
+				B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -150,6 +157,7 @@
 			children = (
 				B45494082681A1B60075D16C /* MyPageView.swift */,
 				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
+				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				B478752D2671FA8E002FE83F /* NLPUser.swift */,
+				B4CDD1EA268841630086AADE /* NLPPoem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -300,9 +309,11 @@
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
+				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
 				B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */,
 				B45494112681C6B80075D16C /* NLPProfileLabel.swift in Sources */,
 				B45494092681A1B60075D16C /* MyPageView.swift in Sources */,
+				B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */,
 				B42EE591267F176F001848A5 /* DatabaseManager.swift in Sources */,
 				B478751D2671F540002FE83F /* ViewController.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
@@ -314,6 +325,7 @@
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,
 				B43BBC392682F2D100B4A8DC /* SettingViewController.swift in Sources */,
+				B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */,
 				B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */,
 				B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */,
 				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,

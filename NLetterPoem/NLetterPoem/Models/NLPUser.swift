@@ -1,6 +1,6 @@
 import Foundation
 
-class NLPUser: Codable {
+final class NLPUser: Codable {
     static var shared: NLPUser?
 
     var email: String

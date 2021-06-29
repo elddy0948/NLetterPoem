@@ -22,6 +22,7 @@ extension MyPageViewController: UICollectionViewDataSource {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MyPageHeaderView.reuseIdentifier, for: indexPath)
             guard let typeHeaderView = headerView as? MyPageHeaderView else { return headerView }
             typeHeaderView.configureUser(with: user)
+            typeHeaderView.delegate = self
             return typeHeaderView
         default:
             assert(false)

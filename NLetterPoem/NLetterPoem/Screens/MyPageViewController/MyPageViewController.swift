@@ -50,3 +50,8 @@ extension MyPageViewController: UICollectionViewDelegate {
     
 }
 
+extension MyPageViewController: MyPageHeaderViewDelegate {
+    func didTappedEditProfileButton(_ sender: NLPButton) {
+        print("Did Tapped Edit Profile!!!!")
+    }
+}

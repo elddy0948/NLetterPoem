@@ -1,5 +1,9 @@
 import UIKit
 
+protocol MyPageHeaderViewDelegate: AnyObject {
+    func didTappedEditProfileButton(_ sender: NLPButton)
+}
+
 class MyPageHeaderView: UICollectionReusableView {
     static let reuseIdentifier = String(describing: MyPageHeaderView.self)
     
@@ -8,9 +12,11 @@ class MyPageHeaderView: UICollectionReusableView {
     private(set) var bioLabel: NLPProfileLabel!
     private(set) var editProfileButton: NLPButton!
     private(set) var horizontalStackView: UIStackView!
+    private(set) var verticalStackView: UIStackView!
     
     //MARK: - Properties
     private var user: NLPUser!
+    weak var delegate: MyPageHeaderViewDelegate?
     
     //MARK: - initializer
     override init(frame: CGRect) {
@@ -31,18 +37,35 @@ class MyPageHeaderView: UICollectionReusableView {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         configureStackView()
-        configureEditProfileButton()
     }
     
     private func configureStackView() {
+        verticalStackView = UIStackView()
+        addSubview(verticalStackView)
+        
+        verticalStackView.axis = .vertical
+        verticalStackView.distribution = .fill
+        verticalStackView.spacing = 8
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        configureLayoutUI()
+        
+        configureHorizontalStackView()
+        editProfileButton = NLPButton(title: "프로필 수정")
+        editProfileButton.addTarget(self, action: #selector(didTappedEditProfileButton(_:)),
+                                    for: .touchUpInside)
+        
+        verticalStackView.addArrangedSubview(horizontalStackView)
+        verticalStackView.addArrangedSubview(editProfileButton)
+    }
+    
+    private func configureHorizontalStackView() {
         horizontalStackView = UIStackView()
-        addSubview(horizontalStackView)
+        verticalStackView.addArrangedSubview(horizontalStackView)
+        
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fill
         horizontalStackView.spacing = 16
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        configureLayoutUI()
         
         profilePhotoImageView = NLPProfilePhotoImageView(size: 100)
         bioLabel = NLPProfileLabel(type: .bio)
@@ -51,26 +74,17 @@ class MyPageHeaderView: UICollectionReusableView {
         horizontalStackView.addArrangedSubview(bioLabel)
     }
     
-    private func configureEditProfileButton() {
-        let padding: CGFloat = 8
-        editProfileButton = NLPButton(title: "프로필 수정")
-        addSubview(editProfileButton)
-        
-        NSLayoutConstraint.activate([
-            editProfileButton.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: padding),
-            editProfileButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            editProfileButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            editProfileButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
-            editProfileButton.heightAnchor.constraint(equalToConstant: 32),
-        ])
-    }
-    
     private func configureLayoutUI() {
         let padding: CGFloat = 8
         NSLayoutConstraint.activate([
-            horizontalStackView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            verticalStackView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
         ])
+    }
+    
+    @objc func didTappedEditProfileButton(_ sender: NLPButton) {
+        delegate?.didTappedEditProfileButton(sender)
     }
 }

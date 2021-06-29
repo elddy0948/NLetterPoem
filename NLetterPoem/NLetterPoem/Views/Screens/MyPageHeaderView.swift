@@ -5,8 +5,9 @@ class MyPageHeaderView: UICollectionReusableView {
     
     //MARK: - Views
     private(set) var profilePhotoImageView: NLPProfilePhotoImageView!
-    private(set) var nicknameLabel: NLPProfileLabel!
     private(set) var bioLabel: NLPProfileLabel!
+    private(set) var editProfileButton: NLPButton!
+    private(set) var horizontalStackView: UIStackView!
     
     //MARK: - Properties
     private var user: NLPUser!
@@ -23,52 +24,53 @@ class MyPageHeaderView: UICollectionReusableView {
     
     //MARK: - Configure Mypage Data
     func configureUser(with user: NLPUser) {
-        nicknameLabel.text = user.nickname
         bioLabel.text = user.bio
     }
     
     //MARK: - Privates
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        configureProfilePhotoImageView()
-        configureNicknameLabel()
-        configureBioLabel()
+        configureStackView()
+        configureEditProfileButton()
     }
     
-    private func configureProfilePhotoImageView() {
-        let padding: CGFloat = 16
+    private func configureStackView() {
+        horizontalStackView = UIStackView()
+        addSubview(horizontalStackView)
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.distribution = .fill
+        horizontalStackView.spacing = 16
+        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        configureLayoutUI()
+        
         profilePhotoImageView = NLPProfilePhotoImageView(size: 100)
-        addSubview(profilePhotoImageView)
-        
-        NSLayoutConstraint.activate([
-            profilePhotoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            profilePhotoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-        ])
-    }
-    
-    private func configureNicknameLabel() {
-        let padding: CGFloat = 16
-        nicknameLabel = NLPProfileLabel(type: .nickname)
-        addSubview(nicknameLabel)
-        
-        NSLayoutConstraint.activate([
-            nicknameLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            nicknameLabel.leadingAnchor.constraint(equalTo: profilePhotoImageView.trailingAnchor, constant: padding),
-            nicknameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            nicknameLabel.heightAnchor.constraint(equalToConstant: 20)
-        ])
-    }
-    
-    private func configureBioLabel() {
-        let padding: CGFloat = 16
         bioLabel = NLPProfileLabel(type: .bio)
-        addSubview(bioLabel)
+        
+        horizontalStackView.addArrangedSubview(profilePhotoImageView)
+        horizontalStackView.addArrangedSubview(bioLabel)
+    }
+    
+    private func configureEditProfileButton() {
+        let padding: CGFloat = 8
+        editProfileButton = NLPButton(title: "프로필 수정")
+        addSubview(editProfileButton)
         
         NSLayoutConstraint.activate([
-            bioLabel.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 8),
-            bioLabel.leadingAnchor.constraint(equalTo: profilePhotoImageView.trailingAnchor, constant: padding),
-            bioLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            bioLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
+            editProfileButton.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: padding),
+            editProfileButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            editProfileButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            editProfileButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+            editProfileButton.heightAnchor.constraint(equalToConstant: 32),
+        ])
+    }
+    
+    private func configureLayoutUI() {
+        let padding: CGFloat = 8
+        NSLayoutConstraint.activate([
+            horizontalStackView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
         ])
     }
 }

@@ -20,6 +20,8 @@ class MyPageViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill, style: .plain, target: self, action: #selector(didTapSettingButton(_:)))
         navigationController?.navigationBar.tintColor = .label
+        navigationItem.title = user.nickname
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureCollectionView() {

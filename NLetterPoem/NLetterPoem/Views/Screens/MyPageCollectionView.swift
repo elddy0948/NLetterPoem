@@ -16,7 +16,5 @@ class MyPageCollectionView: UICollectionView {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .systemBackground
-        
-        //TODO: - Layout
     }
 }

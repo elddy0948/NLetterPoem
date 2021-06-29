@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */; };
+		B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */; };
+		B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B42EE571267EF5FA001848A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */; };
 		B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* FirebaseAnalytics */; };
 		B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */; };
@@ -25,7 +28,7 @@
 		B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC3B2682F31000B4A8DC /* SettingView.swift */; };
 		B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */; };
 		B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494062681A1A50075D16C /* MyPageViewController.swift */; };
-		B45494092681A1B60075D16C /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageView.swift */; };
+		B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageHeaderView.swift */; };
 		B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940A2681A4400075D16C /* NLPTabBarController.swift */; };
 		B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940C2681B3480075D16C /* LaunchViewController.swift */; };
 		B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */; };
@@ -41,9 +44,13 @@
 		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
 		B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */; };
 		B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CDD1EA268841630086AADE /* NLPPoem.swift */; };
+		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewCell.swift; sourceTree = "<group>"; };
+		B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B42EE580267EFA55001848A5 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B42EE584267EFD6D001848A5 /* NLPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPButton.swift; sourceTree = "<group>"; };
@@ -56,7 +63,7 @@
 		B43BBC3B2682F31000B4A8DC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionView.swift; sourceTree = "<group>"; };
 		B45494062681A1A50075D16C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		B45494082681A1B60075D16C /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		B45494082681A1B60075D16C /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
 		B454940A2681A4400075D16C /* NLPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTabBarController.swift; sourceTree = "<group>"; };
 		B454940C2681B3480075D16C /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfilePhotoImageView.swift; sourceTree = "<group>"; };
@@ -83,6 +90,7 @@
 			files = (
 				B42EE57E267EF6C7001848A5 /* FirebaseDatabase in Frameworks */,
 				B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */,
+				B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */,
 				B42EE578267EF6C7001848A5 /* FirebaseStorage in Frameworks */,
 				B42EE57C267EF6C7001848A5 /* FirebaseFirestore in Frameworks */,
@@ -93,16 +101,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B45494062681A1A50075D16C /* MyPageViewController.swift */,
+				B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */,
+				B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */,
+			);
+			path = MyPageViewController;
+			sourceTree = "<group>";
+		};
 		B42EE57F267EFA39001848A5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
-				B45494062681A1A50075D16C /* MyPageViewController.swift */,
+				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
+				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
 				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
 				B478751C2671F540002FE83F /* ViewController.swift */,
-				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
-				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -155,7 +173,7 @@
 		B43BBC3A2682F2E000B4A8DC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B45494082681A1B60075D16C /* MyPageView.swift */,
+				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
 				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
 				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
 			);
@@ -165,6 +183,7 @@
 		B43BBC3D2682F72C00B4A8DC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -174,6 +193,7 @@
 			children = (
 				B47875172671F540002FE83F /* NLetterPoem */,
 				B47875162671F540002FE83F /* Products */,
+				B4CDD1EC26884AA40086AADE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,6 +245,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B4CDD1EC26884AA40086AADE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -248,6 +275,7 @@
 				B42EE579267EF6C7001848A5 /* FirebaseAuth */,
 				B42EE57B267EF6C7001848A5 /* FirebaseFirestore */,
 				B42EE57D267EF6C7001848A5 /* FirebaseDatabase */,
+				B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = NLetterPoem;
 			productReference = B47875152671F540002FE83F /* NLetterPoem.app */;
@@ -309,10 +337,12 @@
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
+				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
 				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
 				B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */,
 				B45494112681C6B80075D16C /* NLPProfileLabel.swift in Sources */,
-				B45494092681A1B60075D16C /* MyPageView.swift in Sources */,
+				B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
+				B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */,
 				B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */,
 				B42EE591267F176F001848A5 /* DatabaseManager.swift in Sources */,
 				B478751D2671F540002FE83F /* ViewController.swift in Sources */,
@@ -321,6 +351,7 @@
 				B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
+				B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,
@@ -566,6 +597,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -9,7 +9,7 @@ class NLPProfileLabel: UILabel {
         case normal
     }
     
-    init(type: LabelType, text: String) {
+    init(type: LabelType, text: String = "") {
         super.init(frame: .zero)
         configure(with: type, text: text)
     }

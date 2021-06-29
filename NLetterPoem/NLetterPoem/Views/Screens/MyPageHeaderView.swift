@@ -1,6 +1,7 @@
 import UIKit
 
-class MyPageView: UIView {
+class MyPageHeaderView: UICollectionReusableView {
+    static let reuseIdentifier = String(describing: MyPageHeaderView.self)
     
     //MARK: - Views
     private(set) var profilePhotoImageView: NLPProfilePhotoImageView!
@@ -14,20 +15,24 @@ class MyPageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        configureProfilePhotoImageView()
-        configureNicknameLabel()
-        configureBioLabel()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Configure Mypage Data
+    func configureUser(with user: NLPUser) {
+        nicknameLabel.text = user.nickname
+        bioLabel.text = user.bio
+    }
+    
     //MARK: - Privates
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        guard let user = NLPUser.shared else { return }
-        self.user = user
+        configureProfilePhotoImageView()
+        configureNicknameLabel()
+        configureBioLabel()
     }
     
     private func configureProfilePhotoImageView() {
@@ -43,7 +48,7 @@ class MyPageView: UIView {
     
     private func configureNicknameLabel() {
         let padding: CGFloat = 16
-        nicknameLabel = NLPProfileLabel(type: .nickname, text: user.nickname)
+        nicknameLabel = NLPProfileLabel(type: .nickname)
         addSubview(nicknameLabel)
         
         NSLayoutConstraint.activate([
@@ -56,7 +61,7 @@ class MyPageView: UIView {
     
     private func configureBioLabel() {
         let padding: CGFloat = 16
-        bioLabel = NLPProfileLabel(type: .bio, text: "This is test Bio!")
+        bioLabel = NLPProfileLabel(type: .bio)
         addSubview(bioLabel)
         
         NSLayoutConstraint.activate([

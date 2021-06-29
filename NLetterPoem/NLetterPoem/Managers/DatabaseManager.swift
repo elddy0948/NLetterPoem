@@ -1,5 +1,6 @@
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
 final class DatabaseManager {
     static let shared = DatabaseManager()
@@ -20,6 +21,7 @@ final class DatabaseManager {
             "secondPlaceCount": user.secondPlaceCount,
             "thirdPlaceCount": user.thirdPlaceCount,
             "participationCount": user.participationCount,
+            "poems": user.poems
         ], completion: { error in
             if let error = error {
                 print(error)
@@ -29,6 +31,15 @@ final class DatabaseManager {
                 completed(user)
             }
         })
+    }
+    
+    func updateUser(with user: NLPUser, completed: @escaping (Error?) -> Void) {
+        do {
+            try db.collection("users").document(user.email).setData(from: user, merge: true)
+            completed(nil)
+        } catch {
+            completed(error)
+        }
     }
     
     func checkUserExist(with user: NLPUser, completed: @escaping (Bool) -> Void) {
@@ -59,6 +70,14 @@ final class DatabaseManager {
                 print(error)
                 completed(nil)
             }
+        }
+    }
+    
+    func createPoem(with poem: NLPPoem, completed: @escaping(Error?) -> Void) {
+        do {
+            try db.collection("poems").document(poem.topic).setData(from: poem)
+        } catch {
+            debugPrint(error)
         }
     }
 }

@@ -10,6 +10,8 @@
 		B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */; };
 		B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */; };
 		B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */; };
+		B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */; };
+		B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */; };
 		B42EE571267EF5FA001848A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */; };
 		B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* FirebaseAnalytics */; };
 		B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */; };
@@ -51,6 +53,8 @@
 		B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
+		B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B42EE580267EFA55001848A5 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B42EE584267EFD6D001848A5 /* NLPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPButton.swift; sourceTree = "<group>"; };
@@ -114,8 +118,9 @@
 		B42EE57F267EFA39001848A5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
+				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
+				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
 				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
 				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
@@ -176,6 +181,7 @@
 				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
 				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
 				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
+				B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -334,6 +340,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
+				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,

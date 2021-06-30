@@ -52,6 +52,9 @@ extension MyPageViewController: UICollectionViewDelegate {
 
 extension MyPageViewController: MyPageHeaderViewDelegate {
     func didTappedEditProfileButton(_ sender: NLPButton) {
-        print("Did Tapped Edit Profile!!!!")
+        let viewController = EditProfileViewController()
+        viewController.user = user
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
     }
 }

@@ -32,6 +32,7 @@ class MyPageHeaderView: UICollectionReusableView {
     func configureUser(with user: NLPUser?) {
         guard let user = user  else { return }
         bioLabel.text = user.bio
+        profilePhotoImageView.setImage(with: user.profilePhotoURL)
     }
     
     //MARK: - Privates

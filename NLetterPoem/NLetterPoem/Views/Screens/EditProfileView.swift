@@ -3,6 +3,7 @@ import UIKit
 protocol EditProfileViewDelegate: AnyObject {
     func didTappedCancelButton(_ editProfileView: EditProfileView)
     func didTappedDoneButton(_ editProfileView: EditProfileView, with user: NLPUser)
+    func didTappedImageView(_ editProfileView: EditProfileView)
 }
 
 class EditProfileView: UIView {
@@ -15,6 +16,7 @@ class EditProfileView: UIView {
     
     //MARK: - Properties
     private var user: NLPUser!
+    private var tapGestureRecognizer: UITapGestureRecognizer!
     weak var delegate: EditProfileViewDelegate?
     
     //MARK: - init
@@ -73,6 +75,11 @@ class EditProfileView: UIView {
     
     private func configureProfilePhotoImageView() {
         profilePhotoImageView = NLPProfilePhotoImageView(size: 100)
+        profilePhotoImageView.setImage(with: user.profilePhotoURL)
+        tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                      action: #selector(didTappedImageView(_:)))
+        profilePhotoImageView.addGestureRecognizer(tapGestureRecognizer)
+        profilePhotoImageView.isUserInteractionEnabled = true
         addSubview(profilePhotoImageView)
         
         NSLayoutConstraint.activate([
@@ -113,6 +120,10 @@ class EditProfileView: UIView {
         ])
     }
     
+    func setProfileImage(with image: UIImage) {
+        self.profilePhotoImageView.image = image
+    }
+    
     //MARK: - Actions
     @objc func didTappedCancelButton(_ sender: UIBarButtonItem) {
         delegate?.didTappedCancelButton(self)
@@ -121,14 +132,27 @@ class EditProfileView: UIView {
     @objc func didTappedDoneButton(_ sender: UIBarButtonItem) {
         guard let nickname = nicknameTextField.text,
               let bio = bioTextView.text,
+              let profilePhoto = profilePhotoImageView.image,
+              let imageData = profilePhoto.pngData(),
               let user = user else {
             delegate?.didTappedCancelButton(self)
             return
         }
         
-        user.nickname = nickname
-        user.bio = bio
-        
-        delegate?.didTappedDoneButton(self, with: user)
+        StorageManager.shared.uploadImage(with: imageData) { [weak self] url in
+            guard let self = self else { return }
+            if let url = url {
+                user.profilePhotoURL = url.absoluteString
+                print(user.profilePhotoURL)
+            }
+            user.nickname = nickname
+            user.bio = bio
+            
+            self.delegate?.didTappedDoneButton(self, with: user)
+        }
+    }
+    
+    @objc func didTappedImageView(_ sender: NLPProfilePhotoImageView) {
+        delegate?.didTappedImageView(self)
     }
 }

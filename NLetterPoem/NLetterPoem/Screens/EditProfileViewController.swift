@@ -7,7 +7,7 @@ class EditProfileViewController: UIViewController {
     
     //MARK: - Properties
     var user: NLPUser?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -47,5 +47,26 @@ extension EditProfileViewController: EditProfileViewDelegate {
             }
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func didTappedImageView(_ editProfileView: EditProfileView) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+}
+
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var selectedImage: UIImage
+        if let possibleImage = info[.editedImage] as? UIImage {
+            selectedImage = possibleImage
+        } else if let possibleImage = info[.originalImage] as? UIImage {
+            selectedImage = possibleImage
+        } else { return }
+        editProfileView.setProfileImage(with: selectedImage)
+        dismiss(animated: true, completion: nil)
     }
 }

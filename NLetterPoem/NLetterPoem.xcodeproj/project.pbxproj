@@ -47,6 +47,8 @@
 		B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */; };
 		B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CDD1EA268841630086AADE /* NLPPoem.swift */; };
 		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
+		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
+		B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE98268D90B500968C5B /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		B4CB3770268310CA00CD4F10 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfileCardView.swift; sourceTree = "<group>"; };
 		B4CDD1EA268841630086AADE /* NLPPoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoem.swift; sourceTree = "<group>"; };
+		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
+		B4D1BE98268D90B500968C5B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				B42EE590267F176F001848A5 /* DatabaseManager.swift */,
+				B4D1BE98268D90B500968C5B /* StorageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				B42EE57F267EFA39001848A5 /* Screens */,
 				B42EE58A267F04FB001848A5 /* Utilities */,
 				B42EE582267EFD43001848A5 /* Views */,
+				B4D1BE96268D903A00968C5B /* Privacy.swift */,
 			);
 			path = NLetterPoem;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
+				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
 				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
@@ -370,6 +377,7 @@
 				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,
 				B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */,
+				B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

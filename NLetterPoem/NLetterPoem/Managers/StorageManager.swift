@@ -8,9 +8,9 @@ final class StorageManager {
     
     private init() { }
     
-    func uploadImage(with data: Data, completed: @escaping ((URL?) -> Void)) {
+    func uploadImage(with data: Data, email: String, completed: @escaping ((URL?) -> Void)) {
         let reference = storage.reference()
-        let testReference = reference.child("text.png")
+        let testReference = reference.child("\(email)/profileImage.png")
         testReference.putData(data, metadata: nil) { metaData, error in
             if let error = error {
                 completed(nil)
@@ -34,7 +34,7 @@ final class StorageManager {
             return
         }
         
-        storage.reference(forURL: url).getData(maxSize: 2 * 1024 * 1024) { [weak self] data, error in
+        storage.reference(forURL: url).getData(maxSize: 3 * 1024 * 1024) { [weak self] data, error in
             guard let self = self else { return }
             
             if let error = error {

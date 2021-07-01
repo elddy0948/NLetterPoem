@@ -61,11 +61,13 @@ extension EditProfileViewController: EditProfileViewDelegate {
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         var selectedImage: UIImage
+        
         if let possibleImage = info[.editedImage] as? UIImage {
             selectedImage = possibleImage
         } else if let possibleImage = info[.originalImage] as? UIImage {
             selectedImage = possibleImage
         } else { return }
+        
         editProfileView.setProfileImage(with: selectedImage)
         dismiss(animated: true, completion: nil)
     }

@@ -139,11 +139,10 @@ class EditProfileView: UIView {
             return
         }
         
-        StorageManager.shared.uploadImage(with: imageData) { [weak self] url in
+        StorageManager.shared.uploadImage(with: imageData, email: user.email) { [weak self] url in
             guard let self = self else { return }
             if let url = url {
                 user.profilePhotoURL = url.absoluteString
-                print(user.profilePhotoURL)
             }
             user.nickname = nickname
             user.bio = bio

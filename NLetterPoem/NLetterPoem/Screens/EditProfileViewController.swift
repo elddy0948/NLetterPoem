@@ -39,8 +39,13 @@ extension EditProfileViewController: EditProfileViewDelegate {
     }
     
     func didTappedDoneButton(_ editProfileView: EditProfileView, with user: NLPUser) {
-        print("Done!")
-        print(user)
-        self.dismiss(animated: true, completion: nil)
+        DatabaseManager.shared.updateUser(with: user) { error in
+            if let error = error {
+                debugPrint(error)
+                self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!")
+                self.dismiss(animated: true, completion: nil)
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

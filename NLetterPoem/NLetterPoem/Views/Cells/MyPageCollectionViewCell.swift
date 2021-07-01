@@ -23,7 +23,8 @@ class MyPageCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Configure Cell Data
-    func setPoemData(with poem: NLPPoem) {
+    func setPoemData(with poem: NLPPoem?) {
+        guard let poem = poem else { return }
         if poem.ranking == 1 {
             medalLabel.text = RankingState.gold.medal
             contentView.backgroundColor = RankingState.gold.backgroundColor

@@ -23,6 +23,9 @@ class EditProfileView: UIView {
         self.user = user
         configure()
         configureNavigationBar()
+        configureProfilePhotoImageView()
+        configureNicknameTextField()
+        configureBioTextView()
     }
     
     override init(frame: CGRect) {
@@ -34,6 +37,7 @@ class EditProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Privates
     private func configure() {
         backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
@@ -67,6 +71,49 @@ class EditProfileView: UIView {
         navigationBar.pushItem(item, animated: true)
     }
     
+    private func configureProfilePhotoImageView() {
+        profilePhotoImageView = NLPProfilePhotoImageView(size: 100)
+        addSubview(profilePhotoImageView)
+        
+        NSLayoutConstraint.activate([
+            profilePhotoImageView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 16),
+            profilePhotoImageView.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+    }
+    
+    private func configureNicknameTextField() {
+        nicknameTextField = NLPTextField(type: .nickname)
+        addSubview(nicknameTextField)
+        nicknameTextField.text = user.nickname
+        
+        NSLayoutConstraint.activate([
+            nicknameTextField.topAnchor.constraint(equalTo: profilePhotoImageView.bottomAnchor, constant: 16),
+            nicknameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            nicknameTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            nicknameTextField.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    
+    private func configureBioTextView() {
+        bioTextView = UITextView()
+        bioTextView.translatesAutoresizingMaskIntoConstraints = false
+        bioTextView.text = user.bio
+        bioTextView.backgroundColor = .secondarySystemBackground
+        bioTextView.layer.borderColor = UIColor.systemGray.cgColor
+        bioTextView.layer.borderWidth = 3
+        bioTextView.layer.cornerRadius = 16
+        bioTextView.layer.masksToBounds = true
+        addSubview(bioTextView)
+        
+        NSLayoutConstraint.activate([
+            bioTextView.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor, constant: 16),
+            bioTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            bioTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            bioTextView.heightAnchor.constraint(equalToConstant: 150),
+        ])
+    }
+    
+    //MARK: - Actions
     @objc func didTappedCancelButton(_ sender: UIBarButtonItem) {
         delegate?.didTappedCancelButton(self)
     }

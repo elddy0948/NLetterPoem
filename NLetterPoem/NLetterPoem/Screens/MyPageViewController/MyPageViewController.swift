@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class MyPageViewController: UIViewController {
     
@@ -6,21 +7,29 @@ class MyPageViewController: UIViewController {
     private(set) var myPageCollectionView: MyPageCollectionView!
     
     //MARK: - Properties
-    var user: NLPUser!
+    var user: NLPUser? {
+        didSet {
+            navigationItem.title = user?.nickname
+            myPageCollectionView.reloadData()
+        }
+    }
 
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = NLPUser.shared!
         configure()
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchCurrentUser()
     }
     
     private func configure() {
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill, style: .plain, target: self, action: #selector(didTapSettingButton(_:)))
         navigationController?.navigationBar.tintColor = .label
-        navigationItem.title = user.nickname
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -38,6 +47,15 @@ class MyPageViewController: UIViewController {
         
         myPageCollectionView.delegate = self
         myPageCollectionView.dataSource = self
+    }
+    
+    private func fetchCurrentUser() {
+        guard let currentUser = Auth.auth().currentUser,
+              let email = currentUser.email else { return }
+        DatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
+            guard let self = self else { return }
+            self.user = user
+        }
     }
     
     @objc func didTapSettingButton(_ sender: UIBarButtonItem) {

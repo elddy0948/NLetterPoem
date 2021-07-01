@@ -29,7 +29,8 @@ class MyPageHeaderView: UICollectionReusableView {
     }
     
     //MARK: - Configure Mypage Data
-    func configureUser(with user: NLPUser) {
+    func configureUser(with user: NLPUser?) {
+        guard let user = user  else { return }
         bioLabel.text = user.bio
     }
     

@@ -5,14 +5,14 @@ extension MyPageViewController: UICollectionViewDataSource {
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return user.poems.count
+        return user?.poems.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier, for: indexPath) as? MyPageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setPoemData(with: user.poems[indexPath.item])
+        cell.setPoemData(with: user?.poems[indexPath.item])
         return cell
     }
     

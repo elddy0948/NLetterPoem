@@ -52,6 +52,8 @@
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE98268D90B500968C5B /* StorageManager.swift */; };
 		B4F259882692D02B00FF95A4 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B4F259872692D02B00FF95A4 /* NanumScript.ttc */; };
+		B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */; };
+		B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,8 @@
 		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4D1BE98268D90B500968C5B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B4F259872692D02B00FF95A4 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
+		B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTopic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +250,7 @@
 			children = (
 				B478752D2671FA8E002FE83F /* NLPUser.swift */,
 				B4CDD1EA268841630086AADE /* NLPPoem.swift */,
+				B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				B4C6404826806F13007A7B59 /* ViewController+Ext.swift */,
+				B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,8 +389,10 @@
 				B478751D2671F540002FE83F /* HomeViewController.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
+				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
+				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,

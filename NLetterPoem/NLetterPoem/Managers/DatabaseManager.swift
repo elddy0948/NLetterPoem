@@ -80,4 +80,22 @@ final class DatabaseManager {
             debugPrint(error)
         }
     }
+    
+    func fetchTodayTopic(date: Date, completed: @escaping ((String?) -> Void)) {
+        let stringDate = date.toYearMonthDay()
+        db.collection("topics").document(stringDate).getDocument { document, error in
+            guard let document = document else {
+                completed(nil)
+                return
+            }
+            
+            do {
+                let data = try document.data(as: Topic.self)
+                completed(data?.topic)
+            } catch {
+                debugPrint(error)
+                completed(nil)
+            }
+        }
+    }
 }

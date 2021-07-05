@@ -41,6 +41,7 @@ final class HomeHeaderView: UIView {
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
@@ -52,14 +53,18 @@ final class HomeHeaderView: UIView {
         topicLabel.textColor = .label
         topicLabel.font = UIFont(name: "NanumBrush", size: 48)
         topicLabel.textAlignment = .center
-        topicLabel.text = "삼행시"
+        topicLabel.text = ""
         
         let padding: CGFloat = 8
         NSLayoutConstraint.activate([
             topicLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
             topicLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             topicLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            topicLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            topicLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
         ])
+    }
+    
+    func setTopic(_ topic: String) {
+        topicLabel.text = topic
     }
 }

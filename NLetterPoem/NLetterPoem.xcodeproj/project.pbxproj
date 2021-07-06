@@ -43,6 +43,9 @@
 		B47875222671F540002FE83F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B47875212671F540002FE83F /* Assets.xcassets */; };
 		B47875252671F540002FE83F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B47875232671F540002FE83F /* LaunchScreen.storyboard */; };
 		B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478752D2671FA8E002FE83F /* NLPUser.swift */; };
+		B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EC269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift */; };
+		B4C3F3EF269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EE269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift */; };
+		B4C3F3F1269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F0269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift */; };
 		B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404526806DAE007A7B59 /* NLPError.swift */; };
 		B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404826806F13007A7B59 /* ViewController+Ext.swift */; };
 		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
@@ -89,6 +92,9 @@
 		B47875242671F540002FE83F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B47875262671F540002FE83F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B478752D2671FA8E002FE83F /* NLPUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPUser.swift; sourceTree = "<group>"; };
+		B4C3F3EC269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		B4C3F3EE269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		B4C3F3F0269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+HomeTableViewDelegate.swift"; sourceTree = "<group>"; };
 		B4C6404526806DAE007A7B59 /* NLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPError.swift; sourceTree = "<group>"; };
 		B4C6404826806F13007A7B59 /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
 		B4CB3770268310CA00CD4F10 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 		B42EE57F267EFA39001848A5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B4C3F3EB2694184D00CED1A9 /* HomeViewController */,
 				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
 				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
@@ -139,7 +146,6 @@
 				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
 				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
-				B478751C2671F540002FE83F /* HomeViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -253,6 +259,17 @@
 				B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B4C3F3EB2694184D00CED1A9 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B478751C2671F540002FE83F /* HomeViewController.swift */,
+				B4C3F3EC269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift */,
+				B4C3F3EE269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift */,
+				B4C3F3F0269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift */,
+			);
+			path = HomeViewController;
 			sourceTree = "<group>";
 		};
 		B4C6404426806D7E007A7B59 /* Storyboards */ = {
@@ -372,6 +389,7 @@
 			files = (
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
+				B4C3F3EF269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
@@ -387,6 +405,7 @@
 				B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */,
 				B42EE591267F176F001848A5 /* DatabaseManager.swift in Sources */,
 				B478751D2671F540002FE83F /* HomeViewController.swift in Sources */,
+				B4C3F3F1269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
@@ -394,6 +413,7 @@
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
+				B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */,
 				B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,

@@ -1,6 +1,13 @@
 import UIKit
 
+protocol HomeTableViewDelegate: AnyObject {
+    func handleRefreshHomeTableView(_ tableView: HomeTableView)
+}
+
 class HomeTableView: UITableView {
+    
+    private(set) var homeRefreshControl: UIRefreshControl!
+    weak var homeTableViewDelegate: HomeTableViewDelegate?
     
     //MARK: - init
     override init(frame: CGRect, style: UITableView.Style) {
@@ -14,7 +21,16 @@ class HomeTableView: UITableView {
     
     //MARK: - Privates
     private func configure() {
+        homeRefreshControl = UIRefreshControl()
+        
         tableFooterView = UIView()
         backgroundColor = .systemBackground
+        refreshControl = homeRefreshControl
+        
+        refreshControl?.addTarget(self, action: #selector(handleRefreshHome(_:)), for: UIControl.Event.valueChanged)
+    }
+    
+    @objc func handleRefreshHome(_ sender: UIRefreshControl) {
+        homeTableViewDelegate?.handleRefreshHomeTableView(self)
     }
 }

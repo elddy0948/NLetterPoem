@@ -32,6 +32,7 @@ class HomeViewController: UIViewController {
         
         homeTableView.delegate = self
         homeTableView.dataSource = self
+        homeTableView.homeTableViewDelegate = self
         
         tabBarItem.title = "홈"
         tabBarItem.image = UIImage(systemName: "house.fill")
@@ -59,7 +60,7 @@ class HomeViewController: UIViewController {
         homeTableView.tableHeaderView = containerView
     }
     
-    private func fetchTodayTopic() {
+    func fetchTodayTopic() {
         DatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
             guard let self = self else { return }
             guard let topic = topic else {
@@ -71,16 +72,5 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UITableViewDelegate {
-    
-}
-extension HomeViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-}
+
 

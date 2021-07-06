@@ -9,10 +9,8 @@ class HomeViewController: UIViewController {
     //MARK: - Properties
     private var todayTopic: String! {
         didSet {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.homeHeaderView.setTopic(self.todayTopic)
-                self.homeTableView.reloadData()
+            if oldValue != todayTopic {
+                updateTableViewContents()
             }
         }
     }
@@ -33,6 +31,9 @@ class HomeViewController: UIViewController {
         homeTableView.delegate = self
         homeTableView.dataSource = self
         homeTableView.homeTableViewDelegate = self
+        
+        homeTableView.register(HomeTableViewCell.self,
+                               forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
         
         tabBarItem.title = "홈"
         tabBarItem.image = UIImage(systemName: "house.fill")
@@ -68,6 +69,14 @@ class HomeViewController: UIViewController {
                 return
             }
             self.todayTopic = topic
+        }
+    }
+    
+    func updateTableViewContents() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.homeHeaderView.setTopic(self.todayTopic)
+            self.homeTableView.reloadData()
         }
     }
 }

@@ -15,12 +15,19 @@ class HomeViewController: UIViewController {
         }
     }
     
+    var todayPoems: [NLPPoem]? {
+        didSet {
+            updateTableViewContents()
+        }
+    }
+    
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         configureHeaderView()
         fetchTodayTopic()
+        fetchTodayPoems()
     }
 
     private func configure() {
@@ -69,6 +76,13 @@ class HomeViewController: UIViewController {
                 return
             }
             self.todayTopic = topic
+        }
+    }
+    
+    func fetchTodayPoems() {
+        DatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
+            guard let self = self else { return }
+            self.todayPoems = poems
         }
     }
     

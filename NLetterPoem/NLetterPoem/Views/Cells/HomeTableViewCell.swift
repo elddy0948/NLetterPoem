@@ -25,6 +25,7 @@ final class HomeTableViewCell: UITableViewCell {
         super.layoutSubviews()
         let margins = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         contentView.frame = contentView.frame.inset(by: margins)
+        contentView.layer.borderColor = UIColor.label.cgColor
     }
     
     override func prepareForReuse() {
@@ -37,7 +38,6 @@ final class HomeTableViewCell: UITableViewCell {
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
         contentView.layer.borderWidth = 3
-        contentView.layer.borderColor = UIColor.black.cgColor
     }
     
     private func configureShortDescriptionLabel() {
@@ -72,7 +72,6 @@ final class HomeTableViewCell: UITableViewCell {
         writerLabel.text = ""
         
         NSLayoutConstraint.activate([
-            writerLabel.topAnchor.constraint(equalTo: shortDescriptionLabel.bottomAnchor, constant: padding),
             writerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             writerLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
         ])

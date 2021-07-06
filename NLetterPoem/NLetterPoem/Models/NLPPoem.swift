@@ -17,4 +17,8 @@ final class NLPPoem: Codable {
         self.content = content
         self.ranking = ranking
     }
+    
+    static func emptyPoem() -> NLPPoem {
+        return NLPPoem(id: "", topic: "", author: "", content: "", ranking: Int.max)
+    }
 }

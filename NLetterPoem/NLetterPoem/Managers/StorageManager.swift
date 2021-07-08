@@ -10,7 +10,8 @@ final class StorageManager {
     
     func uploadImage(with data: Data, email: String, completed: @escaping ((URL?) -> Void)) {
         let reference = storage.reference()
-        let testReference = reference.child("\(email)/profileImage.png")
+        let testReference = reference.child("\(email)/profileImage.jpeg")
+        
         testReference.putData(data, metadata: nil) { metaData, error in
             if let error = error {
                 completed(nil)

@@ -133,7 +133,7 @@ class EditProfileView: UIView {
         guard let nickname = nicknameTextField.text,
               let bio = bioTextView.text,
               let profilePhoto = profilePhotoImageView.image,
-              let imageData = profilePhoto.pngData(),
+              let imageData = profilePhoto.jpegData(compressionQuality: 0.5),
               let user = user else {
             delegate?.didTappedCancelButton(self)
             return

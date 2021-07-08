@@ -10,7 +10,7 @@ extension HomeViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier, for: indexPath) as? HomeTableViewCell,
               let poem = todayPoems?[indexPath.row] else { return UITableViewCell() }
         let shortDescription = poem.content.makeShortDescription()
-        cell.setCellData(shortDes: "\"\(shortDescription)", writer: "- 텅비우면가득차요 -")
+        cell.setCellData(shortDes: "\"\(shortDescription)", writer: "- \(poem.author) -", likeCount: poem.likeCount)
         return cell
     }
 }

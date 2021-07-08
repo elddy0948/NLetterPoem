@@ -90,7 +90,6 @@ class HomeViewController: UIViewController {
         DatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
             guard let self = self else { return }
             self.todayPoems = poems
-            print(poems)
         }
     }
     

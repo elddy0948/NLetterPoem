@@ -71,11 +71,11 @@ final class DatabaseManager {
         }
     }
     
-    func createPoem(date: Date, poem: NLPPoem, completed: @escaping(Error?) -> Void) {
+    func createPoem(date: Date, userEmail: String, poem: NLPPoem, completed: @escaping(Error?) -> Void) {
         let stringDate = date.toYearMonthDay()
         
         do {
-            try db.collection("\(stringDate)-poems").document(poem.author).setData(from: poem)
+            try db.collection("\(stringDate)-poems").document(userEmail).setData(from: poem)
         } catch {
             debugPrint(error)
         }

@@ -41,12 +41,13 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
             return
         }
         
-        let nlpPoem = NLPPoem(id: user.email, topic: topic, author: user.email, content: poem, ranking: Int.max)
+        let nlpPoem = NLPPoem(id: user.email, topic: topic, author: user.nickname, content: poem, ranking: Int.max)
+        
         user.poems.append(nlpPoem)
         
         dispatchQueue.async {
             dispatchGroup.enter()
-            DatabaseManager.shared.createPoem(date: Date(), poem: nlpPoem) { [weak self] error in
+            DatabaseManager.shared.createPoem(date: Date(), userEmail: user.email, poem: nlpPoem) { [weak self] error in
                 defer { dispatchGroup.leave() }
                 guard let self = self else { return }
                 if let error = error {

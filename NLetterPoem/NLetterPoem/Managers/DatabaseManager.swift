@@ -119,7 +119,6 @@ final class DatabaseManager {
                     return
                 }
             }
-            
             completed(poems)
         }
     }

@@ -14,6 +14,7 @@
 		B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */; };
 		B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F42691AFC70088119D /* HomeTableView.swift */; };
 		B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F62691B0810088119D /* HomeHeaderView.swift */; };
+		B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */; };
 		B42EE571267EF5FA001848A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */; };
 		B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* FirebaseAnalytics */; };
 		B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */; };
@@ -48,6 +49,8 @@
 		B4C3F3F1269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F0269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift */; };
 		B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */; };
 		B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F426942F2E00CED1A9 /* String+Ext.swift */; };
+		B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F62694394200CED1A9 /* CreatePoemViewController.swift */; };
+		B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */; };
 		B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404526806DAE007A7B59 /* NLPError.swift */; };
 		B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404826806F13007A7B59 /* ViewController+Ext.swift */; };
 		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
@@ -69,6 +72,7 @@
 		B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		B421C4F42691AFC70088119D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		B421C4F62691B0810088119D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoemFormView.swift; sourceTree = "<group>"; };
 		B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B42EE580267EFA55001848A5 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B42EE584267EFD6D001848A5 /* NLPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPButton.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 		B4C3F3F0269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+HomeTableViewDelegate.swift"; sourceTree = "<group>"; };
 		B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		B4C3F3F426942F2E00CED1A9 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		B4C3F3F62694394200CED1A9 /* CreatePoemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePoemViewController.swift; sourceTree = "<group>"; };
+		B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePoemView.swift; sourceTree = "<group>"; };
 		B4C6404526806DAE007A7B59 /* NLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPError.swift; sourceTree = "<group>"; };
 		B4C6404826806F13007A7B59 /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
 		B4CB3770268310CA00CD4F10 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
@@ -142,8 +148,9 @@
 		B42EE57F267EFA39001848A5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B4C3F3EB2694184D00CED1A9 /* HomeViewController */,
+				B4C3F3F62694394200CED1A9 /* CreatePoemViewController.swift */,
 				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
+				B4C3F3EB2694184D00CED1A9 /* HomeViewController */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
 				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
 				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
@@ -175,6 +182,7 @@
 				B42EE586267EFD7D001848A5 /* NLPTextField.swift */,
 				B45494102681C6B80075D16C /* NLPProfileLabel.swift */,
 				B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */,
+				B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -203,12 +211,13 @@
 		B43BBC3A2682F2E000B4A8DC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */,
+				B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */,
+				B421C4F62691B0810088119D /* HomeHeaderView.swift */,
+				B421C4F42691AFC70088119D /* HomeTableView.swift */,
+				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
 				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
 				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
-				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
-				B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */,
-				B421C4F42691AFC70088119D /* HomeTableView.swift */,
-				B421C4F62691B0810088119D /* HomeHeaderView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -397,6 +406,7 @@
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4C3F3EF269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
+				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
 				B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */,
@@ -406,6 +416,7 @@
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
 				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
 				B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */,
+				B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */,
 				B45494112681C6B80075D16C /* NLPProfileLabel.swift in Sources */,
 				B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */,
@@ -420,6 +431,7 @@
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
+				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */,
 				B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */,

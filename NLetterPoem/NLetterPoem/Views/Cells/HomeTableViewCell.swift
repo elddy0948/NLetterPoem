@@ -35,7 +35,8 @@ final class HomeTableViewCell: UITableViewCell {
     }
     
     private func configureContentView() {
-        contentView.layer.cornerRadius = 8
+        selectionStyle = .none
+        contentView.layer.cornerRadius = 16
         contentView.layer.masksToBounds = true
         contentView.layer.borderWidth = 3
     }

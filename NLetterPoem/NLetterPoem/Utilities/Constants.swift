@@ -10,4 +10,6 @@ enum SFSymbols {
     static let personCircle = UIImage(systemName: "person.circle")
     static let gearShapeFill = UIImage(systemName: "gearshape.fill")
     static let crownFill = UIImage(systemName: "crown.fill")
+    static let flame = UIImage(systemName: "flame")
+    static let flameFill = UIImage(systemName: "flame.fill")
 }

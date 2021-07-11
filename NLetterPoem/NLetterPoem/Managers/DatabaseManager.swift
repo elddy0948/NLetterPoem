@@ -10,25 +10,14 @@ final class DatabaseManager {
     
     private init() {}
     
-    func createUser(with user: NLPUser, completed: @escaping (NLPUser?) -> Void) {
-        db.collection("users").document(user.email).setData([
-            "email": user.email,
-            "password": user.password,
-            "nickname": user.nickname,
-            "profilePhotoURL": user.profilePhotoURL,
-            "bio": user.bio,
-            "firstPlaceCount": user.firstPlaceCount,
-            "secondPlaceCount": user.secondPlaceCount,
-            "thirdPlaceCount": user.thirdPlaceCount,
-            "participationCount": user.participationCount,
-            "poems": user.poems
-        ], completion: { error in
-            if let _ = error {
-                completed(nil)
-            } else {
-                completed(user)
-            }
-        })
+    func createUser(with user: NLPUser, completed: @escaping (Error?) -> Void) {
+        do {
+            try db.collection("users").document(user.email).setData(from: user)
+            completed(nil)
+        } catch {
+            completed(error)
+            return
+        }
     }
     
     func updateUser(with user: NLPUser, completed: @escaping (Error?) -> Void) {

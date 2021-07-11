@@ -67,32 +67,43 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: NLPButtonDelegate {
     func didTappedButton(_ sender: NLPButton) {
         guard let user = createUser() else { return }
+        let dispatchGroup = DispatchGroup()
+        
         DatabaseManager.shared.checkUserExist(with: user) { [weak self] isUserExist in
             guard let self = self else { return }
             if isUserExist {
-                print("user exist!")
+                self.showAlert(title: "⚠️", message: "이미 존재하는 유저입니다!")
                 return
             } else {
-                self.insertUserInFirebaseAuth(with: user)
+                self.insertUserInFirebaseAuth(with: user, group: dispatchGroup)
+                self.insertUserInDatabase(with: user, group: dispatchGroup)
             }
+        }
+        
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
-    private func insertUserInFirebaseAuth(with user: NLPUser) {
-        Auth.auth().createUser(withEmail: user.email, password: user.password) { [weak self] result, error in
-            guard let self = self else { return }
+    private func insertUserInFirebaseAuth(with user: NLPUser, group: DispatchGroup) {
+        group.enter()
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { result, error in
             if let error = error {
                 debugPrint(error)
                 return
             }
-            self.insertUserInDatabase(with: user)
+            group.leave()
         }
     }
     
-    private func insertUserInDatabase(with user: NLPUser) {
-        DatabaseManager.shared.createUser(with: user) { [weak self] user in
-            guard let self = self else { return }
-            self.dismiss(animated: true, completion: nil)
+    private func insertUserInDatabase(with user: NLPUser, group: DispatchGroup) {
+        group.enter()
+        DatabaseManager.shared.createUser(with: user) { error in
+            if let error = error {
+                debugPrint(error)
+                return
+            }
+            group.leave()
         }
     }
 }

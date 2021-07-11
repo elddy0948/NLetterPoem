@@ -80,12 +80,16 @@ final class DetailPoemView: UIView {
         addSubview(fireButton)
         
         fireButton.translatesAutoresizingMaskIntoConstraints = false
-        fireButton.setTitle("🔥", for: .normal)
+        fireButton.setImage(SFSymbols.flame, for: .normal)
+        fireButton.tintColor = .label
+        fireButton.contentHorizontalAlignment = .fill
+        fireButton.contentVerticalAlignment = .fill
         
         NSLayoutConstraint.activate([
             fireButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             fireButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            fireButton.heightAnchor.constraint(equalToConstant: 20),
+            fireButton.heightAnchor.constraint(equalToConstant: 50),
+            fireButton.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
     

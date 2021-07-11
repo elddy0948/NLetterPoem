@@ -13,6 +13,7 @@ final class NLPUser: Codable {
     var thirdPlaceCount: Int = 0
     var participationCount: Int = 0
     var poems: [NLPPoem] = []
+    var likedPoem: [String] = []
     
     init(email: String, password: String, profilePhotoURL: String, nickname: String, bio: String) {
         self.email = email

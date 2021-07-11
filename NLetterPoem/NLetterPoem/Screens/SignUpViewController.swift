@@ -92,7 +92,6 @@ extension SignUpViewController: NLPButtonDelegate {
     private func insertUserInDatabase(with user: NLPUser) {
         DatabaseManager.shared.createUser(with: user) { [weak self] user in
             guard let self = self else { return }
-            debugPrint(user)
             self.dismiss(animated: true, completion: nil)
         }
     }

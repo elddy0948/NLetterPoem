@@ -25,7 +25,7 @@ class SettingViewController: UIViewController {
         settingTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
-    private func didTapSignout() {"house.fill"
+    private func didTapSignout() {
         do {
             try Auth.auth().signOut()
             NLPUser.shared = nil

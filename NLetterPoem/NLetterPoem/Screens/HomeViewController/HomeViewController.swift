@@ -51,6 +51,7 @@ class HomeViewController: UIViewController {
         
         tabBarItem.title = "홈"
         tabBarItem.image = UIImage(systemName: "house.fill")
+        navigationController?.navigationBar.tintColor = .label
     }
     
     private func configureHeaderView() {

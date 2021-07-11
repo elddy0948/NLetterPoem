@@ -4,4 +4,12 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let poem = todayPoems?[indexPath.row] {
+            let viewController = PoemDetailViewController()
+            viewController.poem = poem
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
 }

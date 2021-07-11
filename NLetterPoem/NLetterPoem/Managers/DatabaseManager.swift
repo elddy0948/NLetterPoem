@@ -23,7 +23,7 @@ final class DatabaseManager {
             "participationCount": user.participationCount,
             "poems": user.poems
         ], completion: { error in
-            if let error = error {
+            if let _ = error {
                 completed(nil)
             } else {
                 completed(user)

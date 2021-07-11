@@ -34,6 +34,10 @@ class NLPProfilePhotoImageView: UIImageView {
     }
     
     func setImage(with url: String) {
+        if url.isEmpty {
+            return
+        }
+        
         StorageManager.shared.downloadImage(from: url) { [weak self] image in
             guard let self = self else { return }
             if let image = image {

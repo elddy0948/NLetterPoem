@@ -37,18 +37,25 @@ class PoemDetailViewController: UIViewController {
         
         self.view = detailPoemView
     }
+    
+    private func updateLikeCount(id: String, isIncrease: Bool) {
+        DatabaseManager.shared.updatePoemLikeCount(id: id, isIncrease: isIncrease)
+    }
 }
 
 extension PoemDetailViewController: DetailPoemViewDelegate {
     func didTappedFireButton(_ detailPoemView: DetailPoemView, _ fireButton: UIButton) {
         guard let user = NLPUser.shared,
               let poem = poem else { return }
+        
         fireState.toggle()
         
         if fireState {
+            updateLikeCount(id: poem.id, isIncrease: true)
             user.likedPoem.append(poem.id)
         } else {
             if let index = user.likedPoem.firstIndex(of: poem.id) {
+                updateLikeCount(id: poem.id, isIncrease: false)
                 user.likedPoem.remove(at: index)
             }
         }

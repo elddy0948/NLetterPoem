@@ -10,6 +10,7 @@ final class DatabaseManager {
     
     private init() {}
     
+    //MARK: - User
     func createUser(with user: NLPUser, completed: @escaping (Error?) -> Void) {
         do {
             try db.collection("users").document(user.email).setData(from: user)
@@ -37,7 +38,6 @@ final class DatabaseManager {
             }
             
             if document.exists {
-                print("Hello")
                 completed(true)
             } else {
                 completed(false)
@@ -60,11 +60,10 @@ final class DatabaseManager {
         }
     }
     
-    func createPoem(date: Date, userEmail: String, poem: NLPPoem, completed: @escaping(Error?) -> Void) {
-        let stringDate = date.toYearMonthDay()
-        
+    //MARK: - Poem
+    func createPoem(poem: NLPPoem, completed: @escaping ((Error?) -> Void)) {
         do {
-            try db.collection("\(stringDate)-poems").document(userEmail).setData(from: poem)
+            try db.collection("poems").document(poem.id).setData(from: poem)
         } catch {
             debugPrint(error)
         }
@@ -91,24 +90,61 @@ final class DatabaseManager {
     
     func fetchTodayPoems(date: Date, completed: @escaping (([NLPPoem]) -> Void)) {
         let stringDate = date.toYearMonthDay()
+        let poemRef = db.collection("poems")
+        let query = poemRef.whereField("createdAt", isEqualTo: "\(stringDate)")
         var poems = [NLPPoem]()
         
-        db.collection("\(stringDate)-poems").getDocuments { query, error in
-            guard let query = query else {
-                completed(poems)
+        query.getDocuments { snapshot, error in
+            guard let querySnapshot = snapshot else {
+                completed([])
                 return
             }
             
-            for document in query.documents {
+            for document in querySnapshot.documents {
                 do {
-                    let data = try document.data(as: NLPPoem.self)
-                    poems.append(data ?? NLPPoem.emptyPoem())
+                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
+                    poems.append(poem)
                 } catch {
-                    completed(poems)
+                    completed([])
                     return
                 }
             }
+            
             completed(poems)
         }
+    }
+    
+    func fetchUserPoems(userEmail: String, completed: @escaping (([NLPPoem]) -> Void)) {
+        let poemRef = db.collection("poems")
+        let query = poemRef.whereField("authorEmail", isEqualTo: userEmail)
+        var userPoems = [NLPPoem]()
+        
+        query.getDocuments { snapshot, error in
+            guard let querySnapshot = snapshot else {
+                completed([])
+                return
+            }
+            
+            for document in querySnapshot.documents {
+                do {
+                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
+                    userPoems.append(poem)
+                } catch {
+                    completed([])
+                    return
+                }
+            }
+            
+            completed(userPoems)
+        }
+    }
+    
+    func updatePoemLikeCount(id: String, isIncrease: Bool) {
+        let poemRef = db.collection("poems").document(id)
+        let count = isIncrease ? 1 : -1
+        
+        poemRef.updateData([
+            "likeCount": FieldValue.increment(Int64(count))
+        ])
     }
 }

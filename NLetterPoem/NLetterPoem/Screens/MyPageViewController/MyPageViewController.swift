@@ -11,6 +11,13 @@ class MyPageViewController: UIViewController {
         didSet {
             navigationItem.title = user?.nickname
             myPageCollectionView.reloadData()
+            fetchPoems(with: user?.email)
+        }
+    }
+    
+    var poems: [NLPPoem]? {
+        didSet {
+            myPageCollectionView.reloadData()
         }
     }
 
@@ -52,9 +59,18 @@ class MyPageViewController: UIViewController {
     private func fetchCurrentUser() {
         guard let currentUser = Auth.auth().currentUser,
               let email = currentUser.email else { return }
+        
         DatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
             guard let self = self else { return }
             self.user = user
+        }
+    }
+    
+    private func fetchPoems(with email: String?) {
+        guard let email = email else { return }
+        DatabaseManager.shared.fetchUserPoems(userEmail: email) { [weak self] poems in
+            guard let self = self else { return }
+            self.poems = poems
         }
     }
     

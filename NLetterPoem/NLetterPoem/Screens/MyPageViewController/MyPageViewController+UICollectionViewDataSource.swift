@@ -12,7 +12,12 @@ extension MyPageViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier, for: indexPath) as? MyPageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setPoemData(with: user?.poems[indexPath.item])
+        
+        if let poems = poems {
+            let poem = poems[indexPath.item]
+            cell.setPoemData(with: poem)
+        }
+
         return cell
     }
     

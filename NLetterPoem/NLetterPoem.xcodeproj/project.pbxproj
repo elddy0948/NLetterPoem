@@ -159,11 +159,11 @@
 				B4C3F3EB2694184D00CED1A9 /* HomeViewController */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
 				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
+				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
 				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
 				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
 				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
-				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

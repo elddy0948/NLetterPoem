@@ -41,17 +41,18 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
             return
         }
         
-        let nlpPoem = NLPPoem(id: user.email, topic: topic, author: user.nickname, content: poem, ranking: Int.max)
+        let nlpPoem = NLPPoem(topic: topic, author: user.nickname,
+                              authorEmail: user.email, content: poem, ranking: Int.max)
         
-        user.poems.append(nlpPoem)
+        user.poems.append(nlpPoem.id)
         
         dispatchQueue.async {
             dispatchGroup.enter()
-            DatabaseManager.shared.createPoem(date: Date(), userEmail: user.email, poem: nlpPoem) { [weak self] error in
+            DatabaseManager.shared.createPoem(poem: nlpPoem) { [weak self] error in
                 defer { dispatchGroup.leave() }
                 guard let self = self else { return }
-                if let error = error {
-                    self.showAlert(title: "⚠️", message: error.localizedDescription)
+                if let _ = error {
+                    self.showAlert(title: "⚠️", message: "생성에 실패했어요!\n다시 시도해주세요!")
                     self.dismiss(animated: true, completion: nil)
                 }
             }

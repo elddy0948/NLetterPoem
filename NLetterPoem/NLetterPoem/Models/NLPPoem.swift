@@ -10,6 +10,7 @@ final class NLPPoem: Codable {
     var ranking: Int
     var likeCount: Int = 0
     var createdAt: String = "\(Date().toYearMonthDay())"
+    var created: String = "\(Date().timeIntervalSince1970)"
     
     init(topic: String, author: String, authorEmail: String, content: String, ranking: Int) {
         self.topic = topic

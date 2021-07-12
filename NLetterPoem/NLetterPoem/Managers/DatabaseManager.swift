@@ -139,6 +139,39 @@ final class DatabaseManager {
         }
     }
     
+    func sortPoems(by sortType: SortType, date: Date, completed: @escaping ([NLPPoem]) -> Void) {
+        let stringDate = date.toYearMonthDay()
+        let poemRef = db.collection("poems")
+        let query = poemRef.whereField("createdAt", isEqualTo: "\(stringDate)")
+        var poems = [NLPPoem]()
+        
+        query.getDocuments { snapshot, error in
+            guard let querySnapshot = snapshot else {
+                completed([])
+                return
+            }
+            
+            for document in querySnapshot.documents {
+                do {
+                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
+                    poems.append(poem)
+                } catch {
+                    completed([])
+                    return
+                }
+            }
+            
+            switch sortType {
+            case .like:
+                let likePoems = poems.sorted { $0.likeCount > $1.likeCount }
+                completed(likePoems)
+            case .recent:
+                let recentPoems = poems.sorted { $0.created > $1.created }
+                completed(recentPoems)
+            }
+        }
+    }
+    
     func updatePoemLikeCount(id: String, isIncrease: Bool) {
         let poemRef = db.collection("poems").document(id)
         let count = isIncrease ? 1 : -1
@@ -146,5 +179,10 @@ final class DatabaseManager {
         poemRef.updateData([
             "likeCount": FieldValue.increment(Int64(count))
         ])
+    }
+    
+    enum SortType {
+        case like
+        case recent
     }
 }

@@ -73,7 +73,7 @@ final class HomeTableViewCell: UITableViewCell {
         likeCountLabel.textColor = .label
         likeCountLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         likeCountLabel.numberOfLines = 0
-        likeCountLabel.text = "🔥0🔥"
+        likeCountLabel.text = "0 Fires"
         
         NSLayoutConstraint.activate([
             likeCountLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
@@ -102,6 +102,6 @@ final class HomeTableViewCell: UITableViewCell {
     func setCellData(shortDes: String, writer: String, likeCount: Int) {
         shortDescriptionLabel.text = shortDes
         writerLabel.text = writer
-        likeCountLabel.text = "🔥\(likeCount)🔥"
+        likeCountLabel.text = "\(likeCount) Fires🔥"
     }
 }

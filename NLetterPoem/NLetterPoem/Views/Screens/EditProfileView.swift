@@ -103,14 +103,17 @@ class EditProfileView: UIView {
     
     private func configureBioTextView() {
         bioTextView = UITextView()
+        addSubview(bioTextView)
+        
         bioTextView.translatesAutoresizingMaskIntoConstraints = false
         bioTextView.text = user.bio
+        bioTextView.autocorrectionType = .no
+        bioTextView.autocapitalizationType = .none
         bioTextView.backgroundColor = .secondarySystemBackground
         bioTextView.layer.borderColor = UIColor.systemGray.cgColor
         bioTextView.layer.borderWidth = 3
         bioTextView.layer.cornerRadius = 16
         bioTextView.layer.masksToBounds = true
-        addSubview(bioTextView)
         
         NSLayoutConstraint.activate([
             bioTextView.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor, constant: 16),

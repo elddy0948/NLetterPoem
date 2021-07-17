@@ -63,46 +63,29 @@ extension SignUpViewController: SignUpViewDelegate {
             return
         }
         
-        let dispatchGroup = DispatchGroup()
-        let authQueue = DispatchQueue(label: "com.howift.authUser")
-        var errorFlag = 0
-        
-        authQueue.async {
-            dispatchGroup.enter()
-            AuthManager.shared.createUser(with: info) { [weak self] result in
-                defer { dispatchGroup.leave() }
-                guard let self = self else { return }
-                switch result {
-                case .success(let message):
-                    debugPrint(message)
-                case .failure(_):
-                    errorFlag += 1
-                    self.showAlert(title: "⚠️", message: "회원가입이 실패했어요!\n다시 시도해주세요!", action: nil)
-                    return
-                }
+        AuthManager.shared.createUser(with: info) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let message):
+                self.storeUserInDatabase(with: info)
+                debugPrint(message)
+            case .failure(_):
+                self.showAlert(title: "⚠️", message: "회원가입이 실패했어요!\n다시 시도해주세요!", action: nil)
+                return
             }
         }
-        
-        authQueue.async {
-            let user = NLPUser(email: info.email, profilePhotoURL: "", nickname: info.nickname, bio: "")
-            dispatchGroup.enter()
-            DatabaseManager.shared.createUser(with: user) { error in
-                defer { dispatchGroup.leave() }
-                if let _ = error {
-                    errorFlag += 1
-                    self.showAlert(title: "⚠️", message: "회원 저장에 실패했어요!\n다시 시도해주세요!", action: nil)
-                    return
-                }
+    }
+    
+    private func storeUserInDatabase(with info: SignupInfo) {
+        let user = NLPUser(email: info.email, profilePhotoURL: "", nickname: info.nickname, bio: "")
+        DatabaseManager.shared.createUser(with: user) { [weak self] error in
+            guard let self = self else { return }
+            if let _ = error {
+                self.showAlert(title: "⚠️", message: "회원 저장에 실패했어요!\n다시 시도해주세요!", action: nil)
+                return
             }
-        }
-        
-        dispatchGroup.notify(queue: DispatchQueue.main) {
-            if errorFlag > 0 {
-                print("Error!")
-            } else {
-                self.showAlert(title: "🎉", message: "회원가입을 축하합니다!") { _ in
-                    self.dismiss(animated: true, completion: nil)
-                }
+            self.showAlert(title: "🎉", message: "회원가입을 축하합니다!") { _ in
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

@@ -12,7 +12,9 @@ class NLPTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = .label
-        viewControllers = [createHomeNavigaionController(), createRankingNavigationController(), createMyPageNavigationController()]
+        viewControllers = [createHomeNavigaionController(),
+                           createRankingNavigationController(),
+                           createMyPageNavigationController()]
     }
     
     private func createHomeNavigaionController() -> UINavigationController {

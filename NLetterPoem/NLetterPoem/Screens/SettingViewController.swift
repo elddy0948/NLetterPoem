@@ -37,7 +37,7 @@ class SettingViewController: UIViewController {
     }
     
     private func showLauchViewController() {
-        let viewController = LaunchViewController()
+        let viewController = UINavigationController(rootViewController: LaunchViewController())
         guard let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
             return
         }

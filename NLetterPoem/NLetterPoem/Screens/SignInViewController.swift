@@ -63,7 +63,7 @@ extension SignInViewController: SigninViewDelegate {
                 self.showAlert(title: "⚠️", message: "로그인에 실패했어요!\n다시 시도해주세요!", action: nil)
                 return
             }
-            self.navigationController?.popToRootViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: false)
         }
     }
     

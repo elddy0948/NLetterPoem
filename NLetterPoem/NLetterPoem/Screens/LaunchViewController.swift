@@ -26,7 +26,8 @@ class LaunchViewController: UIViewController {
         handle = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
             guard let self = self else { return }
             if let user = user {
-                print(user)
+                debugPrint(user)
+                self.dismissAndReplaceRootViewController()
             } else {
                 self.showSignInViewController()
             }

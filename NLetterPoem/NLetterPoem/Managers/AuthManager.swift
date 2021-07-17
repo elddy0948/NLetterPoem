@@ -17,4 +17,15 @@ class AuthManager {
             completed(.success("환영합니다!"))
         }
     }
+    
+    func signin(email: String, password: String, completed: @escaping (Error?) -> Void) {
+        auth.signIn(withEmail: email, password: password) { result, error in
+            guard error == nil,
+                  result != nil else {
+                completed(error)
+                return
+            }
+            completed(nil)
+        }
+    }
 }

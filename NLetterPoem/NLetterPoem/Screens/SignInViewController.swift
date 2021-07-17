@@ -4,93 +4,70 @@ import FirebaseAuth
 class SignInViewController: UIViewController {
     
     //MARK: - Views
-    private var signinStackView: UIStackView!
-    private(set) var emailTextField: NLPTextField!
-    private(set) var passwordTextField: NLPTextField!
-    private let logoImageView = NLPLogoImageView(frame: .zero)
-    private(set) var signinButton: NLPButton!
-    private(set) var signupButton: NLPButton!
+    private(set) var signinView: SignInView!
+    private(set) var tapGestureRecognizer: UITapGestureRecognizer!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSignInStackView()
         configure()
-        configureLayout()
+        configureSigninView()
+        configureTapGestureRecognizer()
     }
     
     private func configure() {
-        view.addSubview(signinStackView)
-        view.addSubview(logoImageView)
         view.backgroundColor = .systemBackground
         navigationController?.isNavigationBarHidden = true
-        
     }
     
-    private func configureSignInStackView() {
-        emailTextField = NLPTextField(type: .email)
-        passwordTextField = NLPTextField(type: .password)
-        signinButton = NLPButton(title: "로그인")
-        signupButton = NLPButton(title: "회원가입")
-        
-        signinButton.delegate = self
-        signupButton.delegate = self
-        
-        signinStackView = UIStackView()
-        signinStackView.distribution = .equalSpacing
-        signinStackView.axis = .vertical
-        signinStackView.translatesAutoresizingMaskIntoConstraints = false
-        signinStackView.spacing = 8
-        
-        signinStackView.addArrangedSubview(emailTextField)
-        signinStackView.addArrangedSubview(passwordTextField)
-        signinStackView.addArrangedSubview(signinButton)
-        signinStackView.addArrangedSubview(signupButton)
-    }
-    
-    private func configureLayout() {
+    private func configureSigninView() {
         let padding: CGFloat = 8
+        signinView = SignInView()
+        view.addSubview(signinView)
+        
+        signinView.delegate = self
+        
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            logoImageView.widthAnchor.constraint(equalToConstant: 150),
-            logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signinStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            signinStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            signinStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            emailTextField.heightAnchor.constraint(equalToConstant: 52),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 52),
-            signinButton.heightAnchor.constraint(equalToConstant: 52),
-            signupButton.heightAnchor.constraint(equalToConstant: 52),
+            signinView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            signinView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            signinView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            signinView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
-    private func signinUser() {
-        guard let email = emailTextField.text,
-              let password = passwordTextField.text else {
-            showAlert(title: "⚠️", message: SigninError.emptyField, action: nil)
-            return
-        }
-        
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-            guard let self = self else { return }
-            if let error = error {
-                self.showAlert(title: "⚠️", message: SigninError.failedSignIn, action: nil)
-                debugPrint(error)
-            }
-            self.dismiss(animated: true, completion: nil)
-        }
+    private func configureTapGestureRecognizer() {
+        tapGestureRecognizer = UITapGestureRecognizer(target: view,
+                                                      action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    private func showSignupViewController() {
+        let viewController = SignUpViewController()
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 
-//MARK: - NLPButtonDelegate
-extension SignInViewController: NLPButtonDelegate {
-    func didTappedButton(_ sender: NLPButton) {
-        if sender == signinButton {
-            signinUser()
-        } else if sender == signupButton {
-            let viewController = SignUpViewController()
-            present(viewController, animated: true, completion: nil)
+
+extension SignInViewController: SigninViewDelegate {
+    func signinView(_ signinView: SignInView, didTapSignin button: NLPButton, email: String?, password: String?) {
+        guard let email = email,
+              let password = password else {
+            self.showAlert(title: "⚠️", message: "이메일과 패스워드를 다시 확인해주세요!", action: nil)
+            return
         }
+        
+        AuthManager.shared.signin(email: email, password: password) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                debugPrint(error)
+                self.showAlert(title: "⚠️", message: "로그인에 실패했어요!\n다시 시도해주세요!", action: nil)
+                return
+            }
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
+    func signinView(_ signinView: SignInView, didTapSignup button: NLPButton) {
+        showSignupViewController()
     }
 }

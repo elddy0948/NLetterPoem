@@ -38,6 +38,7 @@
 		B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940C2681B3480075D16C /* LaunchViewController.swift */; };
 		B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */; };
 		B45494112681C6B80075D16C /* NLPProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494102681C6B80075D16C /* NLPProfileLabel.swift */; };
+		B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45656A026A2A42600EAB3C9 /* SignInView.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* HomeViewController.swift */; };
@@ -47,6 +48,9 @@
 		B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */; };
 		B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */; };
 		B47CC3EB269ABAFE00F1F003 /* DetailPoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */; };
+		B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BD26A000F70044A2B8 /* SignUpView.swift */; };
+		B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BF26A002660044A2B8 /* AuthManager.swift */; };
+		B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */; };
 		B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EC269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift */; };
 		B4C3F3EF269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EE269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift */; };
 		B4C3F3F1269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F0269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift */; };
@@ -93,6 +97,7 @@
 		B454940C2681B3480075D16C /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfilePhotoImageView.swift; sourceTree = "<group>"; };
 		B45494102681C6B80075D16C /* NLPProfileLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfileLabel.swift; sourceTree = "<group>"; };
+		B45656A026A2A42600EAB3C9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +109,9 @@
 		B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailViewController.swift; sourceTree = "<group>"; };
 		B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPBoldLabel.swift; sourceTree = "<group>"; };
 		B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPoemView.swift; sourceTree = "<group>"; };
+		B48BD9BD26A000F70044A2B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		B48BD9BF26A002660044A2B8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPNavigationBar.swift; sourceTree = "<group>"; };
 		B4C3F3EC269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		B4C3F3EE269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		B4C3F3F0269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+HomeTableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 				B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */,
 				B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */,
 				B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */,
+				B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -212,6 +221,7 @@
 			children = (
 				B42EE590267F176F001848A5 /* DatabaseManager.swift */,
 				B4D1BE98268D90B500968C5B /* StorageManager.swift */,
+				B48BD9BF26A002660044A2B8 /* AuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -227,6 +237,8 @@
 				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
 				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
 				B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */,
+				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
+				B45656A026A2A42600EAB3C9 /* SignInView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -417,12 +429,14 @@
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
+				B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
 				B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,
 				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
+				B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */,
 				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
 				B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */,
 				B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */,
@@ -439,6 +453,7 @@
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */,
 				B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */,
+				B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
@@ -446,6 +461,7 @@
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */,
 				B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */,
+				B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,

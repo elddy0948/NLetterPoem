@@ -4,106 +4,112 @@ import FirebaseAuth
 class SignUpViewController: UIViewController {
     
     //MARK: - Views
-    private var signupStackView: UIStackView!
-    private let logoImageView = NLPLogoImageView(frame: .zero)
-    private(set) var emailTextField = NLPTextField(type: .email)
-    private(set) var passwordTextField = NLPTextField(type: .password)
-    private(set) var nicknameTextField = NLPTextField(type: .nickname)
-    private(set) var signupButton = NLPButton(title: "가입하기")
-    private var views: [UIView]!
+    private(set) var navigationBar: NLPNavigationBar!
+    private(set) var signUpView: SignUpView!
+    private(set) var tapGestureRecognizer: UITapGestureRecognizer!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSignupStackView()
-        configure()
-        configureLayout()
+        view.backgroundColor = .systemBackground
+        configureGestureRecognizer()
+        configureNavigationBar()
+        configureSignUpView()
     }
     
     //MARK: - Privates
-    private func configure() {
-        view.backgroundColor = .systemBackground
-        view.addSubview(logoImageView)
-        view.addSubview(signupStackView)
-        signupButton.delegate = self
+    private func configureGestureRecognizer() {
+        tapGestureRecognizer = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    private func configureSignupStackView() {
-        views = [emailTextField, passwordTextField, nicknameTextField, signupButton]
-        signupStackView = UIStackView()
-        signupStackView.axis = .vertical
-        signupStackView.distribution = .equalSpacing
-        signupStackView.translatesAutoresizingMaskIntoConstraints = false
-        signupStackView.spacing = 8
+    private func configureNavigationBar() {
+        navigationBar = NLPNavigationBar(title: "회원가입", leftTitle: "닫기", rightTitle: nil)
+        view.addSubview(navigationBar)
         
-        for view in views { signupStackView.addArrangedSubview(view) }
-    }
-    
-    private func configureLayout() {
-        let padding: CGFloat = 8
-        for view in views { view.heightAnchor.constraint(equalToConstant: 52).isActive = true }
+        navigationBar.nlpDelegate = self
         
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            logoImageView.widthAnchor.constraint(equalToConstant: 150),
-            logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signupStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            signupStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            signupStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     
-    private func createUser() -> NLPUser? {
-        guard let email = emailTextField.text,
-              let password = passwordTextField.text,
-              let nickname = nicknameTextField.text else {
-            return nil
-        }
-        return NLPUser(email: email, password: password, profilePhotoURL: "", nickname: nickname, bio: "")
+    private func configureSignUpView() {
+        signUpView = SignUpView()
+        view.addSubview(signUpView)
+        
+        signUpView.delegate = self
+        
+        NSLayoutConstraint.activate([
+            signUpView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
+            signUpView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            signUpView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            signUpView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
 }
 
-extension SignUpViewController: NLPButtonDelegate {
-    func didTappedButton(_ sender: NLPButton) {
-        guard let user = createUser() else { return }
-        let dispatchGroup = DispatchGroup()
+extension SignUpViewController: SignUpViewDelegate {
+    func signupView(_ signupView: SignUpView, didTapRegister info: SignupInfo?, error: String?) {
+        if let error = error {
+            self.showAlert(title: "⚠️", message: error, action: nil)
+            return
+        }
         
-        DatabaseManager.shared.checkUserExist(with: user) { [weak self] isUserExist in
-            guard let self = self else { return }
-            if isUserExist {
-                self.showAlert(title: "⚠️", message: "이미 존재하는 유저입니다!")
-                return
-            } else {
-                self.insertUserInFirebaseAuth(with: user, group: dispatchGroup)
-                self.insertUserInDatabase(with: user, group: dispatchGroup)
+        guard let info = info else {
+            self.showAlert(title: "⚠️", message: "다시 시도해주세요!", action: nil)
+            return
+        }
+        
+        let dispatchGroup = DispatchGroup()
+        let authQueue = DispatchQueue(label: "com.howift.authUser")
+        var errorFlag = 0
+        
+        authQueue.async {
+            dispatchGroup.enter()
+            AuthManager.shared.createUser(with: info) { [weak self] result in
+                defer { dispatchGroup.leave() }
+                guard let self = self else { return }
+                switch result {
+                case .success(let message):
+                    debugPrint(message)
+                case .failure(_):
+                    errorFlag += 1
+                    self.showAlert(title: "⚠️", message: "회원가입이 실패했어요!\n다시 시도해주세요!", action: nil)
+                    return
+                }
+            }
+        }
+        
+        authQueue.async {
+            let user = NLPUser(email: info.email, profilePhotoURL: "", nickname: info.nickname, bio: "")
+            dispatchGroup.enter()
+            DatabaseManager.shared.createUser(with: user) { error in
+                defer { dispatchGroup.leave() }
+                if let _ = error {
+                    errorFlag += 1
+                    self.showAlert(title: "⚠️", message: "회원 저장에 실패했어요!\n다시 시도해주세요!", action: nil)
+                    return
+                }
             }
         }
         
         dispatchGroup.notify(queue: DispatchQueue.main) {
-            self.dismiss(animated: true, completion: nil)
+            if errorFlag > 0 {
+                print("Error!")
+            } else {
+                self.showAlert(title: "🎉", message: "회원가입을 축하합니다!") { _ in
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         }
     }
-    
-    private func insertUserInFirebaseAuth(with user: NLPUser, group: DispatchGroup) {
-        group.enter()
-        Auth.auth().createUser(withEmail: user.email, password: user.password) { result, error in
-            if let error = error {
-                debugPrint(error)
-                return
-            }
-            group.leave()
-        }
-    }
-    
-    private func insertUserInDatabase(with user: NLPUser, group: DispatchGroup) {
-        group.enter()
-        DatabaseManager.shared.createUser(with: user) { error in
-            if let error = error {
-                debugPrint(error)
-                return
-            }
-            group.leave()
-        }
+}
+
+extension SignUpViewController: NLPNavigationBarDelegate {
+    func nlpNavigationBar(_ nlpNavigationBar: NLPNavigationBar, didTapLeftBarButton leftBarButton: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

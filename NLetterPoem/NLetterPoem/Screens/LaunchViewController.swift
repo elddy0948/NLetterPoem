@@ -3,22 +3,39 @@ import Firebase
 
 class LaunchViewController: UIViewController {
     
+    private var handle: AuthStateDidChangeListenerHandle?
+    
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationController?.isNavigationBarHidden = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        checkIsSignIn()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureAuthStateChangeListener()
     }
     
-    private func checkIsSignIn() {
-        if let currentUser = Auth.auth().currentUser {
-            guard let email = currentUser.email else { return }
-            fetchUser(with: email)
-        } else {
-            showSignInViewController()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeAuthStateChangeListener()
+    }
+    
+    private func configureAuthStateChangeListener() {
+        handle = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
+            guard let self = self else { return }
+            if let user = user {
+                print(user)
+            } else {
+                self.showSignInViewController()
+            }
+        })
+    }
+    
+    private func removeAuthStateChangeListener() {
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
         }
     }
     
@@ -33,9 +50,9 @@ class LaunchViewController: UIViewController {
     }
     
     private func showSignInViewController() {
-        let viewController = UINavigationController(rootViewController: SignInViewController())
+        let viewController = SignInViewController()
         viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true, completion: nil)
+        navigationController?.pushViewController(viewController, animated: false)
     }
     
     private func dismissAndReplaceRootViewController() {

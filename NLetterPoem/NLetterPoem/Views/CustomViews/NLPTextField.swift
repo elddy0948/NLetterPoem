@@ -1,21 +1,39 @@
 import UIKit
 
 class NLPTextField: UITextField {
+    
     //MARK: - enum FieldType
     enum FieldType: String {
         case email = "Email"
         case password = "Password"
+        case repeatPassword = "Repeat Password"
         case nickname = "Nickname"
+        
+        var keyBoardType: UIKeyboardType {
+            switch self {
+            case .email:
+                return .emailAddress
+            default:
+                return .default
+            }
+        }
+        
+        var isSecureTextEntry: Bool {
+            switch self {
+            case .password:
+                return true
+            case .repeatPassword:
+                return true
+            default:
+                return false
+            }
+        }
     }
-    
-    //MARK: - Properties
-    var textFieldType: FieldType!
     
     //MARK: - Initializer
     init(type: FieldType) {
-        textFieldType = type
         super.init(frame: .zero)
-        configure()
+        configure(with: type)
     }
     
     required init?(coder: NSCoder) {
@@ -23,10 +41,12 @@ class NLPTextField: UITextField {
     }
     
     //MARK: - Privates
-    private func configure() {
+    private func configure(with fieldType: FieldType) {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .secondarySystemBackground
-        placeholder = textFieldType.rawValue
+        placeholder = fieldType.rawValue
+        keyboardType = fieldType.keyBoardType
+        isSecureTextEntry = fieldType.isSecureTextEntry
         
         layer.cornerRadius = 16
         layer.masksToBounds = true

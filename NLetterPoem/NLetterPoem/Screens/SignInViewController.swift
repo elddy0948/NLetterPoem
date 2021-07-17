@@ -68,14 +68,14 @@ class SignInViewController: UIViewController {
     private func signinUser() {
         guard let email = emailTextField.text,
               let password = passwordTextField.text else {
-            showAlert(title: "⚠️", message: SigninError.emptyField)
+            showAlert(title: "⚠️", message: SigninError.emptyField, action: nil)
             return
         }
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             guard let self = self else { return }
             if let error = error {
-                self.showAlert(title: "⚠️", message: SigninError.failedSignIn)
+                self.showAlert(title: "⚠️", message: SigninError.failedSignIn, action: nil)
                 debugPrint(error)
             }
             self.dismiss(animated: true, completion: nil)

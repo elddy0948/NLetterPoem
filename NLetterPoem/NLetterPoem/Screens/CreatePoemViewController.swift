@@ -52,7 +52,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
                 defer { dispatchGroup.leave() }
                 guard let self = self else { return }
                 if let _ = error {
-                    self.showAlert(title: "⚠️", message: "생성에 실패했어요!\n다시 시도해주세요!")
+                    self.showAlert(title: "⚠️", message: "생성에 실패했어요!\n다시 시도해주세요!", action: nil)
                     self.dismiss(animated: true, completion: nil)
                 }
             }
@@ -64,7 +64,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
                 defer { dispatchGroup.leave() }
                 guard let self = self else { return }
                 if let error = error {
-                    self.showAlert(title: "⚠️", message: error.localizedDescription)
+                    self.showAlert(title: "⚠️", message: error.localizedDescription, action: nil)
                     self.dismiss(animated: true, completion: nil)
                 }
             }

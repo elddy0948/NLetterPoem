@@ -42,7 +42,7 @@ extension EditProfileViewController: EditProfileViewDelegate {
         DatabaseManager.shared.updateUser(with: user) { error in
             if let error = error {
                 debugPrint(error)
-                self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!")
+                self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!", action: nil)
                 self.dismiss(animated: true, completion: nil)
             }
             self.dismiss(animated: true, completion: nil)

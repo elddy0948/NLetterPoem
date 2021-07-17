@@ -4,7 +4,6 @@ final class NLPUser: Codable {
     static var shared: NLPUser?
 
     var email: String
-    var password: String
     var profilePhotoURL: String
     var nickname: String
     var bio: String
@@ -15,9 +14,8 @@ final class NLPUser: Codable {
     var poems: [String] = []
     var likedPoem: [String] = []
     
-    init(email: String, password: String, profilePhotoURL: String, nickname: String, bio: String) {
+    init(email: String, profilePhotoURL: String, nickname: String, bio: String) {
         self.email = email
-        self.password = password
         self.profilePhotoURL = profilePhotoURL
         self.nickname = nickname
         self.bio = bio

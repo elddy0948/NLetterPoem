@@ -225,9 +225,9 @@
 		B42EE58F267F175C001848A5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B48BD9BF26A002660044A2B8 /* AuthManager.swift */,
 				B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */,
 				B4D1BE98268D90B500968C5B /* StorageManager.swift */,
-				B48BD9BF26A002660044A2B8 /* AuthManager.swift */,
 				B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */,
 			);
 			path = Managers;

@@ -69,6 +69,8 @@
 		B4F259882692D02B00FF95A4 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B4F259872692D02B00FF95A4 /* NanumScript.ttc */; };
 		B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */; };
 		B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */; };
+		B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */; };
+		B4F6AA1726A3F5DA00DB119D /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AA1626A3F5DA00DB119D /* RankingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +131,8 @@
 		B4F259872692D02B00FF95A4 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
 		B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTopic.swift; sourceTree = "<group>"; };
+		B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableView.swift; sourceTree = "<group>"; };
+		B4F6AA1626A3F5DA00DB119D /* RankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,15 +234,16 @@
 			isa = PBXGroup;
 			children = (
 				B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */,
+				B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */,
 				B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */,
 				B421C4F62691B0810088119D /* HomeHeaderView.swift */,
 				B421C4F42691AFC70088119D /* HomeTableView.swift */,
 				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
 				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
+				B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */,
 				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
-				B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */,
-				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
 				B45656A026A2A42600EAB3C9 /* SignInView.swift */,
+				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 			children = (
 				B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */,
 				B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */,
+				B4F6AA1626A3F5DA00DB119D /* RankingTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -425,6 +431,7 @@
 			files = (
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
+				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
 				B4C3F3EF269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
@@ -462,6 +469,7 @@
 				B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */,
 				B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */,
 				B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */,
+				B4F6AA1726A3F5DA00DB119D /* RankingTableViewCell.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,

@@ -21,22 +21,21 @@ final class RankingTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureStackView() {
-        let padding: CGFloat = 8
-        
+    private func configureStackView() {        
         stackView = UIStackView()
-        addSubview(stackView)
+        contentView.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
         stackView.spacing = 8
+        stackView.alignment = .center
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
     
@@ -44,18 +43,20 @@ final class RankingTableViewCell: UITableViewCell {
         nicknameLabel = UILabel()
         stackView.addArrangedSubview(nicknameLabel)
         
+        nicknameLabel.translatesAutoresizingMaskIntoConstraints = false
         nicknameLabel.textColor = .label
         nicknameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        nicknameLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        nicknameLabel.textAlignment = .center
     }
     
     private func configurePointsLabel() {
         pointsLabel = UILabel()
         stackView.addArrangedSubview(pointsLabel)
         
+        pointsLabel.translatesAutoresizingMaskIntoConstraints = false
         pointsLabel.textColor = .label
         pointsLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        pointsLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        pointsLabel.textAlignment = .center
     }
     
     func setCellData(with user: NLPUser) {

@@ -251,8 +251,8 @@
 		B43BBC3D2682F72C00B4A8DC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */,
 				B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */,
+				B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */,
 				B4F6AA1626A3F5DA00DB119D /* RankingTableViewCell.swift */,
 			);
 			path = Cells;

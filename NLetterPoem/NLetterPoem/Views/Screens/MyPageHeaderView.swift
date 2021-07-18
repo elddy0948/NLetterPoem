@@ -4,7 +4,7 @@ protocol MyPageHeaderViewDelegate: AnyObject {
     func didTappedEditProfileButton(_ sender: NLPButton)
 }
 
-class MyPageHeaderView: UICollectionReusableView {
+final class MyPageHeaderView: UICollectionReusableView {
     static let reuseIdentifier = String(describing: MyPageHeaderView.self)
     
     //MARK: - Views
@@ -30,9 +30,11 @@ class MyPageHeaderView: UICollectionReusableView {
     
     //MARK: - Configure Mypage Data
     func configureUser(with user: NLPUser?) {
-        guard let user = user  else { return }
+        guard let user = user,
+              let currentUser = NLPUser.shared else { return }
         bioLabel.text = user.bio
         profilePhotoImageView.setImage(with: user.profilePhotoURL)
+        user.email == currentUser.email ? (editProfileButton.isHidden = false) : (editProfileButton.isHidden = true)
     }
     
     //MARK: - Privates
@@ -53,6 +55,7 @@ class MyPageHeaderView: UICollectionReusableView {
         configureLayoutUI()
         
         configureHorizontalStackView()
+        
         editProfileButton = NLPButton(title: "프로필 수정")
         editProfileButton.addTarget(self, action: #selector(didTappedEditProfileButton(_:)),
                                     for: .touchUpInside)
@@ -82,7 +85,7 @@ class MyPageHeaderView: UICollectionReusableView {
             verticalStackView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
+//            verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
         ])
     }
     

@@ -4,20 +4,20 @@ import Firebase
 class MyPageViewController: UIViewController {
     
     //MARK: - Views
-    private(set) var myPageCollectionView: MyPageCollectionView!
+    private(set) var myPageCollectionView: MyPageCollectionView?
     
     //MARK: - Properties
     var user: NLPUser? {
         didSet {
             navigationItem.title = user?.nickname
-            myPageCollectionView.reloadData()
+            myPageCollectionView?.reloadData()
             fetchPoems(with: user?.email)
         }
     }
     
     var poems: [NLPPoem]? {
         didSet {
-            myPageCollectionView.reloadData()
+            myPageCollectionView?.reloadData()
         }
     }
 
@@ -30,12 +30,17 @@ class MyPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchCurrentUser()
+        if user == nil {
+            fetchCurrentUser()
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill,
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(didTapSettingButton(_:)))
+        }
     }
     
     private func configure() {
         view.backgroundColor = .systemBackground
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill, style: .plain, target: self, action: #selector(didTapSettingButton(_:)))
         navigationController?.navigationBar.tintColor = .label
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -44,6 +49,8 @@ class MyPageViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         
         myPageCollectionView = MyPageCollectionView(frame: view.frame, collectionViewLayout: layout)
+        guard let myPageCollectionView = myPageCollectionView else { return }
+        
         view.addSubview(myPageCollectionView)
         
         myPageCollectionView.register(MyPageCollectionViewCell.self,

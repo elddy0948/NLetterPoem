@@ -67,4 +67,12 @@ extension RankingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let user = users?[indexPath.row] {
+            let vc = MyPageViewController()
+            vc.user = user
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

@@ -45,6 +45,7 @@ class HomeViewController: UIViewController {
         homeTableView.delegate = self
         homeTableView.dataSource = self
         homeTableView.homeTableViewDelegate = self
+        homeTableView.clipsToBounds = false
         
         homeTableView.register(HomeTableViewCell.self,
                                forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
@@ -102,12 +103,10 @@ class HomeViewController: UIViewController {
         }
     }
     
+    //MARK: - Actions
     @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
         let viewController = CreatePoemViewController()
         viewController.topic = todayTopic
         present(viewController, animated: true, completion: nil)
     }
 }
-
-
-

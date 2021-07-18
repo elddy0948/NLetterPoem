@@ -1,8 +1,8 @@
 import UIKit
 
 protocol CreatePoemViewDelegate: AnyObject {
-    func didTappedCancelButton(_ createPoemView: CreatePoemView)
-    func didTappedDoneButton(_ createPoemView: CreatePoemView, with poem: String)
+    func createPoemView(_ createPoemView: CreatePoemView, didCancel button: UIBarButtonItem)
+    func createPoemView(_ createPoemView: CreatePoemView, didTapDone button: UIBarButtonItem, poem: String)
 }
 
 final class CreatePoemView: UIView {
@@ -123,7 +123,7 @@ final class CreatePoemView: UIView {
     }
     
     @objc func didTappedCancelButton(_ sender: UIBarButtonItem) {
-        delegate?.didTappedCancelButton(self)
+        delegate?.createPoemView(self, didCancel: sender)
     }
     
     @objc func didTappedDoneButton(_ sender: UIBarButtonItem) {
@@ -134,6 +134,6 @@ final class CreatePoemView: UIView {
             poemString.append(line + "\n")
         }
         
-        delegate?.didTappedDoneButton(self, with: poemString)
+        delegate?.createPoemView(self, didTapDone: sender, poem: poemString)
     }
 }

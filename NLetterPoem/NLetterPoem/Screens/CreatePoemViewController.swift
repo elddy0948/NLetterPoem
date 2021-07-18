@@ -27,11 +27,11 @@ class CreatePoemViewController: UIViewController {
 
 //MARK: - CreatePoemViewDelegate
 extension CreatePoemViewController: CreatePoemViewDelegate {
-    func didTappedCancelButton(_ createPoemView: CreatePoemView) {
+    func createPoemView(_ createPoemView: CreatePoemView, didCancel button: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    func didTappedDoneButton(_ createPoemView: CreatePoemView, with poem: String) {
+    func createPoemView(_ createPoemView: CreatePoemView, didTapDone button: UIBarButtonItem, poem: String) {
         let dispatchQueue = DispatchQueue(label: "com.howift.createPoem")
         let dispatchGroup = DispatchGroup()
         

@@ -60,6 +60,31 @@ final class DatabaseManager {
         }
     }
     
+    func fetchTopTenUsers(completed: @escaping ([NLPUser]) -> Void) {
+        let userRef = db.collection("users")
+        var topTenUsers = [NLPUser]()
+        
+        userRef.order(by: "points", descending: true).limit(to: 10).getDocuments { snapshot, error in
+            guard let snapshot = snapshot else {
+                completed(topTenUsers)
+                return
+            }
+            let documents = snapshot.documents
+            for document in documents {
+                do {
+                    if let user = try document.data(as: NLPUser.self) {
+                        topTenUsers.append(user)
+                    }
+                } catch {
+                    completed(topTenUsers)
+                    return
+                }
+            }
+            
+            completed(topTenUsers)
+        }
+    }
+    
     //MARK: - Poem
     func createPoem(poem: NLPPoem, completed: @escaping ((Error?) -> Void)) {
         do {

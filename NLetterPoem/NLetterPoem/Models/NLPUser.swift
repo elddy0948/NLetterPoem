@@ -7,9 +7,7 @@ final class NLPUser: Codable {
     var profilePhotoURL: String
     var nickname: String
     var bio: String
-    var firstPlaceCount: Int = 0
-    var secondPlaceCount: Int = 0
-    var thirdPlaceCount: Int = 0
+    var points: Int = 0
     var participationCount: Int = 0
     var poems: [String] = []
     var likedPoem: [String] = []

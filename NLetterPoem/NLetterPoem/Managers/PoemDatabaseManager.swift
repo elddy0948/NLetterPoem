@@ -2,93 +2,21 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-final class DatabaseManager {
-    static let shared = DatabaseManager()
-    static var user: NLPUser?
-    private let db = Firestore.firestore()
-    private var ref: DocumentReference? = nil
+final class PoemDatabaseManager {
+    
+    //MARK: - Static
+    static let shared = PoemDatabaseManager()
+    
+    //MARK: - Properties
+    private let database = Firestore.firestore()
+    private let poemDatabaseQueue = DispatchQueue(label: "com.howift.poemDB")
     
     private init() {}
-    
-    //MARK: - User
-    func createUser(with user: NLPUser, completed: @escaping (Error?) -> Void) {
-        do {
-            try db.collection("users").document(user.email).setData(from: user)
-            completed(nil)
-        } catch {
-            completed(error)
-            return
-        }
-    }
-    
-    func updateUser(with user: NLPUser, completed: @escaping (Error?) -> Void) {
-        do {
-            try db.collection("users").document(user.email).setData(from: user, merge: true)
-            completed(nil)
-        } catch {
-            completed(error)
-        }
-    }
-    
-    func checkUserExist(with user: NLPUser, completed: @escaping (Bool) -> Void) {
-        db.collection("users").document(user.email).getDocument { document, error in
-            guard let document = document else {
-                completed(false)
-                return
-            }
-            
-            if document.exists {
-                completed(true)
-            } else {
-                completed(false)
-            }
-        }
-    }
-    
-    func fetchUserInfo(with email: String, completed: @escaping (NLPUser?) -> Void) {
-        db.collection("users").document(email).getDocument { document, error in
-            let data = document?.data()
-            let decoder = JSONDecoder()
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: data as Any)
-                let user = try decoder.decode(NLPUser.self, from: jsonData)
-                completed(user)
-            } catch {
-                print(error)
-                completed(nil)
-            }
-        }
-    }
-    
-    func fetchTopTenUsers(completed: @escaping ([NLPUser]) -> Void) {
-        let userRef = db.collection("users")
-        var topTenUsers = [NLPUser]()
-        
-        userRef.order(by: "points", descending: true).limit(to: 10).getDocuments { snapshot, error in
-            guard let snapshot = snapshot else {
-                completed(topTenUsers)
-                return
-            }
-            let documents = snapshot.documents
-            for document in documents {
-                do {
-                    if let user = try document.data(as: NLPUser.self) {
-                        topTenUsers.append(user)
-                    }
-                } catch {
-                    completed(topTenUsers)
-                    return
-                }
-            }
-            
-            completed(topTenUsers)
-        }
-    }
-    
+
     //MARK: - Poem
     func createPoem(poem: NLPPoem, completed: @escaping ((Error?) -> Void)) {
         do {
-            try db.collection("poems").document(poem.id).setData(from: poem)
+            try database.collection("poems").document(poem.id).setData(from: poem)
         } catch {
             debugPrint(error)
         }
@@ -97,7 +25,7 @@ final class DatabaseManager {
     func fetchTodayTopic(date: Date, completed: @escaping ((String?) -> Void)) {
         let stringDate = date.toYearMonthDay()
         
-        db.collection("topics").document(stringDate).getDocument { document, error in
+        database.collection("topics").document(stringDate).getDocument { document, error in
             guard let document = document else {
                 completed(nil)
                 return
@@ -115,7 +43,7 @@ final class DatabaseManager {
     
     func fetchTodayPoems(date: Date, completed: @escaping (([NLPPoem]) -> Void)) {
         let stringDate = date.toYearMonthDay()
-        let poemRef = db.collection("poems")
+        let poemRef = database.collection("poems")
         let query = poemRef.whereField("createdAt", isEqualTo: "\(stringDate)")
         var poems = [NLPPoem]()
         
@@ -140,7 +68,7 @@ final class DatabaseManager {
     }
     
     func fetchUserPoems(userEmail: String, completed: @escaping (([NLPPoem]) -> Void)) {
-        let poemRef = db.collection("poems")
+        let poemRef = database.collection("poems")
         let query = poemRef.whereField("authorEmail", isEqualTo: userEmail)
         var userPoems = [NLPPoem]()
         
@@ -166,7 +94,7 @@ final class DatabaseManager {
     
     func sortPoems(by sortType: SortType, date: Date, completed: @escaping ([NLPPoem]) -> Void) {
         let stringDate = date.toYearMonthDay()
-        let poemRef = db.collection("poems")
+        let poemRef = database.collection("poems")
         let query = poemRef.whereField("createdAt", isEqualTo: "\(stringDate)")
         var poems = [NLPPoem]()
         
@@ -198,7 +126,7 @@ final class DatabaseManager {
     }
     
     func updatePoemLikeCount(id: String, isIncrease: Bool) {
-        let poemRef = db.collection("poems").document(id)
+        let poemRef = database.collection("poems").document(id)
         let count = isIncrease ? 1 : -1
         
         poemRef.updateData([

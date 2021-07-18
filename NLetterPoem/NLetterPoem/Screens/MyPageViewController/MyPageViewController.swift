@@ -70,7 +70,7 @@ class MyPageViewController: UIViewController {
     
     private func fetchCurrentUser(with email: String?) {
         guard let email = email else { return }
-        DatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
+        UserDatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
             guard let self = self else { return }
             self.user = user
         }
@@ -78,7 +78,7 @@ class MyPageViewController: UIViewController {
     
     private func fetchPoems(with email: String?) {
         guard let email = email else { return }
-        DatabaseManager.shared.fetchUserPoems(userEmail: email) { [weak self] poems in
+        PoemDatabaseManager.shared.fetchUserPoems(userEmail: email) { [weak self] poems in
             guard let self = self else { return }
             self.poems = poems
         }

@@ -78,7 +78,8 @@ extension SignUpViewController: SignUpViewDelegate {
     
     private func storeUserInDatabase(with info: SignupInfo) {
         let user = NLPUser(email: info.email, profilePhotoURL: "", nickname: info.nickname, bio: "")
-        DatabaseManager.shared.createUser(with: user) { [weak self] error in
+        
+        UserDatabaseManager.shared.createUser(with: user) { [weak self] error in
             guard let self = self else { return }
             if let _ = error {
                 self.showAlert(title: "⚠️", message: "회원 저장에 실패했어요!\n다시 시도해주세요!", action: nil)

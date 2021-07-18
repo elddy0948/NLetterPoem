@@ -40,7 +40,7 @@ class LaunchViewController: UIViewController {
     }
     
     private func fetchUser(with email: String) {
-        DatabaseManager.shared.fetchUserInfo(with: email) { [weak self] nlpUser in
+        UserDatabaseManager.shared.fetchUserInfo(with: email) { [weak self] nlpUser in
             guard let self = self else { return }
             if nlpUser != nil {
                 NLPUser.shared = nlpUser

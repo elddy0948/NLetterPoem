@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
     }
     
     func fetchTodayTopic() {
-        DatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
+        PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
             guard let self = self else { return }
             guard let topic = topic else {
                 self.todayTopic = ""
@@ -89,7 +89,7 @@ class HomeViewController: UIViewController {
     }
     
     func fetchTodayPoems() {
-        DatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
+        PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
             guard let self = self else { return }
             self.todayPoems = poems
         }

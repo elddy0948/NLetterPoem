@@ -37,7 +37,7 @@ class RankingViewController: UIViewController {
     }
     
     private func fetchTopTenUsers() {
-        DatabaseManager.shared.fetchTopTenUsers { users in
+        UserDatabaseManager.shared.fetchTopTenUsers { users in
             self.users = users
         }
     }

@@ -17,7 +17,7 @@ class PoemDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard let user = NLPUser.shared else { return }
-        DatabaseManager.shared.updateUser(with: user) { _ in }
+        UserDatabaseManager.shared.updateUser(with: user) { _ in }
     }
     
     //MARK: - Privates
@@ -39,7 +39,7 @@ class PoemDetailViewController: UIViewController {
     }
     
     private func updateLikeCount(id: String, isIncrease: Bool) {
-        DatabaseManager.shared.updatePoemLikeCount(id: id, isIncrease: isIncrease)
+        PoemDatabaseManager.shared.updatePoemLikeCount(id: id, isIncrease: isIncrease)
     }
 }
 

@@ -48,7 +48,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
         
         dispatchQueue.async {
             dispatchGroup.enter()
-            DatabaseManager.shared.createPoem(poem: nlpPoem) { [weak self] error in
+            PoemDatabaseManager.shared.createPoem(poem: nlpPoem) { [weak self] error in
                 defer { dispatchGroup.leave() }
                 guard let self = self else { return }
                 if let _ = error {
@@ -60,7 +60,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
         
         dispatchQueue.async {
             dispatchGroup.enter()
-            DatabaseManager.shared.updateUser(with: user) { [weak self] error in
+            UserDatabaseManager.shared.updateUser(with: user) { [weak self] error in
                 defer { dispatchGroup.leave() }
                 guard let self = self else { return }
                 if let error = error {

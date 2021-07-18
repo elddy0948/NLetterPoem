@@ -27,10 +27,6 @@ class EditProfileViewController: UIViewController {
             editProfileView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-    
-    @objc func didTappedCancelButton(_ sender: UIBarButtonItem) {
-        
-    }
 }
 
 extension EditProfileViewController: EditProfileViewDelegate {
@@ -39,13 +35,17 @@ extension EditProfileViewController: EditProfileViewDelegate {
     }
     
     func didTappedDoneButton(_ editProfileView: EditProfileView, with user: NLPUser) {
-        DatabaseManager.shared.updateUser(with: user) { error in
+        UserDatabaseManager.shared.updateUser(with: user) { [weak self] error in
+            guard let self = self else { return }
             if let error = error {
                 debugPrint(error)
-                self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!", action: nil)
+                self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!") { _ in
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            self.showAlert(title: "🎉", message: "정보 변경을 완료했습니다!") { _ in
                 self.dismiss(animated: true, completion: nil)
             }
-            self.dismiss(animated: true, completion: nil)
         }
     }
     

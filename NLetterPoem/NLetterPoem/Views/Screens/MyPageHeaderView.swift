@@ -29,12 +29,11 @@ final class MyPageHeaderView: UICollectionReusableView {
     }
     
     //MARK: - Configure Mypage Data
-    func configureUser(with user: NLPUser?) {
-        guard let user = user,
-              let currentUser = NLPUser.shared else { return }
+    func configureUser(with user: NLPUser?, isEditButtonHidden: Bool) {
+        guard let user = user else { return }
         bioLabel.text = user.bio
         profilePhotoImageView.setImage(with: user.profilePhotoURL)
-        user.email == currentUser.email ? (editProfileButton.isHidden = false) : (editProfileButton.isHidden = true)
+        editProfileButton.isHidden = isEditButtonHidden
     }
     
     //MARK: - Privates

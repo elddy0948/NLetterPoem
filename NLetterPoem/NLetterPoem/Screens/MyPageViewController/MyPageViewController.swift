@@ -30,13 +30,18 @@ class MyPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let email: String?
+        
         if user == nil {
-            fetchCurrentUser()
+            email = NLPUser.shared?.email
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill,
                                                                 style: .plain,
                                                                 target: self,
                                                                 action: #selector(didTapSettingButton(_:)))
-        }
+        } else { email = user?.email }
+        
+        fetchCurrentUser(with: email)
     }
     
     private func configure() {
@@ -63,10 +68,8 @@ class MyPageViewController: UIViewController {
         myPageCollectionView.dataSource = self
     }
     
-    private func fetchCurrentUser() {
-        guard let currentUser = Auth.auth().currentUser,
-              let email = currentUser.email else { return }
-        
+    private func fetchCurrentUser(with email: String?) {
+        guard let email = email else { return }
         DatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
             guard let self = self else { return }
             self.user = user

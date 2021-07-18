@@ -85,7 +85,6 @@ final class MyPageHeaderView: UICollectionReusableView {
             verticalStackView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-//            verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
         ])
     }
     

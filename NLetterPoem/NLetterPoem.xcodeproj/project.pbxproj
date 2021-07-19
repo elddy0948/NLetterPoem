@@ -12,6 +12,7 @@
 		B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */; };
 		B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */; };
+		B41AE87126A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */; };
 		B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F42691AFC70088119D /* HomeTableView.swift */; };
 		B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F62691B0810088119D /* HomeHeaderView.swift */; };
 		B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */; };
@@ -80,6 +81,7 @@
 		B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B421C4F42691AFC70088119D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		B421C4F62691B0810088119D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoemFormView.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				B45494062681A1A50075D16C /* MyPageViewController.swift */,
 				B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */,
 				B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */,
+				B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */,
 			);
 			path = MyPageViewController;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
 				B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */,
 				B48459EA26A45FE700BA1484 /* UserDatabaseManager.swift in Sources */,
+				B41AE87126A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift in Sources */,
 				B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */,
 				B45494112681C6B80075D16C /* NLPProfileLabel.swift in Sources */,
 				B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,

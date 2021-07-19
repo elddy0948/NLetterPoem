@@ -90,10 +90,6 @@ class MyPageViewController: UIViewController {
     }
 }
 
-extension MyPageViewController: UICollectionViewDelegate {
-    
-}
-
 extension MyPageViewController: MyPageHeaderViewDelegate {
     func didTappedEditProfileButton(_ sender: NLPButton) {
         let viewController = EditProfileViewController()

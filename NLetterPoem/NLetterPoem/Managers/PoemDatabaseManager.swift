@@ -138,7 +138,6 @@ final class PoemDatabaseManager {
                 }
             }
         }
-        
     }
     
     func updatePoemLikeCount(id: String, isIncrease: Bool) {

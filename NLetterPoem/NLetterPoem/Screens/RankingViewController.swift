@@ -12,6 +12,7 @@ class RankingViewController: UIViewController {
         }
     }
     
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -19,6 +20,17 @@ class RankingViewController: UIViewController {
         fetchTopTenUsers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let users = users {
+            for user in users {
+                print(user.fires)
+            }
+        }
+        fetchTopTenUsers()
+    }
+    
+    //MARK: - Privates
     private func configureRankingTableView() {
         rankingTableView = RankingTableView()
         view.addSubview(rankingTableView)

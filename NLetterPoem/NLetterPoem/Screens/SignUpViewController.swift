@@ -85,6 +85,7 @@ extension SignUpViewController: SignUpViewDelegate {
                 self.showAlert(title: "⚠️", message: "회원 저장에 실패했어요!\n다시 시도해주세요!", action: nil)
                 return
             }
+            
             self.showAlert(title: "🎉", message: "회원가입을 축하합니다!") { _ in
                 self.dismiss(animated: true, completion: nil)
             }

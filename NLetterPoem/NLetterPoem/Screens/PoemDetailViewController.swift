@@ -14,12 +14,6 @@ class PoemDetailViewController: UIViewController {
         configure()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        guard let user = NLPUser.shared else { return }
-        UserDatabaseManager.shared.updateUser(with: user) { _ in }
-    }
-    
     //MARK: - Privates
     private func configure() {
         view.backgroundColor = .systemBackground
@@ -38,8 +32,18 @@ class PoemDetailViewController: UIViewController {
         self.view = detailPoemView
     }
     
-    private func updateLikeCount(id: String, isIncrease: Bool) {
-        PoemDatabaseManager.shared.updatePoemLikeCount(id: id, isIncrease: isIncrease)
+    private func updateLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
+        PoemDatabaseManager.shared.updatePoemLikeCount(id: id,
+                                                       authorEmail: authorEmail,
+                                                       isIncrease: isIncrease)
+    }
+    
+    private func updateUserLikedPoem(email: String, id: String, isRemove: Bool) {
+        if isRemove {
+            UserDatabaseManager.shared.removeLikedPoem(userEmail: email, poemID: id)
+        } else {
+            UserDatabaseManager.shared.addLikedPoem(userEmail: email, poemID: id)
+        }
     }
 }
 
@@ -51,13 +55,19 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
         fireState.toggle()
         
         if fireState {
-            updateLikeCount(id: poem.id, isIncrease: true)
-            user.likedPoem.append(poem.id)
+            updateLikeCount(id: poem.id,
+                            authorEmail: poem.authorEmail,
+                            isIncrease: true)
+            updateUserLikedPoem(email: user.email,
+                                id: poem.id,
+                                isRemove: false)
         } else {
-            if let index = user.likedPoem.firstIndex(of: poem.id) {
-                updateLikeCount(id: poem.id, isIncrease: false)
-                user.likedPoem.remove(at: index)
-            }
+            updateLikeCount(id: poem.id,
+                            authorEmail: poem.authorEmail,
+                            isIncrease: false)
+            updateUserLikedPoem(email: user.email,
+                                id: poem.id,
+                                isRemove: true)
         }
         
         fireButton.isSelected = fireState

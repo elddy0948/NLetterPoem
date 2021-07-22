@@ -8,7 +8,7 @@ final class RankingTableViewCell: UITableViewCell {
     //MARK: - Views
     private(set) var stackView: UIStackView!
     private(set) var nicknameLabel: UILabel!
-    private(set) var pointsLabel: UILabel!
+    private(set) var firesLabel: UILabel!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,17 +51,17 @@ final class RankingTableViewCell: UITableViewCell {
     }
     
     private func configurePointsLabel() {
-        pointsLabel = UILabel()
-        stackView.addArrangedSubview(pointsLabel)
+        firesLabel = UILabel()
+        stackView.addArrangedSubview(firesLabel)
         
-        pointsLabel.translatesAutoresizingMaskIntoConstraints = false
-        pointsLabel.textColor = .label
-        pointsLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        pointsLabel.textAlignment = .center
+        firesLabel.translatesAutoresizingMaskIntoConstraints = false
+        firesLabel.textColor = .label
+        firesLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        firesLabel.textAlignment = .center
     }
     
     func setCellData(with user: NLPUser) {
         nicknameLabel.text = user.nickname
-        pointsLabel.text = "\(user.points)"
+        firesLabel.text = "\(user.fires)"
     }
 }

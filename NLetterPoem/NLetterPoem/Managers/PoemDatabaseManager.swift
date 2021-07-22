@@ -140,13 +140,17 @@ final class PoemDatabaseManager {
         }
     }
     
-    func updatePoemLikeCount(id: String, isIncrease: Bool) {
+    func updatePoemLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
         let poemRef = database.collection("poems").document(id)
+        let userRef = database.collection("users").document(authorEmail)
         let count = isIncrease ? 1 : -1
         
         poemDatabaseQueue.async {
             poemRef.updateData([
                 "likeCount": FieldValue.increment(Int64(count))
+            ])
+            userRef.updateData([
+                "fires": FieldValue.increment(Int64(count))
             ])
         }
     }

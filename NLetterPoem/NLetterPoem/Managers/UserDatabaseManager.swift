@@ -67,7 +67,7 @@ final class UserDatabaseManager {
         userDatabaseQueue.async { [weak self] in
             guard let self = self else { return }
             
-            self.userReference.order(by: "points", descending: true).limit(to: 10).getDocuments { snapshot, error in
+            self.userReference.order(by: "fires", descending: true).limit(to: 10).getDocuments { snapshot, error in
                 guard let snapshot = snapshot else {
                     completed(topTenUsers)
                     return
@@ -87,6 +87,24 @@ final class UserDatabaseManager {
                 
                 completed(topTenUsers)
             }
+        }
+    }
+    
+    func addLikedPoem(userEmail: String, poemID: String) {
+        userDatabaseQueue.async { [weak self] in
+            guard let self = self else { return }
+            self.userReference.document(userEmail).updateData([
+                "likedPoem": FieldValue.arrayUnion([poemID])
+            ])
+        }
+    }
+    
+    func removeLikedPoem(userEmail: String, poemID: String) {
+        userDatabaseQueue.async { [weak self] in
+            guard let self = self else { return }
+            self.userReference.document(userEmail).updateData([
+                "likedPoem": FieldValue.arrayRemove([poemID])
+            ])
         }
     }
 }

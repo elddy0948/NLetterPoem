@@ -18,6 +18,7 @@ class MyPageViewController: UIViewController {
     var poems: [NLPPoem]? {
         didSet {
             myPageCollectionView?.reloadData()
+            countUserFires()
         }
     }
 
@@ -81,6 +82,17 @@ class MyPageViewController: UIViewController {
         PoemDatabaseManager.shared.fetchUserPoems(userEmail: email) { [weak self] poems in
             guard let self = self else { return }
             self.poems = poems
+        }
+    }
+    
+    private func countUserFires() {
+        if let poems = poems {
+            let fires = poems.reduce(0) { result, poem in
+                return result + poem.likeCount
+            }
+            print(fires)
+        } else {
+            print(0)
         }
     }
     

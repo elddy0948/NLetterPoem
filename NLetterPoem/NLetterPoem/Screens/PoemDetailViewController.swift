@@ -2,11 +2,12 @@ import UIKit
 
 class PoemDetailViewController: UIViewController {
     
-    private(set) var detailPoemView: DetailPoemView!
+    private(set) var detailPoemView: DetailPoemView?
     
     //MARK: - Properties
     var poem: NLPPoem?
     var fireState = false
+    var currentUser: NLPUser?
     
     //MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -14,22 +15,33 @@ class PoemDetailViewController: UIViewController {
         configure()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let currentUser = currentUser,
+              let user = NLPUser.shared else { return }
+        
+        if currentUser.likedPoem.count != user.likedPoem.count {
+            UserDatabaseManager.shared.fetchUserInfo(with: user.email) { user in
+                NLPUser.shared = user
+            }
+        }
+    }
+    
     //MARK: - Privates
     private func configure() {
         view.backgroundColor = .systemBackground
         
-        guard let poem = poem,
-              let user = NLPUser.shared else { return }
-        fireState = false
+        currentUser = NLPUser.shared
         
-        if user.likedPoem.contains(poem.id) {
-            fireState = true
-        }
+        guard let poem = poem,
+              let user = currentUser else { return }
+        
+        user.likedPoem.contains(poem.id) ? (fireState = true) : (fireState = false)
         
         detailPoemView = DetailPoemView(poem: poem, fireState: fireState)
-        detailPoemView.delegate = self
-        
+        detailPoemView?.delegate = self
         self.view = detailPoemView
+        
     }
     
     private func updateLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
@@ -40,21 +52,24 @@ class PoemDetailViewController: UIViewController {
     
     private func updateUserLikedPoem(email: String, id: String, isRemove: Bool) {
         if isRemove {
-            UserDatabaseManager.shared.removeLikedPoem(userEmail: email, poemID: id)
+            UserDatabaseManager.shared.removeLikedPoem(userEmail: email,
+                                                       poemID: id)
         } else {
-            UserDatabaseManager.shared.addLikedPoem(userEmail: email, poemID: id)
+            UserDatabaseManager.shared.addLikedPoem(userEmail: email,
+                                                    poemID: id)
         }
     }
 }
 
 extension PoemDetailViewController: DetailPoemViewDelegate {
     func didTappedFireButton(_ detailPoemView: DetailPoemView, _ fireButton: UIButton) {
-        guard let user = NLPUser.shared,
+        guard let user = currentUser,
               let poem = poem else { return }
         
         fireState.toggle()
         
         if fireState {
+            user.likedPoem.append(poem.id)
             updateLikeCount(id: poem.id,
                             authorEmail: poem.authorEmail,
                             isIncrease: true)
@@ -62,6 +77,9 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
                                 id: poem.id,
                                 isRemove: false)
         } else {
+            if let index = user.likedPoem.firstIndex(of: poem.id) {
+                user.likedPoem.remove(at: index)
+            }
             updateLikeCount(id: poem.id,
                             authorEmail: poem.authorEmail,
                             isIncrease: false)
@@ -72,5 +90,6 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
         
         fireButton.isSelected = fireState
         fireState ? (fireButton.tintColor = .systemRed) : (fireButton.tintColor = .label)
+        currentUser = user
     }
 }

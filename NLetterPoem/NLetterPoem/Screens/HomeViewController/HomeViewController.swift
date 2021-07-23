@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
     
@@ -32,7 +33,9 @@ class HomeViewController: UIViewController {
     }
     
     private func configureRightBarButtonItem() {
-        let rightBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTappedAddButton(_:)))
+        let rightBarButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                             target: self,
+                                             action: #selector(didTappedAddButton(_:)))
         rightBarButton.tintColor = .label
         navigationItem.rightBarButtonItem = rightBarButton
     }

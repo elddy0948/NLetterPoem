@@ -24,14 +24,18 @@ extension MyPageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MyPageHeaderView.reuseIdentifier, for: indexPath)
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: MyPageHeaderView.reuseIdentifier,
+                                                                             for: indexPath)
             guard let typeHeaderView = headerView as? MyPageHeaderView else { return headerView }
             let rootViewController = navigationController?.viewControllers.first
             
             if rootViewController is MyPageViewController {
-                typeHeaderView.configureUser(with: user, isEditButtonHidden: false)
+                typeHeaderView.configureUser(with: user,
+                                             isEditButtonHidden: false)
             } else if rootViewController is RankingViewController {
-                typeHeaderView.configureUser(with: user, isEditButtonHidden: true)
+                typeHeaderView.configureUser(with: user,
+                                             isEditButtonHidden: true)
             }
             
             typeHeaderView.delegate = self

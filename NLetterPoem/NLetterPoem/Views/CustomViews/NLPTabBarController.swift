@@ -26,7 +26,7 @@ class NLPTabBarController: UITabBarController {
     
     private func createRankingNavigationController() -> UINavigationController {
         let viewController = RankingViewController()
-        viewController.title = "랭킹"
+        viewController.title = "🏆"
         viewController.tabBarItem = UITabBarItem(title: "랭킹", image: SFSymbols.crownFill, tag: 1)
         return UINavigationController(rootViewController: viewController)
     }

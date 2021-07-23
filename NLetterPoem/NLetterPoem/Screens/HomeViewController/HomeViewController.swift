@@ -8,7 +8,7 @@ class HomeViewController: UIViewController {
     private(set) var homeTableView: HomeTableView!
     
     //MARK: - Properties
-    private var todayTopic: String! {
+    var todayTopic: String? {
         didSet {
             if oldValue != todayTopic {
                 updateTableViewContents()
@@ -22,6 +22,8 @@ class HomeViewController: UIViewController {
         }
     }
     
+    let queue = DispatchQueue(label: "com.howift.HomeQueue")
+    
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,10 @@ class HomeViewController: UIViewController {
         configureRightBarButtonItem()
         configureHeaderView()
         fetchTodayTopic()
+        fetchTodayPoems()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchTodayPoems()
     }
     
@@ -81,27 +87,31 @@ class HomeViewController: UIViewController {
     }
     
     func fetchTodayTopic() {
-        PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
-            guard let self = self else { return }
-            guard let topic = topic else {
-                self.todayTopic = ""
-                return
+        queue.async {
+            PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
+                guard let self = self else { return }
+                guard let topic = topic else {
+                    self.todayTopic = ""
+                    return
+                }
+                self.todayTopic = topic
             }
-            self.todayTopic = topic
-        }
+        }   
     }
     
     func fetchTodayPoems() {
-        PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
-            guard let self = self else { return }
-            self.todayPoems = poems
+        queue.async {
+            PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
+                guard let self = self else { return }
+                self.todayPoems = poems
+            }
         }
     }
     
     func updateTableViewContents() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.homeHeaderView.setTopic(self.todayTopic)
+            self.homeHeaderView.setTopic(self.todayTopic ?? "")
             self.homeTableView.reloadData()
         }
     }

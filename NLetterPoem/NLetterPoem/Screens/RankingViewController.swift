@@ -60,12 +60,23 @@ extension RankingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RankingTableViewCell.reuseIdentifier, for: indexPath) as? RankingTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RankingTableViewCell.reuseIdentifier,
+                                                       for: indexPath) as? RankingTableViewCell else {
             return UITableViewCell()
         }
+        
+        if indexPath.row == 0 {
+            cell.backgroundColor = UIColor(named: "NLPGold")
+        } else if indexPath.row == 1 {
+            cell.backgroundColor = UIColor(named: "NLPSilver")
+        } else if indexPath.row == 2 {
+            cell.backgroundColor = UIColor(named: "NLPBronze")
+        }
+        
         if let user = users?[indexPath.row] {
             cell.setCellData(with: user)
         }
+        
         return cell
     }
 }

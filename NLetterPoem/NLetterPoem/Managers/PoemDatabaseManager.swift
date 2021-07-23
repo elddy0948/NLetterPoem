@@ -20,34 +20,30 @@ final class PoemDatabaseManager {
     
     //MARK: - Poem
     func createPoem(poem: NLPPoem, completed: @escaping ((Error?) -> Void)) {
-        poemDatabaseQueue.async { [weak self] in
-            guard let self = self else { return }
-            do {
-                try self.poemReference.document(poem.id).setData(from: poem)
-            } catch {
-                debugPrint(error)
-            }
+        
+        do {
+            try self.poemReference.document(poem.id).setData(from: poem)
+        } catch {
+            debugPrint(error)
         }
+        
     }
     
     func fetchTodayTopic(date: Date, completed: @escaping ((String?) -> Void)) {
         let stringDate = date.toYearMonthDay()
         
-        poemDatabaseQueue.async { [weak self] in
-            guard let self = self else { return }
-            self.topicReference.document(stringDate).getDocument { document, error in
-                guard let document = document else {
-                    completed(nil)
-                    return
-                }
-                
-                do {
-                    let data = try document.data(as: Topic.self)
-                    completed(data?.topic)
-                } catch {
-                    debugPrint(error)
-                    completed(nil)
-                }
+        topicReference.document(stringDate).getDocument { document, error in
+            guard let document = document else {
+                completed(nil)
+                return
+            }
+            
+            do {
+                let data = try document.data(as: Topic.self)
+                completed(data?.topic)
+            } catch {
+                debugPrint(error)
+                completed(nil)
             }
         }
     }
@@ -57,53 +53,49 @@ final class PoemDatabaseManager {
         let query = poemReference.whereField("createdAt", isEqualTo: "\(stringDate)")
         var poems = [NLPPoem]()
         
-        poemDatabaseQueue.async {
-            query.getDocuments { snapshot, error in
-                guard let querySnapshot = snapshot else {
+        query.getDocuments { snapshot, error in
+            guard let querySnapshot = snapshot else {
+                completed([])
+                return
+            }
+            
+            for document in querySnapshot.documents {
+                do {
+                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
+                    poems.append(poem)
+                } catch {
                     completed([])
                     return
                 }
-                
-                for document in querySnapshot.documents {
-                    do {
-                        let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
-                        poems.append(poem)
-                    } catch {
-                        completed([])
-                        return
-                    }
-                }
-                
-                completed(poems)
             }
+            
+            completed(poems)
         }
+        
     }
     
     func fetchUserPoems(userEmail: String, completed: @escaping (([NLPPoem]) -> Void)) {
         let query = poemReference.whereField("authorEmail", isEqualTo: userEmail)
         var userPoems = [NLPPoem]()
         
-        poemDatabaseQueue.async {
-            query.getDocuments { snapshot, error in
-                guard let querySnapshot = snapshot else {
+        query.getDocuments { snapshot, error in
+            guard let querySnapshot = snapshot else {
+                completed([])
+                return
+            }
+            
+            for document in querySnapshot.documents {
+                do {
+                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
+                    userPoems.append(poem)
+                } catch {
                     completed([])
                     return
                 }
-                
-                for document in querySnapshot.documents {
-                    do {
-                        let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
-                        userPoems.append(poem)
-                    } catch {
-                        completed([])
-                        return
-                    }
-                }
-                
-                completed(userPoems)
             }
+            
+            completed(userPoems)
         }
-        
     }
     
     func sortPoems(by sortType: SortType, date: Date, completed: @escaping ([NLPPoem]) -> Void) {
@@ -111,31 +103,29 @@ final class PoemDatabaseManager {
         let query = poemReference.whereField("createdAt", isEqualTo: "\(stringDate)")
         var poems = [NLPPoem]()
         
-        poemDatabaseQueue.async {
-            query.getDocuments { snapshot, error in
-                guard let querySnapshot = snapshot else {
+        query.getDocuments { snapshot, error in
+            guard let querySnapshot = snapshot else {
+                completed([])
+                return
+            }
+            
+            for document in querySnapshot.documents {
+                do {
+                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
+                    poems.append(poem)
+                } catch {
                     completed([])
                     return
                 }
-                
-                for document in querySnapshot.documents {
-                    do {
-                        let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
-                        poems.append(poem)
-                    } catch {
-                        completed([])
-                        return
-                    }
-                }
-                
-                switch sortType {
-                case .like:
-                    let likePoems = poems.sorted { $0.likeCount > $1.likeCount }
-                    completed(likePoems)
-                case .recent:
-                    let recentPoems = poems.sorted { $0.created > $1.created }
-                    completed(recentPoems)
-                }
+            }
+            
+            switch sortType {
+            case .like:
+                let likePoems = poems.sorted { $0.likeCount > $1.likeCount }
+                completed(likePoems)
+            case .recent:
+                let recentPoems = poems.sorted { $0.created > $1.created }
+                completed(recentPoems)
             }
         }
     }
@@ -145,14 +135,12 @@ final class PoemDatabaseManager {
         let userRef = database.collection("users").document(authorEmail)
         let count = isIncrease ? 1 : -1
         
-        poemDatabaseQueue.async {
-            poemRef.updateData([
-                "likeCount": FieldValue.increment(Int64(count))
-            ])
-            userRef.updateData([
-                "fires": FieldValue.increment(Int64(count))
-            ])
-        }
+        poemRef.updateData([
+            "likeCount": FieldValue.increment(Int64(count))
+        ])
+        userRef.updateData([
+            "fires": FieldValue.increment(Int64(count))
+        ])
     }
     
     enum SortType {

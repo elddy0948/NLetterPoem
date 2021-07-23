@@ -6,7 +6,7 @@ class RankingTableView: UITableView {
         super.init(frame: frame, style: style)
         tableFooterView = UIView()
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .systemGray
+        backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {

@@ -32,7 +32,7 @@ final class HomeHeaderView: UIView {
         addSubview(titleLabel)
         
         titleLabel.textColor = .label
-        titleLabel.font = UIFont(name: "NanumBrush", size: 32)
+        titleLabel.font = UIFont(name: "BM YEONSUNG", size: 36)
         titleLabel.textAlignment = .center
         titleLabel.text = "오늘의 주제"
         
@@ -51,7 +51,7 @@ final class HomeHeaderView: UIView {
         addSubview(topicLabel)
         
         topicLabel.textColor = .label
-        topicLabel.font = UIFont(name: "NanumBrush", size: 48)
+        topicLabel.font = UIFont(name: "BM YEONSUNG", size: 48)
         topicLabel.textAlignment = .center
         topicLabel.text = ""
         

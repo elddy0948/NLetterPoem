@@ -22,11 +22,6 @@ class RankingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let users = users {
-            for user in users {
-                print(user.fires)
-            }
-        }
         fetchTopTenUsers()
     }
     

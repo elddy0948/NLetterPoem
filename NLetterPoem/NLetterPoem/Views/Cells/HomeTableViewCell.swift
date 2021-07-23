@@ -51,14 +51,14 @@ final class HomeTableViewCell: UITableViewCell {
         
         shortDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         shortDescriptionLabel.textColor = .label
-        shortDescriptionLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        shortDescriptionLabel.font = UIFont(name: "BM YEONSUNG", size: 40)
         shortDescriptionLabel.numberOfLines = 1
         shortDescriptionLabel.text = ""
         
         NSLayoutConstraint.activate([
-            shortDescriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            shortDescriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             shortDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            shortDescriptionLabel.heightAnchor.constraint(equalToConstant: 34),
+            shortDescriptionLabel.heightAnchor.constraint(equalToConstant: 44),
         ])
     }
     

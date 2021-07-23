@@ -70,7 +70,6 @@
 		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE98268D90B500968C5B /* StorageManager.swift */; };
-		B4F259882692D02B00FF95A4 /* NanumScript2.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B4F259872692D02B00FF95A4 /* NanumScript2.ttc */; };
 		B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */; };
 		B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */; };
 		B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */; };
@@ -136,7 +135,6 @@
 		B4CDD1EA268841630086AADE /* NLPPoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoem.swift; sourceTree = "<group>"; };
 		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4D1BE98268D90B500968C5B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-		B4F259872692D02B00FF95A4 /* NanumScript2.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript2.ttc; sourceTree = "<group>"; };
 		B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTopic.swift; sourceTree = "<group>"; };
 		B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableView.swift; sourceTree = "<group>"; };
@@ -353,7 +351,6 @@
 			children = (
 				B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */,
 				B45936C426AA95D600F51476 /* NanumScript.ttc */,
-				B4F259872692D02B00FF95A4 /* NanumScript2.ttc */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -427,7 +424,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4F259882692D02B00FF95A4 /* NanumScript2.ttc in Resources */,
 				B47875252671F540002FE83F /* LaunchScreen.storyboard in Resources */,
 				B45936C526AA95D600F51476 /* NanumScript.ttc in Resources */,
 				B47875222671F540002FE83F /* Assets.xcassets in Resources */,

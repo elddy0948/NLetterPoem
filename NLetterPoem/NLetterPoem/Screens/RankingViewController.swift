@@ -65,16 +65,8 @@ extension RankingViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if indexPath.row == 0 {
-            cell.backgroundColor = UIColor(named: "NLPGold")
-        } else if indexPath.row == 1 {
-            cell.backgroundColor = UIColor(named: "NLPSilver")
-        } else if indexPath.row == 2 {
-            cell.backgroundColor = UIColor(named: "NLPBronze")
-        }
-        
         if let user = users?[indexPath.row] {
-            cell.setCellData(with: user)
+            cell.setCellData(with: user, ranking: indexPath.row)
         }
         
         return cell
@@ -83,7 +75,7 @@ extension RankingViewController: UITableViewDataSource {
 
 extension RankingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 120
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

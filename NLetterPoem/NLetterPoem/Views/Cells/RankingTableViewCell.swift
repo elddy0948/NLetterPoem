@@ -6,6 +6,7 @@ final class RankingTableViewCell: UITableViewCell {
     static let reuseIdentifier = String(describing: RankingTableViewCell.self)
     
     //MARK: - Views
+    private(set) var rankingLabel: UILabel!
     private(set) var stackView: UIStackView!
     private(set) var nicknameLabel: UILabel!
     private(set) var firesLabel: UILabel!
@@ -13,6 +14,9 @@ final class RankingTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        contentView.layer.cornerRadius = 16
+        contentView.layer.masksToBounds = true
+        configureRankingLabel()
         configureStackView()
         configureNicknameLabel()
         configurePointsLabel()
@@ -22,19 +26,35 @@ final class RankingTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureStackView() {        
+    private func configureRankingLabel() {
+        rankingLabel = UILabel()
+        contentView.addSubview(rankingLabel)
+        
+        rankingLabel.translatesAutoresizingMaskIntoConstraints = false
+        rankingLabel.font = UIFont(name: "BM YEONSUNG", size: 42)
+        rankingLabel.textColor = .white
+        rankingLabel.text = "#1"
+        
+        NSLayoutConstraint.activate([
+            rankingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            rankingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
+            rankingLabel.widthAnchor.constraint(equalToConstant: 50),
+        ])
+    }
+    
+    private func configureStackView() {
+        let padding: CGFloat = 8
         stackView = UIStackView()
         contentView.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 8
         stackView.alignment = .center
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: rankingLabel.trailingAnchor, constant: padding),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
@@ -60,7 +80,18 @@ final class RankingTableViewCell: UITableViewCell {
         firesLabel.textAlignment = .center
     }
     
-    func setCellData(with user: NLPUser) {
+    func setCellData(with user: NLPUser, ranking: Int) {
+        
+        if ranking == 0 {
+            contentView.backgroundColor = UIColor(named: "NLPGold")
+        } else if ranking == 1 {
+            contentView.backgroundColor = UIColor(named: "NLPSilver")
+        } else if ranking == 2 {
+            contentView.backgroundColor = UIColor(named: "NLPBronze")
+        } else {
+            contentView.backgroundColor = .systemGreen
+        }
+        
         nicknameLabel.text = user.nickname
         firesLabel.text = "\(user.fires)"
     }

@@ -20,7 +20,6 @@ final class PoemDatabaseManager {
     
     //MARK: - Poem
     func createPoem(poem: NLPPoem, completed: @escaping ((Error?) -> Void)) {
-        
         do {
             try self.poemReference.document(poem.id).setData(from: poem)
         } catch {

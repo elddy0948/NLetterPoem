@@ -34,6 +34,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
     func createPoemView(_ createPoemView: CreatePoemView, didTapDone button: UIBarButtonItem, poem: String) {
         let dispatchQueue = DispatchQueue(label: "com.howift.createPoem")
         let dispatchGroup = DispatchGroup()
+        var createPoemError: String?
         
         guard let user = NLPUser.shared,
               let topic = topic else {
@@ -46,33 +47,33 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
         
         user.poems.append(nlpPoem.id)
         
-        dispatchQueue.async {
-            dispatchGroup.enter()
-            PoemDatabaseManager.shared.createPoem(poem: nlpPoem) { [weak self] error in
-                defer { dispatchGroup.leave() }
-                guard let self = self else { return }
-                if let _ = error {
-                    self.showAlert(title: "⚠️", message: "생성에 실패했어요!\n다시 시도해주세요!", action: nil)
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
-        
-        dispatchQueue.async {
-            dispatchGroup.enter()
-            UserDatabaseManager.shared.updateUser(with: user) { [weak self] error in
-                defer { dispatchGroup.leave() }
-                guard let self = self else { return }
+        dispatchQueue.async(group: dispatchGroup, execute: {
+            PoemDatabaseManager.shared.createPoem(poem: nlpPoem) { error in
                 if let error = error {
-                    self.showAlert(title: "⚠️", message: error.localizedDescription, action: nil)
-                    self.dismiss(animated: true, completion: nil)
+                    createPoemError = error.localizedDescription
                 }
             }
-        }
+        })
+        
+        dispatchQueue.async(group: dispatchGroup, execute: {
+            UserDatabaseManager.shared.updateUser(with: user) { error in
+                if let error = error {
+                    createPoemError = error.localizedDescription
+                }
+            }
+        })
         
         dispatchGroup.notify(queue: DispatchQueue.main) { [weak self] in
             guard let self = self else { return }
-            self.dismiss(animated: true, completion: nil)
+            if let error = createPoemError {
+                self.showAlert(title: "⚠️", message: error, action: { _ in
+                    self.dismiss(animated: true, completion: nil)
+                })
+            } else {
+                self.showAlert(title: "🎉", message: "멋진 시네요!", action: { _ in
+                    self.dismiss(animated: true, completion: nil)
+                })
+            }
         }
     }
 }

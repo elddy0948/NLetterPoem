@@ -6,6 +6,7 @@ class HomeViewController: UIViewController {
     //MARK: - Views
     private(set) var homeHeaderView: HomeHeaderView!
     private(set) var homeTableView: HomeTableView!
+    var activityIndicatorView = UIActivityIndicatorView(style: .large)
     
     //MARK: - Properties
     var todayTopic: String? {
@@ -27,11 +28,19 @@ class HomeViewController: UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+
         configureRightBarButtonItem()
+        configure()
         configureHeaderView()
-        fetchTodayTopic()
-        fetchTodayPoems()
+        
+        homeTableView.addSubview(activityIndicatorView)
+        queue.async { [weak self] in
+            guard let self = self else { return }
+            self.fetchTodayTopic()
+            self.fetchTodayTopic()
+        }
+        
+        activityIndicatorView.hidesWhenStopped = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +54,7 @@ class HomeViewController: UIViewController {
         rightBarButton.tintColor = .label
         navigationItem.rightBarButtonItem = rightBarButton
     }
-
+    
     private func configure() {
         homeTableView = HomeTableView()
         view.backgroundColor = .systemBackground
@@ -58,6 +67,8 @@ class HomeViewController: UIViewController {
         
         homeTableView.register(HomeTableViewCell.self,
                                forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
+        homeTableView.register(HomeEmptyCell.self,
+                               forCellReuseIdentifier: HomeEmptyCell.reuseIdentifier)
         
         tabBarItem.title = "홈"
         tabBarItem.image = UIImage(systemName: "house.fill")
@@ -87,29 +98,27 @@ class HomeViewController: UIViewController {
     }
     
     func fetchTodayTopic() {
-        queue.async {
-            PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
-                guard let self = self else { return }
-                guard let topic = topic else {
-                    self.todayTopic = ""
-                    return
-                }
-                self.todayTopic = topic
+        PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
+            guard let self = self else { return }
+            guard let topic = topic else {
+                self.todayTopic = ""
+                return
             }
-        }   
+            self.todayTopic = topic
+        }
     }
     
     func fetchTodayPoems() {
-        queue.async {
-            PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
-                guard let self = self else { return }
-                self.todayPoems = poems
-            }
+        PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
+            guard let self = self else { return }
+            self.todayPoems = poems
         }
     }
     
     func updateTableViewContents() {
+        activityIndicatorView.startAnimating()
         DispatchQueue.main.async { [weak self] in
+            self?.activityIndicatorView.stopAnimating()
             guard let self = self else { return }
             self.homeHeaderView.setTopic(self.todayTopic ?? "")
             self.homeTableView.reloadData()

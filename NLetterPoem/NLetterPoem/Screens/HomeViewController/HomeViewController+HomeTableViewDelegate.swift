@@ -1,7 +1,6 @@
 import UIKit
 
 extension HomeViewController: HomeTableViewDelegate {
-    
     func handleRefreshHomeTableView(_ tableView: HomeTableView) {
         let dispatchGroup = DispatchGroup()
         

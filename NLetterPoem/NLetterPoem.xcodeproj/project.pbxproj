@@ -70,6 +70,7 @@
 		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE98268D90B500968C5B /* StorageManager.swift */; };
+		B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */; };
 		B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */; };
 		B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */; };
 		B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */; };
@@ -135,6 +136,7 @@
 		B4CDD1EA268841630086AADE /* NLPPoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoem.swift; sourceTree = "<group>"; };
 		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4D1BE98268D90B500968C5B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCell.swift; sourceTree = "<group>"; };
 		B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTopic.swift; sourceTree = "<group>"; };
 		B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */,
 				B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */,
 				B4F6AA1626A3F5DA00DB119D /* RankingTableViewCell.swift */,
+				B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
+				B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */,
 				B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */,

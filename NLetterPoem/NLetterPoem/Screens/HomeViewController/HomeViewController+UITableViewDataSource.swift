@@ -3,19 +3,35 @@ import UIKit
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todayPoems?.count ?? 0
+        if let todayPoems = todayPoems {
+            if todayPoems.isEmpty {
+                return 1
+            }
+            return todayPoems.count
+        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier,
-                                                       for: indexPath) as? HomeTableViewCell,
-              let poem = todayPoems?[indexPath.row] else { return UITableViewCell() }
-        
-        let shortDescription = poem.content.makeShortDescription()
-        
-        cell.setCellData(shortDes: "\"\(shortDescription)",
-                         writer: "- \(poem.author) -", likeCount: poem.likeCount)
-        
+        if let todayPoems = todayPoems {
+            if todayPoems.isEmpty {
+                let cell = tableView.dequeueReusableCell(withIdentifier: HomeEmptyCell.reuseIdentifier,
+                                                         for: indexPath)
+                return cell
+            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier,
+                                                           for: indexPath) as? HomeTableViewCell else {
+                return UITableViewCell()
+            }
+            let poem = todayPoems[indexPath.row]
+            let shortDescription = poem.content.makeShortDescription()
+            cell.setCellData(shortDes: "\"\(shortDescription)",
+                             writer: "- \(poem.author) -",
+                             likeCount: poem.likeCount)
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomeEmptyCell.reuseIdentifier,
+                                                 for: indexPath)
         return cell
     }
 }

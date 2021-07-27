@@ -142,6 +142,42 @@ final class PoemDatabaseManager {
         ])
     }
     
+    func fetchExistPoem(email: String, createdAt: Date, completed: @escaping (NLPPoem?) -> Void) {
+        let poemRef = database.collection("poems")
+        let stringDate = createdAt.toYearMonthDay()
+        
+        poemRef.whereField("authorEmail", isEqualTo: email)
+            .whereField("createdAt", isEqualTo: stringDate)
+            .getDocuments { snapshot, error in
+                guard let snapshot = snapshot,
+                      error == nil,
+                      let document = snapshot.documents.first else {
+                    completed(nil)
+                    return
+                }
+                do {
+                    let poem = try document.data(as: NLPPoem.self)
+                    completed(poem)
+                    return
+                } catch {
+                    completed(nil)
+                    return
+                }
+        }
+    }
+    
+    func updatePoem(_ poem: NLPPoem, completed: @escaping (Error?) -> Void) {
+        let poemRef = database.collection("poems")
+        do {
+            try poemRef.document(poem.id).setData(from: poem)
+            completed(nil)
+            return
+        } catch {
+            completed(error)
+            return
+        }
+    }
+    
     enum SortType {
         case like
         case recent

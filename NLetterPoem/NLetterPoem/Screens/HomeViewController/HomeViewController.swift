@@ -6,6 +6,7 @@ class HomeViewController: UIViewController {
     //MARK: - Views
     private(set) var homeHeaderView: HomeHeaderView!
     private(set) var homeTableView: HomeTableView!
+    private(set) var rightBarButtonItem: UIBarButtonItem!
     var activityIndicatorView = UIActivityIndicatorView(style: .large)
     
     //MARK: - Properties
@@ -24,35 +25,52 @@ class HomeViewController: UIViewController {
     }
     
     let queue = DispatchQueue(label: "com.howift.HomeQueue")
+    private var handler: AuthStateDidChangeListenerHandle?
     
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureRightBarButtonItem()
         configure()
         configureHeaderView()
-        
         homeTableView.addSubview(activityIndicatorView)
-        queue.async { [weak self] in
-            guard let self = self else { return }
-            self.fetchTodayTopic()
-            self.fetchTodayTopic()
-        }
-        
         activityIndicatorView.hidesWhenStopped = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchTodayTopic()
         fetchTodayPoems()
+        
+        handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            guard let self = self,
+                  let user = user,
+                  let email = user.email else { return }
+            
+            PoemDatabaseManager.shared.fetchExistPoem(email: email,
+                                                      createdAt: Date()) { poem in
+                if poem != nil {
+                    self.rightBarButtonItem.isEnabled = false
+                } else {
+                    self.rightBarButtonItem.isEnabled = true
+                }
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let handler = handler {
+            Auth.auth().removeStateDidChangeListener(handler)
+        }
     }
     
     private func configureRightBarButtonItem() {
-        let rightBarButton = UIBarButtonItem(barButtonSystemItem: .add,
+        rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                              target: self,
                                              action: #selector(didTappedAddButton(_:)))
-        rightBarButton.tintColor = .label
-        navigationItem.rightBarButtonItem = rightBarButton
+        rightBarButtonItem.tintColor = .label
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     private func configure() {

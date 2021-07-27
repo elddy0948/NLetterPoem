@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class CreatePoemViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class CreatePoemViewController: UIViewController {
     
     //MARK: - Privates
     private func configure() {
+        view.backgroundColor = .systemBackground
         guard let topic = topic else { return }
         createPoemView = CreatePoemView(topic: topic)
         view.addSubview(createPoemView)

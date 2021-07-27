@@ -49,6 +49,8 @@ class NLPPoemFormView: UIView {
         inputTextField.layer.borderWidth = 2
         inputTextField.layer.borderColor = UIColor.systemGray.cgColor
         
+        inputTextField.delegate = self
+
         let padding: CGFloat = 8
         NSLayoutConstraint.activate([
             inputTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -65,5 +67,13 @@ class NLPPoemFormView: UIView {
     func fetchLine() -> String? {
         guard let line = inputTextField.text else { return nil }
         return line
+    }
+}
+
+extension NLPPoemFormView: UITextFieldDelegate {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        return range.location < 15
     }
 }

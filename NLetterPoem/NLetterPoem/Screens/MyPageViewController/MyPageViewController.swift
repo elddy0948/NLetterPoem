@@ -34,7 +34,11 @@ class MyPageViewController: UIViewController {
         let email: String?
         
         if user == nil {
-            email = NLPUser.shared?.email
+            guard let currentUser = Auth.auth().currentUser,
+                  let currentUserEmail = currentUser.email else {
+                return
+            }
+            email = currentUserEmail
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill,
                                                                 style: .plain,
                                                                 target: self,

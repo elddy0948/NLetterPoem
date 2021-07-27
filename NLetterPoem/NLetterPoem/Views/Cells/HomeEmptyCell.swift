@@ -24,10 +24,14 @@ class HomeEmptyCell: UITableViewCell {
         emptyStateLabel.font = UIFont(name: "BM YEONSUNG", size: 42)
         emptyStateLabel.text = "😅\n오늘은 시가 없네요!"
         emptyStateLabel.textColor = .label
+        emptyStateLabel.textAlignment = .center
+        emptyStateLabel.numberOfLines = 0
         
         NSLayoutConstraint.activate([
-            emptyStateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            emptyStateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            emptyStateLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            emptyStateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            emptyStateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            emptyStateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
 }

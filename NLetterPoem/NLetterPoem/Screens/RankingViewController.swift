@@ -32,6 +32,7 @@ class RankingViewController: UIViewController {
         
         rankingTableView.register(RankingTableViewCell.self,
                                   forCellReuseIdentifier: RankingTableViewCell.reuseIdentifier)
+        
         rankingTableView.dataSource = self
         rankingTableView.delegate = self
         
@@ -75,7 +76,7 @@ extension RankingViewController: UITableViewDataSource {
 
 extension RankingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 150
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

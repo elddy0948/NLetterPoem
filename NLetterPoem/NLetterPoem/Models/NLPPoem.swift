@@ -6,7 +6,7 @@ final class NLPPoem: Codable {
     let topic: String
     let author: String
     let authorEmail: String
-    let content: String
+    var content: String
     var ranking: Int
     var likeCount: Int = 0
     var createdAt: String = "\(Date().toYearMonthDay())"

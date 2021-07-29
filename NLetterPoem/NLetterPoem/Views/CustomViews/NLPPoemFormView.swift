@@ -60,8 +60,9 @@ class NLPPoemFormView: UIView {
         ])
     }
     
-    func configureLetter(with letter: String) {
+    func configureLetter(with letter: String, line: String?) {
         letterLabel.text = letter
+        inputTextField.text = line ?? ""
     }
     
     func fetchLine() -> String? {

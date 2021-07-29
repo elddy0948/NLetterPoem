@@ -15,12 +15,15 @@ final class CreatePoemView: UIView {
     
     //MARK: - Properties
     var topic: String?
+    var poem: NLPPoem?
     weak var delegate: CreatePoemViewDelegate?
     
     //MARK: - init
-    init(topic: String) {
+    init(topic: String, poem: NLPPoem?) {
         super.init(frame: .zero)
         self.topic = topic
+        self.poem = poem
+        
         configure()
         configureNavigationBar()
         configureTopicLabel()
@@ -81,13 +84,16 @@ final class CreatePoemView: UIView {
     
     private func configureLabels() {
         guard let topic = topic else { return }
+        let poemArray = poem?.content.makePoemArray()
+        let topicArray = Array(topic)
+        
         lettersStackView = UIStackView()
         inputViews = [NLPPoemFormView]()
         
-        for letter in topic {
+        for letter in 0..<topicArray.count {
             let poemLetterView = NLPPoemFormView()
             poemLetterView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-            poemLetterView.configureLetter(with: String(letter))
+            poemLetterView.configureLetter(with: String(topicArray[letter]), line: poemArray?[letter])
             inputViews.append(poemLetterView)
             lettersStackView.addArrangedSubview(poemLetterView)
         }

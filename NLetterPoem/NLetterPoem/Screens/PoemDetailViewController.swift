@@ -40,8 +40,19 @@ class PoemDetailViewController: UIViewController {
         
         detailPoemView = DetailPoemView(poem: poem, fireState: fireState)
         detailPoemView?.delegate = self
+        
         self.view = detailPoemView
         
+        if poem.authorEmail == user.email {
+            configureRightBarButtonItem()
+        }
+    }
+    
+    private func configureRightBarButtonItem() {
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
+                                                 target: self,
+                                                 action: #selector(editButtonAction(_:)))
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     private func updateLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
@@ -58,6 +69,15 @@ class PoemDetailViewController: UIViewController {
             UserDatabaseManager.shared.addLikedPoem(userEmail: email,
                                                     poemID: id)
         }
+    }
+    
+    //MARK: -  Actions
+    @objc func editButtonAction(_ sender: UIBarButtonItem) {
+        let viewController = CreatePoemViewController()
+        viewController.action = .edit
+        viewController.editPoem = poem
+        viewController.topic = poem?.topic
+        present(viewController, animated: true, completion: nil)
     }
 }
 

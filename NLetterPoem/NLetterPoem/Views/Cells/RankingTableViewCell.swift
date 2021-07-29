@@ -7,7 +7,6 @@ final class RankingTableViewCell: UITableViewCell {
     
     //MARK: - Views
     private(set) var rankImageView: UIImageView!
-    private(set) var rankingLabel: UILabel!
     private(set) var stackView: UIStackView!
     private(set) var nicknameLabel: UILabel!
     private(set) var firesLabel: UILabel!
@@ -19,7 +18,6 @@ final class RankingTableViewCell: UITableViewCell {
         contentView.layer.masksToBounds = true
         configureStackView()
         configureRankImageView()
-//        configureRankingLabel()
         configureNicknameLabel()
         configurePointsLabel()
     }
@@ -35,7 +33,7 @@ final class RankingTableViewCell: UITableViewCell {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .fill
+        stackView.distribution = .equalSpacing
         stackView.alignment = .center
         
         NSLayoutConstraint.activate([
@@ -57,18 +55,6 @@ final class RankingTableViewCell: UITableViewCell {
         rankImageView.widthAnchor.constraint(equalToConstant: 36).isActive = true
         rankImageView.heightAnchor.constraint(equalToConstant: 36).isActive = true
     }
-    
-//    private func configureRankingLabel() {
-//        rankingLabel = UILabel()
-//        stackView.addArrangedSubview(rankingLabel)
-//
-//        rankingLabel.translatesAutoresizingMaskIntoConstraints = false
-//        rankingLabel.font = UIFont(name: "BM YEONSUNG", size: 36)
-//        rankingLabel.textColor = .white
-//        rankingLabel.text = "#1"
-//
-//        rankingLabel.widthAnchor.constraint(equalToConstant: 42).isActive = true
-//    }
     
     private func configureNicknameLabel() {
         nicknameLabel = UILabel()

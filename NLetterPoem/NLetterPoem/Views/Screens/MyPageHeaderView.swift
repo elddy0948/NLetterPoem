@@ -11,6 +11,9 @@ final class MyPageHeaderView: UICollectionReusableView {
     private(set) var profilePhotoImageView: NLPProfilePhotoImageView!
     private(set) var bioLabel: NLPProfileLabel!
     private(set) var editProfileButton: NLPButton!
+    private(set) var rankHorizontalStackView: UIStackView!
+    private(set) var rankImageView: UIImageView!
+    private(set) var firesLabel: UILabel!
     private(set) var horizontalStackView: UIStackView!
     private(set) var verticalStackView: UIStackView!
     
@@ -54,13 +57,37 @@ final class MyPageHeaderView: UICollectionReusableView {
         configureLayoutUI()
         
         configureHorizontalStackView()
+        configureRankStackView()
         
         editProfileButton = NLPButton(title: "프로필 수정")
         editProfileButton.addTarget(self, action: #selector(didTappedEditProfileButton(_:)),
                                     for: .touchUpInside)
         
-        verticalStackView.addArrangedSubview(horizontalStackView)
         verticalStackView.addArrangedSubview(editProfileButton)
+    }
+    
+    private func configureRankStackView() {
+        rankHorizontalStackView = UIStackView()
+        verticalStackView.addArrangedSubview(rankHorizontalStackView)
+        
+        rankHorizontalStackView.axis = .horizontal
+        rankHorizontalStackView.distribution = .fill
+        
+        rankImageView = UIImageView()
+        rankImageView.translatesAutoresizingMaskIntoConstraints = false
+        rankImageView.image = UIImage(systemName: "paintbrush.pointed.fill")
+        rankImageView.tintColor = .label
+        rankImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        rankImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        firesLabel = UILabel()
+        firesLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        firesLabel.textColor = .label
+        firesLabel.textAlignment = .right
+        firesLabel.text = "Fires🔥"
+        
+        rankHorizontalStackView.addArrangedSubview(rankImageView)
+        rankHorizontalStackView.addArrangedSubview(firesLabel)
     }
     
     private func configureHorizontalStackView() {

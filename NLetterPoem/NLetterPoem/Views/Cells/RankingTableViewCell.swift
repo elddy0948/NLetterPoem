@@ -6,6 +6,7 @@ final class RankingTableViewCell: UITableViewCell {
     static let reuseIdentifier = String(describing: RankingTableViewCell.self)
     
     //MARK: - Views
+    private(set) var rankImageView: UIImageView!
     private(set) var rankingLabel: UILabel!
     private(set) var stackView: UIStackView!
     private(set) var nicknameLabel: UILabel!
@@ -16,8 +17,9 @@ final class RankingTableViewCell: UITableViewCell {
         selectionStyle = .none
         contentView.layer.cornerRadius = 16
         contentView.layer.masksToBounds = true
-        configureRankingLabel()
         configureStackView()
+        configureRankImageView()
+//        configureRankingLabel()
         configureNicknameLabel()
         configurePointsLabel()
     }
@@ -26,39 +28,47 @@ final class RankingTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureRankingLabel() {
-        rankingLabel = UILabel()
-        contentView.addSubview(rankingLabel)
-        
-        rankingLabel.translatesAutoresizingMaskIntoConstraints = false
-        rankingLabel.font = UIFont(name: "BM YEONSUNG", size: 42)
-        rankingLabel.textColor = .white
-        rankingLabel.text = "#1"
-        
-        NSLayoutConstraint.activate([
-            rankingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            rankingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
-            rankingLabel.widthAnchor.constraint(equalToConstant: 50),
-        ])
-    }
-    
     private func configureStackView() {
         let padding: CGFloat = 8
         stackView = UIStackView()
         contentView.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
         stackView.alignment = .center
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: rankingLabel.trailingAnchor, constant: padding),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant:  padding),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
         ])
     }
+    
+    private func configureRankImageView() {
+        rankImageView = UIImageView()
+        stackView.addArrangedSubview(rankImageView)
+        
+        rankImageView.translatesAutoresizingMaskIntoConstraints = false
+        rankImageView.image = UIImage(systemName: "paintbrush.pointed.fill")
+        rankImageView.tintColor = .label
+        
+        rankImageView.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        rankImageView.heightAnchor.constraint(equalToConstant: 36).isActive = true
+    }
+    
+//    private func configureRankingLabel() {
+//        rankingLabel = UILabel()
+//        stackView.addArrangedSubview(rankingLabel)
+//
+//        rankingLabel.translatesAutoresizingMaskIntoConstraints = false
+//        rankingLabel.font = UIFont(name: "BM YEONSUNG", size: 36)
+//        rankingLabel.textColor = .white
+//        rankingLabel.text = "#1"
+//
+//        rankingLabel.widthAnchor.constraint(equalToConstant: 42).isActive = true
+//    }
     
     private func configureNicknameLabel() {
         nicknameLabel = UILabel()
@@ -81,18 +91,7 @@ final class RankingTableViewCell: UITableViewCell {
     }
     
     func setCellData(with user: NLPUser, ranking: Int) {
-        
-        if ranking == 0 {
-            contentView.backgroundColor = UIColor(named: "NLPGold")
-        } else if ranking == 1 {
-            contentView.backgroundColor = UIColor(named: "NLPSilver")
-        } else if ranking == 2 {
-            contentView.backgroundColor = UIColor(named: "NLPBronze")
-        } else {
-            contentView.backgroundColor = .systemGreen
-        }
-        
         nicknameLabel.text = user.nickname
-        firesLabel.text = "\(user.fires)"
+        firesLabel.text = "\(user.fires)🔥"
     }
 }

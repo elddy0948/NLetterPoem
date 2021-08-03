@@ -37,6 +37,7 @@ final class MyPageHeaderView: UICollectionReusableView {
         bioLabel.text = user.bio
         profilePhotoImageView.setImage(with: user.profilePhotoURL)
         editProfileButton.isHidden = isEditButtonHidden
+        firesLabel.text = "\(user.fires)🔥"
     }
     
     //MARK: - Privates
@@ -84,7 +85,7 @@ final class MyPageHeaderView: UICollectionReusableView {
         firesLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
         firesLabel.textColor = .label
         firesLabel.textAlignment = .right
-        firesLabel.text = "Fires🔥"
+        firesLabel.text = "🔥"
         
         rankHorizontalStackView.addArrangedSubview(rankImageView)
         rankHorizontalStackView.addArrangedSubview(firesLabel)

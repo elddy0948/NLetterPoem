@@ -1,6 +1,10 @@
 import UIKit
 import Firebase
 
+protocol CreatePoemViewControllerDelegate: AnyObject {
+    func createPoemViewController(_ viewController: CreatePoemViewController, didTapDone poem: NLPPoem)
+}
+
 class CreatePoemViewController: UIViewController {
     
     enum ActionType {
@@ -15,6 +19,8 @@ class CreatePoemViewController: UIViewController {
     var topic: String?
     var action: ActionType = .create
     var editPoem: NLPPoem?
+    
+    weak var delegate: CreatePoemViewControllerDelegate?
 
     //MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -94,7 +100,11 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
                 })
             } else {
                 self.showAlert(title: "🎉", message: "멋진 시네요!", action: { _ in
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: {
+                        if self.action == .edit {
+                            self.delegate?.createPoemViewController(self, didTapDone: nlpPoem)
+                        }
+                    })
                 })
             }
         }

@@ -4,6 +4,7 @@ extension MyPageViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return user?.poems.count ?? 0
     }
@@ -13,7 +14,8 @@ extension MyPageViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        if let poems = poems {
+        if let poems = poems,
+           indexPath.item <= poems.count {
             let poem = poems[indexPath.item]
             cell.setPoemData(with: poem)
         }

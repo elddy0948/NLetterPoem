@@ -77,6 +77,7 @@ class PoemDetailViewController: UIViewController {
         viewController.action = .edit
         viewController.editPoem = poem
         viewController.topic = poem?.topic
+        viewController.delegate = self
         present(viewController, animated: true, completion: nil)
     }
 }
@@ -111,5 +112,12 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
         fireButton.isSelected = fireState
         fireState ? (fireButton.tintColor = .systemRed) : (fireButton.tintColor = .label)
         currentUser = user
+    }
+}
+
+extension PoemDetailViewController: CreatePoemViewControllerDelegate {
+    func createPoemViewController(_ viewController: CreatePoemViewController, didTapDone poem: NLPPoem) {
+        self.poem = poem
+        configure()
     }
 }

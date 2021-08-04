@@ -8,7 +8,6 @@ protocol CreatePoemViewDelegate: AnyObject {
 final class CreatePoemView: UIView {
     
     //MARK: - Views
-    private(set) var navigationBar: UINavigationBar!
     private(set) var topicLabel: UILabel!
     private(set) var lettersStackView: UIStackView!
     private(set) var inputViews: [NLPPoemFormView]!
@@ -25,7 +24,6 @@ final class CreatePoemView: UIView {
         self.poem = poem
         
         configure()
-        configureNavigationBar()
         configureTopicLabel()
         configureLabels()
     }
@@ -33,7 +31,6 @@ final class CreatePoemView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        configureNavigationBar()
         configureTopicLabel()
         configureLabels()
     }
@@ -44,23 +41,6 @@ final class CreatePoemView: UIView {
     
     private func configure() {
         backgroundColor = .systemBackground
-    }
-    
-    private func configureNavigationBar() {
-        navigationBar = UINavigationBar()
-        addSubview(navigationBar)
-        
-        navigationBar.translatesAutoresizingMaskIntoConstraints = false
-        navigationBar.barTintColor = .systemBackground
-        navigationBar.tintColor = .label
-        
-        configureNavigationItem()
-        
-        NSLayoutConstraint.activate([
-            navigationBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            navigationBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-            navigationBar.trailingAnchor.constraint(equalTo: trailingAnchor),
-        ])
     }
     
     private func configureTopicLabel() {
@@ -75,7 +55,7 @@ final class CreatePoemView: UIView {
         
         let padding: CGFloat = 8
         NSLayoutConstraint.activate([
-            topicLabel.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: padding),
+            topicLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding),
             topicLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             topicLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             topicLabel.heightAnchor.constraint(equalToConstant: 80),
@@ -113,19 +93,6 @@ final class CreatePoemView: UIView {
             lettersStackView.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                        constant: -padding),
         ])
-    }
-    
-    private func configureNavigationItem() {
-        let item = UINavigationItem(title: "시 작성하기")
-        let cancelButton = UIBarButtonItem(title: "닫기", style: .plain,
-                                           target: self, action: #selector(didTappedCancelButton(_:)))
-        let doneButton = UIBarButtonItem(title: "완료", style: .done,
-                                         target: self, action: #selector(didTappedDoneButton(_:)))
-        
-        item.leftBarButtonItem = cancelButton
-        item.rightBarButtonItem = doneButton
-        
-        navigationBar.pushItem(item, animated: true)
     }
 
     @objc func didTappedCancelButton(_ sender: UIBarButtonItem) {

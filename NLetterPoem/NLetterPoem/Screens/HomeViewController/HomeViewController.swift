@@ -147,7 +147,9 @@ class HomeViewController: UIViewController {
     //MARK: - Actions
     @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
         let viewController = CreateTopicViewController()
-//        viewController.topic = todayTopic
-        present(viewController, animated: true, completion: nil)
+        let createTopicNavigationController = UINavigationController(rootViewController: viewController)
+        createTopicNavigationController.modalPresentationStyle = .fullScreen
+        createTopicNavigationController.navigationBar.tintColor = .label
+        present(createTopicNavigationController, animated: true, completion: nil)
     }
 }

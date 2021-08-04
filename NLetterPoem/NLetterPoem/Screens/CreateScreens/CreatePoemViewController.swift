@@ -33,10 +33,9 @@ class CreatePoemViewController: UIViewController {
         view.backgroundColor = .systemBackground
         guard let topic = topic else { return }
         createPoemView = CreatePoemView(topic: topic, poem: editPoem)
-        view.addSubview(createPoemView)
         
         createPoemView.delegate = self
-        createPoemView.frame = view.bounds
+        self.view = createPoemView
     }
 }
 

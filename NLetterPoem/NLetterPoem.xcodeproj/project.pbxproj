@@ -176,10 +176,19 @@
 			path = MyPageViewController;
 			sourceTree = "<group>";
 		};
-		B42EE57F267EFA39001848A5 /* Screens */ = {
+		B417692726BA6C2800C5B3A7 /* CreateScreens */ = {
 			isa = PBXGroup;
 			children = (
 				B4C3F3F62694394200CED1A9 /* CreatePoemViewController.swift */,
+				B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */,
+			);
+			path = CreateScreens;
+			sourceTree = "<group>";
+		};
+		B42EE57F267EFA39001848A5 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B417692726BA6C2800C5B3A7 /* CreateScreens */,
 				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
 				B4C3F3EB2694184D00CED1A9 /* HomeViewController */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
@@ -189,7 +198,6 @@
 				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
 				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
-				B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

@@ -12,6 +12,8 @@
 		B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */; };
 		B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */; };
+		B417692426BA4D6300C5B3A7 /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */; };
+		B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */; };
 		B41AE87126A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */; };
 		B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F42691AFC70088119D /* HomeTableView.swift */; };
 		B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F62691B0810088119D /* HomeHeaderView.swift */; };
@@ -83,6 +85,8 @@
 		B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
+		B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTopicView.swift; sourceTree = "<group>"; };
 		B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B421C4F42691AFC70088119D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		B421C4F62691B0810088119D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
 				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
+				B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
 				B45656A026A2A42600EAB3C9 /* SignInView.swift */,
 				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
+				B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -478,6 +484,7 @@
 				B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
+				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
 				B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */,
@@ -497,6 +504,7 @@
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,
 				B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */,
 				B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */,
+				B417692426BA4D6300C5B3A7 /* CreateTopicViewController.swift in Sources */,
 				B47CC3EB269ABAFE00F1F003 /* DetailPoemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

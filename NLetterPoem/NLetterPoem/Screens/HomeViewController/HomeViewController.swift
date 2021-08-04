@@ -146,8 +146,8 @@ class HomeViewController: UIViewController {
     
     //MARK: - Actions
     @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
-        let viewController = CreatePoemViewController()
-        viewController.topic = todayTopic
+        let viewController = CreateTopicViewController()
+//        viewController.topic = todayTopic
         present(viewController, animated: true, completion: nil)
     }
 }

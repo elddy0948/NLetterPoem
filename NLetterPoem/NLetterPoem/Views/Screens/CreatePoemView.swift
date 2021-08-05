@@ -11,6 +11,7 @@ final class CreatePoemView: UIView {
     private(set) var topicLabel: UILabel!
     private(set) var lettersStackView: UIStackView!
     private(set) var inputViews: [NLPPoemFormView]!
+    private(set) var doneButton: UIButton!
     
     //MARK: - Properties
     var topic: String?
@@ -26,6 +27,7 @@ final class CreatePoemView: UIView {
         configure()
         configureTopicLabel()
         configureLabels()
+        configureDoneButton()
     }
     
     override init(frame: CGRect) {
@@ -33,6 +35,7 @@ final class CreatePoemView: UIView {
         configure()
         configureTopicLabel()
         configureLabels()
+        configureDoneButton()
     }
     
     required init?(coder: NSCoder) {
@@ -92,6 +95,27 @@ final class CreatePoemView: UIView {
                                                       constant: padding),
             lettersStackView.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                        constant: -padding),
+        ])
+    }
+    
+    private func configureDoneButton() {
+        let padding: CGFloat = 8
+        doneButton = UIButton()
+        addSubview(doneButton)
+        
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        doneButton.contentHorizontalAlignment = .fill
+        doneButton.contentVerticalAlignment = .fill
+        doneButton.tintColor = .label
+        
+        doneButton.addTarget(self, action: #selector(didTappedDoneButton(_:)), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            doneButton.topAnchor.constraint(equalTo: lettersStackView.bottomAnchor, constant: padding),
+            doneButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            doneButton.widthAnchor.constraint(equalToConstant: 52),
+            doneButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
 

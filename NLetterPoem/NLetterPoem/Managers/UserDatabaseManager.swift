@@ -90,6 +90,15 @@ final class UserDatabaseManager {
         }
     }
     
+    func addPoemToUser(email: String, poemID: String) {
+        userDatabaseQueue.async { [weak self] in
+            guard let self = self else { return }
+            self.userReference.document(email).updateData([
+                "poems": FieldValue.arrayUnion([poemID])
+            ])
+        }
+    }
+    
     func addLikedPoem(userEmail: String, poemID: String) {
         userDatabaseQueue.async { [weak self] in
             guard let self = self else { return }

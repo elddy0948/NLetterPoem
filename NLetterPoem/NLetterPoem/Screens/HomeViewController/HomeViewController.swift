@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
             guard let self = self,
                   let user = user,
                   let email = user.email else { return }
-            
+
             PoemDatabaseManager.shared.fetchExistPoem(email: email,
                                                       createdAt: Date()) { poem in
                 if poem != nil {

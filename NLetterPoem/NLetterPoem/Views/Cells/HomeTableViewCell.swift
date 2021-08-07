@@ -6,6 +6,7 @@ final class HomeTableViewCell: UITableViewCell {
     static let reuseIdentifier = String(describing: HomeTableViewCell.self)
     
     //MARK: - Views
+    private(set) var topicLabel: UILabel!
     private(set) var shortDescriptionLabel: UILabel!
     private(set) var writerLabel: UILabel!
     
@@ -13,6 +14,7 @@ final class HomeTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureContentView()
+        configureTopicLabel()
         configureShortDescriptionLabel()
         configureWriterLabel()
     }
@@ -41,6 +43,26 @@ final class HomeTableViewCell: UITableViewCell {
         contentView.layer.borderWidth = 3
     }
     
+    private func configureTopicLabel() {
+        let padding: CGFloat = 8
+        topicLabel = UILabel()
+        contentView.addSubview(topicLabel)
+        
+        topicLabel.translatesAutoresizingMaskIntoConstraints = false
+        topicLabel.textColor = .label
+        topicLabel.font = UIFont(name: "BM YEONSUNG", size: 40)
+        topicLabel.numberOfLines = 1
+        topicLabel.text = "TOPIC"
+        
+        NSLayoutConstraint.activate([
+            topicLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                            constant: padding),
+            topicLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                constant: padding),
+            topicLabel.heightAnchor.constraint(equalToConstant: 44),
+        ])
+    }
+    
     private func configureShortDescriptionLabel() {
         let padding: CGFloat = 8
         
@@ -49,14 +71,16 @@ final class HomeTableViewCell: UITableViewCell {
         
         shortDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         shortDescriptionLabel.textColor = .label
-        shortDescriptionLabel.font = UIFont(name: "BM YEONSUNG", size: 40)
+        shortDescriptionLabel.font = UIFont(name: "BM YEONSUNG", size: 36)
         shortDescriptionLabel.numberOfLines = 1
         shortDescriptionLabel.text = ""
         
         NSLayoutConstraint.activate([
-            shortDescriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            shortDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            shortDescriptionLabel.heightAnchor.constraint(equalToConstant: 44),
+            shortDescriptionLabel.topAnchor.constraint(equalTo: topicLabel.bottomAnchor,
+                                                       constant: padding),
+            shortDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                           constant: padding),
+            shortDescriptionLabel.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
     
@@ -78,8 +102,12 @@ final class HomeTableViewCell: UITableViewCell {
         ])
     }
     
-    func setCellData(shortDes: String, writer: String) {
-        shortDescriptionLabel.text = shortDes
-        writerLabel.text = writer
+    func setCellData(shortDes: String, writer: String, topic: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.shortDescriptionLabel.text = shortDes
+            self.writerLabel.text = writer
+            self.topicLabel.text = topic
+        }
     }
 }

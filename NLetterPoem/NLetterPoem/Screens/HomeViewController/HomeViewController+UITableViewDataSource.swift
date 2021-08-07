@@ -14,19 +14,24 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let todayPoems = todayPoems {
+            //Empty Home TableView Cell
             if todayPoems.isEmpty {
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeEmptyCell.reuseIdentifier,
                                                          for: indexPath)
                 return cell
             }
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier,
                                                            for: indexPath) as? HomeTableViewCell else {
                 return UITableViewCell()
             }
+            
             let poem = todayPoems[indexPath.row]
             let shortDescription = poem.content.makeShortDescription()
-            cell.setCellData(shortDes: "\"\(shortDescription)",
-                             writer: "- \(poem.author) -")
+            
+            cell.setCellData(shortDes: "\"\(shortDescription)\"",
+                             writer: "- \(poem.author) -",
+                             topic: poem.topic)
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeEmptyCell.reuseIdentifier,

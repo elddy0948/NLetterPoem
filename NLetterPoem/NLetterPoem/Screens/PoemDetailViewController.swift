@@ -1,53 +1,82 @@
 import UIKit
+import Firebase
 
-class PoemDetailViewController: UIViewController {
+final class PoemDetailViewController: UIViewController {
     
     private(set) var detailPoemView: DetailPoemView?
     
     //MARK: - Properties
-    var poem: NLPPoem?
+    var poem: NLPPoem? {
+        didSet {
+            self.detailPoemView?.updatePoem(with: poem)
+        }
+    }
     var fireState = false
-    var currentUser: NLPUser?
+    var currentUser: NLPUser? {
+        didSet {
+            self.configurePoemDetailView()
+        }
+    }
+    var handler: AuthStateDidChangeListenerHandle?
     
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        view.backgroundColor = .systemBackground
+        handler = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
+            guard let self = self,
+                  let user = user,
+                  let email = user.email else {
+                return
+            }
+            self.configureUser(email: email)
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let currentUser = currentUser,
-              let user = NLPUser.shared else { return }
-        
-        if currentUser.likedPoem.count != user.likedPoem.count {
-            UserDatabaseManager.shared.fetchUserInfo(with: user.email) { user in
-                NLPUser.shared = user
-            }
+        if let handler = handler {
+            Auth.auth().removeStateDidChangeListener(handler)
         }
     }
     
-    //MARK: - Privates
-    private func configure() {
-        view.backgroundColor = .systemBackground
-        
-        currentUser = NLPUser.shared
-        
+    //MARK: - Configure Logic
+    private func configurePoemDetailView() {
         guard let poem = poem,
               let user = currentUser else { return }
         
         user.likedPoem.contains(poem.id) ? (fireState = true) : (fireState = false)
         
-        detailPoemView = DetailPoemView(poem: poem, fireState: fireState)
+        detailPoemView = DetailPoemView(poem: poem,
+                                        fireState: fireState)
         detailPoemView?.delegate = self
         
-        self.view = detailPoemView
+        guard let detailPoemView = detailPoemView else { return }
+        view.addSubview(detailPoemView)
+        
+        NSLayoutConstraint.activate([
+            detailPoemView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailPoemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            detailPoemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            detailPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
         
         if poem.authorEmail == user.email {
             configureRightBarButtonItem()
         }
     }
     
+    private func configureUser(email: String) {
+        UserDatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
+            guard let self = self,
+                  let user = user else {
+                return
+            }
+            self.currentUser = user
+        }
+    }
+    
+    //MARK: - UI Logic
     private func configureRightBarButtonItem() {
         let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
                                                  target: self,
@@ -55,6 +84,8 @@ class PoemDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
+    
+    //MARK: - LikeCount Logic
     private func updateLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
         PoemDatabaseManager.shared.updatePoemLikeCount(id: id,
                                                        authorEmail: authorEmail,
@@ -90,7 +121,6 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
         fireState.toggle()
         
         if fireState {
-            user.likedPoem.append(poem.id)
             updateLikeCount(id: poem.id,
                             authorEmail: poem.authorEmail,
                             isIncrease: true)
@@ -98,9 +128,6 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
                                 id: poem.id,
                                 isRemove: false)
         } else {
-            if let index = user.likedPoem.firstIndex(of: poem.id) {
-                user.likedPoem.remove(at: index)
-            }
             updateLikeCount(id: poem.id,
                             authorEmail: poem.authorEmail,
                             isIncrease: false)
@@ -111,13 +138,11 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
         
         fireButton.isSelected = fireState
         fireState ? (fireButton.tintColor = .systemRed) : (fireButton.tintColor = .label)
-        currentUser = user
     }
 }
 
 extension PoemDetailViewController: CreatePoemViewControllerDelegate {
     func createPoemViewController(_ viewController: CreatePoemViewController, didTapDone poem: NLPPoem) {
         self.poem = poem
-        configure()
     }
 }

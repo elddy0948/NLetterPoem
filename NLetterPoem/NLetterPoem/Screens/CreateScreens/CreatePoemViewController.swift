@@ -19,7 +19,11 @@ class CreatePoemViewController: UIViewController {
     var topic: String?
     var action: ActionType = .create
     var editPoem: NLPPoem?
-    var user: NLPUser?
+    var user: NLPUser? {
+        didSet {
+            configure()
+        }
+    }
     
     private var handler: AuthStateDidChangeListenerHandle?
     weak var delegate: CreatePoemViewControllerDelegate?
@@ -27,7 +31,7 @@ class CreatePoemViewController: UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        view.backgroundColor = .systemBackground
         setHandlerAndFetchUserInfo()
     }
     
@@ -35,10 +39,18 @@ class CreatePoemViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .systemBackground
         guard let topic = topic else { return }
-        createPoemView = CreatePoemView(topic: topic, poem: editPoem)
         
+        createPoemView = CreatePoemView(topic: topic, poem: editPoem)
         createPoemView.delegate = self
-        self.view = createPoemView
+        
+        view.addSubview(createPoemView)
+        
+        NSLayoutConstraint.activate([
+            createPoemView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            createPoemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            createPoemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            createPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
     
     private func setHandlerAndFetchUserInfo() {
@@ -71,16 +83,13 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
         let dispatchQueue = DispatchQueue(label: "com.howift.createPoem")
         let dispatchGroup = DispatchGroup()
         var createPoemError: String?
+        let nlpPoem: NLPPoem?
         
-        guard let currentUser = Auth.auth().currentUser,
-              let topic = topic,
-              let user = user,
-              user.email == currentUser.email else {
+        guard let user = user,
+              let topic = topic else {
             dismiss(animated: true, completion: nil)
             return
         }
-        
-        let nlpPoem: NLPPoem?
         
         if action == .edit {
             nlpPoem = editPoem
@@ -105,7 +114,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
         
         if action == .create {
             dispatchQueue.async(group: dispatchGroup, execute: {
-                UserDatabaseManager.shared.updateUser(with: user) { error in
+                UserDatabaseManager.shared.addPoemToUser(email: user.email, poemID: nlpPoem.id) { error in
                     if let error = error {
                         createPoemError = error.localizedDescription
                     }

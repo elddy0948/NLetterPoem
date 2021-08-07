@@ -28,7 +28,6 @@ class SettingViewController: UIViewController {
     private func didTapSignout() {
         do {
             try Auth.auth().signOut()
-            NLPUser.shared = nil
             showLauchViewController()
         } catch {
             debugPrint(error)

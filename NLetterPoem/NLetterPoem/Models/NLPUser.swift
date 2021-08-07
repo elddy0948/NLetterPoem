@@ -1,8 +1,6 @@
 import Foundation
 
 final class NLPUser: Codable {
-    static var shared: NLPUser?
-
     var email: String
     var profilePhotoURL: String
     var nickname: String

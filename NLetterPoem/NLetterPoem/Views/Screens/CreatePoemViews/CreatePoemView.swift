@@ -44,6 +44,7 @@ final class CreatePoemView: UIView {
     
     private func configure() {
         backgroundColor = .systemBackground
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureTopicLabel() {

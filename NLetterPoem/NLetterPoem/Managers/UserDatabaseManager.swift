@@ -90,7 +90,7 @@ final class UserDatabaseManager {
         }
     }
     
-    func addPoemToUser(email: String, poemID: String) {
+    func addPoemToUser(email: String, poemID: String, completed: @escaping (Error?) -> Void) {
         userDatabaseQueue.async { [weak self] in
             guard let self = self else { return }
             self.userReference.document(email).updateData([

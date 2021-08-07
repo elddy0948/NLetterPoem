@@ -43,7 +43,6 @@ class LaunchViewController: UIViewController {
         UserDatabaseManager.shared.fetchUserInfo(with: email) { [weak self] nlpUser in
             guard let self = self else { return }
             if nlpUser != nil {
-                NLPUser.shared = nlpUser
                 self.dismissAndReplaceRootViewController()
             }
         }

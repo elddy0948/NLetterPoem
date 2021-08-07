@@ -33,6 +33,8 @@ final class DetailPoemView: UIView {
     
     private func configure() {
         backgroundColor = .systemBackground
+        translatesAutoresizingMaskIntoConstraints = false
+        
         configureTitleLabel()
         configureAuthorLabel()
         configurePoemLabel()
@@ -110,6 +112,15 @@ final class DetailPoemView: UIView {
         poemLabel.text = poem.content
         fireButton.isSelected = fireState
         fireState ? (fireButton.tintColor = .systemRed) : (fireButton.tintColor = .label)
+    }
+    
+    func updatePoem(with poem: NLPPoem?) {
+        guard let poem = poem else { return }
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.poemLabel.text = poem.content
+        }
     }
     
     //MARK: - Actions

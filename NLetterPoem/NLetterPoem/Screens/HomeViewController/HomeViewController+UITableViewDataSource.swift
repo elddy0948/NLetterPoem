@@ -26,8 +26,7 @@ extension HomeViewController: UITableViewDataSource {
             let poem = todayPoems[indexPath.row]
             let shortDescription = poem.content.makeShortDescription()
             cell.setCellData(shortDes: "\"\(shortDescription)",
-                             writer: "- \(poem.author) -",
-                             likeCount: poem.likeCount)
+                             writer: "- \(poem.author) -")
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeEmptyCell.reuseIdentifier,

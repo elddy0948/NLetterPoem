@@ -8,14 +8,12 @@ final class HomeTableViewCell: UITableViewCell {
     //MARK: - Views
     private(set) var shortDescriptionLabel: UILabel!
     private(set) var writerLabel: UILabel!
-    private(set) var likeCountLabel: UILabel!
     
     //MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureContentView()
         configureShortDescriptionLabel()
-        configureLikeCountLabel()
         configureWriterLabel()
     }
     
@@ -62,25 +60,6 @@ final class HomeTableViewCell: UITableViewCell {
         ])
     }
     
-    
-    private func configureLikeCountLabel() {
-        let padding: CGFloat = 8
-        
-        likeCountLabel = UILabel()
-        contentView.addSubview(likeCountLabel)
-        
-        likeCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        likeCountLabel.textColor = .label
-        likeCountLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        likeCountLabel.numberOfLines = 0
-        likeCountLabel.text = "0 Fires"
-        
-        NSLayoutConstraint.activate([
-            likeCountLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            likeCountLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
-        ])
-    }
-    
     private func configureWriterLabel() {
         let padding: CGFloat = 8
         
@@ -99,9 +78,8 @@ final class HomeTableViewCell: UITableViewCell {
         ])
     }
     
-    func setCellData(shortDes: String, writer: String, likeCount: Int) {
+    func setCellData(shortDes: String, writer: String) {
         shortDescriptionLabel.text = shortDes
         writerLabel.text = writer
-        likeCountLabel.text = "\(likeCount) Fires🔥"
     }
 }

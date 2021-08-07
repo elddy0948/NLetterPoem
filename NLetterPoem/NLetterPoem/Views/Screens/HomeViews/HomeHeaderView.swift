@@ -34,7 +34,7 @@ final class HomeHeaderView: UIView {
         titleLabel.textColor = .label
         titleLabel.font = UIFont(name: "BM YEONSUNG", size: 36)
         titleLabel.textAlignment = .center
-        titleLabel.text = "오늘의 주제"
+        titleLabel.text = "추천 주제"
         
         let padding: CGFloat = 8
         NSLayoutConstraint.activate([

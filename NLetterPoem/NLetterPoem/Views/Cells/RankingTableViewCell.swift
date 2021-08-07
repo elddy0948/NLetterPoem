@@ -49,7 +49,7 @@ final class RankingTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(rankImageView)
         
         rankImageView.translatesAutoresizingMaskIntoConstraints = false
-        rankImageView.image = UIImage(systemName: "paintbrush.pointed.fill")
+        rankImageView.image = nil
         rankImageView.tintColor = .label
         
         rankImageView.widthAnchor.constraint(equalToConstant: 36).isActive = true

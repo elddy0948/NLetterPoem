@@ -76,7 +76,7 @@ final class MyPageHeaderView: UICollectionReusableView {
         
         rankImageView = UIImageView()
         rankImageView.translatesAutoresizingMaskIntoConstraints = false
-        rankImageView.image = UIImage(systemName: "paintbrush.pointed.fill")
+        rankImageView.image = nil
         rankImageView.tintColor = .label
         rankImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         rankImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true

@@ -81,8 +81,6 @@ class HomeViewController: UIViewController {
         homeTableView.delegate = self
         homeTableView.dataSource = self
         homeTableView.homeTableViewDelegate = self
-        homeTableView.clipsToBounds = false
-        homeTableView.separatorStyle = .none
         
         homeTableView.register(HomeTableViewCell.self,
                                forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)

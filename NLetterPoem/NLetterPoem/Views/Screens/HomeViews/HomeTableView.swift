@@ -26,6 +26,8 @@ class HomeTableView: UITableView {
         tableFooterView = UIView()
         backgroundColor = .systemBackground
         refreshControl = homeRefreshControl
+        separatorStyle = .none
+        clipsToBounds = false
         
         refreshControl?.addTarget(self, action: #selector(handleRefreshHome(_:)), for: UIControl.Event.valueChanged)
     }

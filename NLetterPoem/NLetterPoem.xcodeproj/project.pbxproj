@@ -256,18 +256,14 @@
 		B43BBC3A2682F2E000B4A8DC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */,
+				B4C26C4326BE4C9D002982A1 /* CreatePoemViews */,
 				B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */,
 				B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */,
-				B421C4F62691B0810088119D /* HomeHeaderView.swift */,
-				B421C4F42691AFC70088119D /* HomeTableView.swift */,
-				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
-				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
+				B4C26C4226BE4C86002982A1 /* HomeViews */,
+				B4C26C4026BE4C4A002982A1 /* MyPageViews */,
 				B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */,
 				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
-				B45656A026A2A42600EAB3C9 /* SignInView.swift */,
-				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
-				B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */,
+				B4C26C4126BE4C63002982A1 /* SignInViews */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -325,6 +321,42 @@
 				B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B4C26C4026BE4C4A002982A1 /* MyPageViews */ = {
+			isa = PBXGroup;
+			children = (
+				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
+				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
+			);
+			path = MyPageViews;
+			sourceTree = "<group>";
+		};
+		B4C26C4126BE4C63002982A1 /* SignInViews */ = {
+			isa = PBXGroup;
+			children = (
+				B45656A026A2A42600EAB3C9 /* SignInView.swift */,
+				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
+			);
+			path = SignInViews;
+			sourceTree = "<group>";
+		};
+		B4C26C4226BE4C86002982A1 /* HomeViews */ = {
+			isa = PBXGroup;
+			children = (
+				B421C4F62691B0810088119D /* HomeHeaderView.swift */,
+				B421C4F42691AFC70088119D /* HomeTableView.swift */,
+			);
+			path = HomeViews;
+			sourceTree = "<group>";
+		};
+		B4C26C4326BE4C9D002982A1 /* CreatePoemViews */ = {
+			isa = PBXGroup;
+			children = (
+				B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */,
+				B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */,
+			);
+			path = CreatePoemViews;
 			sourceTree = "<group>";
 		};
 		B4C3F3EB2694184D00CED1A9 /* HomeViewController */ = {

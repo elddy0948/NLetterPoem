@@ -17,6 +17,7 @@ class MyPageViewController: UIViewController {
     
     var poems: [NLPPoem]? {
         didSet {
+            //TODO: - PerformBatchUpdate로 바꾸기
             myPageCollectionView?.reloadData()
         }
     }

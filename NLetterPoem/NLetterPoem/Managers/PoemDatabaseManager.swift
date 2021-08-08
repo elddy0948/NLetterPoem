@@ -18,7 +18,7 @@ final class PoemDatabaseManager {
         topicReference = database.collection("topics")
     }
     
-    //MARK: - Poem
+    //MARK: - Create
     func createPoem(poem: NLPPoem, completed: @escaping ((Error?) -> Void)) {
         do {
             try self.poemReference.document(poem.id).setData(from: poem)
@@ -28,6 +28,7 @@ final class PoemDatabaseManager {
         
     }
     
+    //MARK: - Read
     func fetchTodayTopic(date: Date, completed: @escaping ((String?) -> Void)) {
         let stringDate = date.toYearMonthDay()
         
@@ -97,6 +98,7 @@ final class PoemDatabaseManager {
         }
     }
     
+    //MARK: - Sort
     func sortPoems(by sortType: SortType, date: Date, completed: @escaping ([NLPPoem]) -> Void) {
         let stringDate = date.toYearMonthDay()
         let query = poemReference.whereField("createdAt", isEqualTo: "\(stringDate)")
@@ -129,19 +131,6 @@ final class PoemDatabaseManager {
         }
     }
     
-    func updatePoemLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
-        let poemRef = database.collection("poems").document(id)
-        let userRef = database.collection("users").document(authorEmail)
-        let count = isIncrease ? 1 : -1
-        
-        poemRef.updateData([
-            "likeCount": FieldValue.increment(Int64(count))
-        ])
-        userRef.updateData([
-            "fires": FieldValue.increment(Int64(count))
-        ])
-    }
-    
     func fetchExistPoem(email: String, createdAt: Date, completed: @escaping (NLPPoem?) -> Void) {
         let poemRef = database.collection("poems")
         let stringDate = createdAt.toYearMonthDay()
@@ -166,6 +155,20 @@ final class PoemDatabaseManager {
         }
     }
     
+    //MARK: - Update
+    func updatePoemLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
+        let poemRef = database.collection("poems").document(id)
+        let userRef = database.collection("users").document(authorEmail)
+        let count = isIncrease ? 1 : -1
+        
+        poemRef.updateData([
+            "likeCount": FieldValue.increment(Int64(count))
+        ])
+        userRef.updateData([
+            "fires": FieldValue.increment(Int64(count))
+        ])
+    }
+
     func updatePoem(_ poem: NLPPoem, completed: @escaping (Error?) -> Void) {
         let poemRef = database.collection("poems")
         do {
@@ -175,6 +178,26 @@ final class PoemDatabaseManager {
         } catch {
             completed(error)
             return
+        }
+    }
+    
+    //MARK: - Delete
+    func deletePoem(_ poem: NLPPoem,
+                    requester: String,
+                    completed: @escaping ((Result<String, PoemDatabaseError>) -> Void)) {
+        guard poem.authorEmail == requester else {
+            completed(.failure(.notAuthor))
+            return
+        }
+        //Delete Logic
+        let poemReference = database.collection("poems")
+        
+        //Delete poem in poems
+        poemReference.document(poem.id).delete { error in
+            guard error == nil else {
+                completed(.failure(.failedDelete))
+                return
+            }
         }
     }
     

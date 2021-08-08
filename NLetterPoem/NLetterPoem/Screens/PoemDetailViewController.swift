@@ -125,6 +125,7 @@ final class PoemDetailViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] action in
             guard let self = self else { return }
             //TODO: - Delete Action
+            self.deletePoem()
             self.navigationController?.popToRootViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in }
@@ -143,6 +144,23 @@ final class PoemDetailViewController: UIViewController {
         viewController.topic = self.poem?.topic
         viewController.delegate = self
         return viewController
+    }
+    
+    private func deletePoem() {
+        guard let poem = poem,
+              let currentUser = currentUser else { return }
+        PoemDatabaseManager.shared.deletePoem(poem,
+                                              requester: currentUser.email) { result in
+            switch result {
+            case .success(let message):
+                print(message)
+            case .failure(let error):
+                print(error.message)
+            }
+        }
+        
+        UserDatabaseManager.shared.removePoem(userEmail: currentUser.email,
+                                              poemID: poem.id)
     }
 }
 

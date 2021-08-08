@@ -116,4 +116,13 @@ final class UserDatabaseManager {
             ])
         }
     }
+    
+    func removePoem(userEmail: String, poemID: String) {
+        userDatabaseQueue.async { [weak self] in
+            guard let self = self else { return }
+            self.userReference.document(userEmail).updateData([
+                "poems": FieldValue.arrayRemove([poemID])
+            ])
+        }
+    }
 }

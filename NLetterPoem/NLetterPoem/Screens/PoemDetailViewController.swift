@@ -61,6 +61,7 @@ final class PoemDetailViewController: UIViewController {
             detailPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
         
+        //If visitor is poem's author can show 'Edit' button
         if poem.authorEmail == user.email {
             configureRightBarButtonItem()
         }
@@ -81,7 +82,10 @@ final class PoemDetailViewController: UIViewController {
         let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
                                                  target: self,
                                                  action: #selector(editButtonAction(_:)))
-        navigationItem.rightBarButtonItem = rightBarButtonItem
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        }
     }
     
     
@@ -104,12 +108,41 @@ final class PoemDetailViewController: UIViewController {
     
     //MARK: -  Actions
     @objc func editButtonAction(_ sender: UIBarButtonItem) {
+        let alertController = configureAlertController()
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func configureAlertController() -> UIAlertController {
+        let alertController = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: "수정",
+                                       style: .default) { [weak self] action in
+            guard let self = self else { return }
+            let viewController = self.configureCreatePoemViewController()
+            self.present(viewController, animated: true, completion: nil)
+        }
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] action in
+            guard let self = self else { return }
+            //TODO: - Delete Action
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in }
+        
+        alertController.addAction(editAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        return alertController
+    }
+    
+    private func configureCreatePoemViewController() -> CreatePoemViewController {
         let viewController = CreatePoemViewController()
         viewController.action = .edit
-        viewController.editPoem = poem
-        viewController.topic = poem?.topic
+        viewController.editPoem = self.poem
+        viewController.topic = self.poem?.topic
         viewController.delegate = self
-        present(viewController, animated: true, completion: nil)
+        return viewController
     }
 }
 

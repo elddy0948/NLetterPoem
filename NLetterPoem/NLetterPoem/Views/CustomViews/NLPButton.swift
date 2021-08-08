@@ -25,9 +25,9 @@ class NLPButton: UIButton {
     
     private func configure(title: String) {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .black
+        backgroundColor = .systemBackground
         setTitle(title, for: .normal)
-        setTitleColor(.white, for: .normal)
+        setTitleColor(.label, for: .normal)
         
         layer.cornerRadius = 16
         layer.masksToBounds = true

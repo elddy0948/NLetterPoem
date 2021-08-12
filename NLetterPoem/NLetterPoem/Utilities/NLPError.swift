@@ -18,3 +18,17 @@ enum PoemDatabaseError: Error {
         }
     }
 }
+
+enum UserDatabaseError: Error {
+    case failedToDelete
+    case noAuthority
+    
+    var message: String {
+        switch self {
+        case .failedToDelete:
+            return "삭제에 실패했어요!\n다시 시도해주세요😅"
+        case .noAuthority:
+            return "권한이 없습니다!\n다시 시도해주세요😅"
+        }
+    }
+}

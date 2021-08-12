@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingView: UITableView {
+class SettingTableView: UITableView {
     
     //MARK: - initializer
     override init(frame: CGRect, style: UITableView.Style) {

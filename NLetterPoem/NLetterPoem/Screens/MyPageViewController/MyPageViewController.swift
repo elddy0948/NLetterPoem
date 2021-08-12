@@ -31,9 +31,9 @@ class MyPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let email: String?
-        
         if user == nil {
             guard let currentUser = Auth.auth().currentUser,
                   let currentUserEmail = currentUser.email else {
@@ -52,7 +52,6 @@ class MyPageViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.tintColor = .label
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureCollectionView() {
@@ -91,7 +90,7 @@ class MyPageViewController: UIViewController {
     
     @objc func didTapSettingButton(_ sender: UIBarButtonItem) {
         let viewController = SettingViewController()
-        present(viewController, animated: true, completion: nil)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

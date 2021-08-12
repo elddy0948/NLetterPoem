@@ -33,7 +33,7 @@
 		B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE58D267F0D57001848A5 /* SignUpViewController.swift */; };
 		B42EE591267F176F001848A5 /* PoemDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */; };
 		B43BBC392682F2D100B4A8DC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC382682F2D100B4A8DC /* SettingViewController.swift */; };
-		B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC3B2682F31000B4A8DC /* SettingView.swift */; };
+		B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */; };
 		B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */; };
 		B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494062681A1A50075D16C /* MyPageViewController.swift */; };
 		B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageHeaderView.swift */; };
@@ -73,6 +73,8 @@
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE98268D90B500968C5B /* StorageManager.swift */; };
 		B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */; };
+		B4EB6AA426C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */; };
+		B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB6AA526C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift */; };
 		B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */; };
 		B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */; };
 		B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */; };
@@ -100,7 +102,7 @@
 		B42EE58D267F0D57001848A5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDatabaseManager.swift; sourceTree = "<group>"; };
 		B43BBC382682F2D100B4A8DC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		B43BBC3B2682F31000B4A8DC /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
 		B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionView.swift; sourceTree = "<group>"; };
 		B45494062681A1A50075D16C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		B45494082681A1B60075D16C /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,8 @@
 		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4D1BE98268D90B500968C5B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCell.swift; sourceTree = "<group>"; };
+		B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		B4EB6AA526C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		B4F2598A2692EA6300FF95A4 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTopic.swift; sourceTree = "<group>"; };
 		B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableView.swift; sourceTree = "<group>"; };
@@ -195,7 +199,7 @@
 				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
 				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
 				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
-				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
+				B4EB6AA226C108CB0024B4FD /* SettingViewController */,
 				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
 				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
 			);
@@ -262,7 +266,7 @@
 				B4C26C4226BE4C86002982A1 /* HomeViews */,
 				B4C26C4026BE4C4A002982A1 /* MyPageViews */,
 				B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */,
-				B43BBC3B2682F31000B4A8DC /* SettingView.swift */,
+				B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */,
 				B4C26C4126BE4C63002982A1 /* SignInViews */,
 			);
 			path = Screens;
@@ -395,6 +399,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B4EB6AA226C108CB0024B4FD /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
+				B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */,
+				B4EB6AA526C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift */,
+			);
+			path = SettingViewController;
+			sourceTree = "<group>";
+		};
 		B4F259892692D02D00FF95A4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,13 +518,14 @@
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
 				B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */,
 				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
-				B43BBC3C2682F31000B4A8DC /* SettingView.swift in Sources */,
+				B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */,
 				B48459EA26A45FE700BA1484 /* UserDatabaseManager.swift in Sources */,
 				B41AE87126A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift in Sources */,
 				B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */,
 				B45494112681C6B80075D16C /* NLPProfileLabel.swift in Sources */,
 				B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */,
+				B4EB6AA426C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift in Sources */,
 				B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */,
 				B42EE591267F176F001848A5 /* PoemDatabaseManager.swift in Sources */,
 				B478751D2671F540002FE83F /* HomeViewController.swift in Sources */,
@@ -523,6 +538,7 @@
 				B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */,
 				B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
+				B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,

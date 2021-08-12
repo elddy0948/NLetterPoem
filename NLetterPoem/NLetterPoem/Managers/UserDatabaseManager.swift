@@ -2,7 +2,6 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-
 class UserDatabaseManager {
   
   //MARK: - Static
@@ -54,7 +53,6 @@ class UserDatabaseManager {
           let user = try decoder.decode(NLPUser.self, from: jsonData)
           completed(user)
         } catch {
-          print(error)
           completed(nil)
         }
       }

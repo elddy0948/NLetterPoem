@@ -9,6 +9,7 @@ class SettingViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configureSettingTableView()
+    navigationItem.largeTitleDisplayMode = .never
     navigationItem.title = "설정"
   }
   

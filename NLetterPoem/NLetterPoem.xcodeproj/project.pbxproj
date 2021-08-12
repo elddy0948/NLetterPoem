@@ -192,16 +192,11 @@
 		B42EE57F267EFA39001848A5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B4AEA41326C4F3870012C398 /* Core Screens */,
 				B417692726BA6C2800C5B3A7 /* CreateScreens */,
-				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
-				B4C3F3EB2694184D00CED1A9 /* HomeViewController */,
-				B454940C2681B3480075D16C /* LaunchViewController.swift */,
-				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
-				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
-				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
+				B4AEA41526C4F3BF0012C398 /* Others */,
 				B4EB6AA226C108CB0024B4FD /* SettingViewController */,
-				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
-				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
+				B4AEA41426C4F3A70012C398 /* SignupSignin */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -237,6 +232,8 @@
 		B42EE58A267F04FB001848A5 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B4D1BE96268D903A00968C5B /* Privacy.swift */,
+				B47875162671F540002FE83F /* Products */,
 				B47875182671F540002FE83F /* AppDelegate.swift */,
 				B47875212671F540002FE83F /* Assets.xcassets */,
 				B42EE58B267F0505001848A5 /* Constants.swift */,
@@ -287,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				B47875172671F540002FE83F /* NLetterPoem */,
-				B47875162671F540002FE83F /* Products */,
 				B4CDD1EC26884AA40086AADE /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -298,6 +294,7 @@
 				B47875152671F540002FE83F /* NLetterPoem.app */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		B47875172671F540002FE83F /* NLetterPoem */ = {
@@ -312,7 +309,6 @@
 				B42EE57F267EFA39001848A5 /* Screens */,
 				B42EE58A267F04FB001848A5 /* Utilities */,
 				B42EE582267EFD43001848A5 /* Views */,
-				B4D1BE96268D903A00968C5B /* Privacy.swift */,
 			);
 			path = NLetterPoem;
 			sourceTree = "<group>";
@@ -325,6 +321,35 @@
 				B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B4AEA41326C4F3870012C398 /* Core Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B4C3F3EB2694184D00CED1A9 /* HomeViewController */,
+				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
+				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
+			);
+			path = "Core Screens";
+			sourceTree = "<group>";
+		};
+		B4AEA41426C4F3A70012C398 /* SignupSignin */ = {
+			isa = PBXGroup;
+			children = (
+				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
+				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
+			);
+			path = SignupSignin;
+			sourceTree = "<group>";
+		};
+		B4AEA41526C4F3BF0012C398 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
+				B454940C2681B3480075D16C /* LaunchViewController.swift */,
+				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		B4C26C4026BE4C4A002982A1 /* MyPageViews */ = {

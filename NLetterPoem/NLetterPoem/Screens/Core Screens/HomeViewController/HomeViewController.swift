@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
     }
   }
   
-  let queue = DispatchQueue(label: "com.howift.HomeQueue")
   private var handler: AuthStateDidChangeListenerHandle?
   
   //MARK: - View Lifecycle
@@ -33,7 +32,7 @@ class HomeViewController: UIViewController {
     configureRightBarButtonItem()
     configure()
     configureHeaderView()
-    homeTableView.addSubview(activityIndicatorView)
+    view.addSubview(activityIndicatorView)
     activityIndicatorView.hidesWhenStopped = true
   }
   
@@ -49,11 +48,7 @@ class HomeViewController: UIViewController {
       
       PoemDatabaseManager.shared.fetchExistPoem(email: email,
                                                 createdAt: Date()) { poem in
-        if poem != nil {
-          self.rightBarButtonItem.isEnabled = false
-        } else {
-          self.rightBarButtonItem.isEnabled = true
-        }
+        self.rightBarButtonItem.isEnabled = !(poem != nil)
       }
     }
   }
@@ -86,9 +81,6 @@ class HomeViewController: UIViewController {
                            forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
     homeTableView.register(HomeEmptyCell.self,
                            forCellReuseIdentifier: HomeEmptyCell.reuseIdentifier)
-    
-    tabBarItem.title = "홈"
-    tabBarItem.image = UIImage(systemName: "house.fill")
     navigationController?.navigationBar.tintColor = .label
   }
   

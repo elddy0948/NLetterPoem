@@ -35,11 +35,11 @@ extension MyPageViewController: UICollectionViewDataSource {
             if rootViewController is MyPageViewController {
                 typeHeaderView.configureUser(with: user,
                                              isEditButtonHidden: false)
-            } else if rootViewController is RankingViewController {
+            } else {
                 typeHeaderView.configureUser(with: user,
                                              isEditButtonHidden: true)
             }
-            
+          
             typeHeaderView.delegate = self
             
             return typeHeaderView

@@ -64,6 +64,7 @@ class SignUpViewController: UIViewController {
     ])
   }
   
+  //MARK: - Actions
   @objc private func keyboardWillAppear(notification: Notification) {
     if view.frame.origin.y == 0 {
       view.frame.origin.y -= 80
@@ -92,7 +93,10 @@ extension SignUpViewController: SignUpViewDelegate {
                      action: nil)
       return
     }
-    
+    createUser(with: info)
+  }
+  
+  private func createUser(with info: SignupInfo) {
     AuthManager.shared.createUser(with: info) { [weak self] result in
       guard let self = self else { return }
       switch result {

@@ -85,13 +85,6 @@ final class SignUpView: UIView {
     ])
   }
   
-  private func isValidEmail(_ email: String) -> Bool {
-    let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-    let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
-    
-    return emailPredicate.evaluate(with: email)
-  }
-  
   @objc func signupButtonAction(_ sender: NLPButton) {
     guard passwordTextField.text == repeatPasswordTextField.text else {
       delegate?.signupView(self, didTapRegister: nil, error: "패스워드가 일치하지 않습니다!")
@@ -103,12 +96,20 @@ final class SignUpView: UIView {
           let nickname = nicknameTextField.text,
           !email.isEmpty, !password.isEmpty,
           !nickname.isEmpty else {
-      delegate?.signupView(self, didTapRegister: nil, error: "빈칸을 채워주세요!")
+      delegate?.signupView(self, didTapRegister: nil,
+                           error: "빈칸을 채워주세요!")
       return
     }
     
-    guard isValidEmail(email) else {
-      delegate?.signupView(self, didTapRegister: nil, error: "이메일 형식을 확인해주세요!")
+    guard email.isValidEmail() else {
+      delegate?.signupView(self, didTapRegister: nil,
+                           error: "이메일 형식을 확인해주세요!")
+      return
+    }
+    
+    guard password.isValidPassword() else {
+      delegate?.signupView(self, didTapRegister: nil,
+                           error: "비밀번호는 최소 8자리 이상, 영어와 숫자를 포함해주세요!")
       return
     }
     

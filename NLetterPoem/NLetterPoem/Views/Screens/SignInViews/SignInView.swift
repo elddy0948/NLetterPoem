@@ -34,7 +34,6 @@ final class SignInView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  
   //MARK: - Privates
   private func configureLogoImageView() {
     let padding: CGFloat = 32
@@ -75,6 +74,7 @@ final class SignInView: UIView {
     signupButton = NLPButton(title: "회원가입")
     
     emailTextField.returnKeyType = .next
+    passwordTextField.placeholder = "Password"
     
     passwordTextField.delegate = self
     emailTextField.delegate = self

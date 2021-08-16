@@ -5,7 +5,7 @@ class NLPTextField: UITextField {
     //MARK: - enum FieldType
     enum FieldType: String {
         case email = "Email"
-        case password = "Password"
+        case password = "영어와 숫자를 포함한 최소 8자리 이상"
         case repeatPassword = "Repeat Password"
         case nickname = "Nickname"
         

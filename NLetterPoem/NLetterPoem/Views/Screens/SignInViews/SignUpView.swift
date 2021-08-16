@@ -10,7 +10,7 @@ struct SignupInfo {
   let nickname: String
 }
 
-class SignUpView: UIView {
+final class SignUpView: UIView {
   
   //MARK: - Views
   private(set) var logoImageView: NLPLogoImageView!
@@ -21,6 +21,7 @@ class SignUpView: UIView {
   private(set) var nicknameTextField = NLPTextField(type: .nickname)
   private(set) var signupButton = NLPButton(title: "가입하기")
   private var views: [UIView]!
+  private var textFields: [NLPTextField]!
   
   //MARK: - Properties
   weak var delegate: SignUpViewDelegate?
@@ -54,7 +55,8 @@ class SignUpView: UIView {
   private func configureStackView() {
     let padding: CGFloat = 8
     
-    views = [emailTextField, passwordTextField, repeatPasswordTextField, nicknameTextField, signupButton]
+    textFields = [emailTextField, passwordTextField, repeatPasswordTextField, nicknameTextField]
+    views = [signupButton]
     signupStackView = UIStackView()
     addSubview(signupStackView)
     
@@ -63,11 +65,17 @@ class SignUpView: UIView {
     signupStackView.translatesAutoresizingMaskIntoConstraints = false
     signupStackView.spacing = 8
     
-    for view in views {
-      view.heightAnchor.constraint(equalToConstant: 52).isActive = true
-      signupStackView.addArrangedSubview(view)
+    // TextField
+    for textField in textFields {
+      textField.heightAnchor.constraint(equalToConstant: 52).isActive = true
+      textField.delegate = self
+      textField == nicknameTextField ? (textField.returnKeyType = .done) : (textField.returnKeyType = .next)
+      signupStackView.addArrangedSubview(textField)
     }
     
+    // Signup Button
+    signupButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
+    signupStackView.addArrangedSubview(signupButton)
     signupButton.addTarget(self, action: #selector(signupButtonAction(_:)), for: .touchUpInside)
     
     NSLayoutConstraint.activate([
@@ -106,5 +114,27 @@ class SignUpView: UIView {
     
     let signupInfo = SignupInfo(email: email, password: password, nickname: nickname)
     delegate?.signupView(self, didTapRegister: signupInfo, error: nil)
+  }
+}
+
+extension SignUpView: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    switch textField {
+    case emailTextField:
+      emailTextField.resignFirstResponder()
+      passwordTextField.becomeFirstResponder()
+    case passwordTextField:
+      passwordTextField.resignFirstResponder()
+      repeatPasswordTextField.becomeFirstResponder()
+    case repeatPasswordTextField:
+      repeatPasswordTextField.resignFirstResponder()
+      nicknameTextField.becomeFirstResponder()
+    case nicknameTextField:
+      nicknameTextField.resignFirstResponder()
+      signupButtonAction(signupButton)
+    default:
+      textField.resignFirstResponder()
+    }
+    return true
   }
 }

@@ -30,12 +30,15 @@ class SignUpViewController: UIViewController {
                                            object: nil)
   }
   private func configureGestureRecognizer() {
-    tapGestureRecognizer = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
+    tapGestureRecognizer = UITapGestureRecognizer(target: view,
+                                                  action: #selector(UIView.endEditing(_:)))
     view.addGestureRecognizer(tapGestureRecognizer)
   }
   
   private func configureNavigationBar() {
-    navigationBar = NLPNavigationBar(title: "회원가입", leftTitle: "닫기", rightTitle: nil)
+    navigationBar = NLPNavigationBar(title: "회원가입",
+                                     leftTitle: "닫기",
+                                     rightTitle: nil)
     view.addSubview(navigationBar)
     
     navigationBar.nlpDelegate = self
@@ -75,14 +78,18 @@ class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController: SignUpViewDelegate {
-  func signupView(_ signupView: SignUpView, didTapRegister info: SignupInfo?, error: String?) {
+  func signupView(_ signupView: SignUpView,
+                  didTapRegister info: SignupInfo?,
+                  error: String?) {
     if let error = error {
       self.showAlert(title: "⚠️", message: error, action: nil)
       return
     }
     
     guard let info = info else {
-      self.showAlert(title: "⚠️", message: "다시 시도해주세요!", action: nil)
+      self.showAlert(title: "⚠️",
+                     message: "다시 시도해주세요!",
+                     action: nil)
       return
     }
     
@@ -93,23 +100,31 @@ extension SignUpViewController: SignUpViewDelegate {
         self.storeUserInDatabase(with: info)
         debugPrint(message)
       case .failure(_):
-        self.showAlert(title: "⚠️", message: "회원가입이 실패했어요!\n다시 시도해주세요!", action: nil)
+        self.showAlert(title: "⚠️",
+                       message: "회원가입이 실패했어요!\n다시 시도해주세요!",
+                       action: nil)
         return
       }
     }
   }
   
   private func storeUserInDatabase(with info: SignupInfo) {
-    let user = NLPUser(email: info.email, profilePhotoURL: "", nickname: info.nickname, bio: "")
+    let user = NLPUser(email: info.email,
+                       profilePhotoURL: "",
+                       nickname: info.nickname,
+                       bio: "")
     
     UserDatabaseManager.shared.createUser(with: user) { [weak self] error in
       guard let self = self else { return }
       if let _ = error {
-        self.showAlert(title: "⚠️", message: "회원 저장에 실패했어요!\n다시 시도해주세요!", action: nil)
+        self.showAlert(title: "⚠️",
+                       message: "회원 저장에 실패했어요!\n다시 시도해주세요!",
+                       action: nil)
         return
       }
       
-      self.showAlert(title: "🎉", message: "회원가입을 축하합니다!") { _ in
+      self.showAlert(title: "🎉",
+                     message: "회원가입을 축하합니다!") { _ in
         self.dismiss(animated: true, completion: nil)
       }
     }
@@ -117,7 +132,8 @@ extension SignUpViewController: SignUpViewDelegate {
 }
 
 extension SignUpViewController: NLPNavigationBarDelegate {
-  func nlpNavigationBar(_ nlpNavigationBar: NLPNavigationBar, didTapLeftBarButton leftBarButton: UIBarButtonItem) {
+  func nlpNavigationBar(_ nlpNavigationBar: NLPNavigationBar,
+                        didTapLeftBarButton leftBarButton: UIBarButtonItem) {
     self.dismiss(animated: true, completion: nil)
   }
 }

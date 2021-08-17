@@ -1,17 +1,50 @@
 {
   "images" : [
     {
-      "filename" : "PoemCellBackground_80pt.png",
+      "filename" : "CellBackground_80pt.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "PoemCellBackground_80pt-1.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "CellBackground(darkmode)_80pt.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "CellBackground_80pt-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "PoemCellBackground_80pt-2.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "CellBackground(darkmode)_80pt-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "CellBackground_80pt-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "CellBackground(darkmode)_80pt-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

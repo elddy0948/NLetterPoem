@@ -52,7 +52,7 @@ final class SignUpView: UIView {
   }
   
   private func configureStackView() {
-    let padding: CGFloat = 8
+    let padding: CGFloat = 16
     
     textFields = [emailTextField, passwordTextField, repeatPasswordTextField, nicknameTextField]
     views = [signupButton]

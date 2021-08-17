@@ -5,11 +5,14 @@ class LaunchViewController: UIViewController {
   
   private var handle: AuthStateDidChangeListenerHandle?
   
+  private(set) var logoImageView: NLPLogoImageView!
+  
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     navigationController?.isNavigationBarHidden = true
+    configureLogoImageView()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +34,19 @@ class LaunchViewController: UIViewController {
         self.showSignInViewController()
       }
     })
+  }
+  
+  private func configureLogoImageView() {
+    let imageSize: CGFloat = 160
+    logoImageView = NLPLogoImageView(frame: .zero)
+    view.addSubview(logoImageView)
+    
+    NSLayoutConstraint.activate([
+      logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      logoImageView.widthAnchor.constraint(equalToConstant: imageSize),
+      logoImageView.heightAnchor.constraint(equalToConstant: imageSize),
+    ])
   }
   
   private func removeAuthStateChangeListener() {

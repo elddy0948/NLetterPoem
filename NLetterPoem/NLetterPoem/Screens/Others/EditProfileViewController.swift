@@ -1,10 +1,9 @@
 import UIKit
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: DataLoadingViewController {
   
   //MARK: - Views
   private(set) var editProfileView: EditProfileView!
-  private(set) var activityIndicatorView: UIActivityIndicatorView!
   
   //MARK: - Properties
   var user: NLPUser?
@@ -36,8 +35,10 @@ extension EditProfileViewController: EditProfileViewDelegate {
   }
   
   func didTappedDoneButton(_ editProfileView: EditProfileView, with user: NLPUser) {
+    showLoadingView()
     UserDatabaseManager.shared.updateUser(with: user) { [weak self] error in
       guard let self = self else { return }
+      self.dismissLoadingView()
       if let error = error {
         debugPrint(error)
         self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!") { _ in

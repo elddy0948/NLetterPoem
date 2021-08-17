@@ -38,14 +38,13 @@ final class SignUpView: UIView {
   }
   
   private func configureLogoImageView() {
-    let padding: CGFloat = 16
-    let imageWidth: CGFloat = 100
+    let imageWidth: CGFloat = 160
     
     logoImageView = NLPLogoImageView(frame: .zero)
     addSubview(logoImageView)
     
     NSLayoutConstraint.activate([
-      logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+      logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -(imageWidth + 20)),
       logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
       logoImageView.widthAnchor.constraint(equalToConstant: imageWidth),
       logoImageView.heightAnchor.constraint(equalToConstant: imageWidth),
@@ -63,25 +62,25 @@ final class SignUpView: UIView {
     signupStackView.axis = .vertical
     signupStackView.distribution = .equalSpacing
     signupStackView.translatesAutoresizingMaskIntoConstraints = false
-    signupStackView.spacing = 8
+    signupStackView.spacing = 4
     
     // TextField
     for textField in textFields {
-      textField.heightAnchor.constraint(equalToConstant: 52).isActive = true
+      textField.heightAnchor.constraint(equalToConstant: 48).isActive = true
       textField.delegate = self
       textField == nicknameTextField ? (textField.returnKeyType = .done) : (textField.returnKeyType = .next)
       signupStackView.addArrangedSubview(textField)
     }
     
     // Signup Button
-    signupButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
+    signupButton.heightAnchor.constraint(equalToConstant: 48).isActive = true
     signupStackView.addArrangedSubview(signupButton)
     signupButton.addTarget(self, action: #selector(signupButtonAction(_:)), for: .touchUpInside)
     
     NSLayoutConstraint.activate([
+      signupStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: padding),
       signupStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
       signupStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-      signupStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
     ])
   }
   

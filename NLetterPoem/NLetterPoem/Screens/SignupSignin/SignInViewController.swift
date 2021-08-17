@@ -51,18 +51,19 @@ class SignInViewController: UIViewController {
   
   private func showSignupViewController() {
     let viewController = SignUpViewController()
+    viewController.modalPresentationStyle = .fullScreen
     self.present(viewController, animated: true, completion: nil)
   }
   
   @objc private func keyboardWillShown(notification: Notification) {
     if view.frame.origin.y == 0 {
-      view.frame.origin.y -= 70
+      view.frame.origin.y -= 50
     }
   }
   
   @objc private func keyboardWillDisappear(notification: Notification) {
     if view.frame.origin.y != 0 {
-      view.frame.origin.y += 70
+      view.frame.origin.y += 50
     }
   }
 }

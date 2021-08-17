@@ -67,13 +67,13 @@ class SignUpViewController: UIViewController {
   //MARK: - Actions
   @objc private func keyboardWillAppear(notification: Notification) {
     if view.frame.origin.y == 0 {
-      view.frame.origin.y -= 80
+      view.frame.origin.y -= 85
     }
   }
   
   @objc private func keyboardWillDisappear(notification: Notification) {
     if view.frame.origin.y != 0 {
-      view.frame.origin.y += 80
+      view.frame.origin.y += 85
     }
   }
 }

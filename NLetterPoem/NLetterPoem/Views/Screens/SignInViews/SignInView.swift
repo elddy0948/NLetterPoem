@@ -18,7 +18,6 @@ final class SignInView: UIView {
   private var views = [UIView]()
   
   //MARK: - Properties
-  private let textFieldHeight: CGFloat = 52
   weak var delegate: SigninViewDelegate?
   
   //MARK: - init
@@ -36,38 +35,37 @@ final class SignInView: UIView {
   
   //MARK: - Privates
   private func configureLogoImageView() {
-    let padding: CGFloat = 32
     logoImageView = NLPLogoImageView(frame: .zero)
     addSubview(logoImageView)
     
-    logoImageView.clipsToBounds = false
-    
     NSLayoutConstraint.activate([
-      logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+      logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -160),
       logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-      logoImageView.heightAnchor.constraint(equalToConstant: 180),
-      logoImageView.widthAnchor.constraint(equalToConstant: 180)
+      logoImageView.widthAnchor.constraint(equalToConstant: 160),
+      logoImageView.heightAnchor.constraint(equalToConstant: 160),
     ])
   }
   
   private func configureSignInStackView() {
+    let padding: CGFloat = 16
     signinStackView = UIStackView()
     addSubview(signinStackView)
     
     signinStackView.translatesAutoresizingMaskIntoConstraints = false
     signinStackView.axis = .vertical
     signinStackView.distribution = .fill
-    signinStackView.spacing = 8
+    signinStackView.spacing = 4
     
     NSLayoutConstraint.activate([
-      signinStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 50),
-      signinStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-      signinStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      signinStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+      signinStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: padding),
+      signinStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+      signinStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
     ])
   }
   
   private func configureViews() {
+    let textFieldHeight: CGFloat = 48
+    
     emailTextField = NLPTextField(type: .email)
     passwordTextField = NLPTextField(type: .password)
     signinButton = NLPButton(title: "로그인")

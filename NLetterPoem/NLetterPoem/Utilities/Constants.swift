@@ -3,6 +3,7 @@ import UIKit
 enum Constants {
   static let logoImage = "NLPLogo_160pt"
   static let darkModeLogoImage = "NLPLogo_160pt_dark"
+  static let cellBackground = "PoemCellBackground_80pt"
 }
 
 enum SFSymbols {

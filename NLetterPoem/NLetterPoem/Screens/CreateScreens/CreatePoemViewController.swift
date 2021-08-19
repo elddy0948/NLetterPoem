@@ -74,6 +74,10 @@ class CreatePoemViewController: DataLoadingViewController {
 
 //MARK: - CreatePoemViewDelegate
 extension CreatePoemViewController: CreatePoemViewDelegate {
+  func createPoemView(_ createPoemView: CreatePoemView, emptyFieldExist message: String) {
+    showAlert(title: "⚠️", message: message, action: nil)
+  }
+  
   func createPoemView(_ createPoemView: CreatePoemView, didCancel button: UIBarButtonItem) {
     dismiss(animated: true, completion: nil)
   }

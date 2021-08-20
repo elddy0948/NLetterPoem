@@ -52,5 +52,6 @@ extension MyPageViewController: UICollectionViewDataSource {
     default:
       assert(false)
     }
+    return UICollectionReusableView()
   }
 }

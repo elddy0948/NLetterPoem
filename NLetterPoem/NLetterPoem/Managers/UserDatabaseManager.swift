@@ -46,8 +46,11 @@ class UserDatabaseManager {
     userDatabaseQueue.async { [weak self] in
       guard let self = self else { return }
       self.userReference.document(email).getDocument { document, error in
-        let data = document?.data()
         let decoder = JSONDecoder()
+        guard let data = document?.data() else {
+          completed(nil)
+          return
+        }
         do {
           let jsonData = try JSONSerialization.data(withJSONObject: data as Any)
           let user = try decoder.decode(NLPUser.self, from: jsonData)

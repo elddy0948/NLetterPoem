@@ -71,6 +71,8 @@ class LaunchViewController: UIViewController {
       guard let self = self else { return }
       if nlpUser != nil {
         self.dismissAndReplaceRootViewController()
+      } else {
+        try? Auth.auth().signOut()
       }
     }
   }

@@ -7,7 +7,6 @@ class HomeViewController: UIViewController {
   private(set) var homeHeaderView: HomeHeaderView!
   private(set) var homeTableView: HomeTableView!
   private(set) var rightBarButtonItem: UIBarButtonItem!
-  var activityIndicatorView = UIActivityIndicatorView(style: .large)
   
   //MARK: - Properties
   var todayTopic: String? {
@@ -32,23 +31,21 @@ class HomeViewController: UIViewController {
     configureRightBarButtonItem()
     configure()
     configureHeaderView()
-    view.addSubview(activityIndicatorView)
-    activityIndicatorView.hidesWhenStopped = true
+    fetchTodayTopic()
+    fetchTodayPoems()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    fetchTodayTopic()
-    fetchTodayPoems()
-    
-    handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
-      guard let self = self,
-            let user = user,
-            let email = user.email else { return }
-      
-      PoemDatabaseManager.shared.fetchExistPoem(email: email,
-                                                createdAt: Date()) { poem in
-        self.rightBarButtonItem.isEnabled = !(poem != nil)
+    DispatchQueue.global(qos: .utility).async { [weak self] in
+      self?.handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+        guard let self = self,
+              let user = user,
+              let email = user.email else { return }
+        PoemDatabaseManager.shared.fetchExistPoem(email: email,
+                                                  createdAt: Date()) { poem in
+          self.rightBarButtonItem.isEnabled = !(poem != nil)
+        }
       }
     }
   }
@@ -125,9 +122,7 @@ class HomeViewController: UIViewController {
   }
   
   func updateTableViewContents() {
-    activityIndicatorView.startAnimating()
     DispatchQueue.main.async { [weak self] in
-      self?.activityIndicatorView.stopAnimating()
       guard let self = self else { return }
       self.homeHeaderView.setTopic(self.todayTopic ?? "")
       self.homeTableView.reloadData()

@@ -104,20 +104,24 @@ class HomeViewController: UIViewController {
   }
   
   func fetchTodayTopic() {
-    PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
-      guard let self = self else { return }
-      guard let topic = topic else {
-        self.todayTopic = ""
-        return
+    DispatchQueue.global(qos: .utility).async {
+      PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
+        guard let self = self else { return }
+        guard let topic = topic else {
+          self.todayTopic = ""
+          return
+        }
+        self.todayTopic = topic
       }
-      self.todayTopic = topic
     }
   }
   
   func fetchTodayPoems() {
-    PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
-      guard let self = self else { return }
-      self.todayPoems = poems
+    DispatchQueue.global(qos: .utility).async {
+      PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
+        guard let self = self else { return }
+        self.todayPoems = poems
+      }
     }
   }
   

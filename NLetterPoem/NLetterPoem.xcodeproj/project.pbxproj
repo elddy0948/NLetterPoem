@@ -73,6 +73,8 @@
 		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE98268D90B500968C5B /* StorageManager.swift */; };
+		B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */; };
+		B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */; };
 		B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */; };
 		B4EB6AA426C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */; };
 		B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB6AA526C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift */; };
@@ -144,6 +146,8 @@
 		B4CDD1EA268841630086AADE /* NLPPoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoem.swift; sourceTree = "<group>"; };
 		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4D1BE98268D90B500968C5B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CantCreatePoemView.swift; sourceTree = "<group>"; };
+		B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPYeonSungFontLabel.swift; sourceTree = "<group>"; };
 		B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCell.swift; sourceTree = "<group>"; };
 		B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		B4EB6AA526C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */,
 				B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */,
 				B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */,
+				B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 			children = (
 				B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */,
 				B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */,
+				B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */,
 			);
 			path = CreatePoemViews;
 			sourceTree = "<group>";
@@ -534,6 +540,7 @@
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
 				B4C3F3EF269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift in Sources */,
+				B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
@@ -571,6 +578,7 @@
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
+				B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */,
 				B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */,

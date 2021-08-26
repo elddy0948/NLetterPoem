@@ -23,6 +23,8 @@ class HomeViewController: UIViewController {
     }
   }
   
+  var user: User?
+  
   private var handler: AuthStateDidChangeListenerHandle?
   
   //MARK: - View Lifecycle
@@ -40,12 +42,8 @@ class HomeViewController: UIViewController {
     DispatchQueue.global(qos: .utility).async { [weak self] in
       self?.handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
         guard let self = self,
-              let user = user,
-              let email = user.email else { return }
-        PoemDatabaseManager.shared.fetchExistPoem(email: email,
-                                                  createdAt: Date()) { poem in
-          self.rightBarButtonItem.isEnabled = !(poem != nil)
-        }
+              let user = user else { return }
+        self.user = user
       }
     }
   }
@@ -136,6 +134,7 @@ class HomeViewController: UIViewController {
   //MARK: - Actions
   @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
     let viewController = CreateTopicViewController()
+    viewController.user = user
     let createTopicNavigationController = UINavigationController(rootViewController: viewController)
     createTopicNavigationController.modalPresentationStyle = .fullScreen
     createTopicNavigationController.navigationBar.tintColor = .label

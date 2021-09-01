@@ -79,24 +79,26 @@ extension SettingViewController {
           let email = currentUser.email else { return }
     
     dispatchGroup.enter()
-    UserDatabaseManager.shared.deleteUserOnAuth(email: email) { result in
-      defer { dispatchGroup.leave() }
-      switch result {
-      case .success(_):
-        successCount += 1
-      case .failure(let error):
-        errorMessage = error.message
+    DispatchQueue.global(qos: .utility).async {
+      AuthManager.shared.authDelete(userEmail: email) { result in
+        defer { dispatchGroup.leave() }
+        switch result {
+        case .success(_):
+          successCount += 1
+        case .failure(let error):
+          errorMessage = error.localizedDescription
+        }
       }
     }
     
     dispatchGroup.enter()
-    UserDatabaseManager.shared.deleteUserOnFirestore(email: email) { result in
-      defer { dispatchGroup.leave() }
-      switch result {
-      case .success(_):
-        successCount += 1
-      case .failure(let error):
-        errorMessage = error.message
+    DispatchQueue.global(qos: .utility).async {
+      UserDatabaseManager.shared.delete(email) { error in
+        defer { dispatchGroup.leave() }
+        if error != nil {
+          errorMessage = error?.localizedDescription
+          return
+        }
       }
     }
     

@@ -32,3 +32,19 @@ enum UserDatabaseError: Error {
         }
     }
 }
+
+enum DatabaseError: Error {
+  case failedCreateUser
+  case failedUpdateUser
+  case failedDeleteUser
+  case failedReadUser
+  
+  case failedToFetchTopTenUsers
+  
+  case failedDeletePoemFromUser
+  case failedUnlikePoem
+}
+
+enum AuthError: Error {
+  case failedDeleteUser
+}

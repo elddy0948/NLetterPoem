@@ -62,11 +62,13 @@ class CreatePoemViewController: DataLoadingViewController {
         return
       }
       
-      UserDatabaseManager.shared.fetchUserInfo(with: email) { user in
-        guard let user = user else {
-          return
+      UserDatabaseManager.shared.read(email) { result in
+        switch result {
+        case .success(let user):
+          self.user = user
+        case .failure(let error):
+          debugPrint(error.localizedDescription)
         }
-        self.user = user
       }
     })
   }
@@ -118,8 +120,11 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
     
     if action == .create {
       dispatchQueue.async(group: dispatchGroup, execute: {
-        UserDatabaseManager.shared.addPoemToUser(email: user.email, poemID: nlpPoem.id) { error in
-          if let error = error {
+        UserDatabaseManager.shared.addPoem(to: user.email, poemID: nlpPoem.id) { result in
+          switch result {
+          case .success(_):
+            debugPrint("Done!")
+          case .failure(let error):
             createPoemError = error.localizedDescription
           }
         }

@@ -56,22 +56,12 @@ class LaunchViewController: UIViewController {
   }
   
   private func checkIfUserExist(with email: String) {
-    UserDatabaseManager.shared.isUserExist(with: email) { [weak self] isUserExist in
+    UserDatabaseManager.shared.read(email) { [weak self] result in
       guard let self = self else { return }
-      if isUserExist == true {
-        self.fetchUser(with: email)
-      } else {
-        try? Auth.auth().signOut()
-      }
-    }
-  }
-  
-  private func fetchUser(with email: String) {
-    UserDatabaseManager.shared.fetchUserInfo(with: email) { [weak self] nlpUser in
-      guard let self = self else { return }
-      if nlpUser != nil {
+      switch result {
+      case .success(_):
         self.dismissAndReplaceRootViewController()
-      } else {
+      case .failure(_):
         try? Auth.auth().signOut()
       }
     }

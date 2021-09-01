@@ -36,17 +36,22 @@ extension EditProfileViewController: EditProfileViewDelegate {
   
   func didTappedDoneButton(_ editProfileView: EditProfileView, with user: NLPUser) {
     showLoadingView()
-    UserDatabaseManager.shared.updateUser(with: user) { [weak self] error in
-      guard let self = self else { return }
-      self.dismissLoadingView()
-      if let error = error {
-        debugPrint(error)
-        self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!") { _ in
-          self.dismiss(animated: true, completion: nil)
+    DispatchQueue.global(qos: .utility).async {
+      UserDatabaseManager.shared.update(user) { [weak self] result in
+        guard let self = self else { return }
+        DispatchQueue.main.async {
+          self.dismissLoadingView()
         }
-      }
-      self.showAlert(title: "🎉", message: "정보 변경을 완료했습니다!") { _ in
-        self.dismiss(animated: true, completion: nil)
+        switch result {
+        case .success(_):
+          self.showAlert(title: "🎉", message: "정보 변경을 완료했습니다!") { _ in
+            self.dismiss(animated: true, completion: nil)
+          }
+        case .failure(_):
+          self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!") { _ in
+            self.dismiss(animated: true, completion: nil)
+          }
+        }
       }
     }
   }

@@ -118,18 +118,18 @@ extension SignUpViewController: SignUpViewDelegate {
                        nickname: info.nickname,
                        bio: "")
     
-    UserDatabaseManager.shared.createUser(with: user) { [weak self] error in
+    UserDatabaseManager.shared.create(user) { [weak self] result in
       guard let self = self else { return }
-      if let _ = error {
+      switch result {
+      case .success(_):
+        self.showAlert(title: "🎉",
+                       message: "회원가입을 축하합니다!") { _ in
+          self.dismiss(animated: true, completion: nil)
+        }
+      case .failure(_):
         self.showAlert(title: "⚠️",
                        message: "회원 저장에 실패했어요!\n다시 시도해주세요!",
                        action: nil)
-        return
-      }
-      
-      self.showAlert(title: "🎉",
-                     message: "회원가입을 축하합니다!") { _ in
-        self.dismiss(animated: true, completion: nil)
       }
     }
   }

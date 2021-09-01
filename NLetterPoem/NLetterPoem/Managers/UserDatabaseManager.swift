@@ -2,176 +2,142 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-class UserDatabaseManager {
+final class UserDatabaseManager: DatabaseRequest {
+  typealias ResultType = NLPUser
   
   //MARK: - Static
   static let shared = UserDatabaseManager()
   
   //MARK: - Properties
-  private let database = Firebase.Firestore.firestore()
-  private var userDatabaseQueue = DispatchQueue(label: "com.howift.userDB")
-  private let userReference: CollectionReference
+  var database: Firestore = Firebase.Firestore.firestore()
+  var reference: CollectionReference
   
   private init() {
-    userReference = database.collection("users")
+    reference = database.collection("users")
   }
   
-  //MARK: - User
-  func createUser(with user: NLPUser, completed: @escaping (Error?) -> Void) {
-    userDatabaseQueue.async { [weak self] in
-      guard let self = self else { return }
+  //MARK: - DatabaseRequest
+  func create<T>(_ object: T, completed: @escaping (Result<NLPUser, DatabaseError>) -> Void) where T: Codable {
+    guard let user = object as? NLPUser else {
+      completed(.failure(.failedCreateUser))
+      return
+    }
+    
+    do {
+      try reference.document(user.email).setData(from: object)
+      completed(.success(user))
+    } catch {
+      completed(.failure(.failedCreateUser))
+      return
+    }
+  }
+  
+  func read(_ id: String, completed: @escaping (Result<NLPUser, DatabaseError>) -> Void) {
+    reference.document(id).getDocument { document, error in
+      let decoder = JSONDecoder()
+      guard let data = document?.data() else {
+        completed(.failure(.failedReadUser))
+        return
+      }
       do {
-        try self.userReference.document(user.email).setData(from: user)
-        completed(nil)
+        let jsonData = try JSONSerialization.data(withJSONObject: data as Any)
+        let user = try decoder.decode(NLPUser.self, from: jsonData)
+        completed(.success(user))
       } catch {
+        completed(.failure(.failedReadUser))
+      }
+    }
+  }
+  
+  func update<T>(_ object: T, completed: @escaping (Result<NLPUser, DatabaseError>) -> Void) where T : Decodable, T : Encodable {
+    guard let user = object as? NLPUser else {
+      completed(.failure(.failedUpdateUser))
+      return
+    }
+    
+    do {
+      try reference.document(user.email).setData(from: object, merge: true)
+      completed(.success(user))
+    } catch {
+      completed(.failure(.failedUpdateUser))
+      return
+    }
+  }
+  
+  func delete(_ id: String, completed: @escaping (Error?) -> Void) {
+    reference.document(id).delete { error in
+      if let error  = error {
         completed(error)
         return
       }
+      completed(nil)
+      return
     }
   }
-  
-  func updateUser(with user: NLPUser, completed: @escaping (Error?) -> Void) {
-    userDatabaseQueue.async { [weak self] in
-      guard let self = self else { return }
-      do {
-        try self.userReference.document(user.email).setData(from: user, merge: true)
-        completed(nil)
-      } catch {
-        completed(error)
-      }
-    }
-  }
-  
-  func fetchUserInfo(with email: String, completed: @escaping (NLPUser?) -> Void) {
-    userDatabaseQueue.async { [weak self] in
-      guard let self = self else { return }
-      self.userReference.document(email).getDocument { document, error in
-        let decoder = JSONDecoder()
-        guard let data = document?.data() else {
-          completed(nil)
-          return
-        }
-        do {
-          let jsonData = try JSONSerialization.data(withJSONObject: data as Any)
-          let user = try decoder.decode(NLPUser.self, from: jsonData)
-          completed(user)
-        } catch {
-          completed(nil)
-        }
-      }
-    }
-  }
-  
-  func isUserExist(with email: String, completed: @escaping (Bool) -> Void) {
-    userReference.document(email).getDocument { _, error in
-      guard error == nil else {
-        completed(false)
-        return
-      }
-      completed(true)
-    }
-  }
-  
-  func fetchTopTenUsers(completed: @escaping ([NLPUser]) -> Void) {
+}
+
+//MARK: - Additional Request
+extension UserDatabaseManager {
+  func fetchTopTenUsers(completed: @escaping (Result<[NLPUser], DatabaseError>) -> Void) {
     var topTenUsers = [NLPUser]()
     
-    userDatabaseQueue.async { [weak self] in
-      guard let self = self else { return }
-      
-      self.userReference.order(by: "fires", descending: true).limit(to: 10).getDocuments { snapshot, error in
+    reference.order(by: "fires", descending: true)
+      .limit(to: 10)
+      .getDocuments { snapshot, error in
         guard let snapshot = snapshot else {
-          completed(topTenUsers)
+          completed(.failure(.failedToFetchTopTenUsers))
           return
         }
         
         let documents = snapshot.documents
-        for document in documents {
+        
+        _ = documents.map { document in
           do {
             if let user = try document.data(as: NLPUser.self) {
               topTenUsers.append(user)
             }
           } catch {
-            completed(topTenUsers)
+            completed(.failure(.failedToFetchTopTenUsers))
             return
           }
         }
         
-        completed(topTenUsers)
+        completed(.success(topTenUsers))
       }
-    }
   }
   
-  func addPoemToUser(email: String, poemID: String, completed: @escaping (Error?) -> Void) {
-    userDatabaseQueue.async { [weak self] in
-      guard let self = self else { return }
-      self.userReference.document(email).updateData([
-        "poems": FieldValue.arrayUnion([poemID])
-      ])
-    }
+  func addPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+    reference.document(userEmail).updateData([
+      "poems": FieldValue.arrayUnion([poemID])
+    ])
   }
   
-  func addLikedPoem(userEmail: String, poemID: String) {
-    userDatabaseQueue.async { [weak self] in
-      guard let self = self else { return }
-      self.userReference.document(userEmail).updateData([
-        "likedPoem": FieldValue.arrayUnion([poemID])
-      ])
-    }
+  func likedPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+    reference.document(userEmail).updateData([
+      "likedPoem": FieldValue.arrayUnion([poemID])
+    ])
   }
   
-  //MARK: - Delete
-  func removeLikedPoem(userEmail: String, poemID: String) {
-    userDatabaseQueue.async { [weak self] in
-      guard let self = self else { return }
-      self.userReference.document(userEmail).updateData([
-        "likedPoem": FieldValue.arrayRemove([poemID])
-      ])
-    }
-  }
-  
-  func removePoem(userEmail: String, poemID: String) {
-    userDatabaseQueue.async { [weak self] in
-      guard let self = self else { return }
-      self.userReference.document(userEmail).updateData([
-        "poems": FieldValue.arrayRemove([poemID])
-      ])
-    }
-  }
-  
-  func deleteUserOnAuth(email: String,
-                        completed: @escaping ((Result<String, UserDatabaseError>) -> Void)) {
-    guard let user = Auth.auth().currentUser else {
-      completed(.failure(.noAuthority))
-      return
-    }
-    
-    DispatchQueue.global(qos: .utility).async {
-      user.delete { error in
-        if let _ = error {
-          completed(.failure(.failedToDelete))
-          return
-        }
-        completed(.success("삭제에 성공했습니다!"))
+  func deletePoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+    reference.document(userEmail).updateData([
+      "poems": FieldValue.arrayRemove([poemID])
+    ]) { error in
+      if error != nil {
+        completed(.failure(.failedDeletePoemFromUser))
       }
+      completed(.success("삭제에 성공했습니다!"))
     }
   }
   
-  func deleteUserOnFirestore(email: String,
-                             completed: @escaping ((Result<String, UserDatabaseError>) -> Void)) {
-    DispatchQueue.global(qos: .utility).async { [weak self] in
-      guard let self = self else {
-        completed(.failure(.failedToDelete))
+  func unLikedPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+    reference.document(userEmail).updateData([
+      "likedPoem": FieldValue.arrayRemove([poemID])
+    ]) { error in
+      if error != nil {
+        completed(.failure(.failedUnlikePoem))
         return
       }
-      
-      self.userReference.document(email).delete { error in
-        if let _  = error {
-          completed(.failure(.failedToDelete))
-          return
-        }
-        completed(.success("삭제에 성공했습니다!"))
-        return
-      }
+      completed(.success("좋아요가 취소되었습니다."))
     }
   }
 }

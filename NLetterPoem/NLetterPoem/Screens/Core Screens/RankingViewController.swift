@@ -45,8 +45,15 @@ class RankingViewController: UIViewController {
     }
     
     private func fetchTopTenUsers() {
-        UserDatabaseManager.shared.fetchTopTenUsers { users in
+        UserDatabaseManager.shared.fetchTopTenUsers { [weak self] result in
+          guard let self = self else { return }
+          switch result {
+          case .success(let users):
             self.users = users
+          case .failure(let error):
+            self.users = []
+            debugPrint(error.localizedDescription)
+          }
         }
     }
 }

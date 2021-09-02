@@ -43,6 +43,13 @@ enum DatabaseError: Error {
   
   case failedDeletePoemFromUser
   case failedUnlikePoem
+  
+  case failedUpdatePoem
+  case failedDeletePoem
+  case failedReadTodayPoems
+  case failedReadPoem
+  
+  case failedReadTopic
 }
 
 enum AuthError: Error {

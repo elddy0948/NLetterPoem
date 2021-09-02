@@ -94,9 +94,16 @@ class MyPageViewController: UIViewController {
   
   private func fetchPoems(with email: String?) {
     guard let email = email else { return }
-    PoemDatabaseManager.shared.fetchUserPoems(userEmail: email) { [weak self] poems in
-      guard let self = self else { return }
-      self.poems = poems
+    DispatchQueue.global(qos: .utility).async {
+      PoemDatabaseManager.shared.fetchUserPoems(userEmail: email, sortType: .recent) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let fetchedPoems):
+          self.poems = fetchedPoems
+        case .failure(_):
+          self.poems = []
+        }
+      }
     }
   }
   

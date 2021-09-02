@@ -97,9 +97,10 @@ final class PoemDetailViewController: UIViewController {
   
   //MARK: - LikeCount Logic
   private func updateLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
-    PoemDatabaseManager.shared.updatePoemLikeCount(id: id,
-                                                   authorEmail: authorEmail,
-                                                   isIncrease: isIncrease)
+    DispatchQueue.global(qos: .userInitiated).async {
+      PoemDatabaseManager.shared.updateLikeCount(poemID: id, isIncrease: isIncrease)
+      UserDatabaseManager.shared.updateFires(to: authorEmail, isIncrease: isIncrease)
+    }
   }
   
   private func updateUserLikedPoem(email: String, id: String, isRemove: Bool) {
@@ -159,15 +160,7 @@ final class PoemDetailViewController: UIViewController {
           let currentUser = currentUser else { return }
     
     DispatchQueue.global(qos: .utility).async {
-      PoemDatabaseManager.shared.deletePoem(poem,
-                                            requester: currentUser.email) { result in
-        switch result {
-        case .success(let message):
-          print(message)
-        case .failure(let error):
-          print(error.message)
-        }
-      }
+      PoemDatabaseManager.shared.delete(poem.id) { _ in }
       UserDatabaseManager.shared.deletePoem(to: currentUser.email, poemID: poem.id) { _ in }
     }
   }

@@ -20,15 +20,17 @@ final class CreateTopicViewController: DataLoadingViewController {
   private func checkUserDidWritePoemToday(with email: String?) {
     showLoadingView()
     guard let email = email else { return }
-    DispatchQueue.global().async { [weak self] in
-      PoemDatabaseManager.shared.fetchExistPoem(email: email, createdAt: Date(), completed: { poem in
-        self?.dismissLoadingView()
-        if poem != nil {
-          self?.configureCantCreatePoemView()
-        } else {
-          self?.configureCreateTopicView()
+    DispatchQueue.global(qos: .userInitiated).async {
+      PoemDatabaseManager.shared.read(email) { [weak self] result in
+        guard let self = self else { return }
+        self.dismissLoadingView()
+        switch result {
+        case .success(_):
+          self.configureCantCreatePoemView()
+        case .failure(_):
+          self.configureCreateTopicView()
         }
-      })
+      }
     }
   }
   

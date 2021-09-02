@@ -2,207 +2,163 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-final class PoemDatabaseManager {
-    
-    //MARK: - Static
-    static let shared = PoemDatabaseManager()
-    
-    //MARK: - Properties
-    private let database = Firestore.firestore()
-    private let poemDatabaseQueue = DispatchQueue(label: "com.howift.poemDB")
-    private let poemReference: CollectionReference
-    private let topicReference: CollectionReference
-    
-    private init() {
-        poemReference = database.collection("poems")
-        topicReference = database.collection("topics")
+final class PoemDatabaseManager: DatabaseRequest {
+  
+  typealias ResultType = NLPPoem
+  
+  //MARK: - Static
+  static let shared = PoemDatabaseManager()
+  
+  //MARK: - Properties
+  var database: Firestore = Firebase.Firestore.firestore()
+  var reference: CollectionReference
+  
+  private init() {
+    reference = database.collection("poems")
+  }
+  
+  //MARK: - Database Request
+  func create<T>(_ object: T,
+                 completed: @escaping (Result<NLPPoem, DatabaseError>) -> Void) where T : Decodable, T : Encodable {
+    guard let poem = object as? NLPPoem else { return }
+    do {
+      try reference.document(poem.id).setData(from: poem)
+    } catch {
+      debugPrint(error.localizedDescription)
     }
+  }
+  
+  func read(_ id: String,
+            completed: @escaping (Result<NLPPoem, DatabaseError>) -> Void) {
+    let todayDate = Date().toYearMonthDay()
+    let query = reference
+      .whereField("authorEmail", isEqualTo: id)
+      .whereField("createdAt", isEqualTo: todayDate)
     
-    //MARK: - Create
-    func createPoem(poem: NLPPoem, completed: @escaping ((Error?) -> Void)) {
-        do {
-            try self.poemReference.document(poem.id).setData(from: poem)
-        } catch {
-            debugPrint(error)
+    query.getDocuments { snapshot, error in
+      guard let snapshot = snapshot,
+            let document = snapshot.documents.first else {
+        completed(.failure(.failedReadPoem))
+        return
+      }
+      do {
+        if let poem = try document.data(as: NLPPoem.self) {
+          completed(.success(poem))
+          return
+        } else {
+          completed(.failure(.failedReadPoem))
+          return
         }
-        
+      } catch {
+        completed(.failure(.failedReadPoem))
+        return
+      }
     }
+  }
+  
+  func update<T: Codable>(_ object: T,
+                          completed: @escaping (Result<NLPPoem, DatabaseError>) -> Void) {
+    guard let poem = object as? NLPPoem else { return }
     
-    //MARK: - Read
-    func fetchTodayTopic(date: Date, completed: @escaping ((String?) -> Void)) {
-        let stringDate = date.toYearMonthDay()
-        
-        topicReference.document(stringDate).getDocument { document, error in
-            guard let document = document else {
-                completed(nil)
-                return
-            }
-            
-            do {
-                let data = try document.data(as: Topic.self)
-                completed(data?.topic)
-            } catch {
-                debugPrint(error)
-                completed(nil)
-            }
-        }
+    do {
+      try reference.document(poem.id).setData(from: poem)
+      completed(.success(poem))
+      return
+    } catch {
+      completed(.failure(.failedUpdatePoem))
+      return
     }
-    
-    func fetchTodayPoems(date: Date, completed: @escaping (([NLPPoem]) -> Void)) {
-        let stringDate = date.toYearMonthDay()
-        let query = poemReference.whereField("createdAt", isEqualTo: "\(stringDate)")
-        var poems = [NLPPoem]()
-        
-        query.getDocuments { snapshot, error in
-            guard let querySnapshot = snapshot else {
-                completed([])
-                return
-            }
-            
-            for document in querySnapshot.documents {
-                do {
-                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
-                    poems.append(poem)
-                } catch {
-                    completed([])
-                    return
-                }
-            }
-            
-            completed(poems)
-        }
-        
+  }
+  
+  func delete(_ id: String,
+              completed: @escaping (Error?) -> Void) {
+    reference.document(id).delete { error in
+      guard error == nil else {
+        completed(DatabaseError.failedDeletePoem)
+        return
+      }
+      completed(nil)
     }
-    
-    func fetchUserPoems(userEmail: String, completed: @escaping (([NLPPoem]) -> Void)) {
-        let query = poemReference.whereField("authorEmail", isEqualTo: userEmail)
-        var userPoems = [NLPPoem]()
-        
-        query.getDocuments { snapshot, error in
-            guard let querySnapshot = snapshot else {
-                completed([])
-                return
-            }
-            
-            for document in querySnapshot.documents {
-                do {
-                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
-                    userPoems.append(poem)
-                } catch {
-                    completed([])
-                    return
-                }
-            }
-            
-            completed(userPoems)
-        }
-    }
-    
-    //MARK: - Sort
-    func sortPoems(by sortType: SortType, date: Date, completed: @escaping ([NLPPoem]) -> Void) {
-        let stringDate = date.toYearMonthDay()
-        let query = poemReference.whereField("createdAt", isEqualTo: "\(stringDate)")
-        var poems = [NLPPoem]()
-        
-        query.getDocuments { snapshot, error in
-            guard let querySnapshot = snapshot else {
-                completed([])
-                return
-            }
-            
-            for document in querySnapshot.documents {
-                do {
-                    let poem = try document.data(as: NLPPoem.self) ?? NLPPoem.emptyPoem()
-                    poems.append(poem)
-                } catch {
-                    completed([])
-                    return
-                }
-            }
-            
-            switch sortType {
-            case .like:
-                let likePoems = poems.sorted { $0.likeCount > $1.likeCount }
-                completed(likePoems)
-            case .recent:
-                let recentPoems = poems.sorted { $0.created > $1.created }
-                completed(recentPoems)
-            }
-        }
-    }
-    
-    func fetchExistPoem(email: String, createdAt: Date, completed: @escaping (NLPPoem?) -> Void) {
-        let poemRef = database.collection("poems")
-        let stringDate = createdAt.toYearMonthDay()
-        
-        poemRef.whereField("authorEmail", isEqualTo: email)
-            .whereField("createdAt", isEqualTo: stringDate)
-            .getDocuments { snapshot, error in
-                guard let snapshot = snapshot,
-                      error == nil,
-                      let document = snapshot.documents.first else {
-                    completed(nil)
-                    return
-                }
-                do {
-                    let poem = try document.data(as: NLPPoem.self)
-                    completed(poem)
-                    return
-                } catch {
-                    completed(nil)
-                    return
-                }
-        }
-    }
-    
-    //MARK: - Update
-    func updatePoemLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
-        let poemRef = database.collection("poems").document(id)
-        let userRef = database.collection("users").document(authorEmail)
-        let count = isIncrease ? 1 : -1
-        
-        poemRef.updateData([
-            "likeCount": FieldValue.increment(Int64(count))
-        ])
-        userRef.updateData([
-            "fires": FieldValue.increment(Int64(count))
-        ])
-    }
+  }
+  
+  enum SortType {
+    case like
+    case recent
+  }
+}
 
-    func updatePoem(_ poem: NLPPoem, completed: @escaping (Error?) -> Void) {
-        let poemRef = database.collection("poems")
+//MARK: - Additional Requests
+extension PoemDatabaseManager {
+  func fetchTodayPoems(date: Date,
+                       sortType: SortType,
+                       completed: @escaping (Result<[NLPPoem], DatabaseError>) -> Void) {
+    let stringDate = date.toYearMonthDay()
+    let query = reference.whereField("createdAt",isEqualTo: stringDate)
+    var fetchedPoems = [NLPPoem]()
+    
+    query.getDocuments { snapshot, error in
+      guard let querySnapshot = snapshot else {
+        completed(.failure(.failedReadTodayPoems))
+        return
+      }
+      
+      for document in querySnapshot.documents {
         do {
-            try poemRef.document(poem.id).setData(from: poem)
-            completed(nil)
-            return
+          if let poem = try document.data(as: NLPPoem.self) {
+            fetchedPoems.append(poem)
+          }
         } catch {
-            completed(error)
-            return
+          completed(.failure(.failedReadTodayPoems))
+          return
         }
+      }
+      
+      switch sortType {
+      case .like:
+        completed(.success(fetchedPoems.sorted { $0.likeCount > $1.likeCount }))
+      case .recent:
+        completed(.success(fetchedPoems.sorted { $0.created > $1.created }))
+      }
     }
+  }
+  
+  func fetchUserPoems(userEmail: String,
+                      sortType: SortType,
+                      completed: @escaping (Result<[NLPPoem], DatabaseError>) -> Void) {
+    let query = reference.whereField("authorEmail", isEqualTo: userEmail)
+    var fetchedPoems = [NLPPoem]()
     
-    //MARK: - Delete
-    func deletePoem(_ poem: NLPPoem,
-                    requester: String,
-                    completed: @escaping ((Result<String, PoemDatabaseError>) -> Void)) {
-        guard poem.authorEmail == requester else {
-            completed(.failure(.notAuthor))
-            return
+    query.getDocuments { snapshot, error in
+      guard let querySnapshot = snapshot else {
+        completed(.failure(.failedReadPoem))
+        return
+      }
+      
+      for document in querySnapshot.documents {
+        do {
+          if let poem = try document.data(as: NLPPoem.self) {
+            fetchedPoems.append(poem)
+          }
+        } catch {
+          completed(.failure(.failedReadPoem))
+          return
         }
-        //Delete Logic
-        let poemReference = database.collection("poems")
-        
-        //Delete poem in poems
-        poemReference.document(poem.id).delete { error in
-            guard error == nil else {
-                completed(.failure(.failedDelete))
-                return
-            }
-        }
+      }
+      
+      switch sortType {
+      case .like:
+        completed(.success(fetchedPoems.sorted { $0.likeCount > $1.likeCount }))
+      case .recent:
+        completed(.success(fetchedPoems.sorted { $0.created > $1.created }))
+      }
     }
+  }
+  
+  func updateLikeCount(poemID: String, isIncrease: Bool) {
+    let count = isIncrease ? 1 : -1
     
-    enum SortType {
-        case like
-        case recent
-    }
+    reference.document(poemID).updateData([
+      "likeCount": FieldValue.increment(Int64(count))
+    ])
+  }
 }

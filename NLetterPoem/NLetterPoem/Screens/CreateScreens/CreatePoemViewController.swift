@@ -111,8 +111,11 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
     guard let nlpPoem = nlpPoem else { return }
     
     dispatchQueue.async(group: dispatchGroup, execute: {
-      PoemDatabaseManager.shared.createPoem(poem: nlpPoem) { error in
-        if let error = error {
+      PoemDatabaseManager.shared.create(nlpPoem) { result in
+        switch result {
+        case .success(_):
+          debugPrint("Done!")
+        case .failure(let error):
           createPoemError = error.localizedDescription
         }
       }

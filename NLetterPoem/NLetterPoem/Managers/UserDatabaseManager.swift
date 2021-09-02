@@ -140,4 +140,12 @@ extension UserDatabaseManager {
       completed(.success("좋아요가 취소되었습니다."))
     }
   }
+  
+  func updateFires(to userEmail: String, isIncrease: Bool) {
+    let count = isIncrease ? 1 : -1
+    
+    reference.document(userEmail).updateData([
+      "fires": FieldValue.increment(Int64(count))
+    ])
+  }
 }

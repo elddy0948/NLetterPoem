@@ -58,6 +58,7 @@
 		B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BD26A000F70044A2B8 /* SignUpView.swift */; };
 		B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BF26A002660044A2B8 /* AuthManager.swift */; };
 		B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */; };
+		B4AC3E8526E09EEB00E99CF4 /* TopicDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */; };
 		B4B03B4326DF321300B59BF7 /* DatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */; };
 		B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EC269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift */; };
 		B4C3F3EF269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EE269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift */; };
@@ -133,6 +134,7 @@
 		B48BD9BD26A000F70044A2B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B48BD9BF26A002660044A2B8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPNavigationBar.swift; sourceTree = "<group>"; };
+		B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDatabaseManager.swift; sourceTree = "<group>"; };
 		B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRequest.swift; sourceTree = "<group>"; };
 		B4C3F3EC269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		B4C3F3EE269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */,
 				B4D1BE98268D90B500968C5B /* StorageManager.swift */,
 				B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */,
+				B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
 				B4C3F3EF269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift in Sources */,
+				B4AC3E8526E09EEB00E99CF4 /* TopicDatabaseManager.swift in Sources */,
 				B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,

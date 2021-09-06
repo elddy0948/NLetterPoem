@@ -35,6 +35,7 @@ enum UserFirestoreError: Error {
 }
 
 enum PoemFirestoreError: Error {
+  case failedCreatePoem
   case failedUpdatePoem
   case failedDeletePoem
   case failedReadTodayPoems
@@ -42,6 +43,8 @@ enum PoemFirestoreError: Error {
   
   var message: String {
     switch self {
+    case .failedCreatePoem:
+      return "생성에 실패했습니다!\n다시 시도해주세요!🙏"
     case .failedUpdatePoem:
       return "업데이트에 실패했습니다!\n다시 시도해주세요!🙏"
     case .failedDeletePoem:

@@ -67,7 +67,7 @@ class CreatePoemViewController: DataLoadingViewController {
         case .success(let user):
           self.user = user
         case .failure(let error):
-          debugPrint(error.localizedDescription)
+          self.showAlert(title: "⚠️", message: error.message, action: nil)
         }
       }
     })
@@ -116,7 +116,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
         case .success(_):
           debugPrint("Done!")
         case .failure(let error):
-          createPoemError = error.localizedDescription
+          createPoemError = error.message
         }
       }
     })
@@ -128,7 +128,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
           case .success(_):
             debugPrint("Done!")
           case .failure(let error):
-            createPoemError = error.localizedDescription
+            createPoemError = error.message
           }
         }
       })

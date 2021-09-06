@@ -77,7 +77,7 @@ final class PoemDetailViewController: UIViewController {
         case .success(let user):
           self.currentUser = user
         case .failure(let error):
-          debugPrint(error.localizedDescription)
+          self.showAlert(title: "⚠️", message: error.message, action: nil)
         }
       }
     }
@@ -180,7 +180,7 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
           viewController.user = user
           self.navigationController?.pushViewController(viewController, animated: true)
         case .failure(let error):
-          debugPrint(error.localizedDescription)
+          self.showAlert(title: "⚠️", message: error.message, action: nil)
         }
       }
     }

@@ -24,8 +24,9 @@ final class PoemDatabaseManager: DatabaseRequest {
     guard let poem = object as? NLPPoem else { return }
     do {
       try reference.document(poem.id).setData(from: poem)
+      completed(.success(poem))
     } catch {
-      debugPrint(error.localizedDescription)
+      completed(.failure(.failedCreatePoem))
     }
   }
   

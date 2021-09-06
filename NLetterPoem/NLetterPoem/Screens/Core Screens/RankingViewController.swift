@@ -50,9 +50,8 @@ class RankingViewController: UIViewController {
           switch result {
           case .success(let users):
             self.users = users
-          case .failure(let error):
+          case .failure(_):
             self.users = []
-            debugPrint(error.localizedDescription)
           }
         }
     }

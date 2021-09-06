@@ -257,11 +257,9 @@
 		B42EE58F267F175C001848A5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				B48BD9BF26A002660044A2B8 /* AuthManager.swift */,
-				B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */,
-				B4D1BE98268D90B500968C5B /* StorageManager.swift */,
-				B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */,
-				B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */,
+				B44D384626E514C30030E706 /* FirebaseAuth */,
+				B44D384726E514CE0030E706 /* FirebaseStorage */,
+				B44D384526E514B60030E706 /* Firestore */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -290,6 +288,32 @@
 				B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B44D384526E514B60030E706 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */,
+				B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */,
+				B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		B44D384626E514C30030E706 /* FirebaseAuth */ = {
+			isa = PBXGroup;
+			children = (
+				B48BD9BF26A002660044A2B8 /* AuthManager.swift */,
+			);
+			path = FirebaseAuth;
+			sourceTree = "<group>";
+		};
+		B44D384726E514CE0030E706 /* FirebaseStorage */ = {
+			isa = PBXGroup;
+			children = (
+				B4D1BE98268D90B500968C5B /* StorageManager.swift */,
+			);
+			path = FirebaseStorage;
 			sourceTree = "<group>";
 		};
 		B478750C2671F540002FE83F = {

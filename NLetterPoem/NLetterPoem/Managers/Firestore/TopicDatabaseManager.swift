@@ -10,7 +10,7 @@ final class ToopicDatabaseManager {
     reference = database.collection("topics")
   }
   
-  func read(date: Date, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+  func read(date: Date, completed: @escaping (Result<String, TopicFirestoreError>) -> Void) {
     let stringDate = date.toYearMonthDay()
     
     reference.document(stringDate).getDocument { document, error in

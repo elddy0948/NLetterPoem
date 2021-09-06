@@ -5,51 +5,64 @@ enum SigninError: Error {
     static let emptyField = "이메일과 패스워드를 입력해주세요!👀"
 }
 
-enum PoemDatabaseError: Error {
-    case notAuthor
-    case failedDelete
-    
-    var message: String {
-        switch self {
-        case .notAuthor:
-            return "권한이 없습니다.\n다시 시도해주세요!😅"
-        case .failedDelete:
-            return "삭제에 실패했습니다.\n다시 시도해주세요!😅"
-        }
-    }
-}
-
-enum UserDatabaseError: Error {
-    case failedToDelete
-    case noAuthority
-    
-    var message: String {
-        switch self {
-        case .failedToDelete:
-            return "삭제에 실패했어요!\n다시 시도해주세요😅"
-        case .noAuthority:
-            return "권한이 없습니다!\n다시 시도해주세요😅"
-        }
-    }
-}
-
-enum DatabaseError: Error {
+enum UserFirestoreError: Error {
   case failedCreateUser
+  case failedReadUser
   case failedUpdateUser
   case failedDeleteUser
-  case failedReadUser
-  
   case failedToFetchTopTenUsers
-  
   case failedDeletePoemFromUser
   case failedUnlikePoem
   
+  var message: String {
+    switch self {
+    case .failedCreateUser:
+      return "유저 생성에 실패했습니다!\n다시 시도해주세요!🙏"
+    case .failedReadUser:
+      return "유저를 읽어오지 못했습니다!\n다시 시도해주세요!🙏"
+    case .failedUpdateUser:
+      return "업데이트에 실패했습니다!\n다시 시도해주세요!🙏"
+    case .failedDeleteUser:
+      return "삭제에 실패했습니다!\n다시 시도해주세요!🙏"
+    case .failedToFetchTopTenUsers:
+      return "유저를 불러오지 못했습니다!\n다시 시도해주세요!🙏"
+    case .failedDeletePoemFromUser:
+      return "삭제에 실패했습니다!\n다시 시도해주세요!🙏"
+    case .failedUnlikePoem:
+      return "오류가 발생했습니다!\n다시 시도해주세요!🙏"
+    }
+  }
+}
+
+enum PoemFirestoreError: Error {
   case failedUpdatePoem
   case failedDeletePoem
   case failedReadTodayPoems
   case failedReadPoem
   
+  var message: String {
+    switch self {
+    case .failedUpdatePoem:
+      return "업데이트에 실패했습니다!\n다시 시도해주세요!🙏"
+    case .failedDeletePoem:
+      return "삭제에 실패했습니다!\n다시 시도해주세요!🙏"
+    case .failedReadTodayPoems:
+      return "불러오기에 실패했습니다!\n다시 시도해주세요!🙏"
+    case .failedReadPoem:
+      return "불러오기에 실패했습니다!\n다시 시도해주세요!🙏"
+    }
+  }
+}
+
+enum TopicFirestoreError: Error {
   case failedReadTopic
+  
+  var message: String {
+    switch self {
+    case .failedReadTopic:
+      return "주제를 읽어오지 못했습니다!\n다시 시도해주세요!🙏"
+    }
+  }
 }
 
 enum AuthError: Error {

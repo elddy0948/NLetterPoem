@@ -3,8 +3,9 @@ import Firebase
 import FirebaseFirestoreSwift
 
 final class PoemDatabaseManager: DatabaseRequest {
-  
+  //MARK: - Typealias
   typealias ResultType = NLPPoem
+  typealias ErrorType = PoemFirestoreError
   
   //MARK: - Static
   static let shared = PoemDatabaseManager()
@@ -19,7 +20,7 @@ final class PoemDatabaseManager: DatabaseRequest {
   
   //MARK: - Database Request
   func create<T>(_ object: T,
-                 completed: @escaping (Result<NLPPoem, DatabaseError>) -> Void) where T : Decodable, T : Encodable {
+                 completed: @escaping (Result<ResultType, ErrorType>) -> Void) where T : Decodable, T : Encodable {
     guard let poem = object as? NLPPoem else { return }
     do {
       try reference.document(poem.id).setData(from: poem)
@@ -29,7 +30,7 @@ final class PoemDatabaseManager: DatabaseRequest {
   }
   
   func read(_ id: String,
-            completed: @escaping (Result<NLPPoem, DatabaseError>) -> Void) {
+            completed: @escaping (Result<ResultType, ErrorType>) -> Void) {
     let todayDate = Date().toYearMonthDay()
     let query = reference
       .whereField("authorEmail", isEqualTo: id)
@@ -57,7 +58,7 @@ final class PoemDatabaseManager: DatabaseRequest {
   }
   
   func update<T: Codable>(_ object: T,
-                          completed: @escaping (Result<NLPPoem, DatabaseError>) -> Void) {
+                          completed: @escaping (Result<ResultType, ErrorType>) -> Void) {
     guard let poem = object as? NLPPoem else { return }
     
     do {
@@ -74,7 +75,7 @@ final class PoemDatabaseManager: DatabaseRequest {
               completed: @escaping (Error?) -> Void) {
     reference.document(id).delete { error in
       guard error == nil else {
-        completed(DatabaseError.failedDeletePoem)
+        completed(ErrorType.failedDeletePoem)
         return
       }
       completed(nil)
@@ -91,7 +92,7 @@ final class PoemDatabaseManager: DatabaseRequest {
 extension PoemDatabaseManager {
   func fetchTodayPoems(date: Date,
                        sortType: SortType,
-                       completed: @escaping (Result<[NLPPoem], DatabaseError>) -> Void) {
+                       completed: @escaping (Result<[ResultType], ErrorType>) -> Void) {
     let stringDate = date.toYearMonthDay()
     let query = reference.whereField("createdAt",isEqualTo: stringDate)
     var fetchedPoems = [NLPPoem]()
@@ -124,7 +125,7 @@ extension PoemDatabaseManager {
   
   func fetchUserPoems(userEmail: String,
                       sortType: SortType,
-                      completed: @escaping (Result<[NLPPoem], DatabaseError>) -> Void) {
+                      completed: @escaping (Result<[ResultType], ErrorType>) -> Void) {
     let query = reference.whereField("authorEmail", isEqualTo: userEmail)
     var fetchedPoems = [NLPPoem]()
     

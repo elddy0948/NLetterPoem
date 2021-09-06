@@ -3,7 +3,9 @@ import Firebase
 import FirebaseFirestoreSwift
 
 final class UserDatabaseManager: DatabaseRequest {
+  //MARK: - Typealias
   typealias ResultType = NLPUser
+  typealias ErrorType = UserFirestoreError
   
   //MARK: - Static
   static let shared = UserDatabaseManager()
@@ -17,7 +19,7 @@ final class UserDatabaseManager: DatabaseRequest {
   }
   
   //MARK: - DatabaseRequest
-  func create<T>(_ object: T, completed: @escaping (Result<NLPUser, DatabaseError>) -> Void) where T: Codable {
+  func create<T>(_ object: T, completed: @escaping (Result<ResultType, ErrorType>) -> Void) where T: Codable {
     guard let user = object as? NLPUser else {
       completed(.failure(.failedCreateUser))
       return
@@ -32,7 +34,7 @@ final class UserDatabaseManager: DatabaseRequest {
     }
   }
   
-  func read(_ id: String, completed: @escaping (Result<NLPUser, DatabaseError>) -> Void) {
+  func read(_ id: String, completed: @escaping (Result<ResultType, ErrorType>) -> Void) {
     reference.document(id).getDocument { document, error in
       let decoder = JSONDecoder()
       guard let data = document?.data() else {
@@ -49,7 +51,7 @@ final class UserDatabaseManager: DatabaseRequest {
     }
   }
   
-  func update<T>(_ object: T, completed: @escaping (Result<NLPUser, DatabaseError>) -> Void) where T : Decodable, T : Encodable {
+  func update<T>(_ object: T, completed: @escaping (Result<ResultType, ErrorType>) -> Void) where T : Decodable, T : Encodable {
     guard let user = object as? NLPUser else {
       completed(.failure(.failedUpdateUser))
       return
@@ -78,7 +80,7 @@ final class UserDatabaseManager: DatabaseRequest {
 
 //MARK: - Additional Request
 extension UserDatabaseManager {
-  func fetchTopTenUsers(completed: @escaping (Result<[NLPUser], DatabaseError>) -> Void) {
+  func fetchTopTenUsers(completed: @escaping (Result<[ResultType], ErrorType>) -> Void) {
     var topTenUsers = [NLPUser]()
     
     reference.order(by: "fires", descending: true)
@@ -106,19 +108,19 @@ extension UserDatabaseManager {
       }
   }
   
-  func addPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+  func addPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, ErrorType>) -> Void) {
     reference.document(userEmail).updateData([
       "poems": FieldValue.arrayUnion([poemID])
     ])
   }
   
-  func likedPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+  func likedPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, ErrorType>) -> Void) {
     reference.document(userEmail).updateData([
       "likedPoem": FieldValue.arrayUnion([poemID])
     ])
   }
   
-  func deletePoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+  func deletePoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, ErrorType>) -> Void) {
     reference.document(userEmail).updateData([
       "poems": FieldValue.arrayRemove([poemID])
     ]) { error in
@@ -129,7 +131,7 @@ extension UserDatabaseManager {
     }
   }
   
-  func unLikedPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, DatabaseError>) -> Void) {
+  func unLikedPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, ErrorType>) -> Void) {
     reference.document(userEmail).updateData([
       "likedPoem": FieldValue.arrayRemove([poemID])
     ]) { error in

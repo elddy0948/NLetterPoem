@@ -40,6 +40,7 @@ enum PoemFirestoreError: Error {
   case failedDeletePoem
   case failedReadTodayPoems
   case failedReadPoem
+  case failedLike
   
   var message: String {
     switch self {
@@ -53,6 +54,8 @@ enum PoemFirestoreError: Error {
       return "불러오기에 실패했습니다!\n다시 시도해주세요!🙏"
     case .failedReadPoem:
       return "불러오기에 실패했습니다!\n다시 시도해주세요!🙏"
+    case .failedLike:
+      return "문제가 생겼습니다!\n다시 시도해주세요!🙏"
     }
   }
 }

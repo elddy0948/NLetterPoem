@@ -63,7 +63,6 @@ final class PoemDetailViewController: UIViewController {
       detailPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
     
-    //If visitor is poem's author can show 'Edit' button
     if poem.authorEmail == user.email {
       configureRightBarButtonItem()
     }
@@ -94,22 +93,26 @@ final class PoemDetailViewController: UIViewController {
     }
   }
   
-  
   //MARK: - LikeCount Logic
   private func updateLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
     DispatchQueue.global(qos: .userInitiated).async {
-      PoemDatabaseManager.shared.updateLikeCount(poemID: id, isIncrease: isIncrease)
-      UserDatabaseManager.shared.updateFires(to: authorEmail, isIncrease: isIncrease)
+      PoemDatabaseManager.shared.updateLikeCount(poemID: id,
+                                                 author: authorEmail,
+                                                 isIncrease: isIncrease) { error in
+        if error != nil {
+          self.showAlert(title: "⚠️", message: "문제가 발생했습니다!\n다시 시도해주세요!") { _ in
+            self.dismiss(animated: true, completion: nil)
+          }
+        }
+      }
     }
   }
   
   private func updateUserLikedPoem(email: String, id: String, isRemove: Bool) {
-    if isRemove {
-      DispatchQueue.global(qos: .userInteractive).async {
+    DispatchQueue.global(qos: .userInitiated).async {
+      if isRemove {
         UserDatabaseManager.shared.unLikedPoem(to: email, poemID: id) { _ in }
-      }
-    } else {
-      DispatchQueue.global(qos: .userInteractive).async {
+      } else {
         UserDatabaseManager.shared.likedPoem(to: email, poemID: id) { _ in }
       }
     }

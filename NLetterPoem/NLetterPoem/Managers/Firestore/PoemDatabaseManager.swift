@@ -169,11 +169,24 @@ extension PoemDatabaseManager {
     }
   }
   
-  func updateLikeCount(poemID: String, isIncrease: Bool) {
+  func updateLikeCount(poemID: String, author: String, isIncrease: Bool,
+                       completed: @escaping (Error?) -> Void) {
     let count = isIncrease ? 1 : -1
     
-    reference.document(poemID).updateData([
-      "likeCount": FieldValue.increment(Int64(count))
-    ])
+    let batch = database.batch()
+    
+    let poemRef = reference.document(poemID)
+    let userRef = database.collection("users").document(author)
+    
+    batch.updateData([ "likeCount": FieldValue.increment(Int64(count)) ], forDocument: poemRef)
+    batch.updateData([ "fires": FieldValue.increment(Int64(count)) ], forDocument: userRef)
+    
+    batch.commit { error in
+      if error != nil {
+        completed(PoemFirestoreError.failedLike)
+      } else {
+        completed(nil)
+      }
+    }
   }
 }

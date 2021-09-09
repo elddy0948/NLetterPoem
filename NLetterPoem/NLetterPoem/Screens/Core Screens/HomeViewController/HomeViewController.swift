@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationController?.navigationBar.prefersLargeTitles = true
+    
     configureRightBarButtonItem()
     configure()
     configureHeaderView()
@@ -65,9 +67,9 @@ class HomeViewController: UIViewController {
   
   private func configure() {
     homeTableView = HomeTableView()
-    view.backgroundColor = .systemBackground
     view = homeTableView
     
+    homeTableView.backgroundColor = .systemBackground
     homeTableView.delegate = self
     homeTableView.dataSource = self
     homeTableView.homeTableViewDelegate = self

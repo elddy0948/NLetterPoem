@@ -91,7 +91,7 @@ final class HomeTableViewCell: UITableViewCell {
     
     writerLabel.translatesAutoresizingMaskIntoConstraints = false
     writerLabel.textColor = .label
-    writerLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+    writerLabel.font = UIFont(name: "BM YEONSUNG", size: 20)
     writerLabel.numberOfLines = 0
     writerLabel.text = ""
     

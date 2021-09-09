@@ -31,7 +31,6 @@ class NLPButton: UIButton {
         
         layer.cornerRadius = 16
         layer.masksToBounds = true
-        layer.borderWidth = 3
         
         addTarget(self, action: #selector(didTappedButton(_:)), for: .touchUpInside)
     }

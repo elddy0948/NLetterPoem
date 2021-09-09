@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class EditProfileViewController: DataLoadingViewController {
   
@@ -7,6 +8,7 @@ class EditProfileViewController: DataLoadingViewController {
   
   //MARK: - Properties
   var user: NLPUser?
+  var updatedUser: NLPUser?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,36 +29,51 @@ class EditProfileViewController: DataLoadingViewController {
       editProfileView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
     ])
   }
-}
-
-extension EditProfileViewController: EditProfileViewDelegate {
-  func didTappedCancelButton(_ editProfileView: EditProfileView) {
-    self.dismiss(animated: true, completion: nil)
-  }
   
-  func didTappedDoneButton(_ editProfileView: EditProfileView, with user: NLPUser) {
-    showLoadingView()
-    DispatchQueue.global(qos: .utility).async {
-      UserDatabaseManager.shared.update(user) { [weak self] result in
-        guard let self = self else { return }
-        DispatchQueue.main.async {
-          self.dismissLoadingView()
+  private func updateUserData(_ user: NLPUser?) {
+    guard let user = user else { return }
+    UserDatabaseManager.shared.update(user) { result in
+      self.dismissLoadingView()
+      switch result {
+      case .success(_):
+        self.showAlert(title: "🎉", message: "정보 변경을 완료했습니다!") { _ in
+          self.dismiss(animated: true, completion: nil)
         }
-        switch result {
-        case .success(_):
-          self.showAlert(title: "🎉", message: "정보 변경을 완료했습니다!") { _ in
-            self.dismiss(animated: true, completion: nil)
-          }
-        case .failure(_):
-          self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!") { _ in
-            self.dismiss(animated: true, completion: nil)
-          }
+      case .failure(_):
+        self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!") { _ in
+          self.dismiss(animated: true, completion: nil)
         }
       }
     }
   }
   
-  func didTappedImageView(_ editProfileView: EditProfileView) {
+  private func uploadImage(data: Data, email: String) {
+    DispatchQueue.global(qos: .utility).async { [weak self] in
+      guard let self = self else { return }
+      StorageManager.shared.uploadImage(with: data, email: email) { url in
+        if let url = url {
+          self.updatedUser?.profilePhotoURL = url.absoluteString
+          self.updateUserData(self.updatedUser)
+        } else {
+          self.updatedUser?.profilePhotoURL = ""
+        }
+      }
+    }
+  }
+}
+
+extension EditProfileViewController: EditProfileViewDelegate {
+  func editProfileView(_ editProfileView: EditProfileView, cancelEdit button: UIBarButtonItem) {
+    dismiss(animated: true, completion: nil)
+  }
+  
+  func editProfileView(_ editProfileView: EditProfileView, doneEdit user: NLPUser, imageData: Data) {
+    showLoadingView()
+    updatedUser = user
+    uploadImage(data: imageData, email: user.email)
+  }
+  
+  func editProfileView(_ editProfileView: EditProfileView, didTapImageView: NLPProfilePhotoImageView) {
     let imagePickerController = UIImagePickerController()
     imagePickerController.allowsEditing = true
     imagePickerController.delegate = self

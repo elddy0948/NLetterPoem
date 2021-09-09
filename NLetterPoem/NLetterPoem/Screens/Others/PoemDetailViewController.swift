@@ -63,7 +63,9 @@ final class PoemDetailViewController: UIViewController {
       detailPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
     
-    if poem.authorEmail == user.email {
+    let isCameFromHome = navigationController?.viewControllers.first is HomeViewController
+    
+    if (poem.authorEmail == user.email) && !isCameFromHome {
       configureRightBarButtonItem()
     }
   }

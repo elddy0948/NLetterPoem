@@ -25,14 +25,13 @@ class NLPButton: UIButton {
     
     private func configure(title: String) {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .systemBackground
+        backgroundColor = .label
         setTitle(title, for: .normal)
-        setTitleColor(.label, for: .normal)
+        setTitleColor(.systemBackground, for: .normal)
         
         layer.cornerRadius = 16
         layer.masksToBounds = true
         layer.borderWidth = 3
-        layer.borderColor = UIColor.systemGray.cgColor
         
         addTarget(self, action: #selector(didTappedButton(_:)), for: .touchUpInside)
     }

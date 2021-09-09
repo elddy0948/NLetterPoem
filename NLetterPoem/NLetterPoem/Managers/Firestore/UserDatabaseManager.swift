@@ -108,12 +108,6 @@ extension UserDatabaseManager {
       }
   }
   
-  func addPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, ErrorType>) -> Void) {
-    reference.document(userEmail).updateData([
-      "poems": FieldValue.arrayUnion([poemID])
-    ])
-  }
-  
   func likedPoem(to userEmail: String, poemID: String, completed: @escaping (Result<String, ErrorType>) -> Void) {
     reference.document(userEmail).updateData([
       "likedPoem": FieldValue.arrayUnion([poemID])

@@ -22,11 +22,24 @@ final class PoemDatabaseManager: DatabaseRequest {
   func create<T>(_ object: T,
                  completed: @escaping (Result<ResultType, ErrorType>) -> Void) where T : Decodable, T : Encodable {
     guard let poem = object as? NLPPoem else { return }
+    
+    let batch = database.batch()
+    let poemRef = reference.document(poem.id)
+    let userRef = database.collection("users").document(poem.authorEmail)
+    
     do {
-      try reference.document(poem.id).setData(from: poem)
-      completed(.success(poem))
+      try batch.setData(from: poem, forDocument: poemRef)
+      batch.updateData([ "poems": FieldValue.arrayUnion([poem.id]) ], forDocument: userRef)
     } catch {
       completed(.failure(.failedCreatePoem))
+    }
+    
+    batch.commit { error in
+      if error != nil {
+        completed(.failure(.failedCreatePoem))
+      } else {
+        completed(.success(poem))
+      }
     }
   }
   

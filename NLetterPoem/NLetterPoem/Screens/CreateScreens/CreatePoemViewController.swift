@@ -72,6 +72,47 @@ class CreatePoemViewController: DataLoadingViewController {
       }
     })
   }
+  
+  private func createPoem(_ nlpPoem: NLPPoem) {
+    showLoadingView()
+    DispatchQueue.global(qos: .utility).async { [weak self] in
+      guard let self = self  else { return }
+      PoemDatabaseManager.shared.create(nlpPoem) { result in
+        self.dismissLoadingView()
+        switch result {
+        case .success(_):
+          self.showAlert(title: "🎉", message: "멋진 시네요!") { _ in
+            self.dismiss(animated: true, completion: nil)
+          }
+        case .failure(let error):
+          self.showAlert(title: "⚠️", message: error.message) { _ in
+            self.dismiss(animated: true, completion: nil)
+          }
+        }
+      }
+    }
+  }
+  
+  private func updatePoem(_ nlpPoem: NLPPoem) {
+    showLoadingView()
+    DispatchQueue.global(qos: .utility).async { [weak self] in
+      guard let self = self else { return }
+      self.dismissLoadingView()
+      PoemDatabaseManager.shared.update(nlpPoem) { result in
+        switch result {
+        case .success(let poem):
+          self.showAlert(title: "✅", message: "업데이트 완료!") { _ in
+            self.delegate?.createPoemViewController(self, didTapDone: poem)
+            self.dismiss(animated: true, completion: nil)
+          }
+        case .failure(let error):
+          self.showAlert(title: "⚠️", message: error.message) { _ in
+            self.dismiss(animated: true, completion: nil)
+          }
+        }
+      }
+    }
+  }
 }
 
 //MARK: - CreatePoemViewDelegate
@@ -85,10 +126,6 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
   }
   
   func createPoemView(_ createPoemView: CreatePoemView, didTapDone button: UIBarButtonItem, poem: String) {
-    showLoadingView()
-    let dispatchQueue = DispatchQueue(label: "com.howift.createPoem")
-    let dispatchGroup = DispatchGroup()
-    var createPoemError: String?
     let nlpPoem: NLPPoem?
     
     guard let user = user,
@@ -110,46 +147,11 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
     
     guard let nlpPoem = nlpPoem else { return }
     
-    dispatchQueue.async(group: dispatchGroup, execute: {
-      PoemDatabaseManager.shared.create(nlpPoem) { result in
-        switch result {
-        case .success(_):
-          debugPrint("Done!")
-        case .failure(let error):
-          createPoemError = error.message
-        }
-      }
-    })
-    
-    if action == .create {
-      dispatchQueue.async(group: dispatchGroup, execute: {
-        UserDatabaseManager.shared.addPoem(to: user.email, poemID: nlpPoem.id) { result in
-          switch result {
-          case .success(_):
-            debugPrint("Done!")
-          case .failure(let error):
-            createPoemError = error.message
-          }
-        }
-      })
-    }
-    
-    dispatchGroup.notify(queue: DispatchQueue.main) { [weak self] in
-      guard let self = self else { return }
-      self.dismissLoadingView()
-      if let error = createPoemError {
-        self.showAlert(title: "⚠️", message: error, action: { _ in
-          self.dismiss(animated: true, completion: nil)
-        })
-      } else {
-        self.showAlert(title: "🎉", message: "멋진 시네요!", action: { _ in
-          self.dismiss(animated: true, completion: {
-            if self.action == .edit {
-              self.delegate?.createPoemViewController(self, didTapDone: nlpPoem)
-            }
-          })
-        })
-      }
+    switch action {
+    case .create:
+      createPoem(nlpPoem)
+    case .edit:
+      updatePoem(nlpPoem)
     }
   }
 }

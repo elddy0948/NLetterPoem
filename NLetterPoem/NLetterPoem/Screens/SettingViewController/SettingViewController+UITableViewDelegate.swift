@@ -8,6 +8,9 @@ extension SettingViewController: UITableViewDelegate {
             didTapSignout()
         } else if cell.textLabel?.text == "회원탈퇴" {
             withdrawalAction()
+        } else if cell.textLabel?.text == "건의하기" {
+          let viewController = DeveloperInfoViewController()
+          navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }

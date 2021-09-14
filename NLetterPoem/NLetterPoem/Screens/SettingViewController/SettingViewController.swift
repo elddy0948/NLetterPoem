@@ -48,7 +48,7 @@ class SettingViewController: UIViewController {
     var list: [String] {
       switch self {
       case .general:
-        return ["고객센터"]
+        return ["건의하기"]
       case .signout:
         return ["로그아웃"]
       case .user:

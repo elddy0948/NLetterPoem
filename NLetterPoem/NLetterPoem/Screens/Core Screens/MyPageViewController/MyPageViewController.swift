@@ -15,7 +15,6 @@ class MyPageViewController: UIViewController {
         }
         self.navigationItem.title = self.user?.nickname
       }
-      myPageCollectionView?.reloadData()
       fetchPoems(with: user?.email)
     }
   }

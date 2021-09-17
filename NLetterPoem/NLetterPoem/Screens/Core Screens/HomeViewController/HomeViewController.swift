@@ -85,7 +85,7 @@ class HomeViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     let padding: CGFloat = 8
     let containerView = UIView(frame: CGRect(x: 0, y: 0,
-                                             width: screenWidth, height: 200))
+                                             width: screenWidth, height: 150))
     homeHeaderView = HomeHeaderView()
     containerView.addSubview(homeHeaderView)
     

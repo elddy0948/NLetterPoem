@@ -45,6 +45,7 @@
 		B45936C526AA95D600F51476 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B45936C426AA95D600F51476 /* NanumScript.ttc */; };
 		B45936C726AA964300F51476 /* BMYeongSung-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */; };
 		B45F804A26CBEF300013C54E /* DataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F804926CBEF300013C54E /* DataLoadingViewController.swift */; };
+		B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* HomeViewController.swift */; };
@@ -120,6 +121,7 @@
 		B45936C426AA95D600F51476 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
 		B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMYeongSung-Regular.otf"; sourceTree = "<group>"; };
 		B45F804926CBEF300013C54E /* DataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingViewController.swift; sourceTree = "<group>"; };
+		B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDatabaseManager.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */,
 				B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */,
 				B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */,
+				B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
 				B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */,
+				B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */,
 				B47B432126F0DAD3006C3EB6 /* DeveloperInfoViewController.swift in Sources */,
 				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
 				B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */,

@@ -152,7 +152,19 @@ final class PoemDetailViewController: UIViewController {
         }
       }
     })
-    let reportAction = UIAlertAction(title: "신고하기", style: .destructive, handler: nil)
+    let reportAction = UIAlertAction(title: "신고하기", style: .destructive, handler: { [weak self] action in
+      guard let self = self,
+            let currentUser = self.currentUser,
+            let poem = self.poem else { return }
+      ReportDatabaseManager.shared.create(user: currentUser.email, reportedPoem: poem, reportMessage: "신고!") { result in
+        switch result {
+        case .success(let message):
+          self.showAlert(title: "✅", message: message, action: nil)
+        case .failure(let error):
+          self.showAlert(title: "⚠️", message: error.message, action: nil)
+        }
+      }
+    })
     let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
     alertController.addAction(blockAction)
     alertController.addAction(reportAction)

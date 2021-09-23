@@ -339,7 +339,6 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
-				B4E4957526F796E8000EE48B /* NLetterPoem.entitlements */,
 				B4C6404726806F05007A7B59 /* Extensions */,
 				B4F259892692D02D00FF95A4 /* Fonts */,
 				B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */,
@@ -347,6 +346,7 @@
 				B42EE58F267F175C001848A5 /* Managers */,
 				B478752C2671FA82002FE83F /* Models */,
 				B4B03B4126DF320800B59BF7 /* Networking */,
+				B4E4957526F796E8000EE48B /* NLetterPoem.entitlements */,
 				B42EE57F267EFA39001848A5 /* Screens */,
 				B42EE58A267F04FB001848A5 /* Utilities */,
 				B42EE582267EFD43001848A5 /* Views */,

@@ -66,7 +66,9 @@ final class PoemDetailViewController: UIViewController {
     let isCameFromHome = navigationController?.viewControllers.first is HomeViewController
     
     if (poem.authorEmail == user.email) && !isCameFromHome {
-      configureRightBarButtonItem()
+      configureRightBarButtonItem(isEditable: true)
+    } else {
+      configureRightBarButtonItem(isEditable: false)
     }
   }
   
@@ -85,13 +87,17 @@ final class PoemDetailViewController: UIViewController {
   }
   
   //MARK: - UI Logic
-  private func configureRightBarButtonItem() {
-    let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
+  private func configureRightBarButtonItem(isEditable: Bool) {
+    let reportBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "megaphone"),
+                                              style: .plain,
+                                              target: self,
+                                              action: #selector(reportButtonAction(_:)))
+    navigationItem.rightBarButtonItem = reportBarButtonItem
+    if isEditable {
+      let editBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
                                              target: self,
                                              action: #selector(editButtonAction(_:)))
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self else { return }
-      self.navigationItem.rightBarButtonItem = rightBarButtonItem
+      navigationItem.rightBarButtonItems?.append(editBarButtonItem)
     }
   }
   
@@ -124,6 +130,34 @@ final class PoemDetailViewController: UIViewController {
   @objc func editButtonAction(_ sender: UIBarButtonItem) {
     let alertController = configureAlertController()
     present(alertController, animated: true, completion: nil)
+  }
+  
+  @objc func reportButtonAction(_ sender: UIBarButtonItem) {
+    self.present(configureReportAlertController(), animated: true, completion: nil)
+  }
+  
+  private func configureReportAlertController() -> UIAlertController {
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    let blockAction = UIAlertAction(title: "사용자 차단하기", style: .destructive, handler: { [weak self] action in
+      guard let self = self,
+            let currentUser = self.currentUser,
+            let poem = self.poem else { return }
+      UserDatabaseManager.shared.block(userEmail: currentUser.email,
+                                       blockEmail: poem.authorEmail) { result in
+        switch result {
+        case .success(let message):
+          self.showAlert(title: "✅", message: message, action: nil)
+        case .failure(let error):
+          self.showAlert(title: "⚠️", message: error.message, action: nil)
+        }
+      }
+    })
+    let reportAction = UIAlertAction(title: "신고하기", style: .destructive, handler: nil)
+    let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+    alertController.addAction(blockAction)
+    alertController.addAction(reportAction)
+    alertController.addAction(cancelAction)
+    return alertController
   }
   
   private func configureAlertController() -> UIAlertController {

@@ -136,4 +136,16 @@ extension UserDatabaseManager {
       completed(.success("좋아요가 취소되었습니다."))
     }
   }
+  
+  func block(userEmail: String, blockEmail: String, completed: @escaping (Result<String, ErrorType>) -> Void) {
+    reference.document(userEmail).updateData([
+      "blockedUser": FieldValue.arrayUnion([blockEmail])
+    ]) { error in
+      if error != nil {
+        completed(.failure(.failedBlockUser))
+        return
+      }
+      completed(.success("유저를 차단했어요!"))
+    }
+  }
 }

@@ -56,5 +56,11 @@ extension EditProfileViewController: EditProfileViewDelegate {
   func editProfileView(_ editProfileView: EditProfileView, doneEdit user: NLPUser) {
     showLoadingView()
     updatedUser = user
+    DispatchQueue.global(qos: .utility).async { [weak self] in
+      guard let self = self,
+            let updatedUser = self.updatedUser else { return }
+      self.updateUserData(updatedUser)
+    
+    }
   }
 }

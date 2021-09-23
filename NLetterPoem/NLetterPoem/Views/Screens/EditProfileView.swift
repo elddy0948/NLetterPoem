@@ -75,7 +75,7 @@ class EditProfileView: UIView {
     nicknameTextField.text = user.nickname
     
     NSLayoutConstraint.activate([
-      nicknameTextField.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+      nicknameTextField.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 16),
       nicknameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
       nicknameTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
       nicknameTextField.heightAnchor.constraint(equalToConstant: 52),

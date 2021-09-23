@@ -8,13 +8,13 @@ final class MyPageHeaderView: UICollectionReusableView {
   static let reuseIdentifier = String(describing: MyPageHeaderView.self)
   
   //MARK: - Views
+  private(set) var profileImageView: UIImageView!
   private(set) var userNameLabel: NLPProfileLabel!
   private(set) var bioLabel: NLPProfileLabel!
   private(set) var editProfileButton: NLPButton!
   private(set) var rankHorizontalStackView: UIStackView!
   private(set) var rankImageView: UIImageView!
   private(set) var firesLabel: UILabel!
-  private(set) var horizontalStackView: UIStackView!
   private(set) var verticalStackView: UIStackView!
   
   //MARK: - Properties
@@ -35,6 +35,7 @@ final class MyPageHeaderView: UICollectionReusableView {
   func configureUser(with user: NLPUser?, isEditButtonHidden: Bool) {
     guard let user = user else { return }
     bioLabel.text = user.bio
+    userNameLabel.text = user.nickname
     editProfileButton.isHidden = isEditButtonHidden
     firesLabel.text = "\(user.fires)🔥"
   }
@@ -54,9 +55,10 @@ final class MyPageHeaderView: UICollectionReusableView {
     verticalStackView.spacing = 8
     verticalStackView.translatesAutoresizingMaskIntoConstraints = false
     
+    configureProfileImageView()
+    configureUsernameLabel()
+    configureBioLabel()
     configureLayoutUI()
-    
-    configureHorizontalStackView()
     configureRankStackView()
     
     editProfileButton = NLPButton(title: "프로필 수정")
@@ -64,6 +66,20 @@ final class MyPageHeaderView: UICollectionReusableView {
                                 for: .touchUpInside)
     
     verticalStackView.addArrangedSubview(editProfileButton)
+  }
+  
+  private func configureProfileImageView() {
+    profileImageView = UIImageView()
+    addSubview(profileImageView)
+    
+    profileImageView.translatesAutoresizingMaskIntoConstraints = false
+    profileImageView.contentMode = .scaleAspectFit
+    profileImageView.image = UIImage(named: Constants.profileImage)
+  }
+  
+  private func configureUsernameLabel() {
+    userNameLabel = NLPProfileLabel(type: .nickname)
+    addSubview(userNameLabel)
   }
   
   private func configureRankStackView() {
@@ -90,23 +106,23 @@ final class MyPageHeaderView: UICollectionReusableView {
     rankHorizontalStackView.addArrangedSubview(firesLabel)
   }
   
-  private func configureHorizontalStackView() {
-    horizontalStackView = UIStackView()
-    verticalStackView.addArrangedSubview(horizontalStackView)
-    
-    horizontalStackView.axis = .horizontal
-    horizontalStackView.distribution = .fill
-    horizontalStackView.spacing = 16
-    
+  private func configureBioLabel() {
     bioLabel = NLPProfileLabel(type: .bio)
-    
-    horizontalStackView.addArrangedSubview(bioLabel)
+    verticalStackView.addArrangedSubview(bioLabel)
   }
   
   private func configureLayoutUI() {
-    let padding: CGFloat = 8
+    let padding: CGFloat = 16
     NSLayoutConstraint.activate([
-      verticalStackView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+      profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+      profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+      profileImageView.heightAnchor.constraint(equalToConstant: 50),
+      profileImageView.widthAnchor.constraint(equalToConstant: 50),
+      userNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
+      userNameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: padding),
+      userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: padding / 2),
+      userNameLabel.heightAnchor.constraint(equalToConstant: 48),
+      verticalStackView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding),
       verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
       verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
     ])

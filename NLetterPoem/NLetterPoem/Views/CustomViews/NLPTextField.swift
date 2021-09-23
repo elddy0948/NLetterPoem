@@ -43,15 +43,13 @@ class NLPTextField: UITextField {
   //MARK: - Privates
   private func configure(with fieldType: FieldType) {
     translatesAutoresizingMaskIntoConstraints = false
-    backgroundColor = .systemBackground
+    backgroundColor = .secondarySystemFill
     placeholder = fieldType.rawValue
     keyboardType = fieldType.keyBoardType
     isSecureTextEntry = fieldType.isSecureTextEntry
     
     layer.cornerRadius = 16
     layer.masksToBounds = true
-    layer.borderWidth = 3
-    layer.borderColor = UIColor.systemGray.cgColor
     
     autocorrectionType = .no
     autocapitalizationType = .none

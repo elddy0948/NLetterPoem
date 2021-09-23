@@ -15,7 +15,6 @@ class MyPageViewController: UIViewController {
         }
         self.navigationItem.title = self.user?.nickname
       }
-      myPageCollectionView?.reloadData()
       fetchPoems(with: user?.email)
     }
   }
@@ -79,17 +78,31 @@ class MyPageViewController: UIViewController {
   
   private func fetchCurrentUser(with email: String?) {
     guard let email = email else { return }
-    UserDatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
-      guard let self = self else { return }
-      self.user = user
+    DispatchQueue.global(qos: .utility).async {
+      UserDatabaseManager.shared.read(email) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let user):
+          self.user = user
+        case .failure(let error):
+          self.showAlert(title: "⚠️", message: error.message, action: nil)
+        }
+      }
     }
   }
   
   private func fetchPoems(with email: String?) {
     guard let email = email else { return }
-    PoemDatabaseManager.shared.fetchUserPoems(userEmail: email) { [weak self] poems in
-      guard let self = self else { return }
-      self.poems = poems
+    DispatchQueue.global(qos: .utility).async {
+      PoemDatabaseManager.shared.fetchUserPoems(userEmail: email, sortType: .recent) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let fetchedPoems):
+          self.poems = fetchedPoems
+        case .failure(_):
+          self.poems = []
+        }
+      }
     }
   }
   

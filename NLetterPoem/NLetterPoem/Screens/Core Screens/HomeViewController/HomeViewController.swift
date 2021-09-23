@@ -7,7 +7,6 @@ class HomeViewController: UIViewController {
   private(set) var homeHeaderView: HomeHeaderView!
   private(set) var homeTableView: HomeTableView!
   private(set) var rightBarButtonItem: UIBarButtonItem!
-  var activityIndicatorView = UIActivityIndicatorView(style: .large)
   
   //MARK: - Properties
   var todayTopic: String? {
@@ -24,31 +23,29 @@ class HomeViewController: UIViewController {
     }
   }
   
+  var user: User?
+  
   private var handler: AuthStateDidChangeListenerHandle?
   
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationController?.navigationBar.prefersLargeTitles = true
+    
     configureRightBarButtonItem()
     configure()
     configureHeaderView()
-    view.addSubview(activityIndicatorView)
-    activityIndicatorView.hidesWhenStopped = true
+    fetchTodayTopic()
+    fetchTodayPoems()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    fetchTodayTopic()
-    fetchTodayPoems()
-    
-    handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
-      guard let self = self,
-            let user = user,
-            let email = user.email else { return }
-      
-      PoemDatabaseManager.shared.fetchExistPoem(email: email,
-                                                createdAt: Date()) { poem in
-        self.rightBarButtonItem.isEnabled = !(poem != nil)
+    DispatchQueue.global(qos: .utility).async { [weak self] in
+      self?.handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+        guard let self = self,
+              let user = user else { return }
+        self.user = user
       }
     }
   }
@@ -70,9 +67,9 @@ class HomeViewController: UIViewController {
   
   private func configure() {
     homeTableView = HomeTableView()
-    view.backgroundColor = .systemBackground
     view = homeTableView
     
+    homeTableView.backgroundColor = .systemBackground
     homeTableView.delegate = self
     homeTableView.dataSource = self
     homeTableView.homeTableViewDelegate = self
@@ -88,7 +85,7 @@ class HomeViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width
     let padding: CGFloat = 8
     let containerView = UIView(frame: CGRect(x: 0, y: 0,
-                                             width: screenWidth, height: 200))
+                                             width: screenWidth, height: 150))
     homeHeaderView = HomeHeaderView()
     containerView.addSubview(homeHeaderView)
     
@@ -107,27 +104,35 @@ class HomeViewController: UIViewController {
   }
   
   func fetchTodayTopic() {
-    PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
-      guard let self = self else { return }
-      guard let topic = topic else {
-        self.todayTopic = ""
-        return
+    DispatchQueue.global(qos: .utility).async {
+      ToopicDatabaseManager.shared.read(date: Date()) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let topic):
+          self.todayTopic = topic
+        case .failure(_):
+          self.todayTopic = ""
+        }
       }
-      self.todayTopic = topic
     }
   }
   
   func fetchTodayPoems() {
-    PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
-      guard let self = self else { return }
-      self.todayPoems = poems
+    DispatchQueue.global(qos: .utility).async {
+      PoemDatabaseManager.shared.fetchTodayPoems(date: Date(), sortType: .recent) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let fetchedPoems):
+          self.todayPoems = fetchedPoems
+        case .failure(_):
+          self.todayPoems = []
+        }
+      }
     }
   }
   
   func updateTableViewContents() {
-    activityIndicatorView.startAnimating()
     DispatchQueue.main.async { [weak self] in
-      self?.activityIndicatorView.stopAnimating()
       guard let self = self else { return }
       self.homeHeaderView.setTopic(self.todayTopic ?? "")
       self.homeTableView.reloadData()
@@ -137,6 +142,7 @@ class HomeViewController: UIViewController {
   //MARK: - Actions
   @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
     let viewController = CreateTopicViewController()
+    viewController.user = user
     let createTopicNavigationController = UINavigationController(rootViewController: viewController)
     createTopicNavigationController.modalPresentationStyle = .fullScreen
     createTopicNavigationController.navigationBar.tintColor = .label

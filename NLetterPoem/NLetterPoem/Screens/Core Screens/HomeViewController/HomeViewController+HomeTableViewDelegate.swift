@@ -5,17 +5,31 @@ extension HomeViewController: HomeTableViewDelegate {
     let dispatchGroup = DispatchGroup()
     
     dispatchGroup.enter()
-    PoemDatabaseManager.shared.fetchTodayTopic(date: Date()) { [weak self] topic in
-      guard let self = self else { return }
-      defer { dispatchGroup.leave() }
-      self.todayTopic = topic
+    DispatchQueue.global(qos: .utility).async {
+      ToopicDatabaseManager.shared.read(date: Date()) { [weak self] result in
+        defer { dispatchGroup.leave() }
+        guard let self = self else { return }
+        switch result {
+        case .success(let topic):
+          self.todayTopic = topic
+        case .failure(_):
+          self.todayTopic = ""
+        }
+      }
     }
     
     dispatchGroup.enter()
-    PoemDatabaseManager.shared.fetchTodayPoems(date: Date()) { [weak self] poems in
-      guard let self = self else { return }
-      defer { dispatchGroup.leave() }
-      self.todayPoems = poems
+    DispatchQueue.global(qos: .utility).async {
+      PoemDatabaseManager.shared.fetchTodayPoems(date: Date(), sortType: .recent) { [weak self] result in
+        defer { dispatchGroup.leave() }
+        guard let self = self else { return }
+        switch result {
+        case .success(let fetchedPoems):
+          self.todayPoems = fetchedPoems
+        case .failure(_):
+          self.todayPoems = []
+        }
+      }
     }
     
     dispatchGroup.notify(queue: DispatchQueue.main) {

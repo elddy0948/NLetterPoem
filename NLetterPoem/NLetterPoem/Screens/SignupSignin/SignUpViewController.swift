@@ -1,7 +1,7 @@
 import UIKit
 import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: DataLoadingViewController {
   
   //MARK: - Views
   private(set) var navigationBar: NLPNavigationBar!
@@ -97,17 +97,20 @@ extension SignUpViewController: SignUpViewDelegate {
   }
   
   private func createUser(with info: SignupInfo) {
-    AuthManager.shared.createUser(with: info) { [weak self] result in
+    showLoadingView()
+    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       guard let self = self else { return }
-      switch result {
-      case .success(let message):
-        self.storeUserInDatabase(with: info)
-        debugPrint(message)
-      case .failure(_):
-        self.showAlert(title: "⚠️",
-                       message: "회원가입이 실패했어요!\n다시 시도해주세요!",
-                       action: nil)
-        return
+      AuthManager.shared.createUser(with: info) { result in
+        switch result {
+        case .success(let message):
+          self.storeUserInDatabase(with: info)
+          debugPrint(message)
+        case .failure(_):
+          self.showAlert(title: "⚠️",
+                         message: "회원가입이 실패했어요!\n다시 시도해주세요!",
+                         action: nil)
+          return
+        }
       }
     }
   }
@@ -118,18 +121,19 @@ extension SignUpViewController: SignUpViewDelegate {
                        nickname: info.nickname,
                        bio: "")
     
-    UserDatabaseManager.shared.createUser(with: user) { [weak self] error in
+    UserDatabaseManager.shared.create(user) { [weak self] result in
       guard let self = self else { return }
-      if let _ = error {
+      self.dismissLoadingView()
+      switch result {
+      case .success(_):
+        self.showAlert(title: "🎉",
+                       message: "회원가입을 축하합니다!") { _ in
+          self.dismiss(animated: true, completion: nil)
+        }
+      case .failure(_):
         self.showAlert(title: "⚠️",
                        message: "회원 저장에 실패했어요!\n다시 시도해주세요!",
                        action: nil)
-        return
-      }
-      
-      self.showAlert(title: "🎉",
-                     message: "회원가입을 축하합니다!") { _ in
-        self.dismiss(animated: true, completion: nil)
       }
     }
   }

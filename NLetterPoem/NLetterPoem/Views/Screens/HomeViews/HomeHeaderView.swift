@@ -19,11 +19,6 @@ final class HomeHeaderView: UIView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        
-        layer.borderColor = UIColor.systemGray.cgColor
-        layer.cornerRadius = 16
-        layer.borderWidth = 3
-        layer.masksToBounds = true
     }
     
     private func configureTitleLabel() {

@@ -63,19 +63,24 @@ final class PoemDetailViewController: UIViewController {
       detailPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
     
-    //If visitor is poem's author can show 'Edit' button
-    if poem.authorEmail == user.email {
+    let isCameFromHome = navigationController?.viewControllers.first is HomeViewController
+    
+    if (poem.authorEmail == user.email) && !isCameFromHome {
       configureRightBarButtonItem()
     }
   }
   
   private func configureUser(email: String) {
-    UserDatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
-      guard let self = self,
-            let user = user else {
-        return
+    DispatchQueue.global(qos: .userInitiated).async {
+      UserDatabaseManager.shared.read(email) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let user):
+          self.currentUser = user
+        case .failure(let error):
+          self.showAlert(title: "⚠️", message: error.message, action: nil)
+        }
       }
-      self.currentUser = user
     }
   }
   
@@ -90,21 +95,28 @@ final class PoemDetailViewController: UIViewController {
     }
   }
   
-  
   //MARK: - LikeCount Logic
   private func updateLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
-    PoemDatabaseManager.shared.updatePoemLikeCount(id: id,
-                                                   authorEmail: authorEmail,
-                                                   isIncrease: isIncrease)
+    DispatchQueue.global(qos: .userInitiated).async {
+      PoemDatabaseManager.shared.updateLikeCount(poemID: id,
+                                                 author: authorEmail,
+                                                 isIncrease: isIncrease) { error in
+        if error != nil {
+          self.showAlert(title: "⚠️", message: "문제가 발생했습니다!\n다시 시도해주세요!") { _ in
+            self.dismiss(animated: true, completion: nil)
+          }
+        }
+      }
+    }
   }
   
   private func updateUserLikedPoem(email: String, id: String, isRemove: Bool) {
-    if isRemove {
-      UserDatabaseManager.shared.removeLikedPoem(userEmail: email,
-                                                 poemID: id)
-    } else {
-      UserDatabaseManager.shared.addLikedPoem(userEmail: email,
-                                              poemID: id)
+    DispatchQueue.global(qos: .userInitiated).async {
+      if isRemove {
+        UserDatabaseManager.shared.unLikedPoem(to: email, poemID: id) { _ in }
+      } else {
+        UserDatabaseManager.shared.likedPoem(to: email, poemID: id) { _ in }
+      }
     }
   }
   
@@ -151,18 +163,11 @@ final class PoemDetailViewController: UIViewController {
   private func deletePoem() {
     guard let poem = poem,
           let currentUser = currentUser else { return }
-    PoemDatabaseManager.shared.deletePoem(poem,
-                                          requester: currentUser.email) { result in
-      switch result {
-      case .success(let message):
-        print(message)
-      case .failure(let error):
-        print(error.message)
-      }
-    }
     
-    UserDatabaseManager.shared.removePoem(userEmail: currentUser.email,
-                                          poemID: poem.id)
+    DispatchQueue.global(qos: .utility).async {
+      PoemDatabaseManager.shared.delete(poem.id) { _ in }
+      UserDatabaseManager.shared.deletePoem(to: currentUser.email, poemID: poem.id) { _ in }
+    }
   }
 }
 
@@ -172,13 +177,18 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
     guard let email = poem?.authorEmail else { return }
     let viewController = MyPageViewController()
     
-    UserDatabaseManager.shared.fetchUserInfo(with: email) { [weak self] user in
-      guard let self = self,
-            let user = user else { return }
-      viewController.user = user
-      self.navigationController?.pushViewController(viewController, animated: true)
+    DispatchQueue.global(qos: .userInitiated).async {
+      UserDatabaseManager.shared.read(email) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let user):
+          viewController.user = user
+          self.navigationController?.pushViewController(viewController, animated: true)
+        case .failure(let error):
+          self.showAlert(title: "⚠️", message: error.message, action: nil)
+        }
+      }
     }
-    
   }
   
   func didTappedFireButton(_ detailPoemView: DetailPoemView,

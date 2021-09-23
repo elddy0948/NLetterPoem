@@ -54,7 +54,7 @@ final class SignInView: UIView {
     signinStackView.translatesAutoresizingMaskIntoConstraints = false
     signinStackView.axis = .vertical
     signinStackView.distribution = .fill
-    signinStackView.spacing = 4
+    signinStackView.spacing = 8
     
     NSLayoutConstraint.activate([
       signinStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: padding),

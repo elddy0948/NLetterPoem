@@ -59,11 +59,9 @@ final class CreateTopicViewController: DataLoadingViewController {
 //MARK: - CreateTopicViewDelegate
 extension CreateTopicViewController: CreateTopicViewDelegate {
   func createTopicView(_ createTopicView: CreateTopicView, didTapNext topic: String?) {
-    //TODO: - 특수문자 불가능하게 해주기
-    // - 글자수 제한
     guard let topic = topic,
           topic != "" else {
-      self.showAlert(title: "⚠️", message: "주제를 입력해주세요!", action: nil)
+      self.showAlert(title: "⚠️", message: "주제를 입력해주세요!\n특수문자는 사용이 불가능합니다!", action: nil)
       return
     }
     

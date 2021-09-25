@@ -26,8 +26,8 @@ class HomeViewController: DataLoadingViewController {
   var user: User?
   var nlpUser: NLPUser? {
     didSet {
-      fetchTodayTopic()
-      fetchTodayPoems()
+      fetchTodayTopic(group: nil)
+      fetchTodayPoems(group: nil)
     }
   }
   
@@ -118,9 +118,14 @@ class HomeViewController: DataLoadingViewController {
     homeTableView.tableHeaderView = containerView
   }
   
-  func fetchTodayTopic() {
+  func fetchTodayTopic(group: DispatchGroup?) {
     DispatchQueue.global(qos: .utility).async {
       ToopicDatabaseManager.shared.read(date: Date()) { [weak self] result in
+        defer {
+          if let group = group {
+            group.leave()
+          }
+        }
         guard let self = self else { return }
         switch result {
         case .success(let topic):
@@ -132,9 +137,14 @@ class HomeViewController: DataLoadingViewController {
     }
   }
   
-  func fetchTodayPoems() {
+  func fetchTodayPoems(group: DispatchGroup?) {
     DispatchQueue.global(qos: .utility).async {
       PoemDatabaseManager.shared.fetchTodayPoems(date: Date(), sortType: .recent) { [weak self] result in
+        defer {
+          if let group = group {
+            group.leave()
+          }
+        }
         guard let self = self,
               let nlpUser = self.nlpUser else { return }
         switch result {

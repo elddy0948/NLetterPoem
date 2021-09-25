@@ -27,3 +27,4 @@ GoogleService-info.plist
 Privacy.swift
 ## Gcc Patch
 /*.gcno
+*.xcuserstate

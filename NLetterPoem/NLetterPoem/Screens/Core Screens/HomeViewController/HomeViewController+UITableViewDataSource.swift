@@ -32,6 +32,7 @@ extension HomeViewController: UITableViewDataSource {
       cell.setCellData(shortDes: "\"\(shortDescription)\"",
                        writer: "- \(poem.author) -",
                        topic: poem.topic)
+      
       return cell
     }
     let cell = tableView.dequeueReusableCell(withIdentifier: HomeEmptyCell.reuseIdentifier,

@@ -13,6 +13,7 @@ enum UserFirestoreError: Error {
   case failedToFetchTopTenUsers
   case failedDeletePoemFromUser
   case failedUnlikePoem
+  case failedBlockUser
   
   var message: String {
     switch self {
@@ -30,6 +31,8 @@ enum UserFirestoreError: Error {
       return "삭제에 실패했습니다!\n다시 시도해주세요!🙏"
     case .failedUnlikePoem:
       return "오류가 발생했습니다!\n다시 시도해주세요!🙏"
+    case .failedBlockUser:
+      return "차단에 실패했습니다!\n다시 시도해주세요!🙏"
     }
   }
 }
@@ -73,4 +76,14 @@ enum TopicFirestoreError: Error {
 
 enum AuthError: Error {
   case failedDeleteUser
+}
+
+enum ReportError: Error {
+  case failedReport
+  var message: String {
+    switch self {
+    case .failedReport:
+      return "신고에 실패했습니다!\n다시 시도해주세요!🙏"
+    }
+  }
 }

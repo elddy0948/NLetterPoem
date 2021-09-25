@@ -46,20 +46,6 @@ class EditProfileViewController: DataLoadingViewController {
       }
     }
   }
-  
-  private func uploadImage(data: Data, email: String) {
-    DispatchQueue.global(qos: .utility).async { [weak self] in
-      guard let self = self else { return }
-      StorageManager.shared.uploadImage(with: data, email: email) { url in
-        if let url = url {
-          self.updatedUser?.profilePhotoURL = url.absoluteString
-          self.updateUserData(self.updatedUser)
-        } else {
-          self.updatedUser?.profilePhotoURL = ""
-        }
-      }
-    }
-  }
 }
 
 extension EditProfileViewController: EditProfileViewDelegate {
@@ -67,32 +53,14 @@ extension EditProfileViewController: EditProfileViewDelegate {
     dismiss(animated: true, completion: nil)
   }
   
-  func editProfileView(_ editProfileView: EditProfileView, doneEdit user: NLPUser, imageData: Data) {
+  func editProfileView(_ editProfileView: EditProfileView, doneEdit user: NLPUser) {
     showLoadingView()
     updatedUser = user
-    uploadImage(data: imageData, email: user.email)
-  }
-  
-  func editProfileView(_ editProfileView: EditProfileView, didTapImageView: NLPProfilePhotoImageView) {
-    let imagePickerController = UIImagePickerController()
-    imagePickerController.allowsEditing = true
-    imagePickerController.delegate = self
-    imagePickerController.sourceType = .photoLibrary
-    present(imagePickerController, animated: true, completion: nil)
-  }
-}
-
-extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    var selectedImage: UIImage
+    DispatchQueue.global(qos: .utility).async { [weak self] in
+      guard let self = self,
+            let updatedUser = self.updatedUser else { return }
+      self.updateUserData(updatedUser)
     
-    if let possibleImage = info[.editedImage] as? UIImage {
-      selectedImage = possibleImage
-    } else if let possibleImage = info[.originalImage] as? UIImage {
-      selectedImage = possibleImage
-    } else { return }
-    
-    editProfileView.setProfileImage(with: selectedImage)
-    dismiss(animated: true, completion: nil)
+    }
   }
 }

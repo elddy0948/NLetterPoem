@@ -10,9 +10,7 @@ class MyPageViewController: UIViewController {
   var user: NLPUser? {
     didSet {
       DispatchQueue.main.async { [weak self] in
-        guard let self = self else {
-          return
-        }
+        guard let self = self else { return }
         self.navigationItem.title = self.user?.nickname
       }
       fetchPoems(with: user?.email)
@@ -34,8 +32,7 @@ class MyPageViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBar.prefersLargeTitles = true
-    navigationItem.largeTitleDisplayMode = .always
+    navigationController?.navigationBar.prefersLargeTitles = false
     
     let email: String?
     if user == nil {

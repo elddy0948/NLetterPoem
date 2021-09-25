@@ -117,7 +117,6 @@ extension SignUpViewController: SignUpViewDelegate {
   
   private func storeUserInDatabase(with info: SignupInfo) {
     let user = NLPUser(email: info.email,
-                       profilePhotoURL: "",
                        nickname: info.nickname,
                        bio: "")
     

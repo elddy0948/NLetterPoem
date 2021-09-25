@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: DataLoadingViewController {
   
   //MARK: - Views
   private(set) var homeHeaderView: HomeHeaderView!
@@ -24,6 +24,12 @@ class HomeViewController: UIViewController {
   }
   
   var user: User?
+  var nlpUser: NLPUser? {
+    didSet {
+      fetchTodayTopic()
+      fetchTodayPoems()
+    }
+  }
   
   private var handler: AuthStateDidChangeListenerHandle?
   
@@ -35,8 +41,8 @@ class HomeViewController: UIViewController {
     configureRightBarButtonItem()
     configure()
     configureHeaderView()
-    fetchTodayTopic()
-    fetchTodayPoems()
+//    fetchTodayTopic()
+//    fetchTodayPoems()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +50,16 @@ class HomeViewController: UIViewController {
     DispatchQueue.global(qos: .utility).async { [weak self] in
       self?.handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
         guard let self = self,
-              let user = user else { return }
+              let user = user,
+              let email = user.email else { return }
+        UserDatabaseManager.shared.read(email) { result in
+          switch result {
+          case .success(let user):
+            self.nlpUser = user
+          case .failure(let error):
+            debugPrint(error.message)
+          }
+        }
         self.user = user
       }
     }
@@ -120,10 +135,13 @@ class HomeViewController: UIViewController {
   func fetchTodayPoems() {
     DispatchQueue.global(qos: .utility).async {
       PoemDatabaseManager.shared.fetchTodayPoems(date: Date(), sortType: .recent) { [weak self] result in
-        guard let self = self else { return }
+        guard let self = self,
+              let nlpUser = self.nlpUser else { return }
         switch result {
         case .success(let fetchedPoems):
-          self.todayPoems = fetchedPoems
+          self.todayPoems = fetchedPoems.filter({ poem in
+            !nlpUser.blockedUser.contains(poem.authorEmail)
+          })
         case .failure(_):
           self.todayPoems = []
         }

@@ -1,121 +1,134 @@
 import UIKit
 
 protocol MyPageHeaderViewDelegate: AnyObject {
-    func didTappedEditProfileButton(_ sender: NLPButton)
+  func didTappedEditProfileButton(_ sender: NLPButton)
 }
 
 final class MyPageHeaderView: UICollectionReusableView {
-    static let reuseIdentifier = String(describing: MyPageHeaderView.self)
+  static let reuseIdentifier = String(describing: MyPageHeaderView.self)
+  
+  //MARK: - Views
+  private(set) var profileImageView: UIImageView!
+  private(set) var userNameLabel: NLPProfileLabel!
+  private(set) var bioLabel: NLPProfileLabel!
+  private(set) var editProfileButton: NLPButton!
+  private(set) var rankHorizontalStackView: UIStackView!
+  private(set) var rankImageView: UIImageView!
+  private(set) var firesLabel: UILabel!
+  private(set) var verticalStackView: UIStackView!
+  
+  //MARK: - Properties
+  private var user: NLPUser!
+  weak var delegate: MyPageHeaderViewDelegate?
+  
+  //MARK: - initializer
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    configure()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  //MARK: - Configure Mypage Data
+  func configureUser(with user: NLPUser?, isEditButtonHidden: Bool) {
+    guard let user = user else { return }
+    bioLabel.text = user.bio
+    userNameLabel.text = user.nickname
+    editProfileButton.isHidden = isEditButtonHidden
+    firesLabel.text = "\(user.fires)🔥"
+  }
+  
+  //MARK: - Privates
+  private func configure() {
+    translatesAutoresizingMaskIntoConstraints = false
+    configureStackView()
+  }
+  
+  private func configureStackView() {
+    verticalStackView = UIStackView()
+    addSubview(verticalStackView)
     
-    //MARK: - Views
-    private(set) var profilePhotoImageView: NLPProfilePhotoImageView!
-    private(set) var bioLabel: NLPProfileLabel!
-    private(set) var editProfileButton: NLPButton!
-    private(set) var rankHorizontalStackView: UIStackView!
-    private(set) var rankImageView: UIImageView!
-    private(set) var firesLabel: UILabel!
-    private(set) var horizontalStackView: UIStackView!
-    private(set) var verticalStackView: UIStackView!
+    verticalStackView.axis = .vertical
+    verticalStackView.distribution = .fill
+    verticalStackView.spacing = 8
+    verticalStackView.translatesAutoresizingMaskIntoConstraints = false
     
-    //MARK: - Properties
-    private var user: NLPUser!
-    weak var delegate: MyPageHeaderViewDelegate?
+    configureProfileImageView()
+    configureUsernameLabel()
+    configureBioLabel()
+    configureLayoutUI()
+    configureRankStackView()
     
-    //MARK: - initializer
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
-    }
+    editProfileButton = NLPButton(title: "프로필 수정")
+    editProfileButton.addTarget(self, action: #selector(didTappedEditProfileButton(_:)),
+                                for: .touchUpInside)
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    verticalStackView.addArrangedSubview(editProfileButton)
+  }
+  
+  private func configureProfileImageView() {
+    profileImageView = UIImageView()
+    addSubview(profileImageView)
     
-    //MARK: - Configure Mypage Data
-    func configureUser(with user: NLPUser?, isEditButtonHidden: Bool) {
-        guard let user = user else { return }
-        bioLabel.text = user.bio
-        profilePhotoImageView.setImage(with: user.profilePhotoURL)
-        editProfileButton.isHidden = isEditButtonHidden
-        firesLabel.text = "\(user.fires)🔥"
-    }
+    profileImageView.translatesAutoresizingMaskIntoConstraints = false
+    profileImageView.contentMode = .scaleAspectFit
+    profileImageView.image = UIImage(named: Constants.profileImage)
+  }
+  
+  private func configureUsernameLabel() {
+    userNameLabel = NLPProfileLabel(type: .nickname)
+    addSubview(userNameLabel)
+  }
+  
+  private func configureRankStackView() {
+    rankHorizontalStackView = UIStackView()
+    verticalStackView.addArrangedSubview(rankHorizontalStackView)
     
-    //MARK: - Privates
-    private func configure() {
-        translatesAutoresizingMaskIntoConstraints = false
-        configureStackView()
-    }
+    rankHorizontalStackView.axis = .horizontal
+    rankHorizontalStackView.distribution = .fill
     
-    private func configureStackView() {
-        verticalStackView = UIStackView()
-        addSubview(verticalStackView)
-        
-        verticalStackView.axis = .vertical
-        verticalStackView.distribution = .fill
-        verticalStackView.spacing = 8
-        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        configureLayoutUI()
-        
-        configureHorizontalStackView()
-        configureRankStackView()
-        
-        editProfileButton = NLPButton(title: "프로필 수정")
-        editProfileButton.addTarget(self, action: #selector(didTappedEditProfileButton(_:)),
-                                    for: .touchUpInside)
-        
-        verticalStackView.addArrangedSubview(editProfileButton)
-    }
+    rankImageView = UIImageView()
+    rankImageView.translatesAutoresizingMaskIntoConstraints = false
+    rankImageView.image = nil
+    rankImageView.tintColor = .label
+    rankImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+    rankImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
     
-    private func configureRankStackView() {
-        rankHorizontalStackView = UIStackView()
-        verticalStackView.addArrangedSubview(rankHorizontalStackView)
-        
-        rankHorizontalStackView.axis = .horizontal
-        rankHorizontalStackView.distribution = .fill
-        
-        rankImageView = UIImageView()
-        rankImageView.translatesAutoresizingMaskIntoConstraints = false
-        rankImageView.image = nil
-        rankImageView.tintColor = .label
-        rankImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        rankImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        firesLabel = UILabel()
-        firesLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
-        firesLabel.textColor = .label
-        firesLabel.textAlignment = .right
-        firesLabel.text = "🔥"
-        
-        rankHorizontalStackView.addArrangedSubview(rankImageView)
-        rankHorizontalStackView.addArrangedSubview(firesLabel)
-    }
+    firesLabel = UILabel()
+    firesLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+    firesLabel.textColor = .label
+    firesLabel.textAlignment = .right
+    firesLabel.text = "🔥"
     
-    private func configureHorizontalStackView() {
-        horizontalStackView = UIStackView()
-        verticalStackView.addArrangedSubview(horizontalStackView)
-        
-        horizontalStackView.axis = .horizontal
-        horizontalStackView.distribution = .fill
-        horizontalStackView.spacing = 16
-        
-        profilePhotoImageView = NLPProfilePhotoImageView(size: 100)
-        bioLabel = NLPProfileLabel(type: .bio)
-        
-        horizontalStackView.addArrangedSubview(profilePhotoImageView)
-        horizontalStackView.addArrangedSubview(bioLabel)
-    }
-    
-    private func configureLayoutUI() {
-        let padding: CGFloat = 8
-        NSLayoutConstraint.activate([
-            verticalStackView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
-            verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-        ])
-    }
-    
-    @objc func didTappedEditProfileButton(_ sender: NLPButton) {
-        delegate?.didTappedEditProfileButton(sender)
-    }
+    rankHorizontalStackView.addArrangedSubview(rankImageView)
+    rankHorizontalStackView.addArrangedSubview(firesLabel)
+  }
+  
+  private func configureBioLabel() {
+    bioLabel = NLPProfileLabel(type: .bio)
+    verticalStackView.addArrangedSubview(bioLabel)
+  }
+  
+  private func configureLayoutUI() {
+    let padding: CGFloat = 16
+    NSLayoutConstraint.activate([
+      profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+      profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+      profileImageView.heightAnchor.constraint(equalToConstant: 50),
+      profileImageView.widthAnchor.constraint(equalToConstant: 50),
+      userNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
+      userNameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: padding),
+      userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: padding / 2),
+      userNameLabel.heightAnchor.constraint(equalToConstant: 48),
+      verticalStackView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding),
+      verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+      verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+    ])
+  }
+  
+  @objc func didTappedEditProfileButton(_ sender: NLPButton) {
+    delegate?.didTappedEditProfileButton(sender)
+  }
 }

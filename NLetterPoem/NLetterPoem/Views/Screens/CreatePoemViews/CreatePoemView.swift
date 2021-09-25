@@ -4,6 +4,7 @@ protocol CreatePoemViewDelegate: AnyObject {
   func createPoemView(_ createPoemView: CreatePoemView, didCancel button: UIBarButtonItem)
   func createPoemView(_ createPoemView: CreatePoemView, didTapDone button: UIBarButtonItem, poem: String)
   func createPoemView(_ createPoemView: CreatePoemView, emptyFieldExist message: String)
+  func createPoemView(_ createPoemView: CreatePoemView, specialCharacterExist message: String)
 }
 
 final class CreatePoemView: UIView {
@@ -131,6 +132,10 @@ final class CreatePoemView: UIView {
     for inputView in inputViews {
       guard let line = inputView.fetchLine() else {
         delegate?.createPoemView(self, emptyFieldExist: "빈칸이 존재합니다!")
+        return
+      }
+      if line.isStringContainsSpecialCharacter() {
+        delegate?.createPoemView(self, specialCharacterExist: "특수문자가 존재합니다!")
         return
       }
       poemString.append(line + "\n")

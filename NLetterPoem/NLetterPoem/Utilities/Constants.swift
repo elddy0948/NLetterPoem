@@ -4,6 +4,7 @@ enum Constants {
   static let logoImage = "NLPLogo_160"
   static let darkModeLogoImage = "NLPLogo_160pt_dark"
   static let cellBackground = "PoemCellBackground_80pt"
+  static let profileImage = "profile_brush"
 }
 
 enum SFSymbols {

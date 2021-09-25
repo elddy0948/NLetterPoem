@@ -30,7 +30,7 @@ class NLPProfileLabel: UILabel {
         
         switch type {
         case .nickname:
-            font = UIFont.systemFont(ofSize: 16, weight: .bold)
+            font = UIFont.systemFont(ofSize: 40, weight: .bold)
             numberOfLines = 1
         case .bio:
             font = UIFont.systemFont(ofSize: 12, weight: .medium)

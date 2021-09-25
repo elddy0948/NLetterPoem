@@ -34,7 +34,7 @@ extension MyPageViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width = collectionView.frame.width
-        let height: CGFloat = 200
+        let height: CGFloat = 230
         return CGSize(width: width, height: height)
     }
 }

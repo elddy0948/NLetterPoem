@@ -121,6 +121,10 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
     showAlert(title: "⚠️", message: message, action: nil)
   }
   
+  func createPoemView(_ createPoemView: CreatePoemView, specialCharacterExist message: String) {
+    showAlert(title: "⚠️", message: message, action: nil)
+  }
+  
   func createPoemView(_ createPoemView: CreatePoemView, didCancel button: UIBarButtonItem) {
     dismiss(animated: true, completion: nil)
   }

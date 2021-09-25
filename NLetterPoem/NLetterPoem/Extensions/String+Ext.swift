@@ -22,4 +22,14 @@ extension String {
     let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
     return emailPredicate.evaluate(with: self)
   }
+  
+  func isStringContainsSpecialCharacter() -> Bool {
+    let invalidCharacters = CharacterSet(charactersIn: "\\/:*?\"<>|@!").union(.newlines).union(.illegalCharacters).union(.controlCharacters)
+    
+    if self.rangeOfCharacter(from: invalidCharacters) != nil {
+      return true
+    } else {
+      return false
+    }
+  }
 }

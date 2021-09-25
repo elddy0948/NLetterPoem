@@ -106,7 +106,12 @@ final class CreateTopicView: UIView {
   }
   
   @objc func nextButtonAction(_ sender: UIButton) {
-    delegate?.createTopicView(self, didTapNext: topicTextField.text)
+    guard let topic = topicTextField.text else { return }
+    if topic.isStringContainsSpecialCharacter() {
+      delegate?.createTopicView(self, didTapNext: nil)
+    } else {
+      delegate?.createTopicView(self, didTapNext: topicTextField.text)
+    }
   }
 }
 

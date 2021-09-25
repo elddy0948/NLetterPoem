@@ -2,21 +2,18 @@ import UIKit
 
 protocol EditProfileViewDelegate: AnyObject {
   func editProfileView(_ editProfileView: EditProfileView, cancelEdit button: UIBarButtonItem)
-  func editProfileView(_ editProfileView: EditProfileView, doneEdit user: NLPUser, imageData: Data)
-  func editProfileView(_ editProfileView: EditProfileView, didTapImageView: NLPProfilePhotoImageView)
+  func editProfileView(_ editProfileView: EditProfileView, doneEdit user: NLPUser)
 }
 
 class EditProfileView: UIView {
   
   //MARK: - Views
   private(set) var navigationBar: UINavigationBar!
-  private(set) var profilePhotoImageView: NLPProfilePhotoImageView!
   private(set) var nicknameTextField: NLPTextField!
   private(set) var bioTextView: UITextView!
   
   //MARK: - Properties
   private var user: NLPUser!
-  private var tapGestureRecognizer: UITapGestureRecognizer!
   weak var delegate: EditProfileViewDelegate?
   
   //MARK: - init
@@ -25,7 +22,6 @@ class EditProfileView: UIView {
     self.user = user
     configure()
     configureNavigationBar()
-    configureProfilePhotoImageView()
     configureNicknameTextField()
     configureBioTextView()
   }
@@ -73,28 +69,13 @@ class EditProfileView: UIView {
     navigationBar.pushItem(item, animated: true)
   }
   
-  private func configureProfilePhotoImageView() {
-    profilePhotoImageView = NLPProfilePhotoImageView(size: 100)
-    profilePhotoImageView.setImage(with: user.profilePhotoURL)
-    tapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                  action: #selector(didTappedImageView(_:)))
-    profilePhotoImageView.addGestureRecognizer(tapGestureRecognizer)
-    profilePhotoImageView.isUserInteractionEnabled = true
-    addSubview(profilePhotoImageView)
-    
-    NSLayoutConstraint.activate([
-      profilePhotoImageView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 16),
-      profilePhotoImageView.centerXAnchor.constraint(equalTo: centerXAnchor)
-    ])
-  }
-  
   private func configureNicknameTextField() {
     nicknameTextField = NLPTextField(type: .nickname)
     addSubview(nicknameTextField)
     nicknameTextField.text = user.nickname
     
     NSLayoutConstraint.activate([
-      nicknameTextField.topAnchor.constraint(equalTo: profilePhotoImageView.bottomAnchor, constant: 16),
+      nicknameTextField.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 16),
       nicknameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
       nicknameTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
       nicknameTextField.heightAnchor.constraint(equalToConstant: 52),
@@ -123,10 +104,6 @@ class EditProfileView: UIView {
     ])
   }
   
-  func setProfileImage(with image: UIImage) {
-    self.profilePhotoImageView.image = image
-  }
-  
   //MARK: - Actions
   @objc func didTappedCancelButton(_ sender: UIBarButtonItem) {
     delegate?.editProfileView(self, cancelEdit: sender)
@@ -135,8 +112,6 @@ class EditProfileView: UIView {
   @objc func didTappedDoneButton(_ sender: UIBarButtonItem) {
     guard let nickname = nicknameTextField.text,
           let bio = bioTextView.text,
-          let profilePhoto = profilePhotoImageView.image,
-          let imageData = profilePhoto.jpegData(compressionQuality: 0.3),
           let user = user else {
       delegate?.editProfileView(self, cancelEdit: sender)
       return
@@ -144,10 +119,6 @@ class EditProfileView: UIView {
     user.nickname = nickname
     user.bio = bio
     
-    delegate?.editProfileView(self, doneEdit: user, imageData: imageData)
-  }
-  
-  @objc func didTappedImageView(_ sender: NLPProfilePhotoImageView) {
-    delegate?.editProfileView(self, didTapImageView: sender)
+    delegate?.editProfileView(self, doneEdit: user)
   }
 }

@@ -39,12 +39,12 @@
 		B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageHeaderView.swift */; };
 		B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940A2681A4400075D16C /* NLPTabBarController.swift */; };
 		B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940C2681B3480075D16C /* LaunchViewController.swift */; };
-		B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */; };
 		B45494112681C6B80075D16C /* NLPProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494102681C6B80075D16C /* NLPProfileLabel.swift */; };
 		B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45656A026A2A42600EAB3C9 /* SignInView.swift */; };
 		B45936C526AA95D600F51476 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B45936C426AA95D600F51476 /* NanumScript.ttc */; };
 		B45936C726AA964300F51476 /* BMYeongSung-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */; };
 		B45F804A26CBEF300013C54E /* DataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F804926CBEF300013C54E /* DataLoadingViewController.swift */; };
+		B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* HomeViewController.swift */; };
@@ -71,11 +71,9 @@
 		B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404526806DAE007A7B59 /* NLPError.swift */; };
 		B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404826806F13007A7B59 /* ViewController+Ext.swift */; };
 		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
-		B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */; };
 		B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CDD1EA268841630086AADE /* NLPPoem.swift */; };
 		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
-		B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE98268D90B500968C5B /* StorageManager.swift */; };
 		B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */; };
 		B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */; };
 		B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */; };
@@ -114,12 +112,12 @@
 		B45494082681A1B60075D16C /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
 		B454940A2681A4400075D16C /* NLPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTabBarController.swift; sourceTree = "<group>"; };
 		B454940C2681B3480075D16C /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfilePhotoImageView.swift; sourceTree = "<group>"; };
 		B45494102681C6B80075D16C /* NLPProfileLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfileLabel.swift; sourceTree = "<group>"; };
 		B45656A026A2A42600EAB3C9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		B45936C426AA95D600F51476 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
 		B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMYeongSung-Regular.otf"; sourceTree = "<group>"; };
 		B45F804926CBEF300013C54E /* DataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingViewController.swift; sourceTree = "<group>"; };
+		B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDatabaseManager.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,10 +146,8 @@
 		B4C6404526806DAE007A7B59 /* NLPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPError.swift; sourceTree = "<group>"; };
 		B4C6404826806F13007A7B59 /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
 		B4CB3770268310CA00CD4F10 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
-		B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfileCardView.swift; sourceTree = "<group>"; };
 		B4CDD1EA268841630086AADE /* NLPPoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoem.swift; sourceTree = "<group>"; };
 		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
-		B4D1BE98268D90B500968C5B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CantCreatePoemView.swift; sourceTree = "<group>"; };
 		B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPYeonSungFontLabel.swift; sourceTree = "<group>"; };
 		B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCell.swift; sourceTree = "<group>"; };
@@ -230,11 +226,9 @@
 			children = (
 				B42EE584267EFD6D001848A5 /* NLPButton.swift */,
 				B42EE588267F04BE001848A5 /* NLPLogoImageView.swift */,
-				B454940E2681BE7B0075D16C /* NLPProfilePhotoImageView.swift */,
 				B454940A2681A4400075D16C /* NLPTabBarController.swift */,
 				B42EE586267EFD7D001848A5 /* NLPTextField.swift */,
 				B45494102681C6B80075D16C /* NLPProfileLabel.swift */,
-				B4CB37722683141900CD4F10 /* NLPProfileCardView.swift */,
 				B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */,
 				B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */,
 				B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */,
@@ -299,6 +293,7 @@
 				B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */,
 				B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */,
 				B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */,
+				B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -314,7 +309,6 @@
 		B44D384726E514CE0030E706 /* FirebaseStorage */ = {
 			isa = PBXGroup;
 			children = (
-				B4D1BE98268D90B500968C5B /* StorageManager.swift */,
 			);
 			path = FirebaseStorage;
 			sourceTree = "<group>";
@@ -339,7 +333,6 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
-				B4E4957526F796E8000EE48B /* NLetterPoem.entitlements */,
 				B4C6404726806F05007A7B59 /* Extensions */,
 				B4F259892692D02D00FF95A4 /* Fonts */,
 				B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */,
@@ -347,6 +340,7 @@
 				B42EE58F267F175C001848A5 /* Managers */,
 				B478752C2671FA82002FE83F /* Models */,
 				B4B03B4126DF320800B59BF7 /* Networking */,
+				B4E4957526F796E8000EE48B /* NLetterPoem.entitlements */,
 				B42EE57F267EFA39001848A5 /* Screens */,
 				B42EE58A267F04FB001848A5 /* Utilities */,
 				B42EE582267EFD43001848A5 /* Views */,
@@ -596,8 +590,8 @@
 				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
 				B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */,
+				B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */,
 				B47B432126F0DAD3006C3EB6 /* DeveloperInfoViewController.swift in Sources */,
-				B4CB37732683141900CD4F10 /* NLPProfileCardView.swift in Sources */,
 				B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */,
 				B48459EA26A45FE700BA1484 /* UserDatabaseManager.swift in Sources */,
 				B41AE87126A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift in Sources */,
@@ -615,7 +609,6 @@
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */,
-				B454940F2681BE7B0075D16C /* NLPProfilePhotoImageView.swift in Sources */,
 				B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */,
@@ -642,7 +635,6 @@
 				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,
 				B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */,
-				B4D1BE99268D90B500968C5B /* StorageManager.swift in Sources */,
 				B417692426BA4D6300C5B3A7 /* CreateTopicViewController.swift in Sources */,
 				B47CC3EB269ABAFE00F1F003 /* DetailPoemView.swift in Sources */,
 			);
@@ -785,7 +777,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NLetterPoem/NLetterPoem.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.5;
 				DEVELOPMENT_TEAM = SK9D9HK9A2;
 				INFOPLIST_FILE = NLetterPoem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -793,7 +785,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.howift.NLetterPoem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -808,7 +800,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NLetterPoem/NLetterPoem.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.5;
 				DEVELOPMENT_TEAM = SK9D9HK9A2;
 				INFOPLIST_FILE = NLetterPoem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -816,7 +808,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.howift.NLetterPoem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

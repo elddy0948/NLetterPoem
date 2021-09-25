@@ -255,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				B44D384626E514C30030E706 /* FirebaseAuth */,
-				B44D384726E514CE0030E706 /* FirebaseStorage */,
 				B44D384526E514B60030E706 /* Firestore */,
 			);
 			path = Managers;
@@ -304,13 +303,6 @@
 				B48BD9BF26A002660044A2B8 /* AuthManager.swift */,
 			);
 			path = FirebaseAuth;
-			sourceTree = "<group>";
-		};
-		B44D384726E514CE0030E706 /* FirebaseStorage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FirebaseStorage;
 			sourceTree = "<group>";
 		};
 		B478750C2671F540002FE83F = {
@@ -777,7 +769,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NLetterPoem/NLetterPoem.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.5;
+				CURRENT_PROJECT_VERSION = 1.1.6;
 				DEVELOPMENT_TEAM = SK9D9HK9A2;
 				INFOPLIST_FILE = NLetterPoem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -785,7 +777,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.howift.NLetterPoem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -800,7 +792,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NLetterPoem/NLetterPoem.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.5;
+				CURRENT_PROJECT_VERSION = 1.1.6;
 				DEVELOPMENT_TEAM = SK9D9HK9A2;
 				INFOPLIST_FILE = NLetterPoem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -808,7 +800,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.howift.NLetterPoem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -41,8 +41,6 @@ class HomeViewController: DataLoadingViewController {
     configureRightBarButtonItem()
     configure()
     configureHeaderView()
-//    fetchTodayTopic()
-//    fetchTodayPoems()
   }
   
   override func viewWillAppear(_ animated: Bool) {

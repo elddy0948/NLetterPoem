@@ -44,6 +44,7 @@
 		B45936C526AA95D600F51476 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B45936C426AA95D600F51476 /* NanumScript.ttc */; };
 		B45936C726AA964300F51476 /* BMYeongSung-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */; };
 		B45F804A26CBEF300013C54E /* DataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F804926CBEF300013C54E /* DataLoadingViewController.swift */; };
+		B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466044727002C8E0044C2F8 /* NLPCheckBoxButton.swift */; };
 		B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
@@ -117,6 +118,7 @@
 		B45936C426AA95D600F51476 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
 		B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMYeongSung-Regular.otf"; sourceTree = "<group>"; };
 		B45F804926CBEF300013C54E /* DataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingViewController.swift; sourceTree = "<group>"; };
+		B466044727002C8E0044C2F8 /* NLPCheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPCheckBoxButton.swift; sourceTree = "<group>"; };
 		B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDatabaseManager.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */,
 				B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */,
 				B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */,
+				B466044727002C8E0044C2F8 /* NLPCheckBoxButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
+				B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */,
 				B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,

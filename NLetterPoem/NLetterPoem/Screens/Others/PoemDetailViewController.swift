@@ -200,6 +200,7 @@ final class PoemDetailViewController: UIViewController {
   private func configureCreatePoemViewController() -> CreatePoemViewController {
     let viewController = CreatePoemViewController()
     viewController.action = .edit
+    viewController.user = currentUser
     viewController.editPoem = self.poem
     viewController.topic = self.poem?.topic
     viewController.delegate = self

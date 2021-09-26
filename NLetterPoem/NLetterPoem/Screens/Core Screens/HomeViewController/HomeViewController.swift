@@ -23,7 +23,6 @@ class HomeViewController: DataLoadingViewController {
     }
   }
   
-  var user: User?
   var nlpUser: NLPUser? {
     didSet {
       fetchTodayTopic(group: nil)
@@ -31,7 +30,7 @@ class HomeViewController: DataLoadingViewController {
     }
   }
   
-  private var handler: AuthStateDidChangeListenerHandle?
+  var handler: AuthStateDidChangeListenerHandle?
   
   //MARK: - View Lifecycle
   override func viewDidLoad() {
@@ -45,22 +44,7 @@ class HomeViewController: DataLoadingViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    DispatchQueue.global(qos: .utility).async { [weak self] in
-      self?.handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
-        guard let self = self,
-              let user = user,
-              let email = user.email else { return }
-        UserDatabaseManager.shared.read(email) { result in
-          switch result {
-          case .success(let user):
-            self.nlpUser = user
-          case .failure(let error):
-            debugPrint(error.message)
-          }
-        }
-        self.user = user
-      }
-    }
+    createStateChangeListener()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -116,47 +100,6 @@ class HomeViewController: DataLoadingViewController {
     homeTableView.tableHeaderView = containerView
   }
   
-  func fetchTodayTopic(group: DispatchGroup?) {
-    DispatchQueue.global(qos: .utility).async {
-      ToopicDatabaseManager.shared.read(date: Date()) { [weak self] result in
-        defer {
-          if let group = group {
-            group.leave()
-          }
-        }
-        guard let self = self else { return }
-        switch result {
-        case .success(let topic):
-          self.todayTopic = topic
-        case .failure(_):
-          self.todayTopic = ""
-        }
-      }
-    }
-  }
-  
-  func fetchTodayPoems(group: DispatchGroup?) {
-    DispatchQueue.global(qos: .utility).async {
-      PoemDatabaseManager.shared.fetchTodayPoems(date: Date(), sortType: .recent) { [weak self] result in
-        defer {
-          if let group = group {
-            group.leave()
-          }
-        }
-        guard let self = self,
-              let nlpUser = self.nlpUser else { return }
-        switch result {
-        case .success(let fetchedPoems):
-          self.todayPoems = fetchedPoems.filter({ poem in
-            !nlpUser.blockedUser.contains(poem.authorEmail)
-          })
-        case .failure(_):
-          self.todayPoems = []
-        }
-      }
-    }
-  }
-  
   func updateTableViewContents() {
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }
@@ -165,13 +108,22 @@ class HomeViewController: DataLoadingViewController {
     }
   }
   
+  func createNavigationController(rootVC viewController: CreatorViewController) {
+    let navigationController = UINavigationController(rootViewController: viewController)
+    navigationController.modalPresentationStyle = .fullScreen
+    navigationController.navigationBar.tintColor = .label
+    present(navigationController, animated: true, completion: nil)
+  }
+  
   //MARK: - Actions
   @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
-    let viewController = CreateTopicViewController()
-    viewController.user = user
-    let createTopicNavigationController = UINavigationController(rootViewController: viewController)
-    createTopicNavigationController.modalPresentationStyle = .fullScreen
-    createTopicNavigationController.navigationBar.tintColor = .label
-    present(createTopicNavigationController, animated: true, completion: nil)
+    guard let user = nlpUser else { return }
+    if user.poems.isEmpty {
+      let viewController = FirstCreateViewController()
+      viewController.user = user
+      createNavigationController(rootVC: viewController)
+    } else {
+      checkUserDidWritePoemToday(with: user.email)
+    }
   }
 }

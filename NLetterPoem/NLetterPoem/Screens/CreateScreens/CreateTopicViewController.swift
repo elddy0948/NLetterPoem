@@ -1,49 +1,24 @@
 import UIKit
 import Firebase
 
-final class CreateTopicViewController: DataLoadingViewController {
+final class CreateTopicViewController: CreatorViewController {
   
   //MARK: - Views
   private(set) var createTopicView: CreateTopicView!
-  private(set) var cantCreatePoemView: CantCreatePoemView!
-  
-  var user: User?
   
   //MARK: - Life cycles
   override func viewDidLoad() {
     super.viewDidLoad()
-    guard let user = user else { return }
-    checkUserDidWritePoemToday(with: user.email)
     configureNavigationItem()
-  }
-  
-  private func checkUserDidWritePoemToday(with email: String?) {
-    showLoadingView()
-    guard let email = email else { return }
-    DispatchQueue.global(qos: .userInitiated).async {
-      PoemDatabaseManager.shared.read(email) { [weak self] result in
-        guard let self = self else { return }
-        self.dismissLoadingView()
-        switch result {
-        case .success(_):
-          self.configureCantCreatePoemView()
-        case .failure(_):
-          self.configureCreateTopicView()
-        }
-      }
-    }
+    configureCreateTopicView()
   }
   
   private func configureNavigationItem() {
-    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonAction(_:)))
-    navigationItem.leftBarButtonItem?.tintColor = .label
+    if navigationItem.leftBarButtonItem == nil {
+      navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonAction(_:)))
+      navigationItem.leftBarButtonItem?.tintColor = .label
+    }
   }
-  
-  private func configureCantCreatePoemView() {
-    cantCreatePoemView = CantCreatePoemView()
-    self.view = cantCreatePoemView
-  }
-  
   private func configureCreateTopicView() {
     createTopicView = CreateTopicView()
     self.view = createTopicView
@@ -66,6 +41,7 @@ extension CreateTopicViewController: CreateTopicViewDelegate {
     }
     
     let createPoemViewController = CreatePoemViewController()
+    createPoemViewController.user = user
     createPoemViewController.topic = topic
     navigationController?.pushViewController(createPoemViewController, animated: true)
   }

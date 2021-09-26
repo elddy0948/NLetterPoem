@@ -5,7 +5,7 @@ protocol CreatePoemViewControllerDelegate: AnyObject {
   func createPoemViewController(_ viewController: CreatePoemViewController, didTapDone poem: NLPPoem)
 }
 
-class CreatePoemViewController: DataLoadingViewController {
+class CreatePoemViewController: CreatorViewController {
   
   enum ActionType {
     case edit
@@ -19,11 +19,6 @@ class CreatePoemViewController: DataLoadingViewController {
   var topic: String?
   var action: ActionType = .create
   var editPoem: NLPPoem?
-  var user: NLPUser? {
-    didSet {
-      configure()
-    }
-  }
   
   private var handler: AuthStateDidChangeListenerHandle?
   weak var delegate: CreatePoemViewControllerDelegate?
@@ -32,7 +27,7 @@ class CreatePoemViewController: DataLoadingViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    setHandlerAndFetchUserInfo()
+    configure()
   }
   
   //MARK: - Privates
@@ -51,26 +46,6 @@ class CreatePoemViewController: DataLoadingViewController {
       createPoemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       createPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
-  }
-  
-  private func setHandlerAndFetchUserInfo() {
-    handler = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
-      guard let self = self else { return }
-      guard let user = user,
-            let email = user.email else {
-        self.dismiss(animated: true, completion: nil)
-        return
-      }
-      
-      UserDatabaseManager.shared.read(email) { result in
-        switch result {
-        case .success(let user):
-          self.user = user
-        case .failure(let error):
-          self.showAlert(title: "⚠️", message: error.message, action: nil)
-        }
-      }
-    })
   }
   
   private func createPoem(_ nlpPoem: NLPPoem) {

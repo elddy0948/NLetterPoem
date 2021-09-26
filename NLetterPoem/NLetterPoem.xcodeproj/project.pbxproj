@@ -45,6 +45,11 @@
 		B45936C726AA964300F51476 /* BMYeongSung-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */; };
 		B45F804A26CBEF300013C54E /* DataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F804926CBEF300013C54E /* DataLoadingViewController.swift */; };
 		B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466044727002C8E0044C2F8 /* NLPCheckBoxButton.swift */; };
+		B466044A270066B60044C2F8 /* FirstCreatePoemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4660449270066B60044C2F8 /* FirstCreatePoemViewController.swift */; };
+		B466044C270067340044C2F8 /* FirstCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466044B270067340044C2F8 /* FirstCreateView.swift */; };
+		B466044E27007C780044C2F8 /* HomeViewController+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466044D27007C780044C2F8 /* HomeViewController+Firebase.swift */; };
+		B466045027007D930044C2F8 /* CantCreatePoemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B466044F27007D930044C2F8 /* CantCreatePoemViewController.swift */; };
+		B4660452270081020044C2F8 /* PoemCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4660451270081020044C2F8 /* PoemCreator.swift */; };
 		B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
@@ -119,6 +124,11 @@
 		B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMYeongSung-Regular.otf"; sourceTree = "<group>"; };
 		B45F804926CBEF300013C54E /* DataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingViewController.swift; sourceTree = "<group>"; };
 		B466044727002C8E0044C2F8 /* NLPCheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPCheckBoxButton.swift; sourceTree = "<group>"; };
+		B4660449270066B60044C2F8 /* FirstCreatePoemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCreatePoemViewController.swift; sourceTree = "<group>"; };
+		B466044B270067340044C2F8 /* FirstCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCreateView.swift; sourceTree = "<group>"; };
+		B466044D27007C780044C2F8 /* HomeViewController+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Firebase.swift"; sourceTree = "<group>"; };
+		B466044F27007D930044C2F8 /* CantCreatePoemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CantCreatePoemViewController.swift; sourceTree = "<group>"; };
+		B4660451270081020044C2F8 /* PoemCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemCreator.swift; sourceTree = "<group>"; };
 		B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDatabaseManager.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -194,8 +204,11 @@
 		B417692726BA6C2800C5B3A7 /* CreateScreens */ = {
 			isa = PBXGroup;
 			children = (
+				B466044F27007D930044C2F8 /* CantCreatePoemViewController.swift */,
 				B4C3F3F62694394200CED1A9 /* CreatePoemViewController.swift */,
 				B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */,
+				B4660449270066B60044C2F8 /* FirstCreatePoemViewController.swift */,
+				B4660451270081020044C2F8 /* PoemCreator.swift */,
 			);
 			path = CreateScreens;
 			sourceTree = "<group>";
@@ -425,6 +438,7 @@
 				B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */,
 				B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */,
 				B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */,
+				B466044B270067340044C2F8 /* FirstCreateView.swift */,
 			);
 			path = CreatePoemViews;
 			sourceTree = "<group>";
@@ -436,6 +450,7 @@
 				B4C3F3EC269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift */,
 				B4C3F3EE269418B800CED1A9 /* HomeViewController+UITableViewDataSource.swift */,
 				B4C3F3F0269418C500CED1A9 /* HomeViewController+HomeTableViewDelegate.swift */,
+				B466044D27007C780044C2F8 /* HomeViewController+Firebase.swift */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -580,7 +595,9 @@
 				B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
 				B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */,
+				B466044E27007C780044C2F8 /* HomeViewController+Firebase.swift in Sources */,
 				B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */,
+				B466045027007D930044C2F8 /* CantCreatePoemViewController.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,
 				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
@@ -608,12 +625,14 @@
 				B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */,
+				B466044C270067340044C2F8 /* FirstCreateView.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
 				B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */,
 				B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */,
+				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B4C3F3ED269418A600CED1A9 /* HomeViewController+UITableViewDelegate.swift in Sources */,
 				B4B03B4326DF321300B59BF7 /* DatabaseRequest.swift in Sources */,
@@ -630,6 +649,7 @@
 				B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */,
 				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,
+				B466044A270066B60044C2F8 /* FirstCreatePoemViewController.swift in Sources */,
 				B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */,
 				B417692426BA4D6300C5B3A7 /* CreateTopicViewController.swift in Sources */,
 				B47CC3EB269ABAFE00F1F003 /* DetailPoemView.swift in Sources */,

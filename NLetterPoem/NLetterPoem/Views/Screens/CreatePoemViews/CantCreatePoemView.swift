@@ -6,6 +6,7 @@ final class CantCreatePoemView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    translatesAutoresizingMaskIntoConstraints = false
     backgroundColor = .systemBackground
     configureNoticeLabel()
   }

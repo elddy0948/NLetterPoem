@@ -6,8 +6,15 @@ class CantCreatePoemViewController: CreatorViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .systemBackground
+    configureLeftBarButtonItem()
     configureCantCreatePoemView()
     layout()
+  }
+  
+  private func configureLeftBarButtonItem() {
+    let leftBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(cancelAction(_:)))
+    navigationItem.leftBarButtonItem = leftBarButtonItem
   }
   
   private func configureCantCreatePoemView() {
@@ -22,5 +29,9 @@ class CantCreatePoemViewController: CreatorViewController {
       cantCreatePoemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       cantCreatePoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
+  }
+  
+  @objc func cancelAction(_ sender: UIBarButtonItem) {
+    self.dismiss(animated: true, completion: nil)
   }
 }

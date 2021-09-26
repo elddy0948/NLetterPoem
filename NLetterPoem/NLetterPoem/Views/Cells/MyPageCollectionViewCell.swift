@@ -7,7 +7,7 @@ class MyPageCollectionViewCell: UICollectionViewCell {
   
   //MARK: - Views
   private(set) var backgroundImageView: UIImageView!
-  private(set) var topicLabel: UILabel!
+  private(set) var topicLabel: NLPYeonSungFontLabel!
   
   //MARK: - Properties
   var poem: NLPPoem?
@@ -53,11 +53,8 @@ class MyPageCollectionViewCell: UICollectionViewCell {
   }
   
   private func configureTopicLabel() {
-    topicLabel = UILabel()
+    topicLabel = NLPYeonSungFontLabel(size: 20, numberOfLines: 1, textAlignment: .center)
     backgroundImageView.addSubview(topicLabel)
-    
-    topicLabel.translatesAutoresizingMaskIntoConstraints = false
-    topicLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
     topicLabel.textAlignment = .center
   }
   

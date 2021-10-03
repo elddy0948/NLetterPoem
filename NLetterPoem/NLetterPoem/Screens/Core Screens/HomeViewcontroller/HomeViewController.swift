@@ -4,6 +4,7 @@ final class HomeViewController: UIViewController {
   
   private var todayBarButtonItem: UIBarButtonItem!
   private var hotBarButtonItem: UIBarButtonItem!
+  private var addBarButtonItem: UIBarButtonItem!
   private var containerView: UIView?
   
   private let containerViewController = ContainerViewController()
@@ -22,6 +23,10 @@ final class HomeViewController: UIViewController {
     super.init(nibName: nil, bundle: nil)
     todayBarButtonItem = createBarButtonItem(text: "오늘의 시", selector: #selector(todayBarButtonAction(_:)))
     hotBarButtonItem = createBarButtonItem(text: "Hot🔥", selector: #selector(hotBarButtonAction(_:)))
+    addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                         target: self,
+                                         action: #selector(addBarButtonAction(_:)))
+    addBarButtonItem.tintColor = .label
   }
   
   override func viewWillLayoutSubviews() {
@@ -35,6 +40,7 @@ final class HomeViewController: UIViewController {
   
   private func configureNavigationBar() {
     navigationItem.leftBarButtonItems = [todayBarButtonItem, hotBarButtonItem]
+    navigationItem.rightBarButtonItem = addBarButtonItem
     let mockImage = UIImage()
     navigationController?.navigationBar.shadowImage = mockImage
     navigationController?.navigationBar.setBackgroundImage(mockImage, for: .default)
@@ -62,6 +68,10 @@ final class HomeViewController: UIViewController {
       self.todayBarButtonItem.customView?.alpha = 1.0
       self.hotBarButtonItem.customView?.alpha = 0.5
     }
+  }
+  
+  @objc func addBarButtonAction(_ sender: UIBarButtonItem) {
+    
   }
   
   @objc func hotBarButtonAction(_ sender: UIBarButtonItem) {

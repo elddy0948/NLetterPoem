@@ -17,6 +17,7 @@
 		B41A3C8D27097E3000192965 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A3C8C27097E3000192965 /* HomeViewController.swift */; };
 		B41A3C8F27097E9700192965 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A3C8E27097E9700192965 /* ContainerViewController.swift */; };
 		B41A3C9127097F5800192965 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A3C9027097F5800192965 /* UIFont+Ext.swift */; };
+		B41A3C9427098AEB00192965 /* HotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A3C9327098AEB00192965 /* HotViewController.swift */; };
 		B41AE87126A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */; };
 		B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F42691AFC70088119D /* HomeTableView.swift */; };
 		B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F62691B0810088119D /* HomeHeaderView.swift */; };
@@ -105,6 +106,7 @@
 		B41A3C8C27097E3000192965 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B41A3C8E27097E9700192965 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		B41A3C9027097F5800192965 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		B41A3C9327098AEB00192965 /* HotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotViewController.swift; sourceTree = "<group>"; };
 		B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B421C4F42691AFC70088119D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		B421C4F62691B0810088119D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
@@ -217,6 +219,24 @@
 				B4660451270081020044C2F8 /* PoemCreator.swift */,
 			);
 			path = CreateScreens;
+			sourceTree = "<group>";
+		};
+		B41A3C9227098ADB00192965 /* HotViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B41A3C9327098AEB00192965 /* HotViewController.swift */,
+			);
+			path = HotViewController;
+			sourceTree = "<group>";
+		};
+		B41A3C9527098C9500192965 /* HomeViewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				B41A3C8C27097E3000192965 /* HomeViewController.swift */,
+				B4C3F3EB2694184D00CED1A9 /* TodayViewController */,
+				B41A3C9227098ADB00192965 /* HotViewController */,
+			);
+			path = HomeViewcontroller;
 			sourceTree = "<group>";
 		};
 		B42EE57F267EFA39001848A5 /* Screens */ = {
@@ -375,10 +395,9 @@
 		B4AEA41326C4F3870012C398 /* Core Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B4C3F3EB2694184D00CED1A9 /* TodayViewController */,
+				B41A3C9527098C9500192965 /* HomeViewcontroller */,
 				B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */,
 				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
-				B41A3C8C27097E3000192965 /* HomeViewController.swift */,
 			);
 			path = "Core Screens";
 			sourceTree = "<group>";
@@ -598,6 +617,7 @@
 				B4C3F3EF269418B800CED1A9 /* TodayViewController+UITableViewDataSource.swift in Sources */,
 				B4AC3E8526E09EEB00E99CF4 /* TopicDatabaseManager.swift in Sources */,
 				B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */,
+				B41A3C9427098AEB00192965 /* HotViewController.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,

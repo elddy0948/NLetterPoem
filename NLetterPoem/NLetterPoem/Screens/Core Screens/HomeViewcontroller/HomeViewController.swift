@@ -7,13 +7,15 @@ final class HomeViewController: UIViewController {
   private var containerView: UIView?
   
   private let containerViewController = ContainerViewController()
-  private let viewControllers = [TodayViewController()]
+  private let viewControllers = [TodayViewController(), HotViewController()]
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     configureNavigationBar()
     configureContainerView()
+    
+    todayBarButtonAction(todayBarButtonItem)
   }
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -48,11 +50,33 @@ final class HomeViewController: UIViewController {
   }
   
   @objc func todayBarButtonAction(_ sender: UIBarButtonItem) {
-    
+    //이미 보여주고 있으면 Return
+    if containerViewController.children.first == viewControllers[0] { return }
+    containerViewController.add(viewControllers[0])
+    animateTransition(fromViewController: viewControllers[1],
+                      toViewController: viewControllers[0]) { isTransitionDone in
+      if isTransitionDone { self.viewControllers[1].remove() }
+    }
+    UIView.animate(withDuration: 0.3) { [weak self] in
+      guard let self = self else { return }
+      self.todayBarButtonItem.customView?.alpha = 1.0
+      self.hotBarButtonItem.customView?.alpha = 0.5
+    }
   }
   
   @objc func hotBarButtonAction(_ sender: UIBarButtonItem) {
+    if containerViewController.children.first == viewControllers[1] { return }
+    containerViewController.add(viewControllers[1])
+    animateTransition(fromViewController: viewControllers[0],
+                      toViewController: viewControllers[1]) { isTransitionDone in
+      if isTransitionDone { self.viewControllers[0].remove() }
+    }
     
+    UIView.animate(withDuration: 0.3) { [weak self] in
+      guard let self = self else { return }
+      self.hotBarButtonItem.customView?.alpha = 1.0
+      self.todayBarButtonItem.customView?.alpha = 0.5
+    }
   }
   
   private func createBarButtonItem(text: String, selector: Selector) -> UIBarButtonItem {
@@ -82,5 +106,38 @@ final class HomeViewController: UIViewController {
       containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
+  }
+  
+  private func animateTransition(fromViewController: UIViewController,
+                                 toViewController: UIViewController,
+                                 completion: @escaping ((Bool) -> Void)) {
+    guard let fromView = fromViewController.view,
+          let fromIndex = getIndex(forViewController: fromViewController),
+          let toView = toViewController.view,
+          let toIndex = getIndex(forViewController: toViewController) else {
+      return
+    }
+    
+    let frame = fromView.frame
+    var fromFrameEnd = frame
+    var toFrameStart = frame
+    fromFrameEnd.origin.x = toIndex > fromIndex ? frame.origin.x - frame.width : frame.origin.x + frame.width
+    toFrameStart.origin.x = toIndex > fromIndex ? frame.origin.x + frame.width : frame.origin.x - frame.width
+    
+    UIView.animate(withDuration: 0.5) {
+      fromView.frame = fromFrameEnd
+      toView.frame = frame
+    } completion: { success in
+      completion(success)
+    }
+  }
+  
+  private func getIndex(forViewController vc: UIViewController) -> Int? {
+    for (index, thisVC) in viewControllers.enumerated() {
+      if thisVC == vc {
+        return index
+      }
+    }
+    return nil
   }
 }

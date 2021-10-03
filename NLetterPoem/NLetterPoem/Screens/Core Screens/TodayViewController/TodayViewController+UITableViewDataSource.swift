@@ -1,6 +1,6 @@
 import UIKit
 
-extension HomeViewController: UITableViewDataSource {
+extension TodayViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if let todayPoems = todayPoems {

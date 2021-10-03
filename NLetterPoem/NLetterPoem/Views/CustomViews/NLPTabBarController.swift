@@ -13,7 +13,6 @@ class NLPTabBarController: UITabBarController {
   
   private func createHomeNavigaionController() -> UINavigationController {
     let viewController = HomeViewController()
-    viewController.title = "오늘의 시"
     viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.houseFill, tag: 0)
     return UINavigationController(rootViewController: viewController)
   }

@@ -1,6 +1,6 @@
 import UIKit
 import Firebase
-extension HomeViewController {
+extension TodayViewController {
   func fetchTodayTopic(group: DispatchGroup?) {
     DispatchQueue.global(qos: .utility).async {
       ToopicDatabaseManager.shared.read(date: Date()) { [weak self] result in

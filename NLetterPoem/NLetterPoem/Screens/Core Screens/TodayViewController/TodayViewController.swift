@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: DataLoadingViewController {
+class TodayViewController: DataLoadingViewController {
   
   //MARK: - Views
   private(set) var homeHeaderView: HomeHeaderView!

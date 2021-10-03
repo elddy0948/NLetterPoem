@@ -63,7 +63,7 @@ final class PoemDetailViewController: UIViewController {
       detailPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
     
-    let isCameFromHome = navigationController?.viewControllers.first is HomeViewController
+    let isCameFromHome = navigationController?.viewControllers.first is TodayViewController
     
     if (poem.authorEmail == user.email) && !isCameFromHome {
       configureRightBarButtonItem(isEditable: true)

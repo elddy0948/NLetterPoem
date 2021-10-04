@@ -21,10 +21,6 @@ final class HomeViewController: DataLoadingViewController {
     view.backgroundColor = .systemBackground
     configureNavigationBar()
     configureContainerView()
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
     createStateChangeListener()
   }
   
@@ -40,8 +36,7 @@ final class HomeViewController: DataLoadingViewController {
     layout()
   }
   
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
+  deinit {
     if let handler = handler {
       Auth.auth().removeStateDidChangeListener(handler)
     }

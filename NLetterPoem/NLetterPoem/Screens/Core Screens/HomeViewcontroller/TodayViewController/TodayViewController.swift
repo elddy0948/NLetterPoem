@@ -22,34 +22,20 @@ class TodayViewController: DataLoadingViewController {
     }
   }
   
-  var nlpUser: NLPUser? {
+  var nlpUser: NLPUser? = HomeViewController.nlpUser {
     didSet {
       fetchTodayTopic(group: nil)
       fetchTodayPoems(group: nil)
     }
   }
-  
-  var handler: AuthStateDidChangeListenerHandle?
-  
+    
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationController?.navigationBar.prefersLargeTitles = true
-    
     configure()
     configureHeaderView()
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    createStateChangeListener()
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    if let handler = handler {
-      Auth.auth().removeStateDidChangeListener(handler)
-    }
+    nlpUser = HomeViewController.nlpUser
   }
   
   private func configure() {
@@ -96,12 +82,5 @@ class TodayViewController: DataLoadingViewController {
       self.homeHeaderView.setTopic(self.todayTopic ?? "")
       self.homeTableView.reloadData()
     }
-  }
-  
-  func createNavigationController(rootVC viewController: CreatorViewController) {
-    let navigationController = UINavigationController(rootViewController: viewController)
-    navigationController.modalPresentationStyle = .fullScreen
-    navigationController.navigationBar.tintColor = .label
-    present(navigationController, animated: true, completion: nil)
   }
 }

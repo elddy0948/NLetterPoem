@@ -1,25 +1,31 @@
 import UIKit
 import Firebase
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: DataLoadingViewController {
 
-  private var todayBarButton: NLPBarButton!
-  private var hotBarButton: NLPBarButton!
+  var todayBarButton: NLPBarButton!
+  var hotBarButton: NLPBarButton!
   private var todayBarButtonItem: UIBarButtonItem!
   private var hotBarButtonItem: UIBarButtonItem!
   private var addBarButtonItem: UIBarButtonItem!
-  private var containerView: UIView?
+  private var container: UIView?
   
   private let containerViewController = ContainerViewController()
   private let viewControllers = [TodayViewController(), HotViewController()]
+  
+  static var nlpUser: NLPUser?
+  var handler: AuthStateDidChangeListenerHandle?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     configureNavigationBar()
     configureContainerView()
-    
-    todayBarButtonAction(todayBarButton)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    createStateChangeListener()
   }
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -32,6 +38,13 @@ final class HomeViewController: UIViewController {
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
     layout()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    if let handler = handler {
+      Auth.auth().removeStateDidChangeListener(handler)
+    }
   }
   
   required init?(coder: NSCoder) {
@@ -64,10 +77,10 @@ final class HomeViewController: UIViewController {
   }
   
   private func configureContainerView() {
-    containerView = containerViewController.view
-    containerView?.translatesAutoresizingMaskIntoConstraints = false
-    containerView?.backgroundColor = .systemBackground
-    guard let containerView = containerView else { return }
+    container = containerViewController.view
+    container?.translatesAutoresizingMaskIntoConstraints = false
+    container?.backgroundColor = .systemBackground
+    guard let containerView = container else { return }
     view.addSubview(containerView)
   }
   
@@ -104,23 +117,28 @@ final class HomeViewController: UIViewController {
   
   @objc func addBarButtonAction(_ sender: UIBarButtonItem) {
     //TODO: - Add 버튼 액션 추가
+    guard let user = HomeViewController.nlpUser else { return }
+    if user.poems.isEmpty {
+      let viewController = FirstCreateViewController()
+      viewController.user = user
+      createNavigationController(rootVC: viewController)
+    } else {
+      checkUserDidWritePoemToday(with: user.email)
+    }
   }
-//  @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
-//    guard let user = nlpUser else { return }
-//    if user.poems.isEmpty {
-//      let viewController = FirstCreateViewController()
-//      viewController.user = user
-//      createNavigationController(rootVC: viewController)
-//    } else {
-//      checkUserDidWritePoemToday(with: user.email)
-//    }
-//  }
+  
+  func createNavigationController(rootVC viewController: CreatorViewController) {
+    let navigationController = UINavigationController(rootViewController: viewController)
+    navigationController.modalPresentationStyle = .fullScreen
+    navigationController.navigationBar.tintColor = .label
+    present(navigationController, animated: true, completion: nil)
+  }
 }
 
 //MARK: - Layout and Animation Logic
 extension HomeViewController {
   private func layout() {
-    guard let containerView = containerView else { return }
+    guard let containerView = container else { return }
     NSLayoutConstraint.activate([
       containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
       containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

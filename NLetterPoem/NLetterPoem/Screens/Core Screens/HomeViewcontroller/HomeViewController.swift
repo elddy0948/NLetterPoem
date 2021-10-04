@@ -1,7 +1,10 @@
 import UIKit
+import Firebase
 
 final class HomeViewController: UIViewController {
-  
+
+  private var todayBarButton: NLPBarButton!
+  private var hotBarButton: NLPBarButton!
   private var todayBarButtonItem: UIBarButtonItem!
   private var hotBarButtonItem: UIBarButtonItem!
   private var addBarButtonItem: UIBarButtonItem!
@@ -16,17 +19,14 @@ final class HomeViewController: UIViewController {
     configureNavigationBar()
     configureContainerView()
     
-    todayBarButtonAction(todayBarButtonItem)
+    todayBarButtonAction(todayBarButton)
   }
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nil, bundle: nil)
-    todayBarButtonItem = createBarButtonItem(text: "오늘의 시", selector: #selector(todayBarButtonAction(_:)))
-    hotBarButtonItem = createBarButtonItem(text: "Hot🔥", selector: #selector(hotBarButtonAction(_:)))
-    addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                         target: self,
-                                         action: #selector(addBarButtonAction(_:)))
-    addBarButtonItem.tintColor = .label
+    todayBarButton = configureBarButton(text: "오늘의 시", selector: #selector(todayBarButtonAction(_:)))
+    hotBarButton = configureBarButton(text: "Hot", selector: #selector(hotBarButtonAction(_:)))
+    configureBarButtonItems()
   }
   
   override func viewWillLayoutSubviews() {
@@ -47,6 +47,22 @@ final class HomeViewController: UIViewController {
     navigationController?.navigationBar.isTranslucent = false
   }
   
+  //MARK: - Bar Button
+  private func configureBarButton(text: String, selector: Selector) -> NLPBarButton {
+    let nlpBarButton = NLPBarButton(text: text)
+    nlpBarButton.addTarget(self, action: selector, for: .primaryActionTriggered)
+    return nlpBarButton
+  }
+  
+  private func configureBarButtonItems() {
+    todayBarButtonItem = UIBarButtonItem(customView: todayBarButton)
+    hotBarButtonItem = UIBarButtonItem(customView: hotBarButton)
+    addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                         target: self,
+                                         action: #selector(addBarButtonAction(_:)))
+    addBarButtonItem.tintColor = .label
+  }
+  
   private func configureContainerView() {
     containerView = containerViewController.view
     containerView?.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +71,8 @@ final class HomeViewController: UIViewController {
     view.addSubview(containerView)
   }
   
-  @objc func todayBarButtonAction(_ sender: UIBarButtonItem) {
+  //MARK: - Actions
+  @objc func todayBarButtonAction(_ sender: NLPBarButton) {
     //이미 보여주고 있으면 Return
     if containerViewController.children.first == viewControllers[0] { return }
     containerViewController.add(viewControllers[0])
@@ -70,11 +87,7 @@ final class HomeViewController: UIViewController {
     }
   }
   
-  @objc func addBarButtonAction(_ sender: UIBarButtonItem) {
-    
-  }
-  
-  @objc func hotBarButtonAction(_ sender: UIBarButtonItem) {
+  @objc func hotBarButtonAction(_ sender: NLPBarButton) {
     if containerViewController.children.first == viewControllers[1] { return }
     containerViewController.add(viewControllers[1])
     animateTransition(fromViewController: viewControllers[0],
@@ -89,25 +102,23 @@ final class HomeViewController: UIViewController {
     }
   }
   
-  private func createBarButtonItem(text: String, selector: Selector) -> UIBarButtonItem {
-    let button = UIButton()
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.addTarget(self, action: selector, for: .primaryActionTriggered)
-    
-    let attributes = [
-      NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .largeTitle).withTraits(traits: [.traitBold]),
-      NSAttributedString.Key.foregroundColor: UIColor.label
-    ]
-    let attributedText = NSMutableAttributedString(string: text, attributes: attributes)
-    
-    button.setAttributedTitle(attributedText, for: .normal)
-    button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
-    
-    let barButtonItem = UIBarButtonItem(customView: button)
-    return barButtonItem
+  @objc func addBarButtonAction(_ sender: UIBarButtonItem) {
+    //TODO: - Add 버튼 액션 추가
   }
-  
-  //MARK: - Layout
+//  @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
+//    guard let user = nlpUser else { return }
+//    if user.poems.isEmpty {
+//      let viewController = FirstCreateViewController()
+//      viewController.user = user
+//      createNavigationController(rootVC: viewController)
+//    } else {
+//      checkUserDidWritePoemToday(with: user.email)
+//    }
+//  }
+}
+
+//MARK: - Layout and Animation Logic
+extension HomeViewController {
   private func layout() {
     guard let containerView = containerView else { return }
     NSLayoutConstraint.activate([

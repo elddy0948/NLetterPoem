@@ -6,7 +6,6 @@ class TodayViewController: DataLoadingViewController {
   //MARK: - Views
   private(set) var homeHeaderView: HomeHeaderView!
   private(set) var homeTableView: HomeTableView!
-  private(set) var rightBarButtonItem: UIBarButtonItem!
   
   //MARK: - Properties
   var todayTopic: String? {
@@ -37,7 +36,6 @@ class TodayViewController: DataLoadingViewController {
     super.viewDidLoad()
     navigationController?.navigationBar.prefersLargeTitles = true
     
-    configureRightBarButtonItem()
     configure()
     configureHeaderView()
   }
@@ -52,14 +50,6 @@ class TodayViewController: DataLoadingViewController {
     if let handler = handler {
       Auth.auth().removeStateDidChangeListener(handler)
     }
-  }
-  
-  private func configureRightBarButtonItem() {
-    rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                         target: self,
-                                         action: #selector(didTappedAddButton(_:)))
-    rightBarButtonItem.tintColor = .label
-    navigationItem.rightBarButtonItem = rightBarButtonItem
   }
   
   private func configure() {
@@ -113,17 +103,5 @@ class TodayViewController: DataLoadingViewController {
     navigationController.modalPresentationStyle = .fullScreen
     navigationController.navigationBar.tintColor = .label
     present(navigationController, animated: true, completion: nil)
-  }
-  
-  //MARK: - Actions
-  @objc func didTappedAddButton(_ sender: UIBarButtonItem) {
-    guard let user = nlpUser else { return }
-    if user.poems.isEmpty {
-      let viewController = FirstCreateViewController()
-      viewController.user = user
-      createNavigationController(rootVC: viewController)
-    } else {
-      checkUserDidWritePoemToday(with: user.email)
-    }
   }
 }

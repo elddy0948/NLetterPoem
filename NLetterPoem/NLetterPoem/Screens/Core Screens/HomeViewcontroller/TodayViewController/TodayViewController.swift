@@ -1,6 +1,10 @@
 import UIKit
 import Firebase
 
+protocol TodayViewControllerDelegate: AnyObject {
+  func todayViewController(_ todayViewController: TodayViewController, didSelected poem: NLPPoem)
+}
+
 class TodayViewController: DataLoadingViewController {
   
   //MARK: - Views
@@ -28,6 +32,8 @@ class TodayViewController: DataLoadingViewController {
       fetchTodayPoems(group: nil)
     }
   }
+  
+  weak var delegate: TodayViewControllerDelegate?
     
   //MARK: - View Lifecycle
   override func viewDidLoad() {

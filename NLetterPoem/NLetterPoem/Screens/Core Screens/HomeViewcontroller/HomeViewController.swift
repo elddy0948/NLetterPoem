@@ -11,13 +11,15 @@ final class HomeViewController: DataLoadingViewController {
   private var container: UIView?
   
   private let containerViewController = ContainerViewController()
-  private let viewControllers = [TodayViewController(), HotViewController()]
+  
+  private var viewControllers = [UIViewController]()
   
   static var nlpUser: NLPUser?
   var handler: AuthStateDidChangeListenerHandle?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.navigationController?.navigationBar.tintColor = .label
     view.backgroundColor = .systemBackground
     configureNavigationBar()
     configureContainerView()
@@ -29,6 +31,11 @@ final class HomeViewController: DataLoadingViewController {
     todayBarButton = configureBarButton(text: "오늘의 시", selector: #selector(todayBarButtonAction(_:)))
     hotBarButton = configureBarButton(text: "Hot", selector: #selector(hotBarButtonAction(_:)))
     configureBarButtonItems()
+    
+    let todayViewController = TodayViewController()
+    let hotViewController = HotViewController()
+    todayViewController.delegate = self
+    viewControllers = [todayViewController, hotViewController]
   }
   
   override func viewWillLayoutSubviews() {
@@ -173,5 +180,13 @@ extension HomeViewController {
       }
     }
     return nil
+  }
+}
+
+extension HomeViewController: TodayViewControllerDelegate {
+  func todayViewController(_ todayViewController: TodayViewController, didSelected poem: NLPPoem) {
+    let poemDetailViewController = PoemDetailViewController()
+    poemDetailViewController.poem = poem
+    navigationController?.pushViewController(poemDetailViewController, animated: true)
   }
 }

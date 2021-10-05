@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */; };
 		B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */; };
 		B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */; };
 		B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */; };
@@ -23,12 +24,12 @@
 		B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F62691B0810088119D /* HomeHeaderView.swift */; };
 		B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */; };
 		B42EE571267EF5FA001848A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */; };
-		B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* FirebaseAnalytics */; };
-		B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */; };
-		B42EE578267EF6C7001848A5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE577267EF6C7001848A5 /* FirebaseStorage */; };
-		B42EE57A267EF6C7001848A5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE579267EF6C7001848A5 /* FirebaseAuth */; };
-		B42EE57C267EF6C7001848A5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57B267EF6C7001848A5 /* FirebaseFirestore */; };
-		B42EE57E267EF6C7001848A5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57D267EF6C7001848A5 /* FirebaseDatabase */; };
+		B42EE574267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* SwiftPackageProductDependency */; };
+		B42EE576267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* SwiftPackageProductDependency */; };
+		B42EE578267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE577267EF6C7001848A5 /* SwiftPackageProductDependency */; };
+		B42EE57A267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE579267EF6C7001848A5 /* SwiftPackageProductDependency */; };
+		B42EE57C267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57B267EF6C7001848A5 /* SwiftPackageProductDependency */; };
+		B42EE57E267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57D267EF6C7001848A5 /* SwiftPackageProductDependency */; };
 		B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE580267EFA55001848A5 /* SignInViewController.swift */; };
 		B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE584267EFD6D001848A5 /* NLPButton.swift */; };
 		B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE586267EFD7D001848A5 /* NLPTextField.swift */; };
@@ -84,7 +85,7 @@
 		B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404826806F13007A7B59 /* ViewController+Ext.swift */; };
 		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
 		B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CDD1EA268841630086AADE /* NLPPoem.swift */; };
-		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
+		B4CDD1EE26884AA40086AADE /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* SwiftPackageProductDependency */; };
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */; };
 		B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NLetterPoem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
@@ -182,6 +184,8 @@
 		B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTopic.swift; sourceTree = "<group>"; };
 		B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableView.swift; sourceTree = "<group>"; };
 		B4F6AA1626A3F5DA00DB119D /* RankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
+		E830ADA9E47FCD6CFC00E725 /* Pods-NLetterPoem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLetterPoem.release.xcconfig"; path = "Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem.release.xcconfig"; sourceTree = "<group>"; };
+		FD210B40AC82B6F8852ECB5D /* Pods-NLetterPoem.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLetterPoem.debug.xcconfig"; path = "Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,13 +193,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B42EE57E267EF6C7001848A5 /* FirebaseDatabase in Frameworks */,
-				B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */,
-				B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */,
-				B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */,
-				B42EE578267EF6C7001848A5 /* FirebaseStorage in Frameworks */,
-				B42EE57C267EF6C7001848A5 /* FirebaseFirestore in Frameworks */,
-				B42EE57A267EF6C7001848A5 /* FirebaseAuth in Frameworks */,
+				B42EE57E267EF6C7001848A5 /* BuildFile in Frameworks */,
+				B42EE574267EF6C7001848A5 /* BuildFile in Frameworks */,
+				B4CDD1EE26884AA40086AADE /* BuildFile in Frameworks */,
+				B42EE576267EF6C7001848A5 /* BuildFile in Frameworks */,
+				B42EE578267EF6C7001848A5 /* BuildFile in Frameworks */,
+				B42EE57C267EF6C7001848A5 /* BuildFile in Frameworks */,
+				B42EE57A267EF6C7001848A5 /* BuildFile in Frameworks */,
+				A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +363,7 @@
 			children = (
 				B47875172671F540002FE83F /* NLetterPoem */,
 				B4CDD1EC26884AA40086AADE /* Frameworks */,
+				C8841E1A2C2BAF81D5AD78EF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -510,6 +516,7 @@
 		B4CDD1EC26884AA40086AADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -533,6 +540,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		C8841E1A2C2BAF81D5AD78EF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD210B40AC82B6F8852ECB5D /* Pods-NLetterPoem.debug.xcconfig */,
+				E830ADA9E47FCD6CFC00E725 /* Pods-NLetterPoem.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -540,9 +557,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B47875292671F540002FE83F /* Build configuration list for PBXNativeTarget "NLetterPoem" */;
 			buildPhases = (
+				A0368710302B20B61E4D5137 /* [CP] Check Pods Manifest.lock */,
 				B47875112671F540002FE83F /* Sources */,
 				B47875122671F540002FE83F /* Frameworks */,
 				B47875132671F540002FE83F /* Resources */,
+				FF834F1BEA4896F1CFFD2053 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -550,13 +569,13 @@
 			);
 			name = NLetterPoem;
 			packageProductDependencies = (
-				B42EE573267EF6C7001848A5 /* FirebaseAnalytics */,
-				B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */,
-				B42EE577267EF6C7001848A5 /* FirebaseStorage */,
-				B42EE579267EF6C7001848A5 /* FirebaseAuth */,
-				B42EE57B267EF6C7001848A5 /* FirebaseFirestore */,
-				B42EE57D267EF6C7001848A5 /* FirebaseDatabase */,
-				B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */,
+				B42EE573267EF6C7001848A5 /* SwiftPackageProductDependency */,
+				B42EE575267EF6C7001848A5 /* SwiftPackageProductDependency */,
+				B42EE577267EF6C7001848A5 /* SwiftPackageProductDependency */,
+				B42EE579267EF6C7001848A5 /* SwiftPackageProductDependency */,
+				B42EE57B267EF6C7001848A5 /* SwiftPackageProductDependency */,
+				B42EE57D267EF6C7001848A5 /* SwiftPackageProductDependency */,
+				B4CDD1ED26884AA40086AADE /* SwiftPackageProductDependency */,
 			);
 			productName = NLetterPoem;
 			productReference = B47875152671F540002FE83F /* NLetterPoem.app */;
@@ -586,7 +605,7 @@
 			);
 			mainGroup = B478750C2671F540002FE83F;
 			packageReferences = (
-				B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = B47875162671F540002FE83F /* Products */;
 			projectDirPath = "";
@@ -611,6 +630,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0368710302B20B61E4D5137 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NLetterPoem-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF834F1BEA4896F1CFFD2053 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B47875112671F540002FE83F /* Sources */ = {
@@ -828,6 +889,7 @@
 		};
 		B478752A2671F540002FE83F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD210B40AC82B6F8852ECB5D /* Pods-NLetterPoem.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -851,6 +913,7 @@
 		};
 		B478752B2671F540002FE83F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E830ADA9E47FCD6CFC00E725 /* Pods-NLetterPoem.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -896,7 +959,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -907,39 +970,39 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B42EE573267EF6C7001848A5 /* FirebaseAnalytics */ = {
+		B42EE573267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
 			productName = FirebaseAnalytics;
 		};
-		B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */ = {
+		B42EE575267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
 			productName = FirebaseCrashlytics;
 		};
-		B42EE577267EF6C7001848A5 /* FirebaseStorage */ = {
+		B42EE577267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
 			productName = FirebaseStorage;
 		};
-		B42EE579267EF6C7001848A5 /* FirebaseAuth */ = {
+		B42EE579267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
 			productName = FirebaseAuth;
 		};
-		B42EE57B267EF6C7001848A5 /* FirebaseFirestore */ = {
+		B42EE57B267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
 			productName = FirebaseFirestore;
 		};
-		B42EE57D267EF6C7001848A5 /* FirebaseDatabase */ = {
+		B42EE57D267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
 			productName = FirebaseDatabase;
 		};
-		B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */ = {
+		B4CDD1ED26884AA40086AADE /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */

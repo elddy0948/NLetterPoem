@@ -4,6 +4,7 @@
 
 ## User settings
 *.xcuserstate
+NLetterPoem.xcworkspace/
 project.xcworkspace/
 xcuserdata/
 
@@ -28,3 +29,4 @@ Privacy.swift
 ## Gcc Patch
 /*.gcno
 *.xcuserstate
+Pods/

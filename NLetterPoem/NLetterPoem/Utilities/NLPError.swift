@@ -76,6 +76,7 @@ enum TopicFirestoreError: Error {
 
 enum AuthError: Error {
   case failedDeleteUser
+  case userMissing
 }
 
 enum ReportError: Error {
@@ -86,4 +87,8 @@ enum ReportError: Error {
       return "신고에 실패했습니다!\n다시 시도해주세요!🙏"
     }
   }
+}
+
+enum DocumentError: Error {
+  case documentNotFound
 }

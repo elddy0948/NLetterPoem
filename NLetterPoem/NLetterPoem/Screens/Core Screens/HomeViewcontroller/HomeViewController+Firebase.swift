@@ -1,26 +1,29 @@
 import UIKit
 import Firebase
+import RxSwift
 
 extension HomeViewController {
-  func createStateChangeListener() {
+  //TODO: - 스케쥴러에 추가하기
+  func configureStateChangeListener() {
     showLoadingView()
-    DispatchQueue.global(qos: .utility).async { [weak self] in
-      self?.handler = Auth.auth().addStateDidChangeListener { auth, user in
-        guard let self = self,
-              let user = user,
-              let email = user.email else { return }
-        UserDatabaseManager.shared.read(email) { result in
-          defer { self.dismissLoadingView() }
-          switch result {
-          case .success(let user):
-            HomeViewController.nlpUser = user
-            self.todayBarButtonAction(self.todayBarButton)
-          case .failure(let error):
-            debugPrint(error.message)
-          }
-        }
-      }
-    }
+    homeViewModel?.createAuthStateChangeHandler()
+      .subscribe(onNext: { user in
+        self.user = user
+      })
+      .disposed(by: disposeBag)
+  }
+  
+  func fetchUserInfo(with email: String?) {
+    guard let email = email else { return }
+    homeViewModel?.fetchUserInfo(with: email)
+      .subscribe(onNext: { [weak self] nlpUser in
+        guard let self = self else { return }
+        HomeViewController.nlpUser = nlpUser
+        self.todayBarButtonAction(self.todayBarButton)
+      }, onCompleted: { [weak self] in
+        self?.dismissLoadingView()
+      })
+      .disposed(by: disposeBag)
   }
   
   func checkUserDidWritePoemToday(with email: String?) {

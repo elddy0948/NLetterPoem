@@ -1,10 +1,13 @@
 import Foundation
 import FirebaseAuth
+import RxSwift
 
 class AuthManager {
   static let shared = AuthManager()
   
   private let auth = Auth.auth()
+  private let disposeBag = DisposeBag()
+  var user = PublishSubject<User>()
   
   private init() {}
   
@@ -28,7 +31,7 @@ class AuthManager {
       completed(nil)
     }
   }
-
+  
   func authDelete(userEmail: String, completed: @escaping (Result<String, AuthError>) -> Void) {
     guard let user = auth.currentUser else {
       completed(.failure(.failedDeleteUser))

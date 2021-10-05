@@ -1,6 +1,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import RxSwift
 
 final class UserDatabaseManager: DatabaseRequest {
   //MARK: - Typealias

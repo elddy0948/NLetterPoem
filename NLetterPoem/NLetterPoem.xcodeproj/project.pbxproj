@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */; };
+		B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */; };
+		B40EB928270C4E2900FADFC6 /* FireStore+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */; };
+		B40EB92A270CA50500FADFC6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB929270CA50500FADFC6 /* HomeViewModel.swift */; };
 		B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */; };
 		B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */; };
 		B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */; };
@@ -24,12 +27,12 @@
 		B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F62691B0810088119D /* HomeHeaderView.swift */; };
 		B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */; };
 		B42EE571267EF5FA001848A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */; };
-		B42EE574267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* SwiftPackageProductDependency */; };
-		B42EE576267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* SwiftPackageProductDependency */; };
-		B42EE578267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE577267EF6C7001848A5 /* SwiftPackageProductDependency */; };
-		B42EE57A267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE579267EF6C7001848A5 /* SwiftPackageProductDependency */; };
-		B42EE57C267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57B267EF6C7001848A5 /* SwiftPackageProductDependency */; };
-		B42EE57E267EF6C7001848A5 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57D267EF6C7001848A5 /* SwiftPackageProductDependency */; };
+		B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* FirebaseAnalytics */; };
+		B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */; };
+		B42EE578267EF6C7001848A5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE577267EF6C7001848A5 /* FirebaseStorage */; };
+		B42EE57A267EF6C7001848A5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE579267EF6C7001848A5 /* FirebaseAuth */; };
+		B42EE57C267EF6C7001848A5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57B267EF6C7001848A5 /* FirebaseFirestore */; };
+		B42EE57E267EF6C7001848A5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57D267EF6C7001848A5 /* FirebaseDatabase */; };
 		B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE580267EFA55001848A5 /* SignInViewController.swift */; };
 		B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE584267EFD6D001848A5 /* NLPButton.swift */; };
 		B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE586267EFD7D001848A5 /* NLPTextField.swift */; };
@@ -85,7 +88,7 @@
 		B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404826806F13007A7B59 /* ViewController+Ext.swift */; };
 		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
 		B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CDD1EA268841630086AADE /* NLPPoem.swift */; };
-		B4CDD1EE26884AA40086AADE /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* SwiftPackageProductDependency */; };
+		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */; };
 		B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */; };
@@ -100,6 +103,9 @@
 
 /* Begin PBXFileReference section */
 		08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NLetterPoem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Rx.swift"; sourceTree = "<group>"; };
+		B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FireStore+Rx.swift"; sourceTree = "<group>"; };
+		B40EB929270CA50500FADFC6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
@@ -193,13 +199,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B42EE57E267EF6C7001848A5 /* BuildFile in Frameworks */,
-				B42EE574267EF6C7001848A5 /* BuildFile in Frameworks */,
-				B4CDD1EE26884AA40086AADE /* BuildFile in Frameworks */,
-				B42EE576267EF6C7001848A5 /* BuildFile in Frameworks */,
-				B42EE578267EF6C7001848A5 /* BuildFile in Frameworks */,
-				B42EE57C267EF6C7001848A5 /* BuildFile in Frameworks */,
-				B42EE57A267EF6C7001848A5 /* BuildFile in Frameworks */,
+				B42EE57E267EF6C7001848A5 /* FirebaseDatabase in Frameworks */,
+				B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */,
+				B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */,
+				B42EE578267EF6C7001848A5 /* FirebaseStorage in Frameworks */,
+				B42EE57C267EF6C7001848A5 /* FirebaseFirestore in Frameworks */,
+				B42EE57A267EF6C7001848A5 /* FirebaseAuth in Frameworks */,
 				A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +213,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B40EB924270C41B900FADFC6 /* Firebase+Rx */ = {
+			isa = PBXGroup;
+			children = (
+				B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */,
+				B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */,
+			);
+			path = "Firebase+\U0010Rx";
+			sourceTree = "<group>";
+		};
+		B40EB92B270CB90100FADFC6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B40EB929270CA50500FADFC6 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +402,8 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
+				B40EB92B270CB90100FADFC6 /* ViewModels */,
+				B40EB924270C41B900FADFC6 /* Firebase+Rx */,
 				B4C6404726806F05007A7B59 /* Extensions */,
 				B4F259892692D02D00FF95A4 /* Fonts */,
 				B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */,
@@ -546,7 +571,6 @@
 				FD210B40AC82B6F8852ECB5D /* Pods-NLetterPoem.debug.xcconfig */,
 				E830ADA9E47FCD6CFC00E725 /* Pods-NLetterPoem.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -569,13 +593,13 @@
 			);
 			name = NLetterPoem;
 			packageProductDependencies = (
-				B42EE573267EF6C7001848A5 /* SwiftPackageProductDependency */,
-				B42EE575267EF6C7001848A5 /* SwiftPackageProductDependency */,
-				B42EE577267EF6C7001848A5 /* SwiftPackageProductDependency */,
-				B42EE579267EF6C7001848A5 /* SwiftPackageProductDependency */,
-				B42EE57B267EF6C7001848A5 /* SwiftPackageProductDependency */,
-				B42EE57D267EF6C7001848A5 /* SwiftPackageProductDependency */,
-				B4CDD1ED26884AA40086AADE /* SwiftPackageProductDependency */,
+				B42EE573267EF6C7001848A5 /* FirebaseAnalytics */,
+				B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */,
+				B42EE577267EF6C7001848A5 /* FirebaseStorage */,
+				B42EE579267EF6C7001848A5 /* FirebaseAuth */,
+				B42EE57B267EF6C7001848A5 /* FirebaseFirestore */,
+				B42EE57D267EF6C7001848A5 /* FirebaseDatabase */,
+				B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = NLetterPoem;
 			productReference = B47875152671F540002FE83F /* NLetterPoem.app */;
@@ -605,7 +629,7 @@
 			);
 			mainGroup = B478750C2671F540002FE83F;
 			packageReferences = (
-				B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */,
+				B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = B47875162671F540002FE83F /* Products */;
 			projectDirPath = "";
@@ -679,6 +703,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
+				B40EB928270C4E2900FADFC6 /* FireStore+Rx.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
 				B4C3F3EF269418B800CED1A9 /* TodayViewController+UITableViewDataSource.swift in Sources */,
@@ -689,6 +714,7 @@
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */,
+				B40EB92A270CA50500FADFC6 /* HomeViewModel.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
 				B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */,
 				B466044E27007C780044C2F8 /* TodayViewController+Firebase.swift in Sources */,
@@ -721,6 +747,7 @@
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */,
+				B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */,
 				B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */,
 				B4ADCD4F270B0942005ADA93 /* HomeViewController+Firebase.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
@@ -959,7 +986,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */ = {
+		B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -970,39 +997,39 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B42EE573267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
+		B42EE573267EF6C7001848A5 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
+			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		B42EE575267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
+		B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
+			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
-		B42EE577267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
+		B42EE577267EF6C7001848A5 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
+			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
-		B42EE579267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
+		B42EE579267EF6C7001848A5 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
+			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		B42EE57B267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
+		B42EE57B267EF6C7001848A5 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
+			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		B42EE57D267EF6C7001848A5 /* SwiftPackageProductDependency */ = {
+		B42EE57D267EF6C7001848A5 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
+			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
 		};
-		B4CDD1ED26884AA40086AADE /* SwiftPackageProductDependency */ = {
+		B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* RemoteSwiftPackageReference */;
+			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */

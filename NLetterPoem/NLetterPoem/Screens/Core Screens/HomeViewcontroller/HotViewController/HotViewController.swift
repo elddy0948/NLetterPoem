@@ -17,7 +17,9 @@ final class HotViewController: UIViewController {
       .observe(on: MainScheduler.instance)
       .bind(to: homeTableView.rx.items(cellIdentifier: HomeTableViewCell.reuseIdentifier)) { index, viewModel, cell in
         guard let cell = cell as? HomeTableViewCell else { return }
-        cell.setCellData(shortDes: viewModel.shortDescription, writer: "Writer", topic: viewModel.topic)
+        cell.setCellData(shortDes: viewModel.shortDescription,
+                         writer: viewModel.author,
+                         topic: viewModel.topic)
       }.disposed(by: disposeBag)
   }
   
@@ -33,7 +35,6 @@ final class HotViewController: UIViewController {
     homeTableView.translatesAutoresizingMaskIntoConstraints = false
     homeTableView.backgroundColor = .systemBackground
     homeTableView.delegate = self
-//    homeTableView.dataSource = self
     homeTableView.homeTableViewDelegate = self
     
     homeTableView.register(HomeTableViewCell.self,
@@ -48,8 +49,7 @@ final class HotViewController: UIViewController {
       homeTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       homeTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       homeTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      homeTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                            constant: -NLPTabBarController.tabBarHeight),
+      homeTableView.bottomAnchor.constraint(equalTo: NLPTabBarController.tabBarTopAnchor),
     ])
   }
 }
@@ -60,16 +60,6 @@ extension HotViewController: UITableViewDelegate {
   }
 
 }
-//extension HotViewController: UITableViewDataSource {
-//  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    return 0
-//  }
-//
-//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    return UITableViewCell()
-//  }
-//
-//}
 
 extension HotViewController: HomeTableViewDelegate {
   func handleRefreshHomeTableView(_ tableView: HomeTableView) {

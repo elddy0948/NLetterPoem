@@ -99,7 +99,7 @@ extension TodayViewController {
       homeTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       homeTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       homeTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      homeTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      homeTableView.bottomAnchor.constraint(equalTo: NLPTabBarController.tabBarTopAnchor),
     ])
   }
 }

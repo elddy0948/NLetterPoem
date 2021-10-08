@@ -12,6 +12,10 @@ struct HotPoemViewModel {
     poem.content.makeShortDescription()
   }
   
+  var author: String {
+    poem.author
+  }
+  
   init(poem: NLPPoem) {
     self.poem = poem
   }

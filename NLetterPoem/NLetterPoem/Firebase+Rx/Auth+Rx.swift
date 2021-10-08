@@ -1,5 +1,6 @@
 import FirebaseAuth
 import RxSwift
+import Firebase
 
 extension Reactive where Base: Auth {
   public func configureStateChangeListener() -> Observable<User> {
@@ -12,7 +13,6 @@ extension Reactive where Base: Auth {
         }
       }
       return Disposables.create {
-        print("Disposed!")
         self.base.removeStateDidChangeListener(handler)
       }
     })

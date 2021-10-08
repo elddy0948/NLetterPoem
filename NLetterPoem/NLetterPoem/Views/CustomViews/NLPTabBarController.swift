@@ -2,9 +2,14 @@ import UIKit
 
 class NLPTabBarController: UITabBarController {
   
+  static var tabBarHeight: CGFloat = 0
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     tabBar.tintColor = .label
+    
+    
+    NLPTabBarController.tabBarHeight = self.tabBar.frame.height
     
     viewControllers = [createHomeNavigaionController(),
                        createRankingNavigationController(),

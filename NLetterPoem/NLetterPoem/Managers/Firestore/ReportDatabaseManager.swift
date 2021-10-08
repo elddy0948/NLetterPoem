@@ -1,11 +1,12 @@
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 final class ReportDatabaseManager {
   
   static let shared = ReportDatabaseManager()
   
-  var database: Firestore = Firebase.Firestore.firestore()
+  var database: Firestore = Firestore.firestore()
   var reference: CollectionReference
   
   private init() {

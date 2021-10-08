@@ -1,5 +1,6 @@
 import Foundation
 import Firebase
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 final class PoemDatabaseManager: DatabaseRequest {
@@ -11,7 +12,7 @@ final class PoemDatabaseManager: DatabaseRequest {
   static let shared = PoemDatabaseManager()
   
   //MARK: - Properties
-  var database: Firestore = Firebase.Firestore.firestore()
+  var database: Firestore = Firestore.firestore()
   var reference: CollectionReference
   
   private init() {

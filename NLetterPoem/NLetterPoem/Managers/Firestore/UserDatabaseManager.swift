@@ -1,5 +1,6 @@
 import Foundation
 import Firebase
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 import RxSwift
 
@@ -12,7 +13,7 @@ final class UserDatabaseManager: DatabaseRequest {
   static let shared = UserDatabaseManager()
   
   //MARK: - Properties
-  var database: Firestore = Firebase.Firestore.firestore()
+  var database: Firestore = Firestore.firestore()
   var reference: CollectionReference
   
   private init() {

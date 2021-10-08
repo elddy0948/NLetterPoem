@@ -1,6 +1,8 @@
 import UIKit
 import Firebase
 import RxSwift
+import FirebaseFirestore
+import FirebaseAuth
 
 class HomeViewModel {
   var nlpUser = PublishSubject<NLPUser?>()
@@ -19,9 +21,5 @@ class HomeViewModel {
         try snapshot.data(as: NLPUser.self)
       })
       .catchAndReturn(nil)
-  }
-  
-  deinit {
-    print("deinit")
   }
 }

@@ -23,13 +23,7 @@ final class HotViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     configure()
-    
-    viewModel.fetchHotPoems()
-      .observe(on: MainScheduler.instance)
-      .subscribe(onNext: { poems in
-        self.hotPoems = poems
-      })
-      .disposed(by: disposeBag)
+    fetchHotPoems()
   }
   
   override func viewWillLayoutSubviews() {
@@ -61,6 +55,20 @@ final class HotViewController: UIViewController {
       homeTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       homeTableView.bottomAnchor.constraint(equalTo: NLPTabBarController.tabBarTopAnchor),
     ])
+  }
+  
+  private func fetchHotPoems() {
+    viewModel.fetchHotPoems()
+      .observe(on: MainScheduler.instance)
+      .subscribe(onNext: { [weak self] poems in
+        self?.hotPoems = poems
+      }, onCompleted: { [weak self] in
+        if let refreshControl = self?.homeTableView.refreshControl,
+           refreshControl.isRefreshing {
+          refreshControl.endRefreshing()
+        }
+      })
+      .disposed(by: disposeBag)
   }
 }
 
@@ -94,5 +102,6 @@ extension HotViewController: UITableViewDataSource {
 
 extension HotViewController: HomeTableViewDelegate {
   func handleRefreshHomeTableView(_ tableView: HomeTableView) {
+    fetchHotPoems()
   }
 }

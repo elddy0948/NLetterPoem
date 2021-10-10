@@ -45,6 +45,7 @@ final class HomeViewController: DataLoadingViewController {
     let todayViewController = TodayViewController()
     let hotViewController = HotViewController()
     todayViewController.delegate = self
+    hotViewController.delegate = self
     viewControllers = [todayViewController, hotViewController]
   }
   
@@ -189,6 +190,14 @@ extension HomeViewController {
 
 extension HomeViewController: TodayViewControllerDelegate {
   func todayViewController(_ todayViewController: TodayViewController, didSelected poem: NLPPoem) {
+    let poemDetailViewController = PoemDetailViewController()
+    poemDetailViewController.poem = poem
+    navigationController?.pushViewController(poemDetailViewController, animated: true)
+  }
+}
+
+extension HomeViewController: HotViewControllerDelegate {
+  func hotViewController(_ viewController: HotViewController, didSelected poem: NLPPoem) {
     let poemDetailViewController = PoemDetailViewController()
     poemDetailViewController.poem = poem
     navigationController?.pushViewController(poemDetailViewController, animated: true)

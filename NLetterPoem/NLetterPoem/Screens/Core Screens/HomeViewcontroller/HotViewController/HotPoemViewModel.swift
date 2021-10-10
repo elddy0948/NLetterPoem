@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 
 struct HotPoemViewModel {
-  private let poem: NLPPoem
+  let poem: NLPPoem
   
   var topic: String {
     poem.topic

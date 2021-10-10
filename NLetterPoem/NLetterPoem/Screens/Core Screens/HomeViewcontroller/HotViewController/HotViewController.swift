@@ -2,11 +2,22 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol HotViewControllerDelegate: AnyObject {
+  func hotViewController(_ viewController: HotViewController, didSelected poem: NLPPoem)
+}
+
 final class HotViewController: UIViewController {
   
   private var homeTableView: HomeTableView!
   private var viewModel = HotViewModel()
   private let disposeBag = DisposeBag()
+  private var hotPoems = [HotPoemViewModel]() {
+    didSet {
+      self.homeTableView.reloadData()
+    }
+  }
+  
+  weak var delegate: HotViewControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -15,12 +26,10 @@ final class HotViewController: UIViewController {
     
     viewModel.fetchHotPoems()
       .observe(on: MainScheduler.instance)
-      .bind(to: homeTableView.rx.items(cellIdentifier: HomeTableViewCell.reuseIdentifier)) { index, viewModel, cell in
-        guard let cell = cell as? HomeTableViewCell else { return }
-        cell.setCellData(shortDes: viewModel.shortDescription,
-                         writer: viewModel.author,
-                         topic: viewModel.topic)
-      }.disposed(by: disposeBag)
+      .subscribe(onNext: { poems in
+        self.hotPoems = poems
+      })
+      .disposed(by: disposeBag)
   }
   
   override func viewWillLayoutSubviews() {
@@ -35,6 +44,7 @@ final class HotViewController: UIViewController {
     homeTableView.translatesAutoresizingMaskIntoConstraints = false
     homeTableView.backgroundColor = .systemBackground
     homeTableView.delegate = self
+    homeTableView.dataSource = self
     homeTableView.homeTableViewDelegate = self
     
     homeTableView.register(HomeTableViewCell.self,
@@ -58,7 +68,28 @@ extension HotViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 150
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let selectedPoem = hotPoems[indexPath.row]
+    delegate?.hotViewController(self, didSelected: selectedPoem.poem)
+  }
+}
 
+extension HotViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return hotPoems.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier, for: indexPath) as? HomeTableViewCell else {
+      return UITableViewCell()
+    }
+    let poem = hotPoems[indexPath.row]
+    cell.setCellData(shortDes: poem.shortDescription,
+                     writer: poem.author,
+                     topic: poem.topic)
+    return cell
+  }
 }
 
 extension HotViewController: HomeTableViewDelegate {

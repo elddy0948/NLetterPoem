@@ -26,6 +26,7 @@ extension Reactive where Base: Query {
     return Observable.create({ observer in
       self.base.getDocuments(completion: { querySnapshot, error in
         if let error = error {
+          print("===========Error============")
           observer.onError(error)
         } else if let querySnapshot = querySnapshot {
           observer.onNext(querySnapshot)

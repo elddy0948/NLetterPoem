@@ -10,6 +10,7 @@ class HotViewModel {
   //Fetch Poems top *30*?
   func fetchHotPoems() -> Observable<[HotPoemViewModel]> {
     reference.collection("poems")
+      .whereField("likeCount", isGreaterThan: 0)
       .order(by: "likeCount", descending: true)
       .limit(to: 30).rx.getDocuments().map({ querySnapshot in
         querySnapshot.documents.map({ document in

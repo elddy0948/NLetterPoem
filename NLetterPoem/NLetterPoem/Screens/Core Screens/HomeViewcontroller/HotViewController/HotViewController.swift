@@ -1,6 +1,5 @@
 import UIKit
 import RxSwift
-import RxCocoa
 
 protocol HotViewControllerDelegate: AnyObject {
   func hotViewController(_ viewController: HotViewController, didSelected poem: NLPPoem)

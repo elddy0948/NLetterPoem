@@ -10,6 +10,7 @@ class TodayViewController: DataLoadingViewController {
   //MARK: - Views
   private(set) var homeHeaderView: HomeHeaderView!
   private(set) var homeTableView: HomeTableView!
+  private var headerContainerView: UIView!
   
   //MARK: - Properties
   var todayTopic: String? {
@@ -34,20 +35,25 @@ class TodayViewController: DataLoadingViewController {
   }
   
   weak var delegate: TodayViewControllerDelegate?
-    
+  
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationController?.navigationBar.prefersLargeTitles = true
     configure()
     configureHeaderView()
     nlpUser = HomeViewController.nlpUser
   }
   
+  override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    layout()
+  }
+  
   private func configure() {
     homeTableView = HomeTableView()
-    view = homeTableView
+    view.addSubview(homeTableView)
     
+    homeTableView.translatesAutoresizingMaskIntoConstraints = false
     homeTableView.backgroundColor = .systemBackground
     homeTableView.delegate = self
     homeTableView.dataSource = self
@@ -62,24 +68,12 @@ class TodayViewController: DataLoadingViewController {
   
   private func configureHeaderView() {
     let screenWidth = UIScreen.main.bounds.width
-    let padding: CGFloat = 8
-    let containerView = UIView(frame: CGRect(x: 0, y: 0,
-                                             width: screenWidth, height: 150))
+    headerContainerView = UIView(frame: CGRect(x: 0, y: 0,
+                                               width: screenWidth, height: 150))
     homeHeaderView = HomeHeaderView()
-    containerView.addSubview(homeHeaderView)
     
-    NSLayoutConstraint.activate([
-      homeHeaderView.topAnchor.constraint(equalTo: containerView.topAnchor,
-                                          constant: padding),
-      homeHeaderView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
-                                              constant: padding),
-      homeHeaderView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
-                                               constant: -padding),
-      homeHeaderView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,
-                                             constant: -padding),
-    ])
-    
-    homeTableView.tableHeaderView = containerView
+    headerContainerView.addSubview(homeHeaderView)
+    homeTableView.tableHeaderView = headerContainerView
   }
   
   func updateTableViewContents() {
@@ -88,5 +82,24 @@ class TodayViewController: DataLoadingViewController {
       self.homeHeaderView.setTopic(self.todayTopic ?? "")
       self.homeTableView.reloadData()
     }
+  }
+}
+
+//MARK: - Layout
+extension TodayViewController {
+  private func layout() {
+    NSLayoutConstraint.activate([
+      //Header View
+      homeHeaderView.topAnchor.constraint(equalTo: headerContainerView.topAnchor),
+      homeHeaderView.leadingAnchor.constraint(equalTo: headerContainerView.leadingAnchor),
+      homeHeaderView.trailingAnchor.constraint(equalTo: headerContainerView.trailingAnchor),
+      homeHeaderView.bottomAnchor.constraint(equalTo: headerContainerView.bottomAnchor),
+      
+      //Table view
+      homeTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      homeTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      homeTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      homeTableView.bottomAnchor.constraint(equalTo: NLPTabBarController.tabBarTopAnchor),
+    ])
   }
 }

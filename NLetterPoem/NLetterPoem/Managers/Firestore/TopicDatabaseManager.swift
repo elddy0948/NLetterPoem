@@ -1,4 +1,5 @@
 import Firebase
+import FirebaseFirestore
 
 final class ToopicDatabaseManager {
   static let shared = ToopicDatabaseManager()

@@ -1,5 +1,6 @@
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 protocol DatabaseRequest: AnyObject {
   associatedtype ResultType

@@ -2,9 +2,13 @@ import UIKit
 
 class NLPTabBarController: UITabBarController {
   
+  static var tabBarTopAnchor: NSLayoutYAxisAnchor = NSLayoutYAxisAnchor()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     tabBar.tintColor = .label
+    
+    NLPTabBarController.tabBarTopAnchor = self.tabBar.topAnchor
     
     viewControllers = [createHomeNavigaionController(),
                        createRankingNavigationController(),

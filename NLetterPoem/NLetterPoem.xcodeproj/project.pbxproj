@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */; };
+		B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */; };
+		B40EB928270C4E2900FADFC6 /* FireStore+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */; };
+		B40EB92A270CA50500FADFC6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB929270CA50500FADFC6 /* HomeViewModel.swift */; };
 		B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */; };
 		B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */; };
 		B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */; };
@@ -61,10 +65,12 @@
 		B47875222671F540002FE83F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B47875212671F540002FE83F /* Assets.xcassets */; };
 		B47875252671F540002FE83F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B47875232671F540002FE83F /* LaunchScreen.storyboard */; };
 		B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478752D2671FA8E002FE83F /* NLPUser.swift */; };
+		B47A2C2C270F355C0018AFE4 /* HotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47A2C2B270F355B0018AFE4 /* HotViewModel.swift */; };
 		B47B432126F0DAD3006C3EB6 /* DeveloperInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */; };
 		B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */; };
 		B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */; };
 		B47CC3EB269ABAFE00F1F003 /* DetailPoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */; };
+		B47DB34E27100F2A007B6022 /* HotPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */; };
 		B48459EA26A45FE700BA1484 /* UserDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */; };
 		B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BD26A000F70044A2B8 /* SignUpView.swift */; };
 		B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BF26A002660044A2B8 /* AuthManager.swift */; };
@@ -98,6 +104,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NLetterPoem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Rx.swift"; sourceTree = "<group>"; };
+		B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FireStore+Rx.swift"; sourceTree = "<group>"; };
+		B40EB929270CA50500FADFC6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
@@ -148,10 +158,12 @@
 		B47875242671F540002FE83F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B47875262671F540002FE83F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B478752D2671FA8E002FE83F /* NLPUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPUser.swift; sourceTree = "<group>"; };
+		B47A2C2B270F355B0018AFE4 /* HotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotViewModel.swift; sourceTree = "<group>"; };
 		B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoViewController.swift; sourceTree = "<group>"; };
 		B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailViewController.swift; sourceTree = "<group>"; };
 		B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPBoldLabel.swift; sourceTree = "<group>"; };
 		B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPoemView.swift; sourceTree = "<group>"; };
+		B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPoemViewModel.swift; sourceTree = "<group>"; };
 		B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabaseManager.swift; sourceTree = "<group>"; };
 		B48BD9BD26A000F70044A2B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B48BD9BF26A002660044A2B8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -182,6 +194,8 @@
 		B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTopic.swift; sourceTree = "<group>"; };
 		B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableView.swift; sourceTree = "<group>"; };
 		B4F6AA1626A3F5DA00DB119D /* RankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
+		E830ADA9E47FCD6CFC00E725 /* Pods-NLetterPoem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLetterPoem.release.xcconfig"; path = "Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem.release.xcconfig"; sourceTree = "<group>"; };
+		FD210B40AC82B6F8852ECB5D /* Pods-NLetterPoem.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLetterPoem.debug.xcconfig"; path = "Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,12 +210,30 @@
 				B42EE578267EF6C7001848A5 /* FirebaseStorage in Frameworks */,
 				B42EE57C267EF6C7001848A5 /* FirebaseFirestore in Frameworks */,
 				B42EE57A267EF6C7001848A5 /* FirebaseAuth in Frameworks */,
+				A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B40EB924270C41B900FADFC6 /* Firebase+Rx */ = {
+			isa = PBXGroup;
+			children = (
+				B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */,
+				B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */,
+			);
+			path = "Firebase+\U0010Rx";
+			sourceTree = "<group>";
+		};
+		B40EB92B270CB90100FADFC6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B40EB929270CA50500FADFC6 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		B414FBD1268AE3DE00AFAAA8 /* MyPageViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				B41A3C9327098AEB00192965 /* HotViewController.swift */,
+				B47A2C2B270F355B0018AFE4 /* HotViewModel.swift */,
+				B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */,
 			);
 			path = HotViewController;
 			sourceTree = "<group>";
@@ -358,6 +392,7 @@
 			children = (
 				B47875172671F540002FE83F /* NLetterPoem */,
 				B4CDD1EC26884AA40086AADE /* Frameworks */,
+				C8841E1A2C2BAF81D5AD78EF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -373,6 +408,8 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
+				B40EB92B270CB90100FADFC6 /* ViewModels */,
+				B40EB924270C41B900FADFC6 /* Firebase+Rx */,
 				B4C6404726806F05007A7B59 /* Extensions */,
 				B4F259892692D02D00FF95A4 /* Fonts */,
 				B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */,
@@ -510,6 +547,7 @@
 		B4CDD1EC26884AA40086AADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -533,6 +571,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		C8841E1A2C2BAF81D5AD78EF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD210B40AC82B6F8852ECB5D /* Pods-NLetterPoem.debug.xcconfig */,
+				E830ADA9E47FCD6CFC00E725 /* Pods-NLetterPoem.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -540,9 +587,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B47875292671F540002FE83F /* Build configuration list for PBXNativeTarget "NLetterPoem" */;
 			buildPhases = (
+				A0368710302B20B61E4D5137 /* [CP] Check Pods Manifest.lock */,
 				B47875112671F540002FE83F /* Sources */,
 				B47875122671F540002FE83F /* Frameworks */,
 				B47875132671F540002FE83F /* Resources */,
+				FF834F1BEA4896F1CFFD2053 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -612,12 +661,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A0368710302B20B61E4D5137 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NLetterPoem-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF834F1BEA4896F1CFFD2053 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NLetterPoem/Pods-NLetterPoem-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B47875112671F540002FE83F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
+				B40EB928270C4E2900FADFC6 /* FireStore+Rx.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
 				B4C3F3EF269418B800CED1A9 /* TodayViewController+UITableViewDataSource.swift in Sources */,
@@ -628,6 +720,7 @@
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */,
+				B40EB92A270CA50500FADFC6 /* HomeViewModel.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
 				B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */,
 				B466044E27007C780044C2F8 /* TodayViewController+Firebase.swift in Sources */,
@@ -655,17 +748,20 @@
 				B478751D2671F540002FE83F /* TodayViewController.swift in Sources */,
 				B4C3F3F1269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift in Sources */,
 				B41A3C8F27097E9700192965 /* ContainerViewController.swift in Sources */,
+				B47DB34E27100F2A007B6022 /* HotPoemViewModel.swift in Sources */,
 				B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */,
+				B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */,
 				B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */,
 				B4ADCD4F270B0942005ADA93 /* HomeViewController+Firebase.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */,
 				B466044C270067340044C2F8 /* FirstCreateView.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
+				B47A2C2C270F355C0018AFE4 /* HotViewModel.swift in Sources */,
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
@@ -828,6 +924,7 @@
 		};
 		B478752A2671F540002FE83F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD210B40AC82B6F8852ECB5D /* Pods-NLetterPoem.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -851,6 +948,7 @@
 		};
 		B478752B2671F540002FE83F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E830ADA9E47FCD6CFC00E725 /* Pods-NLetterPoem.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

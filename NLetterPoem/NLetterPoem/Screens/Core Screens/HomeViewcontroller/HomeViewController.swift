@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import RxSwift
 
 final class HomeViewController: DataLoadingViewController {
 
@@ -11,11 +12,20 @@ final class HomeViewController: DataLoadingViewController {
   private var container: UIView?
   
   private let containerViewController = ContainerViewController()
-  
+  let disposeBag = DisposeBag()
   private var viewControllers = [UIViewController]()
   
   static var nlpUser: NLPUser?
-  var handler: AuthStateDidChangeListenerHandle?
+  var user: User? {
+    didSet {
+      if user == nil {
+        //TODO: - user가 nil로 바뀌면 에러!
+      } else {
+        fetchUserInfo(with: user?.email)
+      }
+    }
+  }
+  var homeViewModel: HomeViewModel? = HomeViewModel()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,7 +33,7 @@ final class HomeViewController: DataLoadingViewController {
     view.backgroundColor = .systemBackground
     configureNavigationBar()
     configureContainerView()
-    createStateChangeListener()
+    configureStateChangeListener()
   }
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -35,18 +45,13 @@ final class HomeViewController: DataLoadingViewController {
     let todayViewController = TodayViewController()
     let hotViewController = HotViewController()
     todayViewController.delegate = self
+    hotViewController.delegate = self
     viewControllers = [todayViewController, hotViewController]
   }
   
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
     layout()
-  }
-  
-  deinit {
-    if let handler = handler {
-      Auth.auth().removeStateDidChangeListener(handler)
-    }
   }
   
   required init?(coder: NSCoder) {
@@ -185,6 +190,14 @@ extension HomeViewController {
 
 extension HomeViewController: TodayViewControllerDelegate {
   func todayViewController(_ todayViewController: TodayViewController, didSelected poem: NLPPoem) {
+    let poemDetailViewController = PoemDetailViewController()
+    poemDetailViewController.poem = poem
+    navigationController?.pushViewController(poemDetailViewController, animated: true)
+  }
+}
+
+extension HomeViewController: HotViewControllerDelegate {
+  func hotViewController(_ viewController: HotViewController, didSelected poem: NLPPoem) {
     let poemDetailViewController = PoemDetailViewController()
     poemDetailViewController.poem = poem
     navigationController?.pushViewController(poemDetailViewController, animated: true)

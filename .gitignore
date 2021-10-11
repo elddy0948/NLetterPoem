@@ -28,3 +28,4 @@ Privacy.swift
 ## Gcc Patch
 /*.gcno
 *.xcuserstate
+Pods/

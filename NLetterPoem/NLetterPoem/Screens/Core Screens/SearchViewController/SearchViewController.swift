@@ -32,6 +32,7 @@ final class SearchViewController: UIViewController {
   private func configure() {
     view.backgroundColor = .systemBackground
     navigationItem.title = "주제 검색"
+    navigationController?.navigationBar.tintColor = .label
     definesPresentationContext = true
   }
   
@@ -53,13 +54,15 @@ final class SearchViewController: UIViewController {
     searchController.searchResultsUpdater = self
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.tintColor = .label
+    searchController.searchBar.delegate = self
     tableView.tableHeaderView = searchController.searchBar
   }
   
   private func configureSearchBehaviorSubject() {
     search
-      .filter { $0.count >= 2 }
+      .filter { $0.count >= 1 }
       .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+      .distinctUntilChanged()
       .flatMapLatest({ [weak self] query -> Observable<[NLPPoem]> in
         guard let self = self else { return .empty() }
         return self.searchViewModel.search(topic: query)
@@ -79,9 +82,22 @@ extension SearchViewController: UISearchResultsUpdating {
   }
 }
 
+extension SearchViewController: UISearchBarDelegate {
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    resultPoems = []
+  }
+}
+
 extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 150
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let viewController = PoemDetailViewController()
+    let selectedPoem = resultPoems[indexPath.row]
+    viewController.poem = selectedPoem
+    navigationController?.pushViewController(viewController, animated: true)
   }
 }
 

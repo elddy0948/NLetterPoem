@@ -11,6 +11,7 @@ class NLPTabBarController: UITabBarController {
     NLPTabBarController.tabBarTopAnchor = self.tabBar.topAnchor
     
     viewControllers = [createHomeNavigaionController(),
+                       createSearchNavigationController(),
                        createRankingNavigationController(),
                        createMyPageNavigationController()]
   }
@@ -21,16 +22,22 @@ class NLPTabBarController: UITabBarController {
     return UINavigationController(rootViewController: viewController)
   }
   
+  private func createSearchNavigationController() -> UINavigationController {
+    let viewController = SearchViewController()
+    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.magnifyingglass, tag: 1)
+    return UINavigationController(rootViewController: viewController)
+  }
+  
   private func createRankingNavigationController() -> UINavigationController {
     let viewController = RankingViewController()
     viewController.title = "🏆"
-    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.crownFill, tag: 1)
+    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.crownFill, tag: 2)
     return UINavigationController(rootViewController: viewController)
   }
   
   private func createMyPageNavigationController() -> UINavigationController {
     let viewController = MyPageViewController()
-    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.personFill, tag: 2)
+    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.personFill, tag: 3)
     return UINavigationController(rootViewController: viewController)
   }
 }

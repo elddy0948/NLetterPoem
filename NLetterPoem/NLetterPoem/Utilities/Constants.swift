@@ -15,4 +15,5 @@ enum SFSymbols {
   static let crownFill = UIImage(systemName: "person.3.fill")
   static let flame = UIImage(systemName: "flame")
   static let flameFill = UIImage(systemName: "flame.fill")
+  static let magnifyingglass = UIImage(systemName: "magnifyingglass")
 }

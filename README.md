@@ -12,7 +12,7 @@
 
 # History
 
-- ### [1.2.1 ](https://github.com/elddy0948/NLetterPoem/wiki/NLP1.2) 업데이트✅
+- ### [1.2.1 (Go to Wiki)](https://github.com/elddy0948/NLetterPoem/wiki/NLP1.2) 업데이트✅
 
 - ### [출시](https://github.com/elddy0948/NLetterPoem/wiki/출시!) ✅
 

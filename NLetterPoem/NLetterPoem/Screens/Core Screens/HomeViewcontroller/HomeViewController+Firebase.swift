@@ -3,11 +3,12 @@ import Firebase
 import RxSwift
 
 extension HomeViewController {
-  //TODO: - 스케쥴러에 추가하기
   func configureStateChangeListener() {
     showLoadingView()
     homeViewModel?.createAuthStateChangeHandler()
-      .subscribe(onNext: { user in
+      .subscribe(on: SerialDispatchQueueScheduler(qos: .userInitiated))
+      .subscribe(onNext: { [weak self] user in
+        guard let self = self else { return }
         self.user = user
       })
       .disposed(by: disposeBag)
@@ -16,6 +17,7 @@ extension HomeViewController {
   func fetchUserInfo(with email: String?) {
     guard let email = email else { return }
     homeViewModel?.fetchUserInfo(with: email)
+      .subscribe(on: SerialDispatchQueueScheduler(qos: .utility))
       .subscribe(onNext: { [weak self] nlpUser in
         guard let self = self else { return }
         HomeViewController.nlpUser = nlpUser

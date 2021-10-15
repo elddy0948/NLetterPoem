@@ -19,7 +19,7 @@ final class HomeViewController: DataLoadingViewController {
   var user: User? {
     didSet {
       if user == nil {
-        //TODO: - user가 nil로 바뀌면 에러!
+        showAlert(title: "⚠️", message: "오류가 발생했습니다.\n앱을 재실행해주세요!", action: nil)
       } else {
         fetchUserInfo(with: user?.email)
       }

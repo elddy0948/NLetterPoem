@@ -1,4 +1,3 @@
-import UIKit
 import Firebase
 import RxSwift
 import FirebaseFirestore

@@ -58,6 +58,7 @@ final class HotViewController: UIViewController {
   
   private func fetchHotPoems() {
     viewModel.fetchHotPoems()
+      .subscribe(on: SerialDispatchQueueScheduler(qos: .utility))
       .observe(on: MainScheduler.instance)
       .subscribe(onNext: { [weak self] poems in
         self?.hotPoems = poems

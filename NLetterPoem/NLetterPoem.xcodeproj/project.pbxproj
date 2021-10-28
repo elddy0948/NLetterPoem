@@ -81,8 +81,8 @@
 		B4ADCD4B270AC3BC005ADA93 /* NLPBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADCD4A270AC3BC005ADA93 /* NLPBarButton.swift */; };
 		B4ADCD4F270B0942005ADA93 /* HomeViewController+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */; };
 		B4B03B4326DF321300B59BF7 /* DatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */; };
+		B4B1D955272A4F340025AA84 /* TodayTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */; };
 		B4C3F3ED269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */; };
-		B4C3F3EF269418B800CED1A9 /* TodayViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EE269418B800CED1A9 /* TodayViewController+UITableViewDataSource.swift */; };
 		B4C3F3F1269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F0269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift */; };
 		B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */; };
 		B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F426942F2E00CED1A9 /* String+Ext.swift */; };
@@ -176,8 +176,8 @@
 		B4ADCD4A270AC3BC005ADA93 /* NLPBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPBarButton.swift; sourceTree = "<group>"; };
 		B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Firebase.swift"; sourceTree = "<group>"; };
 		B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRequest.swift; sourceTree = "<group>"; };
+		B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewDataSource.swift; sourceTree = "<group>"; };
 		B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		B4C3F3EE269418B800CED1A9 /* TodayViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		B4C3F3F0269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayViewController+HomeTableViewDelegate.swift"; sourceTree = "<group>"; };
 		B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		B4C3F3F426942F2E00CED1A9 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -532,9 +532,9 @@
 			children = (
 				B478751C2671F540002FE83F /* TodayViewController.swift */,
 				B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */,
-				B4C3F3EE269418B800CED1A9 /* TodayViewController+UITableViewDataSource.swift */,
 				B4C3F3F0269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift */,
 				B466044D27007C780044C2F8 /* TodayViewController+Firebase.swift */,
+				B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */,
 			);
 			path = TodayViewController;
 			sourceTree = "<group>";
@@ -722,12 +722,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B1D955272A4F340025AA84 /* TodayTableViewDataSource.swift in Sources */,
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
 				B40EB928270C4E2900FADFC6 /* FireStore+Rx.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
 				B45BB30C2715597B0021D3D4 /* SearchViewModel.swift in Sources */,
-				B4C3F3EF269418B800CED1A9 /* TodayViewController+UITableViewDataSource.swift in Sources */,
 				B4AC3E8526E09EEB00E99CF4 /* TopicDatabaseManager.swift in Sources */,
 				B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */,
 				B41A3C9427098AEB00192965 /* HotViewController.swift in Sources */,

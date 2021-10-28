@@ -32,12 +32,13 @@ extension TodayViewController {
               let nlpUser = self.nlpUser else { return }
         switch result {
         case .success(let fetchedPoems):
-          self.todayPoems = fetchedPoems.filter({ poem in
+          self.todayTableViewDataSource.poems = fetchedPoems.filter({ poem in
             !nlpUser.blockedUser.contains(poem.authorEmail)
           })
         case .failure(_):
-          self.todayPoems = []
+          self.todayTableViewDataSource.poems = []
         }
+        self.updateTableViewContents()
       }
     }
   }

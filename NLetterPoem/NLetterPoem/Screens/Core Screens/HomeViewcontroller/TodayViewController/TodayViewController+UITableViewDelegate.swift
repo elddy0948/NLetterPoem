@@ -6,8 +6,7 @@ extension TodayViewController: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if let poem = todayPoems?[indexPath.row] {
-      delegate?.todayViewController(self, didSelected: poem)
-    }
+    let poem = todayTableViewDataSource.fetchPoem(from: indexPath)
+    delegate?.todayViewController(self, didSelected: poem)
   }
 }

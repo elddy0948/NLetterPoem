@@ -8,9 +8,10 @@ protocol TodayViewControllerDelegate: AnyObject {
 class TodayViewController: DataLoadingViewController {
   
   //MARK: - Views
-  private(set) var homeHeaderView: HomeHeaderView!
-  private(set) var homeTableView: HomeTableView!
-  private var headerContainerView: UIView!
+  private let homeHeaderView = HomeHeaderView()
+  private let headerContainerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150))
+  private let homeTableView = HomeTableView()
+  var todayTableViewDataSource = TodayTableViewDataSource()
   
   //MARK: - Properties
   var todayTopic: String? {
@@ -18,12 +19,6 @@ class TodayViewController: DataLoadingViewController {
       if oldValue != todayTopic {
         updateTableViewContents()
       }
-    }
-  }
-  
-  var todayPoems: [NLPPoem]? {
-    didSet {
-      updateTableViewContents()
     }
   }
   
@@ -50,15 +45,12 @@ class TodayViewController: DataLoadingViewController {
   }
   
   private func configure() {
-    homeTableView = HomeTableView()
     view.addSubview(homeTableView)
-    
     homeTableView.translatesAutoresizingMaskIntoConstraints = false
     homeTableView.backgroundColor = .systemBackground
     homeTableView.delegate = self
-    homeTableView.dataSource = self
+    homeTableView.dataSource = todayTableViewDataSource
     homeTableView.homeTableViewDelegate = self
-    
     homeTableView.register(HomeTableViewCell.self,
                            forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
     homeTableView.register(HomeEmptyCell.self,
@@ -67,11 +59,6 @@ class TodayViewController: DataLoadingViewController {
   }
   
   private func configureHeaderView() {
-    let screenWidth = UIScreen.main.bounds.width
-    headerContainerView = UIView(frame: CGRect(x: 0, y: 0,
-                                               width: screenWidth, height: 150))
-    homeHeaderView = HomeHeaderView()
-    
     headerContainerView.addSubview(homeHeaderView)
     homeTableView.tableHeaderView = headerContainerView
   }

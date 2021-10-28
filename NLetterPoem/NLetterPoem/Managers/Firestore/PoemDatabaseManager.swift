@@ -1,6 +1,4 @@
-import Foundation
 import Firebase
-import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 final class PoemDatabaseManager: DatabaseRequest {

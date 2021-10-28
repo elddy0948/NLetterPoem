@@ -1,5 +1,5 @@
 import Foundation
 
-struct Topic: Decodable {
-    let topic: String
+struct NLPTopic: Codable {
+  let topic: String
 }

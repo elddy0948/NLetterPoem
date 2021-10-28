@@ -1,5 +1,5 @@
 import Firebase
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 final class ToopicDatabaseManager {
   static let shared = ToopicDatabaseManager()
@@ -21,8 +21,10 @@ final class ToopicDatabaseManager {
       }
       
       do {
-        let data = try document.data(as: Topic.self) ?? Topic(topic: "")
-        completed(.success(data.topic))
+        if let data = try document.data(as: NLPTopic.self) {
+          completed(.success(data.topic))
+        }
+        completed(.success(""))
         return
       } catch {
         completed(.failure(.failedReadTopic))

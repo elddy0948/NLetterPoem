@@ -57,12 +57,11 @@ class MyPageViewController: UIViewController {
   
   private func configureCollectionView() {
     let layout = UICollectionViewFlowLayout()
-    
+
     myPageCollectionView = MyPageCollectionView(frame: view.frame, collectionViewLayout: layout)
     guard let myPageCollectionView = myPageCollectionView else { return }
-    
+
     view.addSubview(myPageCollectionView)
-    
     myPageCollectionView.register(MyPageCollectionViewCell.self,
                                   forCellWithReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier)
     myPageCollectionView.register(MyPageHeaderView.self,

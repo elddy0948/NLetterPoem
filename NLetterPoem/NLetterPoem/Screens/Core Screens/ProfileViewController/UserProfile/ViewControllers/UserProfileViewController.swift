@@ -9,21 +9,13 @@ class UserProfileViewController: UIViewController {
   //MARK: - Properties
   private var userEmail: String?
   private let userProfileService = UserProfileService()
+  private let globalQueueScheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global(qos: .utility))
   
-  var userViewModel: ProfileUserViewModel? {
-    didSet {
-      self.userProfileCollectionView?.reloadData()
-    }
-  }
-  
-  var poemsViewModel: ProfilePoemsViewModel? {
-    didSet {
-      self.userProfileCollectionView?.reloadSections(IndexSet(integer: 0))
-    }
-  }
+  var userViewModel: ProfileUserViewModel?
+  var poemsViewModel: ProfilePoemsViewModel?
   
   private let bag = DisposeBag()
-                                              
+  
   //MARK: - Initializer
   init(userEmail: String) {
     super.init(nibName: nil, bundle: nil)
@@ -42,8 +34,7 @@ class UserProfileViewController: UIViewController {
     
     guard let email = userEmail else { return }
     
-    fetchUserInfo(with: email)
-    fetchPoems(with: email)
+    fetchUserProfileInformation(with: email)
   }
   
   override func viewWillLayoutSubviews() {
@@ -51,32 +42,28 @@ class UserProfileViewController: UIViewController {
     layout()
   }
   
-  func fetchUserInfo(with email: String) {
-    userProfileService.fetchUser(with: email)
-      .subscribe(onNext: { [weak self] result in
-        guard let self = self else { return }
-        switch result {
+  func fetchUserProfileInformation(with email: String) {
+    Observable
+      .combineLatest(userProfileService.fetchUser(with: email),
+                     userProfileService.fetchPoems(with: email)) { userResults, poemsResult in
+        switch userResults {
         case .success(let userViewModel):
           self.userViewModel = userViewModel
         case .failure(let error):
           print(error.message)
         }
-      })
-      .disposed(by: bag)
-  }
-  
-  func fetchPoems(with email: String) {
-    userProfileService.fetchPoems(with: email)
-      .subscribe(onNext: { [weak self] result in
-        guard let self = self else { return }
-        switch result {
+        
+        switch poemsResult {
         case .success(let poemsViewModel):
           self.poemsViewModel = poemsViewModel
         case .failure(let error):
           print(error.message)
         }
-      })
-      .disposed(by: bag)
+      }.subscribe(on: globalQueueScheduler)
+      .observe(on: MainScheduler.instance)
+      .subscribe({ _ in
+        self.userProfileCollectionView?.reloadSections(IndexSet(integer: 0))
+      }).disposed(by: bag)
   }
 }
 

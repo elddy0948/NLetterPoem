@@ -222,21 +222,8 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
   func detailPoemView(_ view: DetailPoemView,
                       didTapAuthor author: String?) {
     guard let email = poem?.authorEmail else { return }
-//    let viewController = MyPageViewController()
     let viewController = UserProfileViewController(userEmail: email)
-    
-    DispatchQueue.global(qos: .userInitiated).async {
-      UserDatabaseManager.shared.read(email) { [weak self] result in
-        guard let self = self else { return }
-        switch result {
-        case .success(let user):
-//          viewController.user = user
-          self.navigationController?.pushViewController(viewController, animated: true)
-        case .failure(let error):
-          self.showAlert(title: "⚠️", message: error.message, action: nil)
-        }
-      }
-    }
+    navigationController?.pushViewController(viewController, animated: true)
   }
   
   func didTappedFireButton(_ detailPoemView: DetailPoemView,

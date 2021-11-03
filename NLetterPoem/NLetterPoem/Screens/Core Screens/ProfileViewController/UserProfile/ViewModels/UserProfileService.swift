@@ -3,39 +3,47 @@ import Firebase
 
 class UserProfileService {
   
-  let userViewModel = PublishSubject<ProfileUserViewModel>()
-  let poemsViewModel = PublishSubject<ProfilePoemsViewModel>()
+  typealias ProfileUserResult = Result<ProfileUserViewModel, ProfileServiceError>
+  typealias ProfilePoemsResult = Result<ProfilePoemsViewModel, ProfileServiceError>
   
   private var reference = Firestore.firestore()
   private let disposeBag = DisposeBag()
   
-  func fetchUser(with email: String) {
+  func fetchUser(with email: String) -> Observable<ProfileUserResult> {
     return reference.collection("users").document(email).rx
-      .getDocument().map({ snapshot -> NLPUser? in
+      .getDocument().map({ snapshot -> ProfileUserResult in
         if let user = try snapshot.data(as: NLPUser.self) {
-          return user
+          let profileUserViewModel = ProfileUserViewModel(user)
+          return .success(profileUserViewModel)
         } else {
-          return nil
+          return .failure(.noUserExist)
         }
-      }).subscribe(onNext: { [weak self] user in
-        if let user = user,
-           let self = self {
-          self.userViewModel.onNext(ProfileUserViewModel(user))
-        }
-      }).disposed(by: disposeBag)
+      })
   }
   
-  func fetchPoems(with email: String) -> Observable<[NLPPoem]> {
+  func fetchPoems(with email: String) -> Observable<ProfilePoemsResult> {
     return reference.collection("poems")
       .whereField("authorEmail", isEqualTo: email)
-      .rx.getDocuments().map({ snapshot -> [NLPPoem] in
+      .rx.getDocuments().map({ snapshot -> ProfilePoemsResult in
         var poems = [NLPPoem]()
         for document in snapshot.documents {
           if let poem = try document.data(as: NLPPoem.self) {
             poems.append(poem)
           }
         }
-        return poems
+        let profilePoemsViewModel = ProfilePoemsViewModel(poems)
+        return .success(profilePoemsViewModel)
       })
+  }
+}
+
+enum ProfileServiceError: Error {
+  case noUserExist
+  
+  var message: String {
+    switch self {
+    case .noUserExist:
+      return "유저가 존재하지 않습니다.\n다시 시도해주세요!"
+    }
   }
 }

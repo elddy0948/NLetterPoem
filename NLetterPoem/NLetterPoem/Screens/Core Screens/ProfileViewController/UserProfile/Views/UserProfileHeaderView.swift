@@ -26,8 +26,7 @@ final class UserProfileHeaderView: UICollectionReusableView {
   }
   
   //MARK: - Configure Mypage Data
-  func configureUser(with user: NLPUser?) {
-    guard let user = user else { return }
+  func configureUser(with user: ProfileUserViewModel) {
     bioLabel.text = user.bio
     userNameLabel.text = user.nickname
     firesLabel.text = "\(user.fires)🔥"

@@ -6,6 +6,19 @@ class UserProfileViewController: UIViewController {
   private var userEmail: String?
   var userProfileCollectionView: UICollectionView?
   private let userProfileService = UserProfileService()
+  
+  var userViewModel: ProfileUserViewModel? {
+    didSet {
+      self.userProfileCollectionView?.reloadData()
+    }
+  }
+  
+  var poemsViewModel: ProfilePoemsViewModel? {
+    didSet {
+      self.userProfileCollectionView?.reloadSections(IndexSet(integer: 0))
+    }
+  }
+  
   private let bag = DisposeBag()
                                               
   var poems = ["1", "2", "3"]
@@ -25,14 +38,10 @@ class UserProfileViewController: UIViewController {
     configureViewController()
     configureCollectionView()
     
-    userProfileService.userViewModel
-      .subscribe(onNext: { userViewModel in
-        print(userViewModel)
-      })
-      .disposed(by: bag)
-    
     guard let email = userEmail else { return }
-    userProfileService.fetchUser(with: email)
+    
+    fetchUserInfo(with: email)
+    fetchPoems(with: email)
   }
   
   override func viewWillLayoutSubviews() {
@@ -40,12 +49,32 @@ class UserProfileViewController: UIViewController {
     layout()
   }
   
-  func fetchUserInfo() {
+  func fetchUserInfo(with email: String) {
     //TODO: - User Info 가져오기
+    userProfileService.fetchUser(with: email)
+      .subscribe(onNext: { result in
+        switch result {
+        case .success(let userViewModel):
+          self.userViewModel = userViewModel
+        case .failure(let error):
+          print(error.message)
+        }
+      })
+      .disposed(by: bag)
   }
   
-  func fetchPoems() {
+  func fetchPoems(with email: String) {
     //TODO: - User가 작성한 시 가져오기
+    userProfileService.fetchPoems(with: email)
+      .subscribe(onNext: { result in
+        switch result {
+        case .success(let poemsViewModel):
+          self.poemsViewModel = poemsViewModel
+        case .failure(let error):
+          print(error.message)
+        }
+      })
+      .disposed(by: bag)
   }
 }
 

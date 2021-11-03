@@ -69,6 +69,7 @@
 		B46EE4C827310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46EE4C727310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B46EE4CB2731118700A3D640 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46EE4CA2731118700A3D640 /* UserProfileHeaderView.swift */; };
 		B46EE4CE27315DCF00A3D640 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46EE4CD27315DCF00A3D640 /* UserProfileService.swift */; };
+		B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* TodayViewController.swift */; };
@@ -170,6 +171,7 @@
 		B46EE4C727310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B46EE4CA2731118700A3D640 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B46EE4CD27315DCF00A3D640 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
+		B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				B46EE4BF2730FF1F00A3D640 /* UserProfileViewController.swift */,
 				B46EE4C3273108CB00A3D640 /* UserProfileViewController+UICollectionViewDataSource.swift */,
 				B46EE4C727310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift */,
+				B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
 				B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */,
 				B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */,
+				B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */,
 				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
 				B41593B827318EE9002FBBD2 /* ProfilePoemsViewModel.swift in Sources */,
 				B46EE4C627310B2800A3D640 /* ProfileCollectionHelper.swift in Sources */,

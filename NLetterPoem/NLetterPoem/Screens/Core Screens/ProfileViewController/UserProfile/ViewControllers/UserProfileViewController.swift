@@ -3,8 +3,11 @@ import RxSwift
 
 class UserProfileViewController: UIViewController {
   
-  private var userEmail: String?
+  //MARK: - Views
   var userProfileCollectionView: UICollectionView?
+  
+  //MARK: - Properties
+  private var userEmail: String?
   private let userProfileService = UserProfileService()
   
   var userViewModel: ProfileUserViewModel? {
@@ -21,7 +24,6 @@ class UserProfileViewController: UIViewController {
   
   private let bag = DisposeBag()
                                               
-  var poems = ["1", "2", "3"]
   //MARK: - Initializer
   init(userEmail: String) {
     super.init(nibName: nil, bundle: nil)
@@ -50,9 +52,9 @@ class UserProfileViewController: UIViewController {
   }
   
   func fetchUserInfo(with email: String) {
-    //TODO: - User Info 가져오기
     userProfileService.fetchUser(with: email)
-      .subscribe(onNext: { result in
+      .subscribe(onNext: { [weak self] result in
+        guard let self = self else { return }
         switch result {
         case .success(let userViewModel):
           self.userViewModel = userViewModel
@@ -64,9 +66,9 @@ class UserProfileViewController: UIViewController {
   }
   
   func fetchPoems(with email: String) {
-    //TODO: - User가 작성한 시 가져오기
     userProfileService.fetchPoems(with: email)
-      .subscribe(onNext: { result in
+      .subscribe(onNext: { [weak self] result in
+        guard let self = self else { return }
         switch result {
         case .success(let poemsViewModel):
           self.poemsViewModel = poemsViewModel
@@ -113,8 +115,4 @@ extension UserProfileViewController {
       userProfileCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
   }
-}
-
-extension UserProfileViewController: UICollectionViewDelegate {
-  
 }

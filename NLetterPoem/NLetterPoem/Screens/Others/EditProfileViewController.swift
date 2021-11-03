@@ -32,7 +32,8 @@ class EditProfileViewController: DataLoadingViewController {
   
   private func updateUserData(_ user: NLPUser?) {
     guard let user = user else { return }
-    UserDatabaseManager.shared.update(user) { result in
+    UserDatabaseManager.shared.update(user) { [weak self] result in
+      guard let self = self else { return }
       self.dismissLoadingView()
       switch result {
       case .success(_):

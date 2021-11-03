@@ -1,7 +1,7 @@
 import UIKit
 import RxSwift
 
-class UserProfileViewController: UIViewController {
+class UserProfileViewController: DataLoadingViewController {
   
   //MARK: - Views
   var userProfileCollectionView: UICollectionView?
@@ -31,18 +31,14 @@ class UserProfileViewController: UIViewController {
     super.viewDidLoad()
     configureViewController()
     configureCollectionView()
+    layout()
     
     guard let email = userEmail else { return }
-    
     fetchUserProfileInformation(with: email)
   }
   
-  override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
-    layout()
-  }
-  
   func fetchUserProfileInformation(with email: String) {
+    showLoadingView()
     Observable
       .combineLatest(userProfileService.fetchUser(with: email),
                      userProfileService.fetchPoems(with: email)) { userResults, poemsResult in
@@ -61,8 +57,9 @@ class UserProfileViewController: UIViewController {
         }
       }.subscribe(on: globalQueueScheduler)
       .observe(on: MainScheduler.instance)
-      .subscribe({ _ in
-        self.userProfileCollectionView?.reloadSections(IndexSet(integer: 0))
+      .subscribe({ [weak self] _ in
+        self?.dismissLoadingView()
+        self?.userProfileCollectionView?.reloadSections(IndexSet(integer: 0))
       }).disposed(by: bag)
   }
 }

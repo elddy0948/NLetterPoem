@@ -1,53 +1,34 @@
 import UIKit
 import Firebase
+import RxSwift
 
-class MyPageViewController: UIViewController {
+class MyPageViewController: DataLoadingViewController {
   
   //MARK: - Views
   private(set) var myPageCollectionView: MyPageCollectionView?
   
   //MARK: - Properties
-  var user: NLPUser? {
-    didSet {
-      DispatchQueue.main.async { [weak self] in
-        guard let self = self else { return }
-        self.navigationItem.title = self.user?.nickname
-      }
-      fetchPoems(with: user?.email)
-    }
-  }
-  
-  var poems: [NLPPoem]? {
-    didSet {
-      myPageCollectionView?.reloadData()
-    }
-  }
+  private let userProfileService = UserProfileService()
+  private let globalQueueScheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global(qos: .utility))
+  private let bag = DisposeBag()
+  var userViewModel: ProfileUserViewModel?
+  var poemsViewModel: ProfilePoemsViewModel?
   
   //MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     configure()
     configureCollectionView()
+    fetchUserProfile()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.prefersLargeTitles = false
-    
-    let email: String?
-    if user == nil {
-      guard let currentUser = Auth.auth().currentUser,
-            let currentUserEmail = currentUser.email else {
-        return
-      }
-      email = currentUserEmail
-      navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill,
-                                                          style: .plain,
-                                                          target: self,
-                                                          action: #selector(didTapSettingButton(_:)))
-    } else { email = user?.email }
-    
-    fetchCurrentUser(with: email)
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill,
+                                                        style: .plain,
+                                                        target: self,
+                                                        action: #selector(didTapSettingButton(_:)))
   }
   
   private func configure() {
@@ -72,34 +53,33 @@ class MyPageViewController: UIViewController {
     myPageCollectionView.dataSource = self
   }
   
-  private func fetchCurrentUser(with email: String?) {
-    guard let email = email else { return }
-    DispatchQueue.global(qos: .utility).async {
-      UserDatabaseManager.shared.read(email) { [weak self] result in
-        guard let self = self else { return }
-        switch result {
-        case .success(let user):
-          self.user = user
+  private func fetchUserProfile() {
+    guard let currentUser = Auth.auth().currentUser,
+          let email = currentUser.email else { return }
+    
+    showLoadingView()
+    Observable
+      .combineLatest(userProfileService.fetchUser(with: email),
+                     userProfileService.fetchPoems(with: email)) { userResults, poemsResult in
+        switch userResults {
+        case .success(let userViewModel):
+          self.userViewModel = userViewModel
         case .failure(let error):
-          self.showAlert(title: "⚠️", message: error.message, action: nil)
+          print(error.message)
         }
-      }
-    }
-  }
-  
-  private func fetchPoems(with email: String?) {
-    guard let email = email else { return }
-    DispatchQueue.global(qos: .utility).async {
-      PoemDatabaseManager.shared.fetchUserPoems(userEmail: email, sortType: .recent) { [weak self] result in
-        guard let self = self else { return }
-        switch result {
-        case .success(let fetchedPoems):
-          self.poems = fetchedPoems
-        case .failure(_):
-          self.poems = []
+        
+        switch poemsResult {
+        case .success(let poemsViewModel):
+          self.poemsViewModel = poemsViewModel
+        case .failure(let error):
+          print(error.message)
         }
-      }
-    }
+      }.subscribe(on: globalQueueScheduler)
+      .observe(on: MainScheduler.instance)
+      .subscribe({ [weak self] _ in
+        self?.dismissLoadingView()
+        self?.myPageCollectionView?.reloadSections(IndexSet(integer: 0))
+      }).disposed(by: bag)
   }
   
   @objc func didTapSettingButton(_ sender: UIBarButtonItem) {
@@ -111,8 +91,16 @@ class MyPageViewController: UIViewController {
 extension MyPageViewController: MyPageHeaderViewDelegate {
   func didTappedEditProfileButton(_ sender: NLPButton) {
     let viewController = EditProfileViewController()
-    viewController.user = user
+    viewController.user = userViewModel?.user
     viewController.modalPresentationStyle = .fullScreen
+    viewController.delegate = self
     present(viewController, animated: true, completion: nil)
+  }
+}
+
+extension MyPageViewController: EditProfileViewControllerDelegate {
+  func editProfileViewController(_ viewController: EditProfileViewController,
+                                 didFinishEditing user: NLPUser?) {
+    fetchUserProfile()
   }
 }

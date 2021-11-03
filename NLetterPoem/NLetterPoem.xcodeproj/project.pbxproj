@@ -259,6 +259,8 @@
 		B414FBD1268AE3DE00AFAAA8 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B46EE4CC273116FB00A3D640 /* ViewModels */,
+				B46EE4CD27315DCF00A3D640 /* UserProfileService.swift */,
 				B46EE4BC2730FE8200A3D640 /* UserProfile */,
 				B46EE4BB2730FE7A00A3D640 /* MyPage */,
 			);
@@ -427,7 +429,6 @@
 		B46EE4BC2730FE8200A3D640 /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
-				B46EE4CC273116FB00A3D640 /* ViewModels */,
 				B46EE4C92731116600A3D640 /* Views */,
 				B46EE4BE2730FF0F00A3D640 /* ViewControllers */,
 				B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */,
@@ -468,7 +469,6 @@
 		B46EE4CC273116FB00A3D640 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				B46EE4CD27315DCF00A3D640 /* UserProfileService.swift */,
 				B41593B527318EE2002FBBD2 /* ProfileUserViewModel.swift */,
 				B41593B727318EE9002FBBD2 /* ProfilePoemsViewModel.swift */,
 			);

@@ -1,6 +1,10 @@
 import UIKit
 import Firebase
 
+protocol EditProfileViewControllerDelegate: AnyObject {
+  func editProfileViewController(_ viewController: EditProfileViewController, didFinishEditing user: NLPUser?)
+}
+
 class EditProfileViewController: DataLoadingViewController {
   
   //MARK: - Views
@@ -9,6 +13,7 @@ class EditProfileViewController: DataLoadingViewController {
   //MARK: - Properties
   var user: NLPUser?
   var updatedUser: NLPUser?
+  weak var delegate: EditProfileViewControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,7 +43,9 @@ class EditProfileViewController: DataLoadingViewController {
       switch result {
       case .success(_):
         self.showAlert(title: "🎉", message: "정보 변경을 완료했습니다!") { _ in
-          self.dismiss(animated: true, completion: nil)
+          self.dismiss(animated: true, completion: {
+            self.delegate?.editProfileViewController(self, didFinishEditing: self.updatedUser)
+          })
         }
       case .failure(_):
         self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!") { _ in
@@ -61,7 +68,6 @@ extension EditProfileViewController: EditProfileViewDelegate {
       guard let self = self,
             let updatedUser = self.updatedUser else { return }
       self.updateUserData(updatedUser)
-    
     }
   }
 }

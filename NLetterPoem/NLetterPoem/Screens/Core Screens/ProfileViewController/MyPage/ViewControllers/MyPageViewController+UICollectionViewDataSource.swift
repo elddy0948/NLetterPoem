@@ -7,7 +7,7 @@ extension MyPageViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
-    return user?.poems.count ?? 0
+    return poemsViewModel?.numberOfPoems ?? 0
   }
   
   func collectionView(_ collectionView: UICollectionView,
@@ -18,9 +18,7 @@ extension MyPageViewController: UICollectionViewDataSource {
       return UICollectionViewCell()
     }
     
-    if let poems = poems,
-       indexPath.item <= poems.count {
-      let poem = poems[indexPath.item]
+    if let poem = poemsViewModel?.poemAtCell(indexPath: indexPath.item) {
       cell.setPoemData(with: poem)
     }
     
@@ -36,16 +34,7 @@ extension MyPageViewController: UICollectionViewDataSource {
                                                                        withReuseIdentifier: MyPageHeaderView.reuseIdentifier,
                                                                        for: indexPath)
       guard let typeHeaderView = headerView as? MyPageHeaderView else { return headerView }
-      let rootViewController = navigationController?.viewControllers.first
-      
-      if rootViewController is MyPageViewController {
-        typeHeaderView.configureUser(with: user,
-                                     isEditButtonHidden: false)
-      } else {
-        typeHeaderView.configureUser(with: user,
-                                     isEditButtonHidden: true)
-      }
-      
+      typeHeaderView.configureUser(with: userViewModel?.user, isEditButtonHidden: false)
       typeHeaderView.delegate = self
       
       return typeHeaderView

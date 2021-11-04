@@ -5,7 +5,7 @@ import RxSwift
 class MyPageViewController: DataLoadingViewController {
   
   //MARK: - Views
-  private(set) var myPageCollectionView: MyPageCollectionView?
+  private(set) var myPageCollectionView: ProfileCollectionView?
   
   //MARK: - Properties
   private let userProfileService = UserProfileService()
@@ -39,7 +39,7 @@ class MyPageViewController: DataLoadingViewController {
   private func configureCollectionView() {
     let layout = UICollectionViewFlowLayout()
 
-    myPageCollectionView = MyPageCollectionView(frame: view.frame, collectionViewLayout: layout)
+    myPageCollectionView = ProfileCollectionView(frame: view.frame, collectionViewLayout: layout)
     guard let myPageCollectionView = myPageCollectionView else { return }
 
     view.addSubview(myPageCollectionView)

@@ -44,7 +44,7 @@
 		B42EE591267F176F001848A5 /* PoemDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */; };
 		B43BBC392682F2D100B4A8DC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC382682F2D100B4A8DC /* SettingViewController.swift */; };
 		B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */; };
-		B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */; };
+		B44617E52685B718009AE2A5 /* ProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */; };
 		B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494062681A1A50075D16C /* MyPageViewController.swift */; };
 		B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageHeaderView.swift */; };
 		B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940A2681A4400075D16C /* NLPTabBarController.swift */; };
@@ -146,7 +146,7 @@
 		B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDatabaseManager.swift; sourceTree = "<group>"; };
 		B43BBC382682F2D100B4A8DC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
-		B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionView.swift; sourceTree = "<group>"; };
+		B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionView.swift; sourceTree = "<group>"; };
 		B45494062681A1A50075D16C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		B45494082681A1B60075D16C /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
 		B454940A2681A4400075D16C /* NLPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTabBarController.swift; sourceTree = "<group>"; };
@@ -248,54 +248,47 @@
 			path = "Firebase+\U0010Rx";
 			sourceTree = "<group>";
 		};
-		B40EB92B270CB90100FADFC6 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				B40EB929270CA50500FADFC6 /* HomeViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		B414FBD1268AE3DE00AFAAA8 /* ProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
+				B443BF5B2734461E00BDB314 /* Views */,
 				B46EE4CC273116FB00A3D640 /* ViewModels */,
 				B46EE4CD27315DCF00A3D640 /* UserProfileService.swift */,
-				B46EE4BC2730FE8200A3D640 /* UserProfile */,
-				B46EE4BB2730FE7A00A3D640 /* MyPage */,
+				B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */,
+				B46EE4BC2730FE8200A3D640 /* UserProfileScreen */,
+				B46EE4BB2730FE7A00A3D640 /* MyPageScreen */,
 			);
 			path = ProfileScreen;
 			sourceTree = "<group>";
 		};
-		B417692726BA6C2800C5B3A7 /* CreateScreens */ = {
+		B417692726BA6C2800C5B3A7 /* CreateScreen */ = {
 			isa = PBXGroup;
 			children = (
-				B466044F27007D930044C2F8 /* CantCreatePoemViewController.swift */,
-				B4C3F3F62694394200CED1A9 /* CreatePoemViewController.swift */,
-				B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */,
-				B4660449270066B60044C2F8 /* FirstCreatePoemViewController.swift */,
+				B443BF562734455800BDB314 /* Views */,
+				B443BF552734454C00BDB314 /* Controllers */,
 				B4660451270081020044C2F8 /* PoemCreator.swift */,
 			);
-			path = CreateScreens;
+			path = CreateScreen;
 			sourceTree = "<group>";
 		};
-		B41A3C9227098ADB00192965 /* HotViewController */ = {
+		B41A3C9227098ADB00192965 /* HotScreen */ = {
 			isa = PBXGroup;
 			children = (
 				B41A3C9327098AEB00192965 /* HotViewController.swift */,
 				B47A2C2B270F355B0018AFE4 /* HotViewModel.swift */,
 				B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */,
 			);
-			path = HotViewController;
+			path = HotScreen;
 			sourceTree = "<group>";
 		};
 		B41A3C9527098C9500192965 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				B41A3C8C27097E3000192965 /* HomeViewController.swift */,
-				B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */,
-				B4C3F3EB2694184D00CED1A9 /* TodayViewController */,
-				B41A3C9227098ADB00192965 /* HotViewController */,
+				B443BF592734458C00BDB314 /* ViewModels */,
+				B443BF582734458100BDB314 /* Views */,
+				B443BF572734457A00BDB314 /* Controllers */,
+				B4C3F3EB2694184D00CED1A9 /* TodayScreen */,
+				B41A3C9227098ADB00192965 /* HotScreen */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -304,7 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				B4AEA41326C4F3870012C398 /* Core Screens */,
-				B417692726BA6C2800C5B3A7 /* CreateScreens */,
 				B4AEA41526C4F3BF0012C398 /* Others */,
 				B4AEA41426C4F3A70012C398 /* SignInSignUpScreen */,
 			);
@@ -315,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				B43BBC3D2682F72C00B4A8DC /* Cells */,
-				B43BBC3A2682F2E000B4A8DC /* Screens */,
 				B4C6404426806D7E007A7B59 /* Storyboards */,
 				B42EE583267EFD4E001848A5 /* CustomViews */,
 			);
@@ -363,17 +354,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		B43BBC3A2682F2E000B4A8DC /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				B4C26C4326BE4C9D002982A1 /* CreatePoemViews */,
-				B4C26C4226BE4C86002982A1 /* HomeViews */,
-				B4C26C4026BE4C4A002982A1 /* MyPageViews */,
-				B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		B43BBC3D2682F72C00B4A8DC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +363,79 @@
 				B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B443BF542734450F00BDB314 /* RankingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */,
+				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
+			);
+			path = RankingScreen;
+			sourceTree = "<group>";
+		};
+		B443BF552734454C00BDB314 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B466044F27007D930044C2F8 /* CantCreatePoemViewController.swift */,
+				B4C3F3F62694394200CED1A9 /* CreatePoemViewController.swift */,
+				B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */,
+				B4660449270066B60044C2F8 /* FirstCreatePoemViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B443BF562734455800BDB314 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */,
+				B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */,
+				B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */,
+				B466044B270067340044C2F8 /* FirstCreateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B443BF572734457A00BDB314 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B41A3C8C27097E3000192965 /* HomeViewController.swift */,
+				B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B443BF582734458100BDB314 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B421C4F62691B0810088119D /* HomeHeaderView.swift */,
+				B421C4F42691AFC70088119D /* HomeTableView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B443BF592734458C00BDB314 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B40EB929270CA50500FADFC6 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B443BF5A273445FD00BDB314 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B443BF5B2734461E00BDB314 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B44D384526E514B60030E706 /* Firestore */ = {
@@ -404,31 +457,31 @@
 			path = FirebaseAuth;
 			sourceTree = "<group>";
 		};
-		B45BB308271553FC0021D3D4 /* SearchViewController */ = {
+		B45BB308271553FC0021D3D4 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
 				B45BB309271554120021D3D4 /* SearchViewController.swift */,
 				B45BB30B2715597B0021D3D4 /* SearchViewModel.swift */,
 			);
-			path = SearchViewController;
+			path = SearchScreen;
 			sourceTree = "<group>";
 		};
-		B46EE4BB2730FE7A00A3D640 /* MyPage */ = {
+		B46EE4BB2730FE7A00A3D640 /* MyPageScreen */ = {
 			isa = PBXGroup;
 			children = (
+				B443BF5A273445FD00BDB314 /* Views */,
 				B46EE4BD2730FE8F00A3D640 /* Controllers */,
 			);
-			path = MyPage;
+			path = MyPageScreen;
 			sourceTree = "<group>";
 		};
-		B46EE4BC2730FE8200A3D640 /* UserProfile */ = {
+		B46EE4BC2730FE8200A3D640 /* UserProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
 				B46EE4C92731116600A3D640 /* Views */,
 				B46EE4BE2730FF0F00A3D640 /* Controllers */,
-				B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */,
 			);
-			path = UserProfile;
+			path = UserProfileScreen;
 			sourceTree = "<group>";
 		};
 		B46EE4BD2730FE8F00A3D640 /* Controllers */ = {
@@ -502,7 +555,6 @@
 				B4E4957526F796E8000EE48B /* NLetterPoem.entitlements */,
 				B42EE57F267EFA39001848A5 /* Screens */,
 				B42EE58A267F04FB001848A5 /* Utilities */,
-				B40EB92B270CB90100FADFC6 /* ViewModels */,
 				B42EE582267EFD43001848A5 /* Views */,
 			);
 			path = NLetterPoem;
@@ -521,10 +573,10 @@
 		B4AEA41326C4F3870012C398 /* Core Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B45BB308271553FC0021D3D4 /* SearchViewController */,
+				B443BF542734450F00BDB314 /* RankingScreen */,
+				B45BB308271553FC0021D3D4 /* SearchScreen */,
 				B41A3C9527098C9500192965 /* HomeScreen */,
 				B414FBD1268AE3DE00AFAAA8 /* ProfileScreen */,
-				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
 			);
 			path = "Core Screens";
 			sourceTree = "<group>";
@@ -541,7 +593,8 @@
 		B4AEA41526C4F3BF0012C398 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				B4EB6AA226C108CB0024B4FD /* SettingViewController */,
+				B417692726BA6C2800C5B3A7 /* CreateScreen */,
+				B4EB6AA226C108CB0024B4FD /* SettingScreen */,
 				B4CE31DF273442B60090C181 /* EditProfileScreen */,
 				B4CE31DA2734299D0090C181 /* PoemDetailScreen */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
@@ -560,36 +613,7 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		B4C26C4026BE4C4A002982A1 /* MyPageViews */ = {
-			isa = PBXGroup;
-			children = (
-				B44617E42685B718009AE2A5 /* MyPageCollectionView.swift */,
-				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
-			);
-			path = MyPageViews;
-			sourceTree = "<group>";
-		};
-		B4C26C4226BE4C86002982A1 /* HomeViews */ = {
-			isa = PBXGroup;
-			children = (
-				B421C4F62691B0810088119D /* HomeHeaderView.swift */,
-				B421C4F42691AFC70088119D /* HomeTableView.swift */,
-			);
-			path = HomeViews;
-			sourceTree = "<group>";
-		};
-		B4C26C4326BE4C9D002982A1 /* CreatePoemViews */ = {
-			isa = PBXGroup;
-			children = (
-				B4C3F3F8269439C400CED1A9 /* CreatePoemView.swift */,
-				B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */,
-				B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */,
-				B466044B270067340044C2F8 /* FirstCreateView.swift */,
-			);
-			path = CreatePoemViews;
-			sourceTree = "<group>";
-		};
-		B4C3F3EB2694184D00CED1A9 /* TodayViewController */ = {
+		B4C3F3EB2694184D00CED1A9 /* TodayScreen */ = {
 			isa = PBXGroup;
 			children = (
 				B478751C2671F540002FE83F /* TodayViewController.swift */,
@@ -598,7 +622,7 @@
 				B466044D27007C780044C2F8 /* TodayViewController+Firebase.swift */,
 				B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */,
 			);
-			path = TodayViewController;
+			path = TodayScreen;
 			sourceTree = "<group>";
 		};
 		B4C6404426806D7E007A7B59 /* Storyboards */ = {
@@ -682,13 +706,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B4EB6AA226C108CB0024B4FD /* SettingViewController */ = {
+		B4EB6AA226C108CB0024B4FD /* SettingScreen */ = {
 			isa = PBXGroup;
 			children = (
 				B4CE31E12734436A0090C181 /* Views */,
 				B4CE31E0273443610090C181 /* Controllers */,
 			);
-			path = SettingViewController;
+			path = SettingScreen;
 			sourceTree = "<group>";
 		};
 		B4F259892692D02D00FF95A4 /* Fonts */ = {
@@ -874,7 +898,7 @@
 				B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */,
 				B4EB6AA426C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift in Sources */,
-				B44617E52685B718009AE2A5 /* MyPageCollectionView.swift in Sources */,
+				B44617E52685B718009AE2A5 /* ProfileCollectionView.swift in Sources */,
 				B42EE591267F176F001848A5 /* PoemDatabaseManager.swift in Sources */,
 				B46EE4C02730FF1F00A3D640 /* UserProfileViewController.swift in Sources */,
 				B4ADCD4B270AC3BC005ADA93 /* NLPBarButton.swift in Sources */,

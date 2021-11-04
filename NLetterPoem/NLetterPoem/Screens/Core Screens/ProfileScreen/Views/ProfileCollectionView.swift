@@ -1,6 +1,6 @@
 import UIKit
 
-class MyPageCollectionView: UICollectionView {
+class ProfileCollectionView: UICollectionView {
     
     //MARK: - init
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {

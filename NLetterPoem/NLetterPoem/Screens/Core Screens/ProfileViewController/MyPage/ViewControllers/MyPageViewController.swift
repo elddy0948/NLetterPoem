@@ -90,8 +90,8 @@ class MyPageViewController: DataLoadingViewController {
 
 extension MyPageViewController: MyPageHeaderViewDelegate {
   func didTappedEditProfileButton(_ sender: NLPButton) {
-    let viewController = EditProfileViewController()
-    viewController.user = userViewModel?.user
+    guard let userViewModel = userViewModel else { return }
+    let viewController = EditProfileViewController(userViewModel.user)
     viewController.modalPresentationStyle = .fullScreen
     viewController.delegate = self
     present(viewController, animated: true, completion: nil)

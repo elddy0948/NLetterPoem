@@ -80,7 +80,7 @@
 		B47B432126F0DAD3006C3EB6 /* DeveloperInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */; };
 		B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */; };
 		B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */; };
-		B47CC3EB269ABAFE00F1F003 /* DetailPoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */; };
+		B47CC3EB269ABAFE00F1F003 /* PoemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3EA269ABAFE00F1F003 /* PoemDetailView.swift */; };
 		B47DB34E27100F2A007B6022 /* HotPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */; };
 		B48459EA26A45FE700BA1484 /* UserDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */; };
 		B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BD26A000F70044A2B8 /* SignUpView.swift */; };
@@ -184,7 +184,7 @@
 		B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoViewController.swift; sourceTree = "<group>"; };
 		B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailViewController.swift; sourceTree = "<group>"; };
 		B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPBoldLabel.swift; sourceTree = "<group>"; };
-		B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPoemView.swift; sourceTree = "<group>"; };
+		B47CC3EA269ABAFE00F1F003 /* PoemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailView.swift; sourceTree = "<group>"; };
 		B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPoemViewModel.swift; sourceTree = "<group>"; };
 		B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabaseManager.swift; sourceTree = "<group>"; };
 		B48BD9BD26A000F70044A2B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		B414FBD1268AE3DE00AFAAA8 /* ProfileViewController */ = {
+		B414FBD1268AE3DE00AFAAA8 /* ProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
 				B46EE4CC273116FB00A3D640 /* ViewModels */,
@@ -264,7 +264,7 @@
 				B46EE4BC2730FE8200A3D640 /* UserProfile */,
 				B46EE4BB2730FE7A00A3D640 /* MyPage */,
 			);
-			path = ProfileViewController;
+			path = ProfileScreen;
 			sourceTree = "<group>";
 		};
 		B417692726BA6C2800C5B3A7 /* CreateScreens */ = {
@@ -289,7 +289,7 @@
 			path = HotViewController;
 			sourceTree = "<group>";
 		};
-		B41A3C9527098C9500192965 /* HomeViewcontroller */ = {
+		B41A3C9527098C9500192965 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
 				B41A3C8C27097E3000192965 /* HomeViewController.swift */,
@@ -297,7 +297,7 @@
 				B4C3F3EB2694184D00CED1A9 /* TodayViewController */,
 				B41A3C9227098ADB00192965 /* HotViewController */,
 			);
-			path = HomeViewcontroller;
+			path = HomeScreen;
 			sourceTree = "<group>";
 		};
 		B42EE57F267EFA39001848A5 /* Screens */ = {
@@ -306,8 +306,7 @@
 				B4AEA41326C4F3870012C398 /* Core Screens */,
 				B417692726BA6C2800C5B3A7 /* CreateScreens */,
 				B4AEA41526C4F3BF0012C398 /* Others */,
-				B4EB6AA226C108CB0024B4FD /* SettingViewController */,
-				B4AEA41426C4F3A70012C398 /* SignupSignin */,
+				B4AEA41426C4F3A70012C398 /* SignInSignUpScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -368,13 +367,9 @@
 			isa = PBXGroup;
 			children = (
 				B4C26C4326BE4C9D002982A1 /* CreatePoemViews */,
-				B47CC3EA269ABAFE00F1F003 /* DetailPoemView.swift */,
-				B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */,
 				B4C26C4226BE4C86002982A1 /* HomeViews */,
 				B4C26C4026BE4C4A002982A1 /* MyPageViews */,
 				B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */,
-				B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */,
-				B4C26C4126BE4C63002982A1 /* SignInViews */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -421,7 +416,7 @@
 		B46EE4BB2730FE7A00A3D640 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				B46EE4BD2730FE8F00A3D640 /* ViewControllers */,
+				B46EE4BD2730FE8F00A3D640 /* Controllers */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -430,13 +425,13 @@
 			isa = PBXGroup;
 			children = (
 				B46EE4C92731116600A3D640 /* Views */,
-				B46EE4BE2730FF0F00A3D640 /* ViewControllers */,
+				B46EE4BE2730FF0F00A3D640 /* Controllers */,
 				B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
 		};
-		B46EE4BD2730FE8F00A3D640 /* ViewControllers */ = {
+		B46EE4BD2730FE8F00A3D640 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B45494062681A1A50075D16C /* MyPageViewController.swift */,
@@ -444,10 +439,10 @@
 				B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */,
 				B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		B46EE4BE2730FF0F00A3D640 /* ViewControllers */ = {
+		B46EE4BE2730FF0F00A3D640 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B46EE4BF2730FF1F00A3D640 /* UserProfileViewController.swift */,
@@ -455,7 +450,7 @@
 				B46EE4C727310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift */,
 				B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B46EE4C92731116600A3D640 /* Views */ = {
@@ -527,27 +522,28 @@
 			isa = PBXGroup;
 			children = (
 				B45BB308271553FC0021D3D4 /* SearchViewController */,
-				B41A3C9527098C9500192965 /* HomeViewcontroller */,
-				B414FBD1268AE3DE00AFAAA8 /* ProfileViewController */,
+				B41A3C9527098C9500192965 /* HomeScreen */,
+				B414FBD1268AE3DE00AFAAA8 /* ProfileScreen */,
 				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
 			);
 			path = "Core Screens";
 			sourceTree = "<group>";
 		};
-		B4AEA41426C4F3A70012C398 /* SignupSignin */ = {
+		B4AEA41426C4F3A70012C398 /* SignInSignUpScreen */ = {
 			isa = PBXGroup;
 			children = (
-				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
-				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
+				B4CE31E32734439D0090C181 /* Views */,
+				B4CE31E2273443960090C181 /* Controllers */,
 			);
-			path = SignupSignin;
+			path = SignInSignUpScreen;
 			sourceTree = "<group>";
 		};
 		B4AEA41526C4F3BF0012C398 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				B4CE31DA2734299D0090C181 /* PoemDetailScreens */,
-				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
+				B4EB6AA226C108CB0024B4FD /* SettingViewController */,
+				B4CE31DF273442B60090C181 /* EditProfileScreen */,
+				B4CE31DA2734299D0090C181 /* PoemDetailScreen */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
 				B45F804926CBEF300013C54E /* DataLoadingViewController.swift */,
 				B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */,
@@ -571,15 +567,6 @@
 				B45494082681A1B60075D16C /* MyPageHeaderView.swift */,
 			);
 			path = MyPageViews;
-			sourceTree = "<group>";
-		};
-		B4C26C4126BE4C63002982A1 /* SignInViews */ = {
-			isa = PBXGroup;
-			children = (
-				B45656A026A2A42600EAB3C9 /* SignInView.swift */,
-				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
-			);
-			path = SignInViews;
 			sourceTree = "<group>";
 		};
 		B4C26C4226BE4C86002982A1 /* HomeViews */ = {
@@ -641,28 +628,65 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B4CE31DA2734299D0090C181 /* PoemDetailScreens */ = {
+		B4CE31DA2734299D0090C181 /* PoemDetailScreen */ = {
 			isa = PBXGroup;
 			children = (
-				B4CE31DB273429A60090C181 /* Controllers */,
-			);
-			path = PoemDetailScreens;
-			sourceTree = "<group>";
-		};
-		B4CE31DB273429A60090C181 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
+				B47CC3EA269ABAFE00F1F003 /* PoemDetailView.swift */,
 				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
 			);
-			path = Controllers;
+			path = PoemDetailScreen;
 			sourceTree = "<group>";
 		};
-		B4EB6AA226C108CB0024B4FD /* SettingViewController */ = {
+		B4CE31DF273442B60090C181 /* EditProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */,
+				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
+			);
+			path = EditProfileScreen;
+			sourceTree = "<group>";
+		};
+		B4CE31E0273443610090C181 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B43BBC382682F2D100B4A8DC /* SettingViewController.swift */,
 				B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */,
 				B4EB6AA526C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B4CE31E12734436A0090C181 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B4CE31E2273443960090C181 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B42EE580267EFA55001848A5 /* SignInViewController.swift */,
+				B42EE58D267F0D57001848A5 /* SignUpViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B4CE31E32734439D0090C181 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B45656A026A2A42600EAB3C9 /* SignInView.swift */,
+				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B4EB6AA226C108CB0024B4FD /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4CE31E12734436A0090C181 /* Views */,
+				B4CE31E0273443610090C181 /* Controllers */,
 			);
 			path = SettingViewController;
 			sourceTree = "<group>";
@@ -904,7 +928,7 @@
 				B466044A270066B60044C2F8 /* FirstCreatePoemViewController.swift in Sources */,
 				B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */,
 				B417692426BA4D6300C5B3A7 /* CreateTopicViewController.swift in Sources */,
-				B47CC3EB269ABAFE00F1F003 /* DetailPoemView.swift in Sources */,
+				B47CC3EB269ABAFE00F1F003 /* PoemDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

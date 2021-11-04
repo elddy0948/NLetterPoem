@@ -3,7 +3,7 @@ import Firebase
 
 final class PoemDetailViewController: UIViewController {
   
-  private(set) var detailPoemView: DetailPoemView?
+  private(set) var detailPoemView: PoemDetailView?
   
   //MARK: - Properties
   private var poem: NLPPoem?
@@ -36,7 +36,7 @@ final class PoemDetailViewController: UIViewController {
     
     user.likedPoem.contains(poem.id) ? (fireState = true) : (fireState = false)
     
-    detailPoemView = DetailPoemView(poem: poem,
+    detailPoemView = PoemDetailView(poem: poem,
                                     fireState: fireState,
                                     enableAuthorButton: enableAuthorButton)
     detailPoemView?.delegate = self
@@ -192,15 +192,15 @@ final class PoemDetailViewController: UIViewController {
 }
 
 //MARK: - DetailPoemViewDelegate
-extension PoemDetailViewController: DetailPoemViewDelegate {
-  func detailPoemView(_ view: DetailPoemView,
+extension PoemDetailViewController: PoemDetailViewDelegate {
+  func detailPoemView(_ view: PoemDetailView,
                       didTapAuthor author: String?) {
     guard let email = poem?.authorEmail else { return }
     let viewController = UserProfileViewController(userEmail: email)
     navigationController?.pushViewController(viewController, animated: true)
   }
   
-  func didTappedFireButton(_ detailPoemView: DetailPoemView,
+  func didTappedFireButton(_ detailPoemView: PoemDetailView,
                            _ fireButton: UIButton) {
     guard let user = currentUser,
           let poem = poem else { return }

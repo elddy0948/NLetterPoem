@@ -1,13 +1,13 @@
 import UIKit
 
-protocol DetailPoemViewDelegate: AnyObject {
-  func didTappedFireButton(_ detailPoemView: DetailPoemView,
+protocol PoemDetailViewDelegate: AnyObject {
+  func didTappedFireButton(_ detailPoemView: PoemDetailView,
                            _ fireButton: UIButton)
-  func detailPoemView(_ view: DetailPoemView,
+  func detailPoemView(_ view: PoemDetailView,
                       didTapAuthor author: String?)
 }
 
-final class DetailPoemView: UIView {
+final class PoemDetailView: UIView {
   
   //MARK: - Views
   private(set) var titleLabel: NLPBoldLabel!
@@ -16,7 +16,7 @@ final class DetailPoemView: UIView {
   private(set) var fireButton: UIButton!
   
   //MARK: - Properties
-  weak var delegate: DetailPoemViewDelegate?
+  weak var delegate: PoemDetailViewDelegate?
   
   //MARK: - init
   init(poem: NLPPoem, fireState: Bool, enableAuthorButton: Bool) {

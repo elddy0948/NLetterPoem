@@ -6,39 +6,27 @@ final class PoemDetailViewController: UIViewController {
   private(set) var detailPoemView: DetailPoemView?
   
   //MARK: - Properties
-  var poem: NLPPoem? {
-    didSet {
-      self.detailPoemView?.updatePoem(with: poem)
-    }
-  }
+  private var poem: NLPPoem?
+  private var currentUser: NLPUser?
   var fireState = false
-  var currentUser: NLPUser? {
-    didSet {
-      self.configurePoemDetailView()
-    }
-  }
-  var handler: AuthStateDidChangeListenerHandle?
   var enableAuthorButton = true
+  
+  //MARK: - Initializer
+  init(_ poem: NLPPoem, _ currentUser: NLPUser) {
+    super.init(nibName: nil, bundle: nil)
+    self.poem = poem
+    self.currentUser = currentUser
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    handler = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
-      guard let self = self,
-            let user = user,
-            let email = user.email else {
-        return
-      }
-      self.configureUser(email: email)
-    })
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    if let handler = handler {
-      Auth.auth().removeStateDidChangeListener(handler)
-    }
+    configurePoemDetailView()
   }
   
   //MARK: - Configure Logic
@@ -69,20 +57,6 @@ final class PoemDetailViewController: UIViewController {
       configureRightBarButtonItem(isEditable: true)
     } else {
       configureRightBarButtonItem(isEditable: false)
-    }
-  }
-  
-  private func configureUser(email: String) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      UserDatabaseManager.shared.read(email) { [weak self] result in
-        guard let self = self else { return }
-        switch result {
-        case .success(let user):
-          self.currentUser = user
-        case .failure(let error):
-          self.showAlert(title: "⚠️", message: error.message, action: nil)
-        }
-      }
     }
   }
   
@@ -184,7 +158,6 @@ final class PoemDetailViewController: UIViewController {
     }
     let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] action in
       guard let self = self else { return }
-      //TODO: - Delete Action
       self.deletePoem()
       self.navigationController?.popToRootViewController(animated: true)
     }
@@ -218,6 +191,7 @@ final class PoemDetailViewController: UIViewController {
   }
 }
 
+//MARK: - DetailPoemViewDelegate
 extension PoemDetailViewController: DetailPoemViewDelegate {
   func detailPoemView(_ view: DetailPoemView,
                       didTapAuthor author: String?) {
@@ -254,8 +228,11 @@ extension PoemDetailViewController: DetailPoemViewDelegate {
   }
 }
 
+//MARK: - CreatePoemViewControllerDelegate
 extension PoemDetailViewController: CreatePoemViewControllerDelegate {
-  func createPoemViewController(_ viewController: CreatePoemViewController, didTapDone poem: NLPPoem) {
+  func createPoemViewController(_ viewController: CreatePoemViewController,
+                                didTapDone poem: NLPPoem) {
     self.poem = poem
+    detailPoemView?.updatePoem(with: poem)
   }
 }

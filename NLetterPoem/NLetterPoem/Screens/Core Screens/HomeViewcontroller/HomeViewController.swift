@@ -190,16 +190,18 @@ extension HomeViewController {
 
 extension HomeViewController: TodayViewControllerDelegate {
   func todayViewController(_ todayViewController: TodayViewController, didSelected poem: NLPPoem) {
-    let poemDetailViewController = PoemDetailViewController()
-    poemDetailViewController.poem = poem
-    navigationController?.pushViewController(poemDetailViewController, animated: true)
+    if let user = HomeViewController.nlpUser {
+      let poemDetailViewController = PoemDetailViewController(poem, user)
+      navigationController?.pushViewController(poemDetailViewController, animated: true)
+    }
   }
 }
 
 extension HomeViewController: HotViewControllerDelegate {
   func hotViewController(_ viewController: HotViewController, didSelected poem: NLPPoem) {
-    let poemDetailViewController = PoemDetailViewController()
-    poemDetailViewController.poem = poem
-    navigationController?.pushViewController(poemDetailViewController, animated: true)
+    if let user = HomeViewController.nlpUser {
+      let poemDetailViewController = PoemDetailViewController(poem, user)
+      navigationController?.pushViewController(poemDetailViewController, animated: true)
+    }
   }
 }

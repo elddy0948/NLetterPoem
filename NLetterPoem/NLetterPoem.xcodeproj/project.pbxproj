@@ -546,9 +546,9 @@
 		B4AEA41526C4F3BF0012C398 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				B4CE31DA2734299D0090C181 /* PoemDetailScreens */,
 				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
 				B454940C2681B3480075D16C /* LaunchViewController.swift */,
-				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
 				B45F804926CBEF300013C54E /* DataLoadingViewController.swift */,
 				B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */,
 				B41A3C8E27097E9700192965 /* ContainerViewController.swift */,
@@ -639,6 +639,22 @@
 				08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4CE31DA2734299D0090C181 /* PoemDetailScreens */ = {
+			isa = PBXGroup;
+			children = (
+				B4CE31DB273429A60090C181 /* Controllers */,
+			);
+			path = PoemDetailScreens;
+			sourceTree = "<group>";
+		};
+		B4CE31DB273429A60090C181 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B4EB6AA226C108CB0024B4FD /* SettingViewController */ = {

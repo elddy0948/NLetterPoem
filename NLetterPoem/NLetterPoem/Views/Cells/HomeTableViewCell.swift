@@ -104,8 +104,8 @@ final class HomeTableViewCell: UITableViewCell {
   func setCellData(shortDes: String, writer: String, topic: String) {
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }
-      self.shortDescriptionLabel.text = shortDes
-      self.writerLabel.text = writer
+      self.shortDescriptionLabel.text = "\"\(shortDes)\""
+      self.writerLabel.text = "-\(writer)-"
       self.topicLabel.text = topic
     }
   }

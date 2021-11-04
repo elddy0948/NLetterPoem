@@ -26,8 +26,8 @@ final class TodayTableViewDataSource: NSObject, UITableViewDataSource {
     let poem = poems[indexPath.row]
     let shortDescription = poem.content.makeShortDescription()
     cell.backgroundColor = .systemBackground
-    cell.setCellData(shortDes: "\"\(shortDescription)\"",
-                     writer: "- \(poem.author) -",
+    cell.setCellData(shortDes: shortDescription,
+                     writer: poem.author,
                      topic: poem.topic)
     
     return cell

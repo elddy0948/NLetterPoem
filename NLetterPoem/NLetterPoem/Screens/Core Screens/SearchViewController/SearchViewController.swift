@@ -94,10 +94,11 @@ extension SearchViewController: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let viewController = PoemDetailViewController()
     let selectedPoem = resultPoems[indexPath.row]
-    viewController.poem = selectedPoem
-    navigationController?.pushViewController(viewController, animated: true)
+    if let user = HomeViewController.nlpUser {
+      let viewController = PoemDetailViewController(selectedPoem, user)
+      navigationController?.pushViewController(viewController, animated: true)
+    }
   }
 }
 

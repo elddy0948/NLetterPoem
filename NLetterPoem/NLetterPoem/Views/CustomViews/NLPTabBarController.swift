@@ -7,7 +7,18 @@ class NLPTabBarController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tabBar.tintColor = .label
+    let appearance = UITabBarAppearance()
     
+    appearance.configureWithOpaqueBackground()
+    appearance.backgroundColor = .systemBackground
+    
+    self.tabBar.standardAppearance = appearance
+    self.tabBar.isTranslucent = true
+    
+    if #available(iOS 15.0, *) {
+      self.tabBar.scrollEdgeAppearance = self.tabBar.standardAppearance
+    } else { }
+
     NLPTabBarController.tabBarTopAnchor = self.tabBar.topAnchor
     
     viewControllers = [createHomeNavigaionController(),
@@ -18,26 +29,34 @@ class NLPTabBarController: UITabBarController {
   
   private func createHomeNavigaionController() -> UINavigationController {
     let viewController = HomeViewController()
-    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.houseFill, tag: 0)
-    return UINavigationController(rootViewController: viewController)
+    let navController = UINavigationController(rootViewController: viewController)
+    navController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.houseFill, tag: 0)
+    navController.configureNavigationBarAppearance(.systemBackground)
+    return navController
   }
   
   private func createSearchNavigationController() -> UINavigationController {
     let viewController = SearchViewController()
-    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.magnifyingglass, tag: 1)
-    return UINavigationController(rootViewController: viewController)
+    let navController = UINavigationController(rootViewController: viewController)
+    navController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.magnifyingglass, tag: 1)
+    navController.configureNavigationBarAppearance(.systemBackground)
+    return navController
   }
   
   private func createRankingNavigationController() -> UINavigationController {
     let viewController = RankingViewController()
-    viewController.title = "🏆"
-    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.crownFill, tag: 2)
-    return UINavigationController(rootViewController: viewController)
+    let navController = UINavigationController(rootViewController: viewController)
+    navController.title = "🏆"
+    navController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.crownFill, tag: 2)
+    navController.configureNavigationBarAppearance(.systemBackground)
+    return navController
   }
   
   private func createMyPageNavigationController() -> UINavigationController {
     let viewController = MyPageViewController()
-    viewController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.personFill, tag: 3)
-    return UINavigationController(rootViewController: viewController)
+    let navController = UINavigationController(rootViewController: viewController)
+    navController.tabBarItem = UITabBarItem(title: nil, image: SFSymbols.personFill, tag: 3)
+    navController.configureNavigationBarAppearance(.systemBackground)
+    return navController
   }
 }

@@ -61,10 +61,7 @@ final class HomeViewController: DataLoadingViewController {
   private func configureNavigationBar() {
     navigationItem.leftBarButtonItems = [todayBarButtonItem, hotBarButtonItem]
     navigationItem.rightBarButtonItem = addBarButtonItem
-    let mockImage = UIImage()
-    navigationController?.navigationBar.shadowImage = mockImage
-    navigationController?.navigationBar.setBackgroundImage(mockImage, for: .default)
-    navigationController?.navigationBar.isTranslucent = false
+//    navigationController?.configureNavigationBarAppearance(.systemBackground)
   }
   
   //MARK: - Bar Button

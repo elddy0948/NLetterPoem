@@ -41,7 +41,9 @@ class UserProfileViewController: DataLoadingViewController {
     showLoadingView()
     Observable
       .combineLatest(userProfileService.fetchUser(with: email),
-                     userProfileService.fetchPoems(with: email)) { userResults, poemsResult in
+                     userProfileService.fetchPoems(with: email,
+                                                   sortType: .created,
+                                                   descending: true)) { userResults, poemsResult in
         switch userResults {
         case .success(let userViewModel):
           self.userViewModel = userViewModel

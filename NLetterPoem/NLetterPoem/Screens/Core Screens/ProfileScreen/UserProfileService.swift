@@ -3,6 +3,11 @@ import Firebase
 
 class UserProfileService {
   
+  enum PoemSortType: String {
+    case likeCount = "likeCount"
+    case created = "created"
+  }
+  
   typealias ProfileUserResult = Result<ProfileUserViewModel, ProfileServiceError>
   typealias ProfilePoemsResult = Result<ProfilePoemsViewModel, ProfileServiceError>
   
@@ -21,7 +26,9 @@ class UserProfileService {
       })
   }
   
-  func fetchPoems(with email: String) -> Observable<ProfilePoemsResult> {
+  func fetchPoems(with email: String,
+                  sortType: PoemSortType,
+                  descending: Bool) -> Observable<ProfilePoemsResult> {
     return reference.collection("poems")
       .whereField("authorEmail", isEqualTo: email)
       .rx.getDocuments().map({ snapshot -> ProfilePoemsResult in
@@ -31,7 +38,18 @@ class UserProfileService {
             poems.append(poem)
           }
         }
-        let profilePoemsViewModel = ProfilePoemsViewModel(poems)
+        
+        var sortedPoem = [NLPPoem]()
+        
+        switch sortType {
+        case .likeCount:
+          sortedPoem = descending ? poems.sorted(by: { $0.likeCount > $1.likeCount }) : poems.sorted(by: { $0.likeCount < $1.likeCount })
+        case .created:
+          sortedPoem = descending ? poems.sorted(by: { $0.created > $1.created }) : poems.sorted(by: { $0.created < $1.created })
+        }
+        
+        let profilePoemsViewModel = ProfilePoemsViewModel(sortedPoem)
+        
         return .success(profilePoemsViewModel)
       })
   }

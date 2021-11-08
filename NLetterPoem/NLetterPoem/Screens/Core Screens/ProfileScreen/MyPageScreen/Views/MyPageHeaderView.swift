@@ -133,7 +133,7 @@ extension MyPageHeaderView {
     
     NSLayoutConstraint.activate([
       //Profile ImageView
-      profileImageView.topAnchor.constraint(equalTo: topAnchor),
+      profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
       profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
       profileImageView.heightAnchor.constraint(equalToConstant: 50),
       profileImageView.widthAnchor.constraint(equalToConstant: 50),
@@ -152,7 +152,7 @@ extension MyPageHeaderView {
       verticalStackView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding),
       verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
       verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-      verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+      verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -(padding * 2)),
     ])
   }
 }

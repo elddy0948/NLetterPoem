@@ -48,7 +48,6 @@ class MyPageViewController: DataLoadingViewController {
     myPageCollectionView.register(MyPageHeaderView.self,
                                   forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                   withReuseIdentifier: MyPageHeaderView.reuseIdentifier)
-    
     myPageCollectionView.delegate = self
     myPageCollectionView.dataSource = self
   }

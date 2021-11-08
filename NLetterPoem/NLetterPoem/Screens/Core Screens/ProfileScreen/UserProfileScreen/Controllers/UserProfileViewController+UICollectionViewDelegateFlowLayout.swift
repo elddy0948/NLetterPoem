@@ -34,7 +34,7 @@ extension UserProfileViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width = collectionView.frame.width
-        let height: CGFloat = 150
+        let height: CGFloat = 176
         return CGSize(width: width, height: height)
     }
 }

@@ -19,6 +19,7 @@ final class UserProfileHeaderView: UICollectionReusableView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     configure()
+    layout()
   }
   
   required init?(coder: NSCoder) {
@@ -34,29 +35,29 @@ final class UserProfileHeaderView: UICollectionReusableView {
   
   //MARK: - Privates
   private func configure() {
-    translatesAutoresizingMaskIntoConstraints = false
-    configureStackView()
-  }
-  
-  private func configureStackView() {
-    verticalStackView = UIStackView()
-    addSubview(verticalStackView)
-    
-    verticalStackView.axis = .vertical
-    verticalStackView.distribution = .fill
-    verticalStackView.spacing = 8
-    verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-    
+    configureHeaderVerticalStackView()
     configureProfileImageView()
     configureUsernameLabel()
     configureBioLabel()
-    configureLayoutUI()
-    configureRankStackView()
+    configureRankHorizontalStackView()
+    configureRankImageView()
+    configureFiresLabel()
+  }
+}
+
+//MARK: - Configure Views
+extension UserProfileHeaderView {
+  private func configureHeaderVerticalStackView() {
+    verticalStackView = UIStackView()
+    
+    verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+    verticalStackView.axis = .vertical
+    verticalStackView.distribution = .equalSpacing
+    verticalStackView.spacing = 4
   }
   
   private func configureProfileImageView() {
     profileImageView = UIImageView()
-    addSubview(profileImageView)
     
     profileImageView.translatesAutoresizingMaskIntoConstraints = false
     profileImageView.contentMode = .scaleAspectFit
@@ -65,52 +66,71 @@ final class UserProfileHeaderView: UICollectionReusableView {
   
   private func configureUsernameLabel() {
     userNameLabel = NLPProfileLabel(type: .nickname)
-    addSubview(userNameLabel)
   }
   
-  private func configureRankStackView() {
+  private func configureBioLabel() {
+    bioLabel = NLPProfileLabel(type: .bio)
+    bioLabel.translatesAutoresizingMaskIntoConstraints = true
+  }
+  
+  private func configureRankHorizontalStackView() {
     rankHorizontalStackView = UIStackView()
-    verticalStackView.addArrangedSubview(rankHorizontalStackView)
     
     rankHorizontalStackView.axis = .horizontal
     rankHorizontalStackView.distribution = .fill
-    
+  }
+  
+  private func configureRankImageView() {
     rankImageView = UIImageView()
     rankImageView.translatesAutoresizingMaskIntoConstraints = false
     rankImageView.image = nil
     rankImageView.tintColor = .label
     rankImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
     rankImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    
+  }
+  
+  private func configureFiresLabel() {
     firesLabel = UILabel()
     firesLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
     firesLabel.textColor = .label
     firesLabel.textAlignment = .right
     firesLabel.text = "🔥"
-    
+  }
+}
+
+//MARK: - Layout
+extension UserProfileHeaderView {
+  private func layout() {
+    let padding: CGFloat = 4
+    addSubview(profileImageView)
+    addSubview(userNameLabel)
+    addSubview(verticalStackView)
     rankHorizontalStackView.addArrangedSubview(rankImageView)
     rankHorizontalStackView.addArrangedSubview(firesLabel)
-  }
-  
-  private func configureBioLabel() {
-    bioLabel = NLPProfileLabel(type: .bio)
     verticalStackView.addArrangedSubview(bioLabel)
-  }
-  
-  private func configureLayoutUI() {
-    let padding: CGFloat = 16
+    verticalStackView.addArrangedSubview(rankHorizontalStackView)
+    
+    
     NSLayoutConstraint.activate([
-      profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+      //Profile ImageView
+      profileImageView.topAnchor.constraint(equalTo: topAnchor),
       profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
       profileImageView.heightAnchor.constraint(equalToConstant: 50),
       profileImageView.widthAnchor.constraint(equalToConstant: 50),
+      //Username Label
       userNameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
       userNameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: padding),
-      userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: padding / 2),
-      userNameLabel.heightAnchor.constraint(equalToConstant: 48),
+      userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+      userNameLabel.heightAnchor.constraint(equalToConstant: 50),
+      //Bio
+      bioLabel.heightAnchor.constraint(equalToConstant: 80),
+      //Rank HorizontalStackView
+      rankHorizontalStackView.heightAnchor.constraint(equalToConstant: 30),
+      //VerticalStackView
       verticalStackView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding),
       verticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
       verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+      verticalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
     ])
   }
 }

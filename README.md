@@ -17,9 +17,9 @@
 
 ## <a name="screen-shot">화면</a>
 
-![screen1](Sketch/screen-shot1.svg)![screen2](Sketch/screen-shot2.svg)![screen2](Sketch/screen-shot3.svg)
+![screen1](Sketch/screen-shot1.png)![screen2](Sketch/screen-shot2.png)![screen2](Sketch/screen-shot3.png)
 
-![screen2](Sketch/screen-shot4.svg)![screen2](Sketch/screen-shot5.svg)
+![screen2](Sketch/screen-shot4.png)![screen2](Sketch/screen-shot5.png)
 
 
 

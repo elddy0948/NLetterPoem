@@ -1,4 +1,4 @@
-![app-logo](Sketch/app-logo.svg)
+<div align="center"><img src="Sketch/app-logo.svg"></div>
 
 <div align="center">재미있고 의미있는 N행시를 많은 사람들과 나누어 보아요!</div>
 

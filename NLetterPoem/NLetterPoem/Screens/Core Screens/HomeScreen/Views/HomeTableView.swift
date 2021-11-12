@@ -11,7 +11,7 @@ class HomeTableView: UITableView {
   
   //MARK: - init
   override init(frame: CGRect, style: UITableView.Style) {
-    super.init(frame: frame, style: style)
+    super.init(frame: .zero, style: style)
     configure()
   }
   

@@ -1,14 +1,12 @@
 import UIKit
 import Firebase
 extension TodayViewController {
-  func fetchTodayTopic(group: DispatchGroup?) {
+  
+  func fetchTodayViewControllerData(_ tableView: UITableView) {
+    dispatchGroup.enter()
     DispatchQueue.global(qos: .utility).async {
       ToopicDatabaseManager.shared.read(date: Date()) { [weak self] result in
-        defer {
-          if let group = group {
-            group.leave()
-          }
-        }
+        defer { self?.dispatchGroup.leave() }
         guard let self = self else { return }
         switch result {
         case .success(let topic):
@@ -18,18 +16,14 @@ extension TodayViewController {
         }
       }
     }
-  }
-  
-  func fetchTodayPoems(group: DispatchGroup?) {
+    
+    dispatchGroup.enter()
     DispatchQueue.global(qos: .utility).async {
-      PoemDatabaseManager.shared.fetchTodayPoems(date: Date(), sortType: .recent) { [weak self] result in
-        defer {
-          if let group = group {
-            group.leave()
-          }
-        }
+      PoemDatabaseManager.shared.fetchTodayPoems(date: Date(),
+                                                 sortType: .recent) { [weak self] result in
+        defer { self?.dispatchGroup.leave() }
         guard let self = self,
-              let nlpUser = self.nlpUser else { return }
+              let nlpUser = HomeViewController.nlpUser else { return }
         switch result {
         case .success(let fetchedPoems):
           self.todayTableViewDataSource.poems = fetchedPoems.filter({ poem in
@@ -38,8 +32,22 @@ extension TodayViewController {
         case .failure(_):
           self.todayTableViewDataSource.poems = []
         }
-        self.updateTableViewContents()
       }
     }
+    
+    dispatchGroup.notify(queue: .main, execute: { [weak self] in
+      guard let self = self else { return }
+      self.updateTableViewContents()
+      if let refreshControl = tableView.refreshControl {
+        if refreshControl.isRefreshing {
+          refreshControl.endRefreshing()
+        }
+      }
+    })
+  }
+  
+  func updateTableViewContents() {
+    homeHeaderView.setTopic(todayTopic)
+    homeTableView.reloadData()
   }
 }

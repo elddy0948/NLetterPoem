@@ -32,7 +32,6 @@ final class SearchViewController: UIViewController {
   private func configure() {
     view.backgroundColor = .systemBackground
     navigationItem.title = "주제 검색"
-    navigationController?.navigationBar.tintColor = .label
     definesPresentationContext = true
   }
   

@@ -126,12 +126,13 @@ extension PoemDatabaseManager {
           return
         }
       }
-      
-      switch sortType {
-      case .like:
-        completed(.success(fetchedPoems.sorted { $0.likeCount > $1.likeCount }))
-      case .recent:
-        completed(.success(fetchedPoems.sorted { $0.created > $1.created }))
+      DispatchQueue.global(qos: .utility).async {
+        switch sortType {
+        case .like:
+          completed(.success(fetchedPoems.sorted { $0.likeCount > $1.likeCount }))
+        case .recent:
+          completed(.success(fetchedPoems.sorted { $0.created > $1.created }))
+        }
       }
     }
   }

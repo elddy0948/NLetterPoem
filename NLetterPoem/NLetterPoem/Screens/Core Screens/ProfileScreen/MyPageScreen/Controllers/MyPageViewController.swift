@@ -33,7 +33,6 @@ class MyPageViewController: DataLoadingViewController {
   
   private func configure() {
     view.backgroundColor = .systemBackground
-    navigationController?.navigationBar.tintColor = .label
   }
   
   private func configureCollectionView() {

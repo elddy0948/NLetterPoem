@@ -44,7 +44,6 @@ final class HotViewController: UIViewController {
                            forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
     homeTableView.register(HomeEmptyCell.self,
                            forCellReuseIdentifier: HomeEmptyCell.reuseIdentifier)
-    navigationController?.navigationBar.tintColor = .label
   }
   
   private func layout() {

@@ -70,7 +70,6 @@ class UserProfileViewController: DataLoadingViewController {
 extension UserProfileViewController {
   func configureViewController() {
     view.backgroundColor = .systemBackground
-    navigationController?.navigationBar.tintColor = .label
   }
   
   func configureCollectionView() {

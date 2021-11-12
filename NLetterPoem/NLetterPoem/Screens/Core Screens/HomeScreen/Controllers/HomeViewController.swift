@@ -29,7 +29,6 @@ final class HomeViewController: DataLoadingViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationController?.navigationBar.tintColor = .label
     view.backgroundColor = .systemBackground
     configureNavigationBar()
     configureContainerView()
@@ -61,7 +60,6 @@ final class HomeViewController: DataLoadingViewController {
   private func configureNavigationBar() {
     navigationItem.leftBarButtonItems = [todayBarButtonItem, hotBarButtonItem]
     navigationItem.rightBarButtonItem = addBarButtonItem
-//    navigationController?.configureNavigationBarAppearance(.systemBackground)
   }
   
   //MARK: - Bar Button
@@ -134,7 +132,6 @@ final class HomeViewController: DataLoadingViewController {
   func createNavigationController(rootVC viewController: CreatorViewController) {
     let navigationController = UINavigationController(rootViewController: viewController)
     navigationController.modalPresentationStyle = .fullScreen
-    navigationController.navigationBar.tintColor = .label
     present(navigationController, animated: true, completion: nil)
   }
 }

@@ -19,28 +19,27 @@ class MyPageViewController: DataLoadingViewController {
     super.viewDidLoad()
     configure()
     configureCollectionView()
-    fetchUserProfile()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    navigationController?.navigationBar.prefersLargeTitles = false
+    fetchUserProfile()
+  }
+  
+  private func configure() {
+    view.backgroundColor = .systemBackground
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: SFSymbols.gearShapeFill,
                                                         style: .plain,
                                                         target: self,
                                                         action: #selector(didTapSettingButton(_:)))
   }
   
-  private func configure() {
-    view.backgroundColor = .systemBackground
-  }
-  
   private func configureCollectionView() {
     let layout = UICollectionViewFlowLayout()
-
+    
     myPageCollectionView = ProfileCollectionView(frame: view.frame, collectionViewLayout: layout)
     guard let myPageCollectionView = myPageCollectionView else { return }
-
+    
     view.addSubview(myPageCollectionView)
     myPageCollectionView.register(MyPageCollectionViewCell.self,
                                   forCellWithReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier)
@@ -56,30 +55,47 @@ class MyPageViewController: DataLoadingViewController {
           let email = currentUser.email else { return }
     
     showLoadingView()
-    Observable
-      .combineLatest(userProfileService.fetchUser(with: email),
-                     userProfileService.fetchPoems(with: email,
-                                                   sortType: .created,
-                                                   descending: true)) { userResults, poemsResult in
-        switch userResults {
+    
+    Observable.combineLatest(
+      userProfileService.fetchUser(with: email),
+      userProfileService.fetchPoems(with: email,
+                                    sortType: .created,
+                                    descending: true))
+      .map({ [weak self] userResult, poemsResult -> Bool in
+        guard let self = self else { return false }
+        var isErrorOccured = false
+        
+        switch userResult {
         case .success(let userViewModel):
           self.userViewModel = userViewModel
-        case .failure(let error):
-          print(error.message)
+        case .failure(_):
+          isErrorOccured = true
         }
         
         switch poemsResult {
         case .success(let poemsViewModel):
           self.poemsViewModel = poemsViewModel
-        case .failure(let error):
-          print(error.message)
+        case .failure(_):
+          isErrorOccured = true
         }
-      }.subscribe(on: globalQueueScheduler)
+        
+        if isErrorOccured { return false }
+        return true
+      })
+      .subscribe(on: globalQueueScheduler)
       .observe(on: MainScheduler.instance)
-      .subscribe({ [weak self] _ in
-        self?.dismissLoadingView()
-        self?.myPageCollectionView?.reloadSections(IndexSet(integer: 0))
-      }).disposed(by: bag)
+      .subscribe(onNext: { [weak self] success in
+        guard let self = self else { return }
+        if success {
+          self.dismissLoadingView()
+          self.myPageCollectionView?.reloadSections(IndexSet(integer: 0))
+        } else {
+          self.showAlert(title: "⚠️",
+                         message: "정보를 불러오지 못했습니다",
+                         action: nil)
+        }
+      })
+      .disposed(by: bag)
   }
   
   @objc func didTapSettingButton(_ sender: UIBarButtonItem) {

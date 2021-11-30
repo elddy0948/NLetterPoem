@@ -1,49 +1,28 @@
 import UIKit
 import Firebase
+import RxSwift
+
 extension TodayViewController {
-  
-  func fetchTodayViewControllerData(_ tableView: UITableView) {
-    dispatchGroup.enter()
-    DispatchQueue.global(qos: .utility).async {
-      ToopicDatabaseManager.shared.read(date: Date()) { [weak self] result in
-        defer { self?.dispatchGroup.leave() }
-        guard let self = self else { return }
-        switch result {
-        case .success(let topic):
-          self.todayTopic = topic
-        case .failure(_):
-          self.todayTopic = ""
+  func fetchData(_ tableView: UITableView) {
+    combineObservable
+      .subscribe(on: globalScheduler)
+      .observe(on: MainScheduler.instance)
+      .subscribe(onNext: { [weak self] (topic, poems) in
+        guard let user = HomeViewController.nlpUser else { return }
+        self?.todayTopic = topic.topic
+        self?.todayTableViewDataSource.poems = poems.filter({ poem in
+          !user.blockedUser.contains(poem.authorEmail)
+        })
+        
+        if let refreshControl = tableView.refreshControl {
+          if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+          }
         }
-      }
-    }
-    
-    dispatchGroup.enter()
-    DispatchQueue.global(qos: .utility).async {
-      PoemDatabaseManager.shared.fetchTodayPoems(date: Date(),
-                                                 sortType: .recent) { [weak self] result in
-        defer { self?.dispatchGroup.leave() }
-        guard let self = self,
-              let nlpUser = HomeViewController.nlpUser else { return }
-        switch result {
-        case .success(let fetchedPoems):
-          self.todayTableViewDataSource.poems = fetchedPoems.filter({ poem in
-            !nlpUser.blockedUser.contains(poem.authorEmail)
-          })
-        case .failure(_):
-          self.todayTableViewDataSource.poems = []
-        }
-      }
-    }
-    
-    dispatchGroup.notify(queue: .main, execute: { [weak self] in
-      guard let self = self else { return }
-      self.updateTableViewContents()
-      if let refreshControl = tableView.refreshControl {
-        if refreshControl.isRefreshing {
-          refreshControl.endRefreshing()
-        }
-      }
-    })
+        
+        self?.updateTableViewContents()
+      })
+      .disposed(by: bag)
   }
   
   func updateTableViewContents() {

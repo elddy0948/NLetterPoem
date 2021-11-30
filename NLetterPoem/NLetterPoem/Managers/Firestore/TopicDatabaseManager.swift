@@ -13,7 +13,7 @@ final class ToopicDatabaseManager {
   
   func read(date: Date, completed: @escaping (Result<String, TopicFirestoreError>) -> Void) {
     let stringDate = date.toYearMonthDay()
-    reference.document(stringDate).getDocument { document, error in
+    reference.document("test").getDocument { document, error in
       guard let document = document else {
         completed(.failure(.failedReadTopic))
         return

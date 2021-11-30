@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import RxSwift
 
 protocol TodayViewControllerDelegate: AnyObject {
   func todayViewController(_ todayViewController: TodayViewController,
@@ -14,17 +15,33 @@ class TodayViewController: DataLoadingViewController {
   let homeTableView = HomeTableView()
   var todayTableViewDataSource = TodayTableViewDataSource()
   var dispatchGroup = DispatchGroup()
+  let todayViewModel = TodayViewModel()
+  var combineObservable: Observable<(NLPTopic, [NLPPoem])>
+  let bag = DisposeBag()
+  let globalScheduler = ConcurrentDispatchQueueScheduler(queue: .global(qos: .utility))
   
   //MARK: - Properties
   var todayTopic: String = ""
   
   weak var delegate: TodayViewControllerDelegate?
   
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    combineObservable = Observable.combineLatest(todayViewModel.fetchTodayTopic(Date()),
+                                                     todayViewModel.fetchTodayPoems(Date()))
+    super.init(nibName: nil, bundle: nil)
+  }
+  required init?(coder: NSCoder) {
+    combineObservable = Observable.combineLatest(todayViewModel.fetchTodayTopic(Date()),
+                                                     todayViewModel.fetchTodayPoems(Date()))
+    super.init(coder: coder)
+  }
+  
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     configureTableView()
-    fetchTodayViewControllerData(homeTableView)
+    fetchData(homeTableView)
+//    fetchTodayViewControllerData(homeTableView)
   }
   
   override func viewWillLayoutSubviews() {

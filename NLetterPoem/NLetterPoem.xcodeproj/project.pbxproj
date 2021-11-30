@@ -87,6 +87,7 @@
 		B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BD26A000F70044A2B8 /* SignUpView.swift */; };
 		B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BF26A002660044A2B8 /* AuthManager.swift */; };
 		B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */; };
+		B49C77D2274FE07C00D9D7AE /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C77D1274FE07C00D9D7AE /* TodayViewModel.swift */; };
 		B4AC3E8526E09EEB00E99CF4 /* TopicDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */; };
 		B4ADCD4B270AC3BC005ADA93 /* NLPBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADCD4A270AC3BC005ADA93 /* NLPBarButton.swift */; };
 		B4ADCD4F270B0942005ADA93 /* HomeViewController+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */; };
@@ -192,6 +193,7 @@
 		B48BD9BD26A000F70044A2B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B48BD9BF26A002660044A2B8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPNavigationBar.swift; sourceTree = "<group>"; };
+		B49C77D1274FE07C00D9D7AE /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		B4AC3E8426E09EEB00E99CF4 /* TopicDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDatabaseManager.swift; sourceTree = "<group>"; };
 		B4ADCD4A270AC3BC005ADA93 /* NLPBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPBarButton.swift; sourceTree = "<group>"; };
 		B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Firebase.swift"; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				B40EB929270CA50500FADFC6 /* HomeViewModel.swift */,
+				B49C77D1274FE07C00D9D7AE /* TodayViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
 				B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */,
 				B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */,
+				B49C77D2274FE07C00D9D7AE /* TodayViewModel.swift in Sources */,
 				B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */,
 				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
 				B41593B827318EE9002FBBD2 /* ProfilePoemsViewModel.swift in Sources */,

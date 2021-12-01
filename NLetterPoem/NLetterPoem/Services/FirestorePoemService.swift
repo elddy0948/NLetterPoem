@@ -80,3 +80,25 @@ final class FirestorePoemService: FirestoreService {
       .delete()
   }
 }
+
+extension FirestorePoemService {
+  //Fetch today poems
+  func fetchPoems(query: (field: String, value: String)) -> Observable<[ResultType]> {
+    var fetchedResult = [ResultType]()
+    return reference
+      .whereField(query.field, isEqualTo: query.value)
+      .rx
+      .getDocuments()
+      .map({ querySnapshot in
+        querySnapshot.documents.forEach({ document in
+          do {
+            if let result = try document.data(as: ResultType.self) {
+              fetchedResult.append(result)
+            }
+          } catch { }
+        })
+        return fetchedResult
+      })
+  }
+  //Fetch
+}

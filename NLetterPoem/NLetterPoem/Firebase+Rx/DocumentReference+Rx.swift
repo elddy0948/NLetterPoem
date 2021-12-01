@@ -1,5 +1,6 @@
-import FirebaseFirestore
+import Foundation
 import RxSwift
+import FirebaseFirestore
 
 
 extension Reactive where Base: DocumentReference {
@@ -19,22 +20,31 @@ extension Reactive where Base: DocumentReference {
       return Disposables.create { }
     })
   }
-}
-
-extension Reactive where Base: Query {
-  public func getDocuments() -> Observable<QuerySnapshot> {
+  
+  public func setData<T: Encodable>(_ data: T) -> Observable<Void> {
     return Observable.create({ observer in
-      self.base.getDocuments(completion: { querySnapshot, error in
-        if let error = error {
-          observer.onError(error)
-        } else if let querySnapshot = querySnapshot {
-          observer.onNext(querySnapshot)
-          observer.onCompleted()
-        } else {
-          observer.onError(DocumentError.documentNotFound)
-        }
-      })
+      do {
+        try self.base.setData(from: data)
+        observer.onNext(())
+        observer.onCompleted()
+      } catch let error {
+        observer.onError(error)
+      }
       return Disposables.create { }
+    })
+  }
+  
+  public func delete() -> Observable<Void> {
+    return Observable.create({ observer in
+      self.base.delete(completion: { error in
+        guard let error = error else {
+          observer.onNext(())
+          observer.onCompleted()
+          return
+        }
+        observer.onError(error)
+      })
+      return Disposables.create {}
     })
   }
 }

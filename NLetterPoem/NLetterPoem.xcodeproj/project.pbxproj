@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */; };
 		B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */; };
-		B40EB928270C4E2900FADFC6 /* FireStore+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */; };
 		B40EB92A270CA50500FADFC6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB929270CA50500FADFC6 /* HomeViewModel.swift */; };
 		B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */; };
 		B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */; };
@@ -51,6 +50,8 @@
 		B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940C2681B3480075D16C /* LaunchViewController.swift */; };
 		B45494112681C6B80075D16C /* NLPProfileLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494102681C6B80075D16C /* NLPProfileLabel.swift */; };
 		B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45656A026A2A42600EAB3C9 /* SignInView.swift */; };
+		B45822BB27573D6E005BB13A /* DocumentReference+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45822BA27573D6E005BB13A /* DocumentReference+Rx.swift */; };
+		B45822BD27573D93005BB13A /* Query+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45822BC27573D93005BB13A /* Query+Rx.swift */; };
 		B45936C526AA95D600F51476 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B45936C426AA95D600F51476 /* NanumScript.ttc */; };
 		B45936C726AA964300F51476 /* BMYeongSung-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */; };
 		B45BB30A271554120021D3D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BB309271554120021D3D4 /* SearchViewController.swift */; };
@@ -93,6 +94,11 @@
 		B4ADCD4F270B0942005ADA93 /* HomeViewController+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */; };
 		B4B03B4326DF321300B59BF7 /* DatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */; };
 		B4B1D955272A4F340025AA84 /* TodayTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */; };
+		B4BE437A2756FFFF002E565D /* FirestorePoemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE43792756FFFF002E565D /* FirestorePoemService.swift */; };
+		B4BE437C27570009002E565D /* FirestoreTopicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437B27570009002E565D /* FirestoreTopicService.swift */; };
+		B4BE437E27570014002E565D /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437D27570014002E565D /* FirestoreUserService.swift */; };
+		B4BE438027572AE8002E565D /* WriteBatch+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437F27572AE8002E565D /* WriteBatch+Rx.swift */; };
+		B4BE438227572ED7002E565D /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE438127572ED7002E565D /* FirestoreService.swift */; };
 		B4C3F3ED269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */; };
 		B4C3F3F1269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F0269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift */; };
 		B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */; };
@@ -119,7 +125,6 @@
 /* Begin PBXFileReference section */
 		08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NLetterPoem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Rx.swift"; sourceTree = "<group>"; };
-		B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FireStore+Rx.swift"; sourceTree = "<group>"; };
 		B40EB929270CA50500FADFC6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
@@ -155,6 +160,8 @@
 		B454940C2681B3480075D16C /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		B45494102681C6B80075D16C /* NLPProfileLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPProfileLabel.swift; sourceTree = "<group>"; };
 		B45656A026A2A42600EAB3C9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		B45822BA27573D6E005BB13A /* DocumentReference+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentReference+Rx.swift"; sourceTree = "<group>"; };
+		B45822BC27573D93005BB13A /* Query+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+Rx.swift"; sourceTree = "<group>"; };
 		B45936C426AA95D600F51476 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
 		B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMYeongSung-Regular.otf"; sourceTree = "<group>"; };
 		B45BB309271554120021D3D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +206,11 @@
 		B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Firebase.swift"; sourceTree = "<group>"; };
 		B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRequest.swift; sourceTree = "<group>"; };
 		B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewDataSource.swift; sourceTree = "<group>"; };
+		B4BE43792756FFFF002E565D /* FirestorePoemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePoemService.swift; sourceTree = "<group>"; };
+		B4BE437B27570009002E565D /* FirestoreTopicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTopicService.swift; sourceTree = "<group>"; };
+		B4BE437D27570014002E565D /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
+		B4BE437F27572AE8002E565D /* WriteBatch+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WriteBatch+Rx.swift"; sourceTree = "<group>"; };
+		B4BE438127572ED7002E565D /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		B4C3F3F0269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayViewController+HomeTableViewDelegate.swift"; sourceTree = "<group>"; };
 		B4C3F3F226941C5800CED1A9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
@@ -247,7 +259,9 @@
 			isa = PBXGroup;
 			children = (
 				B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */,
-				B40EB927270C4E2900FADFC6 /* FireStore+Rx.swift */,
+				B4BE437F27572AE8002E565D /* WriteBatch+Rx.swift */,
+				B45822BA27573D6E005BB13A /* DocumentReference+Rx.swift */,
+				B45822BC27573D93005BB13A /* Query+Rx.swift */,
 			);
 			path = "Firebase+\U0010Rx";
 			sourceTree = "<group>";
@@ -549,6 +563,7 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
+				B4BE43782756FFE3002E565D /* Services */,
 				B4C6404726806F05007A7B59 /* Extensions */,
 				B40EB924270C41B900FADFC6 /* Firebase+Rx */,
 				B4F259892692D02D00FF95A4 /* Fonts */,
@@ -616,6 +631,17 @@
 				B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		B4BE43782756FFE3002E565D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B4BE43792756FFFF002E565D /* FirestorePoemService.swift */,
+				B4BE437B27570009002E565D /* FirestoreTopicService.swift */,
+				B4BE437D27570014002E565D /* FirestoreUserService.swift */,
+				B4BE438127572ED7002E565D /* FirestoreService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		B4C3F3EB2694184D00CED1A9 /* TodayScreen */ = {
@@ -870,7 +896,6 @@
 				B4B1D955272A4F340025AA84 /* TodayTableViewDataSource.swift in Sources */,
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
 				B46EE4CB2731118700A3D640 /* UserProfileHeaderView.swift in Sources */,
-				B40EB928270C4E2900FADFC6 /* FireStore+Rx.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
 				B45BB30C2715597B0021D3D4 /* SearchViewModel.swift in Sources */,
@@ -887,12 +912,15 @@
 				B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */,
 				B466044E27007C780044C2F8 /* TodayViewController+Firebase.swift in Sources */,
 				B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */,
+				B45822BB27573D6E005BB13A /* DocumentReference+Rx.swift in Sources */,
 				B466045027007D930044C2F8 /* CantCreatePoemViewController.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,
 				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
+				B4BE438227572ED7002E565D /* FirestoreService.swift in Sources */,
 				B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */,
+				B4BE437A2756FFFF002E565D /* FirestorePoemService.swift in Sources */,
 				B41A3C9127097F5800192965 /* UIFont+Ext.swift in Sources */,
 				B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */,
 				B47B432126F0DAD3006C3EB6 /* DeveloperInfoViewController.swift in Sources */,
@@ -918,6 +946,7 @@
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
 				B41593B627318EE2002FBBD2 /* ProfileUserViewModel.swift in Sources */,
+				B4BE437E27570014002E565D /* FirestoreUserService.swift in Sources */,
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */,
 				B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */,
@@ -927,6 +956,7 @@
 				B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */,
 				B466044C270067340044C2F8 /* FirstCreateView.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
+				B45822BD27573D93005BB13A /* Query+Rx.swift in Sources */,
 				B47A2C2C270F355C0018AFE4 /* HotViewModel.swift in Sources */,
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
@@ -937,6 +967,7 @@
 				B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */,
 				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
 				B41593B827318EE9002FBBD2 /* ProfilePoemsViewModel.swift in Sources */,
+				B4BE438027572AE8002E565D /* WriteBatch+Rx.swift in Sources */,
 				B46EE4C627310B2800A3D640 /* ProfileCollectionHelper.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B4C3F3ED269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift in Sources */,
@@ -955,6 +986,7 @@
 				B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */,
 				B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */,
 				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,
+				B4BE437C27570009002E565D /* FirestoreTopicService.swift in Sources */,
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,
 				B46EE4C827310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B466044A270066B60044C2F8 /* FirstCreatePoemViewController.swift in Sources */,

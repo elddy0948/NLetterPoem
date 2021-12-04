@@ -100,5 +100,25 @@ extension FirestorePoemService {
         return fetchedResult
       })
   }
-  //Fetch
+  
+  func fetchPoems(
+    order: (by: String, descending: Bool),
+    limit: Int) -> Observable<[ResultType]> {
+      var fetchedPoems = [ResultType]()
+      return reference
+        .order(by: order.by, descending: order.descending)
+        .limit(to: limit)
+        .rx
+        .getDocuments()
+        .map({ snapshot in
+          snapshot.documents.forEach({ document in
+            do {
+              if let result = try document.data(as: ResultType.self) {
+                fetchedPoems.append(result)
+              }
+            } catch  { }
+          })
+          return fetchedPoems
+        })
+  }
 }

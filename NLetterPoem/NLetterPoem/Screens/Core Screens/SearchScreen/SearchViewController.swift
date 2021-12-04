@@ -10,7 +10,7 @@ final class SearchViewController: UIViewController {
   private let disposeBag = DisposeBag()
   private let searchViewModel = SearchViewModel()
   
-  private var resultPoems: [NLPPoem] = [] {
+  private var resultPoemViewModels: [PoemViewModel] = [] {
     didSet {
       tableView.reloadData()
     }
@@ -46,7 +46,7 @@ final class SearchViewController: UIViewController {
     tableView.dataSource = self
     
     tableView.register(HomeTableViewCell.self,
-                           forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
+                       forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
   }
   
   private func configureSearchController() {
@@ -62,14 +62,14 @@ final class SearchViewController: UIViewController {
       .filter { $0.count >= 1 }
       .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
       .distinctUntilChanged()
-      .flatMapLatest({ [weak self] query -> Observable<[NLPPoem]> in
+      .flatMapLatest({ [weak self] query -> Observable<[PoemViewModel]> in
         guard let self = self else { return .empty() }
         return self.searchViewModel.search(topic: query)
           .catchAndReturn([])
       })
       .observe(on: MainScheduler.instance)
-      .subscribe(onNext: { [weak self] poems in
-        self?.resultPoems = poems
+      .subscribe(onNext: { [weak self] poemviewmodels in
+        self?.resultPoemViewModels = poemviewmodels
       })
       .disposed(by: disposeBag)
   }
@@ -83,17 +83,19 @@ extension SearchViewController: UISearchResultsUpdating {
 
 extension SearchViewController: UISearchBarDelegate {
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    resultPoems = []
+    resultPoemViewModels = []
   }
 }
 
 extension SearchViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView,
+                 heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 150
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let selectedPoem = resultPoems[indexPath.row]
+  func tableView(_ tableView: UITableView,
+                 didSelectRowAt indexPath: IndexPath) {
+    let selectedPoem = resultPoemViewModels[indexPath.row]
     if let user = HomeViewController.nlpUser {
       let viewController = PoemDetailViewController(selectedPoem, user)
       navigationController?.pushViewController(viewController, animated: true)
@@ -103,17 +105,20 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return resultPoems.count
+    return resultPoemViewModels.count
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier,
-                                                   for: indexPath) as? HomeTableViewCell else {
-      return UITableViewCell()
-    }
-    let poem = resultPoems[indexPath.row]
-    cell.setCellData(shortDes: poem.content.makeShortDescription(),
-                     writer: poem.author, topic: poem.topic)
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(
+      withIdentifier: HomeTableViewCell.reuseIdentifier,
+      for: indexPath) as? HomeTableViewCell else {
+        return UITableViewCell()
+      }
+    let poem = resultPoemViewModels[indexPath.row]
+    cell.setCellData(shortDes: poem.shortDescription,
+                     writer: poem.author,
+                     topic: poem.topic)
     return cell
   }
 }

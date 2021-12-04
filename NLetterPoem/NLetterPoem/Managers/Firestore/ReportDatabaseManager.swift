@@ -12,7 +12,10 @@ final class ReportDatabaseManager {
     reference = database.collection("reports")
   }
   
-  func create(user: String, reportedPoem: NLPPoem, reportMessage: String, completed: @escaping (Result<String, ReportError>) -> Void) {
+  func create(user: String,
+              reportedPoem: PoemViewModel,
+              reportMessage: String,
+              completed: @escaping (Result<String, ReportError>) -> Void) {
     let documentID = "\(user)REP\(reportedPoem.id)"
     reference.document(documentID).setData([
       "reportedPoem": reportedPoem.id,

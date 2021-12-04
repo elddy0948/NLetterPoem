@@ -52,6 +52,8 @@
 		B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45656A026A2A42600EAB3C9 /* SignInView.swift */; };
 		B45822BB27573D6E005BB13A /* DocumentReference+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45822BA27573D6E005BB13A /* DocumentReference+Rx.swift */; };
 		B45822BD27573D93005BB13A /* Query+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45822BC27573D93005BB13A /* Query+Rx.swift */; };
+		B45822C02757421C005BB13A /* PoemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45822BF2757421C005BB13A /* PoemListViewModel.swift */; };
+		B45822C227574221005BB13A /* PoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45822C127574221005BB13A /* PoemViewModel.swift */; };
 		B45936C526AA95D600F51476 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B45936C426AA95D600F51476 /* NanumScript.ttc */; };
 		B45936C726AA964300F51476 /* BMYeongSung-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */; };
 		B45BB30A271554120021D3D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BB309271554120021D3D4 /* SearchViewController.swift */; };
@@ -85,6 +87,9 @@
 		B47CC3EB269ABAFE00F1F003 /* PoemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3EA269ABAFE00F1F003 /* PoemDetailView.swift */; };
 		B47DB34E27100F2A007B6022 /* HotPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */; };
 		B48459EA26A45FE700BA1484 /* UserDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */; };
+		B486601F2758740A00ED0F6B /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B486601E2758740A00ED0F6B /* TopicViewModel.swift */; };
+		B48660222758923A00ED0F6B /* AlertControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48660212758923A00ED0F6B /* AlertControllerHelper.swift */; };
+		B48660242758A25800ED0F6B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48660232758A25800ED0F6B /* UserViewModel.swift */; };
 		B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BD26A000F70044A2B8 /* SignUpView.swift */; };
 		B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BF26A002660044A2B8 /* AuthManager.swift */; };
 		B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */; };
@@ -162,6 +167,8 @@
 		B45656A026A2A42600EAB3C9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		B45822BA27573D6E005BB13A /* DocumentReference+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentReference+Rx.swift"; sourceTree = "<group>"; };
 		B45822BC27573D93005BB13A /* Query+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+Rx.swift"; sourceTree = "<group>"; };
+		B45822BF2757421C005BB13A /* PoemListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemListViewModel.swift; sourceTree = "<group>"; };
+		B45822C127574221005BB13A /* PoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemViewModel.swift; sourceTree = "<group>"; };
 		B45936C426AA95D600F51476 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
 		B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMYeongSung-Regular.otf"; sourceTree = "<group>"; };
 		B45BB309271554120021D3D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +204,9 @@
 		B47CC3EA269ABAFE00F1F003 /* PoemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailView.swift; sourceTree = "<group>"; };
 		B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPoemViewModel.swift; sourceTree = "<group>"; };
 		B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabaseManager.swift; sourceTree = "<group>"; };
+		B486601E2758740A00ED0F6B /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
+		B48660212758923A00ED0F6B /* AlertControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerHelper.swift; sourceTree = "<group>"; };
+		B48660232758A25800ED0F6B /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		B48BD9BD26A000F70044A2B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B48BD9BF26A002660044A2B8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPNavigationBar.swift; sourceTree = "<group>"; };
@@ -476,6 +486,17 @@
 			path = FirebaseAuth;
 			sourceTree = "<group>";
 		};
+		B45822BE2757420F005BB13A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B45822BF2757421C005BB13A /* PoemListViewModel.swift */,
+				B45822C127574221005BB13A /* PoemViewModel.swift */,
+				B486601E2758740A00ED0F6B /* TopicViewModel.swift */,
+				B48660232758A25800ED0F6B /* UserViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		B45BB308271553FC0021D3D4 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +584,8 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
+				B48660202758922900ED0F6B /* Helper */,
+				B45822BE2757420F005BB13A /* ViewModels */,
 				B4BE43782756FFE3002E565D /* Services */,
 				B4C6404726806F05007A7B59 /* Extensions */,
 				B40EB924270C41B900FADFC6 /* Firebase+Rx */,
@@ -588,6 +611,14 @@
 				B4F2598C2692EC4A00FF95A4 /* NLPTopic.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B48660202758922900ED0F6B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B48660212758923A00ED0F6B /* AlertControllerHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		B4AEA41326C4F3870012C398 /* Core Screens */ = {
@@ -894,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4B1D955272A4F340025AA84 /* TodayTableViewDataSource.swift in Sources */,
+				B486601F2758740A00ED0F6B /* TopicViewModel.swift in Sources */,
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
 				B46EE4CB2731118700A3D640 /* UserProfileHeaderView.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
@@ -942,6 +974,7 @@
 				B4723B212738D2E9005F9098 /* UINavigationController+Ext.swift in Sources */,
 				B41A3C8F27097E9700192965 /* ContainerViewController.swift in Sources */,
 				B47DB34E27100F2A007B6022 /* HotPoemViewModel.swift in Sources */,
+				B48660222758923A00ED0F6B /* AlertControllerHelper.swift in Sources */,
 				B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
@@ -964,6 +997,7 @@
 				B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */,
 				B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */,
 				B49C77D2274FE07C00D9D7AE /* TodayViewModel.swift in Sources */,
+				B45822C02757421C005BB13A /* PoemListViewModel.swift in Sources */,
 				B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */,
 				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
 				B41593B827318EE9002FBBD2 /* ProfilePoemsViewModel.swift in Sources */,
@@ -977,6 +1011,7 @@
 				B4F6AA1726A3F5DA00DB119D /* RankingTableViewCell.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
+				B45822C227574221005BB13A /* PoemViewModel.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,
 				B41A3C8D27097E3000192965 /* HomeViewController.swift in Sources */,
 				B45BB30A271554120021D3D4 /* SearchViewController.swift in Sources */,
@@ -992,6 +1027,7 @@
 				B466044A270066B60044C2F8 /* FirstCreatePoemViewController.swift in Sources */,
 				B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */,
 				B417692426BA4D6300C5B3A7 /* CreateTopicViewController.swift in Sources */,
+				B48660242758A25800ED0F6B /* UserViewModel.swift in Sources */,
 				B47CC3EB269ABAFE00F1F003 /* PoemDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

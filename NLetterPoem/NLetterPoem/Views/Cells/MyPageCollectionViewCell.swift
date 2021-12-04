@@ -23,9 +23,8 @@ class MyPageCollectionViewCell: UICollectionViewCell {
   }
   
   //MARK: - Configure Cell Data
-  func setPoemData(with poem: NLPPoem?) {
-    guard let poem = poem else { return }
-    topicLabel.text = poem.topic
+  func setPoemData(with poemViewModel: PoemViewModel) {
+    topicLabel.text = poemViewModel.topic
   }
   
   //MARK: - Configure Views

@@ -9,15 +9,28 @@ class UserProfileViewController: DataLoadingViewController {
   //MARK: - Properties
   private var userEmail: String?
   private let userProfileService = UserProfileService()
-  private let globalQueueScheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global(qos: .utility))
   
-  var userViewModel: ProfileUserViewModel?
-  var poemsViewModel: ProfilePoemsViewModel?
+  let userViewModel = UserViewModel()
+  let poemListViewModel = PoemListViewModel(
+    .shared
+  )
+  
+  private var combinedObservable: Observable<(
+    NLPUser,
+    [PoemViewModel]
+  )>
+  
+  private let globalQueueScheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global(qos: .utility))
   
   private let bag = DisposeBag()
   
   //MARK: - Initializer
   init(userEmail: String) {
+    combinedObservable = Observable.combineLatest(
+      userViewModel.userSubject,
+      poemListViewModel.poemListSubject
+    )
+    
     super.init(nibName: nil, bundle: nil)
     self.userEmail = userEmail
   }
@@ -31,55 +44,38 @@ class UserProfileViewController: DataLoadingViewController {
     super.viewDidLoad()
     configureViewController()
     configureCollectionView()
+    setupCombinedObservableSubscription()
     layout()
     
-    guard let email = userEmail else { return }
+    guard let email = userEmail else {
+      return
+    }
+    
+    //Fetch user profile
     fetchUserProfileInformation(with: email)
   }
   
-  func fetchUserProfileInformation(with email: String) {
-    showLoadingView()
-
-    Observable.combineLatest(
-      userProfileService.fetchUser(with: email),
-      userProfileService.fetchPoems(with: email,
-                                    sortType: .created,
-                                    descending: true))
-      .map({ [weak self] userResult, poemsResult -> Bool in
-        guard let self = self else { return false }
-        var isErrorOccured = false
-        
-        switch userResult {
-        case .success(let userViewModel):
-          self.userViewModel = userViewModel
-        case .failure(_):
-          isErrorOccured = true
-        }
-        
-        switch poemsResult {
-        case .success(let poemsViewModel):
-          self.poemsViewModel = poemsViewModel
-        case .failure(_):
-          isErrorOccured = true
-        }
-        
-        if isErrorOccured { return false }
-        return true
-      })
-      .subscribe(on: globalQueueScheduler)
-      .observe(on: MainScheduler.instance)
-      .subscribe(onNext: { [weak self] success in
-        guard let self = self else { return }
-        if success {
-          self.dismissLoadingView()
-          self.userProfileCollectionView?.reloadSections(IndexSet(integer: 0))
-        } else {
-          self.showAlert(title: "⚠️",
-                         message: "정보를 불러오지 못했습니다",
-                         action: nil)
-        }
-      })
+  func setupCombinedObservableSubscription() {
+    combinedObservable
+      .subscribe(
+        onNext: { [weak self] user, poemViewModels in
+          guard let self = self else { return }
+          self.userProfileCollectionView?.reloadSections(
+            IndexSet(integer: 0)
+          )
+        }, onError: { error in
+          print("Error!")
+        }, onCompleted: {
+          print("Completed")
+        }, onDisposed: {
+          print("Disposed")
+        })
       .disposed(by: bag)
+  }
+  
+  func fetchUserProfileInformation(with email: String) {
+    poemListViewModel.fetchPoems(email)
+    userViewModel.fetchUser(email: email)
   }
 }
 
@@ -97,11 +93,13 @@ extension UserProfileViewController {
     userProfileCollectionView.backgroundColor = .systemBackground
     userProfileCollectionView.translatesAutoresizingMaskIntoConstraints = false
     
-    userProfileCollectionView.register(MyPageCollectionViewCell.self,
-                                       forCellWithReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier)
-    userProfileCollectionView.register(UserProfileHeaderView.self,
-                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                       withReuseIdentifier: UserProfileHeaderView.reuseIdentifier)
+    userProfileCollectionView.register(
+      MyPageCollectionViewCell.self,
+      forCellWithReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier)
+    userProfileCollectionView.register(
+      UserProfileHeaderView.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: UserProfileHeaderView.reuseIdentifier)
     userProfileCollectionView.delegate = self
     userProfileCollectionView.dataSource = self
   }

@@ -27,10 +27,10 @@ final class UserProfileHeaderView: UICollectionReusableView {
   }
   
   //MARK: - Configure Mypage Data
-  func configureUser(with user: ProfileUserViewModel) {
-    bioLabel.text = user.bio
-    userNameLabel.text = user.nickname
-    firesLabel.text = "\(user.fires)🔥"
+  func configureUser(with userViewModel: UserViewModel) {
+    bioLabel.text = userViewModel.bio
+    userNameLabel.text = userViewModel.nickname
+    firesLabel.text = "\(userViewModel.fires)🔥"
   }
   
   //MARK: - Privates

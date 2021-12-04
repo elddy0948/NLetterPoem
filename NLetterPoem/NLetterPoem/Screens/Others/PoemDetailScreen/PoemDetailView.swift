@@ -19,10 +19,12 @@ final class PoemDetailView: UIView {
   weak var delegate: PoemDetailViewDelegate?
   
   //MARK: - init
-  init(poem: NLPPoem, fireState: Bool, enableAuthorButton: Bool) {
+  init(poemViewModel: PoemViewModel, fireState: Bool, enableAuthorButton: Bool) {
     super.init(frame: .zero)
     configure()
-    setPoem(poem, fireState: fireState, enableAuthorButton: enableAuthorButton)
+    setPoem(poemViewModel,
+            fireState: fireState,
+            enableAuthorButton: enableAuthorButton)
   }
   
   override init(frame: CGRect) {
@@ -116,17 +118,21 @@ final class PoemDetailView: UIView {
     ])
   }
   
-  private func setPoem(_ poem: NLPPoem, fireState: Bool, enableAuthorButton: Bool) {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self else { return }
-      self.titleLabel.text = poem.topic
-      self.authorButton.setTitle("-\(poem.author)-", for: .normal)
-      self.poemLabel.text = poem.content
-      self.fireButton.isSelected = fireState
-      fireState ? (self.fireButton.tintColor = .systemRed) : (self.fireButton.tintColor = .label)
+  private func setPoem(
+    _ poemViewModel: PoemViewModel,
+    fireState: Bool, enableAuthorButton: Bool) {
+      DispatchQueue.main.async { [weak self] in
+        guard let self = self else { return }
+        self.titleLabel.text = poemViewModel.topic
+        self.authorButton.setTitle(
+          "-\(poemViewModel.author)-",
+          for: .normal)
+        self.poemLabel.text = poemViewModel.content
+        self.fireButton.isSelected = fireState
+        fireState ? (self.fireButton.tintColor = .systemRed) : (self.fireButton.tintColor = .label)
+      }
+      authorButton.isUserInteractionEnabled = enableAuthorButton
     }
-    authorButton.isUserInteractionEnabled = enableAuthorButton
-  }
   
   func updatePoem(with poem: NLPPoem?) {
     guard let poem = poem else { return }

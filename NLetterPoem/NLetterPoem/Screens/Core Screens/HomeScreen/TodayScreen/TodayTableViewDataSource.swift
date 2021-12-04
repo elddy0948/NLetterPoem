@@ -2,17 +2,17 @@ import UIKit
 
 
 final class TodayTableViewDataSource: NSObject, UITableViewDataSource {
-  var poems = [NLPPoem]()
+  var poemViewModels = [PoemViewModel]()
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if poems.isEmpty {
+    if poemViewModels.isEmpty {
       return 1
     }
-    return poems.count
+    return poemViewModels.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if poems.isEmpty {
+    if poemViewModels.isEmpty {
       let cell = tableView.dequeueReusableCell(withIdentifier: HomeEmptyCell.reuseIdentifier,
                                                for: indexPath)
       return cell
@@ -23,7 +23,7 @@ final class TodayTableViewDataSource: NSObject, UITableViewDataSource {
       return UITableViewCell()
     }
     
-    let poem = poems[indexPath.row]
+    let poem = poemViewModels[indexPath.row]
     let shortDescription = poem.content.makeShortDescription()
     cell.backgroundColor = .systemBackground
     cell.setCellData(shortDes: shortDescription,
@@ -33,7 +33,8 @@ final class TodayTableViewDataSource: NSObject, UITableViewDataSource {
     return cell
   }
   
-  func fetchPoem(from indexPath: IndexPath) -> NLPPoem {
-    return poems[indexPath.row]
+  func fetchPoem(
+    from indexPath: IndexPath) -> PoemViewModel {
+    return poemViewModels[indexPath.row]
   }
 }

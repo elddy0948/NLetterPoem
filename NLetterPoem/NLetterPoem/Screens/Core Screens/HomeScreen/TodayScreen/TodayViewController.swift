@@ -4,35 +4,47 @@ import RxSwift
 
 protocol TodayViewControllerDelegate: AnyObject {
   func todayViewController(_ todayViewController: TodayViewController,
-                           didSelected poem: NLPPoem)
+                           didSelected poem: PoemViewModel)
 }
 
 class TodayViewController: DataLoadingViewController {
   
   //MARK: - Views
   let homeHeaderView = HomeHeaderView()
-  let headerContainerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150))
+  let headerContainerView = UIView(
+    frame: CGRect(x: 0, y: 0,
+                  width: UIScreen.main.bounds.width,
+                  height: 150))
   let homeTableView = HomeTableView()
-  var todayTableViewDataSource = TodayTableViewDataSource()
-  var dispatchGroup = DispatchGroup()
-  let todayViewModel = TodayViewModel()
-  var combineObservable: Observable<(NLPTopic, [NLPPoem])>
-  let bag = DisposeBag()
-  let globalScheduler = ConcurrentDispatchQueueScheduler(queue: .global(qos: .utility))
   
   //MARK: - Properties
   var todayTopic: String = ""
-  
+  var todayTableViewDataSource = TodayTableViewDataSource()
+  let todayViewModel = TodayViewModel()
+  let poemListViewModel = PoemListViewModel(.shared)
+  var combineObservable: Observable<(NLPTopic,
+                                     [PoemViewModel])>
+  let bag = DisposeBag()
+  let globalScheduler = ConcurrentDispatchQueueScheduler(
+    queue: .global(qos: .utility)
+  )
   weak var delegate: TodayViewControllerDelegate?
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    combineObservable = Observable.combineLatest(todayViewModel.fetchTodayTopic(Date()),
-                                                     todayViewModel.fetchTodayPoems(Date()))
+  //MARK: - Initializer
+  override init(nibName nibNameOrNil: String?,
+                bundle nibBundleOrNil: Bundle?) {
+    combineObservable = Observable
+      .combineLatest(
+        todayViewModel.fetchTodayTopic(Date()),
+        poemListViewModel.poemListSubject)
     super.init(nibName: nil, bundle: nil)
   }
+  
   required init?(coder: NSCoder) {
-    combineObservable = Observable.combineLatest(todayViewModel.fetchTodayTopic(Date()),
-                                                     todayViewModel.fetchTodayPoems(Date()))
+    combineObservable = Observable
+      .combineLatest(
+        todayViewModel.fetchTodayTopic(Date()),
+        poemListViewModel.poemListSubject)
     super.init(coder: coder)
   }
   
@@ -40,16 +52,43 @@ class TodayViewController: DataLoadingViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configureTableView()
+    setupCombineSubscription()
     fetchData(homeTableView)
-//    fetchTodayViewControllerData(homeTableView)
   }
   
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
     layout()
   }
+  
+  private func setupCombineSubscription() {
+    combineObservable
+      .subscribe(on: globalScheduler)
+      .observe(on: MainScheduler.instance)
+      .subscribe(
+        onNext: { [weak self] (topic, poemViewModels) in
+          guard let self = self else { return }
+          self.todayTopic = topic.topic
+          self.todayTableViewDataSource.poemViewModels = poemViewModels
+          self.updateTableViewContents()
+          if let refreshControl = self.homeTableView.refreshControl {
+            if refreshControl.isRefreshing {
+              refreshControl.endRefreshing()
+            }
+          }
+        },
+        onError: { error in
+        },
+        onCompleted: {
+        },
+        onDisposed: {
+        }
+      )
+      .disposed(by: bag)
+  }
 }
 
+//MARK: - UI
 extension TodayViewController {
   private func configureTableView() {
     homeTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -61,10 +100,13 @@ extension TodayViewController {
     homeTableView.delegate = self
     homeTableView.homeTableViewDelegate = self
     
-    homeTableView.register(HomeTableViewCell.self,
-                           forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
-    homeTableView.register(HomeEmptyCell.self,
-                           forCellReuseIdentifier: HomeEmptyCell.reuseIdentifier)
+    homeTableView.register(
+      HomeTableViewCell.self,
+      forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
+    
+    homeTableView.register(
+      HomeEmptyCell.self,
+      forCellReuseIdentifier: HomeEmptyCell.reuseIdentifier)
   }
 }
 

@@ -33,12 +33,12 @@ final class MyPageHeaderView: UICollectionReusableView {
   }
   
   //MARK: - Configure Mypage Data
-  func configureUser(with user: NLPUser?, isEditButtonHidden: Bool) {
-    guard let user = user else { return }
-    bioLabel.text = user.bio
-    userNameLabel.text = user.nickname
+  func configureUser(with userViewModel: UserViewModel,
+                     isEditButtonHidden: Bool) {
+    bioLabel.text = userViewModel.bio
+    userNameLabel.text = userViewModel.nickname
     editProfileButton.isHidden = isEditButtonHidden
-    firesLabel.text = "\(user.fires)🔥"
+    firesLabel.text = "\(userViewModel.fires)🔥"
   }
   
   //MARK: - Privates

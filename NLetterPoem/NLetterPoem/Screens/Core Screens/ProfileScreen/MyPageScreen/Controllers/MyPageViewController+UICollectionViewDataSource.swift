@@ -7,20 +7,21 @@ extension MyPageViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
-    return poemsViewModel?.numberOfPoems ?? 0
+    return poemListViewModel.count
   }
   
   func collectionView(_ collectionView: UICollectionView,
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier,
-            for: indexPath) as? MyPageCollectionViewCell else {
-      return UICollectionViewCell()
-    }
+      withReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier,
+      for: indexPath) as? MyPageCollectionViewCell else {
+        return UICollectionViewCell()
+      }
     
-    if let poem = poemsViewModel?.poemAtCell(indexPath: indexPath.item) {
-      cell.setPoemData(with: poem)
-    }
+    let poemViewModel = poemListViewModel.poemViewModel(
+      at: indexPath.item
+    )
+    cell.setPoemData(with: poemViewModel)
     
     return cell
   }
@@ -30,11 +31,16 @@ extension MyPageViewController: UICollectionViewDataSource {
                       at indexPath: IndexPath) -> UICollectionReusableView {
     switch kind {
     case UICollectionView.elementKindSectionHeader:
-      let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                       withReuseIdentifier: MyPageHeaderView.reuseIdentifier,
-                                                                       for: indexPath)
+      let headerView = collectionView.dequeueReusableSupplementaryView(
+        ofKind: kind,
+        withReuseIdentifier: MyPageHeaderView.reuseIdentifier,
+        for: indexPath
+      )
       guard let typeHeaderView = headerView as? MyPageHeaderView else { return headerView }
-      typeHeaderView.configureUser(with: userViewModel?.user, isEditButtonHidden: false)
+      typeHeaderView.configureUser(
+        with: userViewModel,
+        isEditButtonHidden: false
+      )
       typeHeaderView.delegate = self
       
       return typeHeaderView

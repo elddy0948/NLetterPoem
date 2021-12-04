@@ -27,7 +27,11 @@ struct PoemViewModel {
     return poem.id
   }
   
-  var selectedPoem: NLPPoem {
+  var currentPoem: NLPPoem {
     return poem
+  }
+  
+  var shortDescription: String {
+    return content.makeShortDescription()
   }
 }

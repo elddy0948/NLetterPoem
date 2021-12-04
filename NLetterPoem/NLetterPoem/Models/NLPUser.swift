@@ -16,3 +16,9 @@ final class NLPUser: Codable {
     self.bio = bio
   }
 }
+
+extension NLPUser {
+  static var empty: NLPUser {
+    return NLPUser(email: "", nickname: "", bio: "")
+  }
+}

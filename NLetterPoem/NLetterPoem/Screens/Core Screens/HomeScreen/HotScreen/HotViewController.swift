@@ -10,7 +10,23 @@ protocol HotViewControllerDelegate: AnyObject {
 
 final class HotViewController: UIViewController {
   
-  private var homeTableView: HomeTableView!
+  //MARK: - Views
+  private lazy var homeTableView: HomeTableView = {
+    let homeTableView = HomeTableView()
+    
+    homeTableView.delegate = self
+    homeTableView.dataSource = self
+    homeTableView.homeTableViewDelegate = self
+    
+    homeTableView.register(
+      HomeTableViewCell.self,
+      forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier
+    )
+    
+    return homeTableView
+  }()
+  
+  //MARK: - Properties
   private var poemListViewModel = PoemListViewModel(.shared)
   private let disposeBag = DisposeBag()
   
@@ -19,7 +35,7 @@ final class HotViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    configure()
+    setupTableView()
     setupSubscription()
     fetchHotPoems()
   }
@@ -34,9 +50,7 @@ final class HotViewController: UIViewController {
       .subscribe(
         onNext: { [weak self] poemViewModels in
           guard let self = self else { return }
-          self.homeTableView.reloadSections(
-            IndexSet(integer: 0),
-            with: .automatic)
+          self.homeTableView.reloadData()
           if let refreshControl = self.homeTableView.refreshControl {
             if refreshControl.isRefreshing {
               refreshControl.endRefreshing()
@@ -81,18 +95,21 @@ extension HotViewController: UITableViewDelegate {
 }
 
 extension HotViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
     return poemListViewModel.count
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier, for: indexPath) as? HomeTableViewCell else {
       return UITableViewCell()
     }
+    
     let poemViewModel = poemListViewModel.poemViewModel(
       at: indexPath.row
     )
-    
+
     cell.setCellData(
       shortDes: poemViewModel.shortDescription,
       writer: poemViewModel.author,
@@ -110,28 +127,18 @@ extension HotViewController: HomeTableViewDelegate {
 
 //MARK: - UI
 extension HotViewController {
-  private func configure() {
-    homeTableView = HomeTableView()
+  private func setupTableView() {
     view.addSubview(homeTableView)
-    
     homeTableView.translatesAutoresizingMaskIntoConstraints = false
-    homeTableView.backgroundColor = .systemBackground
-    homeTableView.delegate = self
-    homeTableView.dataSource = self
-    homeTableView.homeTableViewDelegate = self
-    
-    homeTableView.register(HomeTableViewCell.self,
-                           forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
-    homeTableView.register(HomeEmptyCell.self,
-                           forCellReuseIdentifier: HomeEmptyCell.reuseIdentifier)
   }
   
   private func layout() {
     NSLayoutConstraint.activate([
-      homeTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      homeTableView.topAnchor.constraint(equalTo: view.topAnchor),
       homeTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       homeTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       homeTableView.bottomAnchor.constraint(equalTo: NLPTabBarController.tabBarTopAnchor),
+//      homeTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
   }
 }

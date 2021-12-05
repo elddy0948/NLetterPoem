@@ -3,8 +3,9 @@ import Firebase
 import RxSwift
 
 protocol TodayViewControllerDelegate: AnyObject {
-  func todayViewController(_ todayViewController: TodayViewController,
-                           didSelected poem: PoemViewModel)
+  func todayViewController(
+    _ todayViewController: TodayViewController,
+    didSelected poem: PoemViewModel)
 }
 
 class TodayViewController: DataLoadingViewController {
@@ -52,13 +53,14 @@ class TodayViewController: DataLoadingViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configureTableView()
+    layout()
     setupCombineSubscription()
     fetchData(homeTableView)
   }
   
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
-    layout()
+//    layout()
   }
   
   private func setupCombineSubscription() {
@@ -68,14 +70,9 @@ class TodayViewController: DataLoadingViewController {
       .subscribe(
         onNext: { [weak self] (topic, poemViewModels) in
           guard let self = self else { return }
-          self.todayTopic = topic.topic
-          self.todayTableViewDataSource.poemViewModels = poemViewModels
-          self.updateTableViewContents()
-          if let refreshControl = self.homeTableView.refreshControl {
-            if refreshControl.isRefreshing {
-              refreshControl.endRefreshing()
-            }
-          }
+          self.updateTableView(topic: topic.topic,
+                               poemViewModels: poemViewModels)
+          self.checkRefreshControlEnd()
         },
         onError: { error in
         },
@@ -85,6 +82,22 @@ class TodayViewController: DataLoadingViewController {
         }
       )
       .disposed(by: bag)
+  }
+  
+  private func updateTableView(topic: String,
+                               poemViewModels: [PoemViewModel]) {
+    todayTopic = topic
+    todayTableViewDataSource.poemViewModels = poemViewModels
+    homeTableView.reloadSections(IndexSet(integer: 0),
+                                 with: .automatic)
+  }
+  
+  private func checkRefreshControlEnd() {
+    if let refreshControl = homeTableView.refreshControl {
+      if refreshControl.isRefreshing {
+        refreshControl.endRefreshing()
+      }
+    }
   }
 }
 
@@ -121,7 +134,8 @@ extension TodayViewController {
       homeTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       homeTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       homeTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      homeTableView.bottomAnchor.constraint(equalTo: NLPTabBarController.tabBarTopAnchor),
+//      homeTableView.bottomAnchor.constraint(equalTo: NLPTabBarController.tabBarTopAnchor),
+      homeTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
       //Header View
       homeHeaderView.topAnchor.constraint(equalTo: headerContainerView.topAnchor),
       homeHeaderView.leadingAnchor.constraint(equalTo: headerContainerView.leadingAnchor),

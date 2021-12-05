@@ -4,22 +4,26 @@ import UIKit
 final class TodayTableViewDataSource: NSObject, UITableViewDataSource {
   var poemViewModels = [PoemViewModel]()
   
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
     if poemViewModels.isEmpty {
       return 1
     }
     return poemViewModels.count
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if poemViewModels.isEmpty {
-      let cell = tableView.dequeueReusableCell(withIdentifier: HomeEmptyCell.reuseIdentifier,
-                                               for: indexPath)
+      let cell = tableView.dequeueReusableCell(
+        withIdentifier: HomeEmptyCell.reuseIdentifier,
+        for: indexPath)
       return cell
     }
     
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier,
-                                                   for: indexPath) as? HomeTableViewCell else {
+    guard let cell = tableView.dequeueReusableCell(
+      withIdentifier: HomeTableViewCell.reuseIdentifier,
+      for: indexPath) as? HomeTableViewCell else {
       return UITableViewCell()
     }
     

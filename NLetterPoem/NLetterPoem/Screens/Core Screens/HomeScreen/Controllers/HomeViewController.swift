@@ -148,9 +148,10 @@ extension HomeViewController {
     ])
   }
   
-  private func animateTransition(fromViewController: UIViewController,
-                                 toViewController: UIViewController,
-                                 completion: @escaping ((Bool) -> Void)) {
+  private func animateTransition(
+    fromViewController: UIViewController,
+    toViewController: UIViewController,
+    completion: @escaping ((Bool) -> Void)) {
     guard let fromView = fromViewController.view,
           let fromIndex = getIndex(forViewController: fromViewController),
           let toView = toViewController.view,

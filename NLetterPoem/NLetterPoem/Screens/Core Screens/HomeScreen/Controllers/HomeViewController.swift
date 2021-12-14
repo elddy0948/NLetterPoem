@@ -3,49 +3,60 @@ import Firebase
 import RxSwift
 
 final class HomeViewController: DataLoadingViewController {
-
+  
+  //MARK: - Views
   var todayBarButton: NLPBarButton!
   var hotBarButton: NLPBarButton!
   private var todayBarButtonItem: UIBarButtonItem!
   private var hotBarButtonItem: UIBarButtonItem!
   private var addBarButtonItem: UIBarButtonItem!
   private var container: UIView?
-  
   private let containerViewController = ContainerViewController()
-  let disposeBag = DisposeBag()
   private var viewControllers = [UIViewController]()
   
-  static var nlpUser: NLPUser?
-  var user: User? {
-    didSet {
-      if user == nil {
-        showAlert(title: "⚠️", message: "오류가 발생했습니다.\n앱을 재실행해주세요!", action: nil)
-      } else {
-        fetchUserInfo(with: user?.email)
-      }
-    }
-  }
-  var homeViewModel: HomeViewModel? = HomeViewModel()
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    view.backgroundColor = .systemBackground
-    configureNavigationBar()
-    configureContainerView()
-    configureStateChangeListener()
-  }
+  //MARK: - Properties
+  let disposeBag = DisposeBag()
+  let currentUserViewModel = CurrentUserViewModel.shared
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nil, bundle: nil)
-    todayBarButton = configureBarButton(text: "오늘의 시", selector: #selector(todayBarButtonAction(_:)))
-    hotBarButton = configureBarButton(text: "Hot", selector: #selector(hotBarButtonAction(_:)))
+    todayBarButton = configureBarButton(
+      text: "오늘의 시",
+      selector: #selector(todayBarButtonAction(_:))
+    )
+    
+    hotBarButton = configureBarButton(
+      text: "Hot",
+      selector: #selector(hotBarButtonAction(_:))
+    )
     configureBarButtonItems()
     
     let todayViewController = TodayViewController()
     let hotViewController = HotViewController()
+    
     todayViewController.delegate = self
     hotViewController.delegate = self
+    
     viewControllers = [todayViewController, hotViewController]
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = .systemBackground
+    guard let user = Auth.auth().currentUser,
+          let email = user.email else { return }
+    
+    configureNavigationBar()
+    configureContainerView()
+    setupCurrentUserSubscription()
+    
+    showLoadingView()
+    currentUserViewModel.fetchCurrentUser(email)
+    todayBarButtonAction(self.todayBarButton)
   }
   
   override func viewWillLayoutSubviews() {
@@ -53,28 +64,34 @@ final class HomeViewController: DataLoadingViewController {
     layout()
   }
   
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
   private func configureNavigationBar() {
-    navigationItem.leftBarButtonItems = [todayBarButtonItem, hotBarButtonItem]
+    navigationItem.leftBarButtonItems = [
+      todayBarButtonItem,
+      hotBarButtonItem
+    ]
+    
     navigationItem.rightBarButtonItem = addBarButtonItem
   }
   
   //MARK: - Bar Button
   private func configureBarButton(text: String, selector: Selector) -> NLPBarButton {
     let nlpBarButton = NLPBarButton(text: text)
-    nlpBarButton.addTarget(self, action: selector, for: .primaryActionTriggered)
+    nlpBarButton.addTarget(
+      self,
+      action: selector,
+      for: .primaryActionTriggered
+    )
     return nlpBarButton
   }
   
   private func configureBarButtonItems() {
     todayBarButtonItem = UIBarButtonItem(customView: todayBarButton)
     hotBarButtonItem = UIBarButtonItem(customView: hotBarButton)
-    addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                         target: self,
-                                         action: #selector(addBarButtonAction(_:)))
+    addBarButtonItem = UIBarButtonItem(
+      barButtonSystemItem: .add,
+      target: self,
+      action: #selector(addBarButtonAction(_:))
+    )
     addBarButtonItem.tintColor = .label
   }
   
@@ -119,13 +136,23 @@ final class HomeViewController: DataLoadingViewController {
   
   @objc func addBarButtonAction(_ sender: UIBarButtonItem) {
     //TODO: - Add 버튼 액션 추가
-    guard let user = HomeViewController.nlpUser else { return }
-    if user.poems.isEmpty {
+    guard currentUserViewModel.email != "" else {
+      return
+    }
+    
+    //동기 처리 해야함.
+    currentUserViewModel.fetchCurrentUser(
+      currentUserViewModel.email
+    )
+    
+    if currentUserViewModel.poems.isEmpty {
+      //Show First create view controller
       let viewController = FirstCreateViewController()
-      viewController.user = user
+      viewController.user = currentUserViewModel.user
       createNavigationController(rootVC: viewController)
     } else {
-      checkUserDidWritePoemToday(with: user.email)
+      //Check user did write poem todaya
+      checkUserDidWritePoemToday(with: currentUserViewModel.email)
     }
   }
   
@@ -152,26 +179,26 @@ extension HomeViewController {
     fromViewController: UIViewController,
     toViewController: UIViewController,
     completion: @escaping ((Bool) -> Void)) {
-    guard let fromView = fromViewController.view,
-          let fromIndex = getIndex(forViewController: fromViewController),
-          let toView = toViewController.view,
-          let toIndex = getIndex(forViewController: toViewController) else {
-      return
+      guard let fromView = fromViewController.view,
+            let fromIndex = getIndex(forViewController: fromViewController),
+            let toView = toViewController.view,
+            let toIndex = getIndex(forViewController: toViewController) else {
+              return
+            }
+      
+      let frame = fromView.frame
+      var fromFrameEnd = frame
+      var toFrameStart = frame
+      fromFrameEnd.origin.x = toIndex > fromIndex ? frame.origin.x - frame.width : frame.origin.x + frame.width
+      toFrameStart.origin.x = toIndex > fromIndex ? frame.origin.x + frame.width : frame.origin.x - frame.width
+      
+      UIView.animate(withDuration: 0.5) {
+        fromView.frame = fromFrameEnd
+        toView.frame = frame
+      } completion: { success in
+        completion(success)
+      }
     }
-    
-    let frame = fromView.frame
-    var fromFrameEnd = frame
-    var toFrameStart = frame
-    fromFrameEnd.origin.x = toIndex > fromIndex ? frame.origin.x - frame.width : frame.origin.x + frame.width
-    toFrameStart.origin.x = toIndex > fromIndex ? frame.origin.x + frame.width : frame.origin.x - frame.width
-    
-    UIView.animate(withDuration: 0.5) {
-      fromView.frame = fromFrameEnd
-      toView.frame = frame
-    } completion: { success in
-      completion(success)
-    }
-  }
   
   private func getIndex(forViewController vc: UIViewController) -> Int? {
     for (index, thisVC) in viewControllers.enumerated() {
@@ -185,18 +212,27 @@ extension HomeViewController {
 
 extension HomeViewController: TodayViewControllerDelegate {
   func todayViewController(_ todayViewController: TodayViewController, didSelected poem: PoemViewModel) {
-    if let user = HomeViewController.nlpUser {
-      let poemDetailViewController = PoemDetailViewController(poem, user)
-      navigationController?.pushViewController(poemDetailViewController, animated: true)
-    }
+    let poemDetailViewController = PoemDetailViewController(
+      poem,
+      currentUserViewModel.user
+    )
+    
+    navigationController?.pushViewController(
+      poemDetailViewController,
+      animated: true)
   }
 }
 
 extension HomeViewController: HotViewControllerDelegate {
   func hotViewController(_ viewController: HotViewController, didSelected poemViewModel: PoemViewModel) {
-    if let user = HomeViewController.nlpUser {
-      let poemDetailViewController = PoemDetailViewController(poemViewModel, user)
-      navigationController?.pushViewController(poemDetailViewController, animated: true)
-    }
+    let poemDetailViewController = PoemDetailViewController(
+      poemViewModel,
+      currentUserViewModel.user
+    )
+    
+    navigationController?.pushViewController(
+      poemDetailViewController,
+      animated: true
+    )
   }
 }

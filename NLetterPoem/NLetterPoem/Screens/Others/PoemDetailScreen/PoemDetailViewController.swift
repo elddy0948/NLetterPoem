@@ -62,11 +62,15 @@ final class PoemDetailViewController: UIViewController {
   }
   
   //MARK: - LikeCount Logic
-  private func updateLikeCount(id: String, authorEmail: String, isIncrease: Bool) {
+  private func updateLikeCount(
+    id: String,
+    authorEmail: String,
+    isIncrease: Bool) {
     DispatchQueue.global(qos: .userInitiated).async {
-      PoemDatabaseManager.shared.updateLikeCount(poemID: id,
-                                                 author: authorEmail,
-                                                 isIncrease: isIncrease) { error in
+      PoemDatabaseManager.shared.updateLikeCount(
+        poemID: id,
+        author: authorEmail,
+        isIncrease: isIncrease) { error in
         if error != nil {
           self.showAlert(title: "⚠️", message: "문제가 발생했습니다!\n다시 시도해주세요!") { _ in
             self.dismiss(animated: true, completion: nil)
@@ -76,12 +80,19 @@ final class PoemDetailViewController: UIViewController {
     }
   }
   
-  private func updateUserLikedPoem(email: String, id: String, isRemove: Bool) {
+  private func updateUserLikedPoem(
+    email: String,
+    id: String,
+    isRemove: Bool) {
     DispatchQueue.global(qos: .userInitiated).async {
       if isRemove {
-        UserDatabaseManager.shared.unLikedPoem(to: email, poemID: id) { _ in }
+        UserDatabaseManager.shared.unLikedPoem(
+          to: email,
+          poemID: id) { _ in }
       } else {
-        UserDatabaseManager.shared.likedPoem(to: email, poemID: id) { _ in }
+        UserDatabaseManager.shared.likedPoem(
+          to: email,
+          poemID: id) { _ in }
       }
     }
   }

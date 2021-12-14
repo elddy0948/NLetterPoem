@@ -27,6 +27,7 @@
 		B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F42691AFC70088119D /* HomeTableView.swift */; };
 		B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F62691B0810088119D /* HomeHeaderView.swift */; };
 		B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */; };
+		B42DDDC9275D1C6F00A9A2E0 /* CurrentUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42DDDC8275D1C6F00A9A2E0 /* CurrentUserViewModel.swift */; };
 		B42EE571267EF5FA001848A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */; };
 		B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* FirebaseAnalytics */; };
 		B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */; };
@@ -56,6 +57,7 @@
 		B45822C227574221005BB13A /* PoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45822C127574221005BB13A /* PoemViewModel.swift */; };
 		B45936C526AA95D600F51476 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B45936C426AA95D600F51476 /* NanumScript.ttc */; };
 		B45936C726AA964300F51476 /* BMYeongSung-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */; };
+		B459CC3427683FE00084A845 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B459CC3327683FE00084A845 /* FirebaseAuthService.swift */; };
 		B45BB30A271554120021D3D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BB309271554120021D3D4 /* SearchViewController.swift */; };
 		B45BB30C2715597B0021D3D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BB30B2715597B0021D3D4 /* SearchViewModel.swift */; };
 		B45F804A26CBEF300013C54E /* DataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F804926CBEF300013C54E /* DataLoadingViewController.swift */; };
@@ -148,6 +150,7 @@
 		B421C4F42691AFC70088119D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		B421C4F62691B0810088119D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPPoemFormView.swift; sourceTree = "<group>"; };
+		B42DDDC8275D1C6F00A9A2E0 /* CurrentUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserViewModel.swift; sourceTree = "<group>"; };
 		B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B42EE580267EFA55001848A5 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B42EE584267EFD6D001848A5 /* NLPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPButton.swift; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 		B45822C127574221005BB13A /* PoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemViewModel.swift; sourceTree = "<group>"; };
 		B45936C426AA95D600F51476 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
 		B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMYeongSung-Regular.otf"; sourceTree = "<group>"; };
+		B459CC3327683FE00084A845 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		B45BB309271554120021D3D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B45BB30B2715597B0021D3D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B45F804926CBEF300013C54E /* DataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingViewController.swift; sourceTree = "<group>"; };
@@ -493,6 +497,7 @@
 				B45822C127574221005BB13A /* PoemViewModel.swift */,
 				B486601E2758740A00ED0F6B /* TopicViewModel.swift */,
 				B48660232758A25800ED0F6B /* UserViewModel.swift */,
+				B42DDDC8275D1C6F00A9A2E0 /* CurrentUserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -671,6 +676,7 @@
 				B4BE437B27570009002E565D /* FirestoreTopicService.swift */,
 				B4BE437D27570014002E565D /* FirestoreUserService.swift */,
 				B4BE438127572ED7002E565D /* FirestoreService.swift */,
+				B459CC3327683FE00084A845 /* FirebaseAuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -945,6 +951,7 @@
 				B466044E27007C780044C2F8 /* TodayViewController+Firebase.swift in Sources */,
 				B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */,
 				B45822BB27573D6E005BB13A /* DocumentReference+Rx.swift in Sources */,
+				B42DDDC9275D1C6F00A9A2E0 /* CurrentUserViewModel.swift in Sources */,
 				B466045027007D930044C2F8 /* CantCreatePoemViewController.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,
@@ -990,6 +997,7 @@
 				B466044C270067340044C2F8 /* FirstCreateView.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
 				B45822BD27573D93005BB13A /* Query+Rx.swift in Sources */,
+				B459CC3427683FE00084A845 /* FirebaseAuthService.swift in Sources */,
 				B47A2C2C270F355C0018AFE4 /* HotViewModel.swift in Sources */,
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,

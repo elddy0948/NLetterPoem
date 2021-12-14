@@ -213,8 +213,7 @@ extension HomeViewController {
 extension HomeViewController: TodayViewControllerDelegate {
   func todayViewController(_ todayViewController: TodayViewController, didSelected poem: PoemViewModel) {
     let poemDetailViewController = PoemDetailViewController(
-      poem,
-      currentUserViewModel.user
+      poem
     )
     
     navigationController?.pushViewController(
@@ -226,8 +225,7 @@ extension HomeViewController: TodayViewControllerDelegate {
 extension HomeViewController: HotViewControllerDelegate {
   func hotViewController(_ viewController: HotViewController, didSelected poemViewModel: PoemViewModel) {
     let poemDetailViewController = PoemDetailViewController(
-      poemViewModel,
-      currentUserViewModel.user
+      poemViewModel
     )
     
     navigationController?.pushViewController(

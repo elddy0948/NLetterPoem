@@ -1,21 +1,26 @@
 import UIKit
 import Firebase
+import RxSwift
 
-final class PoemDetailViewController: UIViewController {
+final class PoemDetailViewController: DataLoadingViewController {
   
   private(set) var detailPoemView: PoemDetailView?
   
   //MARK: - Properties
   private var poemViewModel: PoemViewModel
-  private var currentUser: NLPUser
+  private let currentUserViewModel = CurrentUserViewModel.shared
+  private var currentUser = NLPUser.empty {
+    didSet {
+      setupFireState()
+    }
+  }
+  private let bag = DisposeBag()
   var fireState = false
   var enableAuthorButton = true
   
   //MARK: - Initializer
-  init(_ poemViewModel: PoemViewModel,
-       _ currentUser: NLPUser) {
+  init(_ poemViewModel: PoemViewModel) {
     self.poemViewModel = poemViewModel
-    self.currentUser = currentUser
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -27,38 +32,33 @@ final class PoemDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    configurePoemDetailView()
+    setupPoemDetailView()
+    setupUserSubscription()
+    showLoadingView()
+    currentUserViewModel.fetchCurrentUser(
+      currentUserViewModel.email
+    )
   }
   
-  //MARK: - Configure Logic
-  private func configurePoemDetailView() {
-    currentUser.likedPoem
-      .contains(poemViewModel.id) ?
-    (fireState = true) : (fireState = false)
-    
-    detailPoemView = PoemDetailView(
-      poemViewModel: poemViewModel,
-      fireState: fireState,
-      enableAuthorButton: enableAuthorButton)
-    detailPoemView?.delegate = self
-    
-    guard let detailPoemView = detailPoemView else { return }
-    view.addSubview(detailPoemView)
-    
-    NSLayoutConstraint.activate([
-      detailPoemView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      detailPoemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      detailPoemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      detailPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ])
-    
-    let isEditable = navigationController?.viewControllers.first is MyPageViewController
-    
-    if (poemViewModel.authorEmail == currentUser.email) && isEditable {
-      configureRightBarButtonItem(isEditable: true)
-    } else {
-      configureRightBarButtonItem(isEditable: false)
-    }
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    currentUserViewModel.fetchCurrentUser(
+      currentUserViewModel.email
+    )
+  }
+  
+  private func setupUserSubscription() {
+    currentUserViewModel.userSubject
+      .subscribe(
+        onNext: { [weak self] user in
+          guard let self = self else { return }
+          self.dismissLoadingView()
+          self.currentUser = user
+        },
+        onError: { error in },
+        onCompleted: {},
+        onDisposed: {}
+      ).disposed(by: bag)
   }
   
   //MARK: - LikeCount Logic
@@ -66,36 +66,36 @@ final class PoemDetailViewController: UIViewController {
     id: String,
     authorEmail: String,
     isIncrease: Bool) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      PoemDatabaseManager.shared.updateLikeCount(
-        poemID: id,
-        author: authorEmail,
-        isIncrease: isIncrease) { error in
-        if error != nil {
-          self.showAlert(title: "⚠️", message: "문제가 발생했습니다!\n다시 시도해주세요!") { _ in
-            self.dismiss(animated: true, completion: nil)
+      DispatchQueue.global(qos: .userInitiated).async {
+        PoemDatabaseManager.shared.updateLikeCount(
+          poemID: id,
+          author: authorEmail,
+          isIncrease: isIncrease) { error in
+            if error != nil {
+              self.showAlert(title: "⚠️", message: "문제가 발생했습니다!\n다시 시도해주세요!") { _ in
+                self.dismiss(animated: true, completion: nil)
+              }
+            }
           }
-        }
       }
     }
-  }
   
   private func updateUserLikedPoem(
     email: String,
     id: String,
     isRemove: Bool) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      if isRemove {
-        UserDatabaseManager.shared.unLikedPoem(
-          to: email,
-          poemID: id) { _ in }
-      } else {
-        UserDatabaseManager.shared.likedPoem(
-          to: email,
-          poemID: id) { _ in }
+      DispatchQueue.global(qos: .userInitiated).async {
+        if isRemove {
+          UserDatabaseManager.shared.unLikedPoem(
+            to: email,
+            poemID: id) { _ in }
+        } else {
+          UserDatabaseManager.shared.likedPoem(
+            to: email,
+            poemID: id) { _ in }
+        }
       }
     }
-  }
   
   //MARK: -  Actions
   @objc func editButtonAction(_ sender: UIBarButtonItem) {
@@ -107,27 +107,41 @@ final class PoemDetailViewController: UIViewController {
     self.present(
       AlertControllerHelper.configureReportAlertController(
         self,
-        user: currentUser,
+        user: currentUserViewModel.user,
         poemViewModel: poemViewModel
       ), animated: true, completion: nil)
   }
   
   private func configureAlertController() -> UIAlertController {
-    let alertController = UIAlertController(title: nil,
-                                            message: nil,
-                                            preferredStyle: .actionSheet)
-    let editAction = UIAlertAction(title: "수정",
-                                   style: .default) { [weak self] action in
+    let alertController = UIAlertController(
+      title: nil,
+      message: nil,
+      preferredStyle: .actionSheet
+    )
+    
+    let editAction = UIAlertAction(
+      title: "수정",
+      style: .default
+    ) { [weak self] action in
       guard let self = self else { return }
       let viewController = self.configureCreatePoemViewController()
       self.present(viewController, animated: true, completion: nil)
     }
-    let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] action in
+    
+    let deleteAction = UIAlertAction(
+      title: "삭제",
+      style: .destructive
+    ) { [weak self] action in
       guard let self = self else { return }
       self.deletePoem()
-      self.navigationController?.popToRootViewController(animated: true)
+      self.navigationController?.popToRootViewController(
+        animated: true
+      )
     }
-    let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in }
+    
+    let cancelAction = UIAlertAction(
+      title: "취소",
+      style: .cancel) { _ in }
     
     alertController.addAction(editAction)
     alertController.addAction(deleteAction)
@@ -140,7 +154,7 @@ final class PoemDetailViewController: UIViewController {
     let viewController = CreatePoemViewController()
     let poem = poemViewModel.currentPoem
     viewController.action = .edit
-    viewController.user = currentUser
+    viewController.user = currentUserViewModel.user
     viewController.editPoem = poem
     viewController.topic = poem.topic
     viewController.delegate = self
@@ -155,7 +169,7 @@ final class PoemDetailViewController: UIViewController {
           self.poemViewModel.id
         ) { _ in }
         UserDatabaseManager.shared.deletePoem(
-          to: self.currentUser.email,
+          to: self.currentUserViewModel.email,
           poemID: self.poemViewModel.id
         ) { _ in }
       }
@@ -181,7 +195,7 @@ extension PoemDetailViewController: PoemDetailViewDelegate {
   func didTappedFireButton(
     _ detailPoemView: PoemDetailView,
     _ fireButton: UIButton) {
-      let user = currentUser
+      let user = currentUserViewModel.user
       let poem = poemViewModel.currentPoem
       
       fireState.toggle()
@@ -204,9 +218,7 @@ extension PoemDetailViewController: PoemDetailViewDelegate {
           id: poem.id,
           isRemove: true)
       }
-      
-      fireButton.isSelected = fireState
-      fireState ? (fireButton.tintColor = .systemRed) : (fireButton.tintColor = .label)
+      detailPoemView.fireButtonState(fireState: fireState)
     }
 }
 
@@ -224,13 +236,52 @@ extension PoemDetailViewController: CreatePoemViewControllerDelegate {
 
 //MARK: - UI Logic
 extension PoemDetailViewController {
+  private func setupPoemDetailView() {
+    detailPoemView = PoemDetailView(
+      poemViewModel: poemViewModel,
+      fireState: fireState,
+      enableAuthorButton: enableAuthorButton
+    )
+    
+    guard let detailPoemView = detailPoemView else { return }
+    
+    detailPoemView.delegate = self
+    
+    view.addSubview(detailPoemView)
+    
+    NSLayoutConstraint.activate([
+      detailPoemView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      detailPoemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      detailPoemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      detailPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+    ])
+  }
+  
+  private func setupFireState() {
+    print(currentUserViewModel.likedPoems)
+    currentUserViewModel.likedPoems.contains(poemViewModel.id) ?
+    (fireState = true) : (fireState = false)
+    detailPoemView?.fireButtonState(fireState: fireState)
+  }
+  
+  private func checkIsEditable() {
+    let isEditable = navigationController?.viewControllers.first is MyPageViewController
+    
+    if (poemViewModel.authorEmail == currentUserViewModel.email) && isEditable {
+      configureRightBarButtonItem(isEditable: true)
+    } else {
+      configureRightBarButtonItem(isEditable: false)
+    }
+  }
+  
   private func configureRightBarButtonItem(
     isEditable: Bool) {
       let reportBarButtonItem = UIBarButtonItem(
         image: UIImage(systemName: "megaphone"),
         style: .plain,
         target: self,
-        action: #selector(reportButtonAction(_:)))
+        action: #selector(reportButtonAction(_:))
+      )
       
       navigationItem.rightBarButtonItem = reportBarButtonItem
       
@@ -238,9 +289,13 @@ extension PoemDetailViewController {
         let editBarButtonItem = UIBarButtonItem(
           barButtonSystemItem: .edit,
           target: self,
-          action: #selector(editButtonAction(_:)))
+          action: #selector(editButtonAction(_:))
+        )
         
-        navigationItem.rightBarButtonItems?.append(editBarButtonItem)
+        navigationItem.rightBarButtonItems = [
+          reportBarButtonItem,
+          editBarButtonItem
+        ]
       }
     }
 }

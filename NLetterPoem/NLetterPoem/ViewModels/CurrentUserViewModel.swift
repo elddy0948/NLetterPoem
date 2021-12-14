@@ -62,7 +62,7 @@ extension CurrentUserViewModel {
     return user.fires
   }
   
-  var likedPoem: [String] {
+  var likedPoems: [String] {
     return user.likedPoem
   }
   

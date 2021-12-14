@@ -8,7 +8,7 @@ extension UserProfileViewController: UICollectionViewDelegate {
     )
     let user = userViewModel.user
     let detailPoemViewController = PoemDetailViewController(
-      poemViewModel, user
+      poemViewModel
     )
     detailPoemViewController.enableAuthorButton = false
     navigationController?.pushViewController(

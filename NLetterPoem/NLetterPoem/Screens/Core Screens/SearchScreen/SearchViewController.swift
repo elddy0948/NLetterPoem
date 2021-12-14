@@ -98,8 +98,7 @@ extension SearchViewController: UITableViewDelegate {
                  didSelectRowAt indexPath: IndexPath) {
     let selectedPoem = resultPoemViewModels[indexPath.row]
     let viewController = PoemDetailViewController(
-      selectedPoem,
-      currentUserViewModel.user
+      selectedPoem
     )
     
     navigationController?.pushViewController(

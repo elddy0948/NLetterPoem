@@ -104,7 +104,7 @@ final class PoemDetailView: UIView {
     fireButton.translatesAutoresizingMaskIntoConstraints = false
     fireButton.setImage(SFSymbols.flame, for: .normal)
     fireButton.setImage(SFSymbols.flameFill, for: .selected)
-    fireButton.tintColor = .label
+    fireButton.tintColor = .systemRed
     fireButton.contentHorizontalAlignment = .fill
     fireButton.contentVerticalAlignment = .fill
     
@@ -129,7 +129,6 @@ final class PoemDetailView: UIView {
           for: .normal)
         self.poemLabel.text = poemViewModel.content
         self.fireButton.isSelected = fireState
-        fireState ? (self.fireButton.tintColor = .systemRed) : (self.fireButton.tintColor = .label)
       }
       authorButton.isUserInteractionEnabled = enableAuthorButton
     }
@@ -140,6 +139,13 @@ final class PoemDetailView: UIView {
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }
       self.poemLabel.text = poem.content
+    }
+  }
+  
+  func fireButtonState(fireState: Bool) {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else { return }
+      self.fireButton.isSelected = fireState
     }
   }
   

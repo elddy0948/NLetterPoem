@@ -52,9 +52,13 @@ final class PoemListViewModel {
         "authorEmail", email
       ))
       .map({ results in
-        results.map({ poem in
-          return PoemViewModel(poem)
-        })
+        results
+          .sorted(by: {
+            $0.created > $1.created
+          })
+          .map({ poem in
+            return PoemViewModel(poem)
+          })
       })
       .subscribe(onNext: { [weak self] poemViewModels in
         guard let self = self else { return }

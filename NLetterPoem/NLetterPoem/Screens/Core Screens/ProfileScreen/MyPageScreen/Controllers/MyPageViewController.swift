@@ -39,14 +39,13 @@ class MyPageViewController: DataLoadingViewController {
     combineObservable.subscribe(
       onNext: { [weak self] (user, poemViewModels) in
         guard let self = self else { return }
-        self.myPageCollectionView?.reloadSections(IndexSet(integer: 0))
+        self.myPageCollectionView?.reloadSections(
+          IndexSet(integer: 0)
+        )
       },
-      onError: { error in
-      },
-      onCompleted: {
-      },
-      onDisposed: {
-      }
+      onError: { error in },
+      onCompleted: { },
+      onDisposed: { }
     ).disposed(by: bag)
   }
   
@@ -57,7 +56,6 @@ class MyPageViewController: DataLoadingViewController {
 //    showLoadingView()
     userViewModel.fetchUser(email: email)
     poemListViewModel.fetchPoems(email)
-    
   }
   
   @objc func didTapSettingButton(_ sender: UIBarButtonItem) {

@@ -15,6 +15,7 @@ final class SearchViewController: UIViewController {
       tableView.reloadData()
     }
   }
+  private let currentUserViewModel = CurrentUserViewModel.shared
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -96,10 +97,15 @@ extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView,
                  didSelectRowAt indexPath: IndexPath) {
     let selectedPoem = resultPoemViewModels[indexPath.row]
-    if let user = HomeViewController.nlpUser {
-      let viewController = PoemDetailViewController(selectedPoem, user)
-      navigationController?.pushViewController(viewController, animated: true)
-    }
+    let viewController = PoemDetailViewController(
+      selectedPoem,
+      currentUserViewModel.user
+    )
+    
+    navigationController?.pushViewController(
+      viewController,
+      animated: true
+    )
   }
 }
 

@@ -1,10 +1,14 @@
 import UIKit
 
 protocol PoemDetailViewDelegate: AnyObject {
-  func didTappedFireButton(_ detailPoemView: PoemDetailView,
-                           _ fireButton: UIButton)
-  func detailPoemView(_ view: PoemDetailView,
-                      didTapAuthor author: String?)
+  func didTappedFireButton(
+    _ detailPoemView: PoemDetailView,
+    _ fireButton: UIButton
+  )
+  func detailPoemView(
+    _ view: PoemDetailView,
+    didTapAuthor author: String?
+  )
 }
 
 final class PoemDetailView: UIView {
@@ -19,7 +23,11 @@ final class PoemDetailView: UIView {
   weak var delegate: PoemDetailViewDelegate?
   
   //MARK: - init
-  init(poemViewModel: PoemViewModel, fireState: Bool, enableAuthorButton: Bool) {
+  init(
+    poemViewModel: PoemViewModel,
+    fireState: Bool,
+    enableAuthorButton: Bool
+  ) {
     super.init(frame: .zero)
     configure()
     setPoem(poemViewModel,
@@ -151,12 +159,16 @@ final class PoemDetailView: UIView {
   
   //MARK: - Actions
   @objc func didTappedFireButton(_ sender: UIButton) {
-    delegate?.didTappedFireButton(self,
-                                  sender)
+    delegate?.didTappedFireButton(
+      self,
+      sender
+    )
   }
   
   @objc func authorButtonAction(_ sender: UIButton) {
-    delegate?.detailPoemView(self,
-                             didTapAuthor: authorButton.title(for: .normal))
+    delegate?.detailPoemView(
+      self,
+      didTapAuthor: authorButton.title(for: .normal)
+    )
   }
 }

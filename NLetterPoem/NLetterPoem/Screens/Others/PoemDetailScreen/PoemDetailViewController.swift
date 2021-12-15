@@ -17,6 +17,9 @@ final class PoemDetailViewController: DataLoadingViewController {
   private let bag = DisposeBag()
   var fireState = false
   var enableAuthorButton = true
+  private let globalScheduler = SerialDispatchQueueScheduler(
+    qos: .utility
+  )
   
   //MARK: - Initializer
   init(_ poemViewModel: PoemViewModel) {
@@ -49,6 +52,8 @@ final class PoemDetailViewController: DataLoadingViewController {
   
   private func setupUserSubscription() {
     currentUserViewModel.userSubject
+      .subscribe(on: globalScheduler)
+      .observe(on: MainScheduler.instance)
       .subscribe(
         onNext: { [weak self] user in
           guard let self = self else { return }
@@ -57,7 +62,9 @@ final class PoemDetailViewController: DataLoadingViewController {
         },
         onError: { error in },
         onCompleted: {},
-        onDisposed: {}
+        onDisposed: { [weak self] in
+          self?.dismissLoadingView()
+        }
       ).disposed(by: bag)
   }
   
@@ -258,7 +265,6 @@ extension PoemDetailViewController {
   }
   
   private func setupFireState() {
-    print(currentUserViewModel.likedPoems)
     currentUserViewModel.likedPoems.contains(poemViewModel.id) ?
     (fireState = true) : (fireState = false)
     detailPoemView?.fireButtonState(fireState: fireState)

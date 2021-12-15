@@ -19,11 +19,10 @@ class TodayViewController: DataLoadingViewController {
   let homeTableView = HomeTableView()
   
   //MARK: - Properties
-  var todayTopic: String = ""
   var todayTableViewDataSource = TodayTableViewDataSource()
-  let todayViewModel = TodayViewModel()
+  let topicViewModel = TopicViewModel()
   let poemListViewModel = PoemListViewModel(.shared)
-  var combineObservable: Observable<(NLPTopic,
+  var combineObservable: Observable<(TopicViewModel,
                                      [PoemViewModel])>
   let bag = DisposeBag()
   let globalScheduler = ConcurrentDispatchQueueScheduler(
@@ -36,7 +35,7 @@ class TodayViewController: DataLoadingViewController {
                 bundle nibBundleOrNil: Bundle?) {
     combineObservable = Observable
       .combineLatest(
-        todayViewModel.fetchTodayTopic(Date()),
+        topicViewModel.fetchTopic(Date()),
         poemListViewModel.poemListSubject)
     super.init(nibName: nil, bundle: nil)
   }
@@ -44,7 +43,7 @@ class TodayViewController: DataLoadingViewController {
   required init?(coder: NSCoder) {
     combineObservable = Observable
       .combineLatest(
-        todayViewModel.fetchTodayTopic(Date()),
+        topicViewModel.fetchTopic(Date()),
         poemListViewModel.poemListSubject)
     super.init(coder: coder)
   }
@@ -68,25 +67,26 @@ class TodayViewController: DataLoadingViewController {
       .subscribe(on: globalScheduler)
       .observe(on: MainScheduler.instance)
       .subscribe(
-        onNext: { [weak self] (topic, poemViewModels) in
+        onNext: { [weak self] (topicViewModel, poemViewModels) in
+          print(topicViewModel.topicDescription)
+          print(poemViewModels)
           guard let self = self else { return }
-          self.updateTableView(topic: topic.topic,
-                               poemViewModels: poemViewModels)
+          self.updateTableView(
+            topic: topicViewModel.topicDescription,
+            poemViewModels: poemViewModels
+          )
           self.checkRefreshControlEnd()
         },
-        onError: { error in
-        },
-        onCompleted: {
-        },
-        onDisposed: {
-        }
+        onError: { error in },
+        onCompleted: {},
+        onDisposed: {}
       )
       .disposed(by: bag)
   }
   
   private func updateTableView(topic: String,
                                poemViewModels: [PoemViewModel]) {
-    todayTopic = topic
+    homeHeaderView.setTopic(topic)
     todayTableViewDataSource.poemViewModels = poemViewModels
     homeTableView.reloadSections(IndexSet(integer: 0),
                                  with: .automatic)

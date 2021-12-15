@@ -5,7 +5,6 @@ extension MyPageViewController: UICollectionViewDelegate {
     let poem = poemListViewModel.selectedPoem(
       at: indexPath.item
     )
-    let user = userViewModel.user
     let vc = PoemDetailViewController(poem)
     
     vc.enableAuthorButton = false

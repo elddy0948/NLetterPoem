@@ -36,6 +36,7 @@ final class PoemDetailViewController: DataLoadingViewController {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     setupPoemDetailView()
+    checkIsEditable()
     setupUserSubscription()
     showLoadingView()
     currentUserViewModel.fetchCurrentUser(

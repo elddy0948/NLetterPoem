@@ -6,7 +6,6 @@ extension UserProfileViewController: UICollectionViewDelegate {
     let poemViewModel = poemListViewModel.selectedPoem(
       at: indexPath.item
     )
-    let user = userViewModel.user
     let detailPoemViewController = PoemDetailViewController(
       poemViewModel
     )

@@ -63,13 +63,10 @@ class UserProfileViewController: DataLoadingViewController {
           self.userProfileCollectionView?.reloadSections(
             IndexSet(integer: 0)
           )
-        }, onError: { error in
-          print("Error!")
-        }, onCompleted: {
-          print("Completed")
-        }, onDisposed: {
-          print("Disposed")
-        })
+        }, onError: { error in },
+        onCompleted: {},
+        onDisposed: {}
+      )
       .disposed(by: bag)
   }
   
@@ -86,8 +83,11 @@ extension UserProfileViewController {
   }
   
   func configureCollectionView() {
-    userProfileCollectionView = UICollectionView(frame: .zero,
-                                                 collectionViewLayout: ProfileCollectionHelper.createThreeColumnFlowLayout(in: view))
+    userProfileCollectionView = UICollectionView(
+      frame: .zero,
+      collectionViewLayout: ProfileCollectionHelper.createThreeColumnFlowLayout(in: view)
+    )
+    
     guard let userProfileCollectionView = userProfileCollectionView else { return }
     
     userProfileCollectionView.backgroundColor = .systemBackground
@@ -95,11 +95,14 @@ extension UserProfileViewController {
     
     userProfileCollectionView.register(
       MyPageCollectionViewCell.self,
-      forCellWithReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier)
+      forCellWithReuseIdentifier: MyPageCollectionViewCell.reuseIdentifier
+    )
+    
     userProfileCollectionView.register(
       UserProfileHeaderView.self,
       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-      withReuseIdentifier: UserProfileHeaderView.reuseIdentifier)
+      withReuseIdentifier: UserProfileHeaderView.reuseIdentifier
+    )
     userProfileCollectionView.delegate = self
     userProfileCollectionView.dataSource = self
   }

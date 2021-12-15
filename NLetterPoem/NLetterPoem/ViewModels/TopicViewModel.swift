@@ -8,18 +8,26 @@
 import Foundation
 import RxSwift
 
-final class TopicViewModel {
-  var topicSubject = BehaviorSubject<NLPTopic>(
-    value: NLPTopic(topic: "")
-  )
+struct TopicViewModel {
+  private let topic: NLPTopic
+  private let service = FirestoreTopicService.shared
   
-  init() { }
+  init(topic: NLPTopic = NLPTopic(topic: "")) {
+    self.topic = topic
+  }
   
+  func fetchTopic(
+    _ date: Date
+  ) -> Observable<TopicViewModel> {
+    service.fetchTopic(date)
+      .map({ topic in
+        return TopicViewModel(topic: topic)
+      })
+  }
+}
+
+extension TopicViewModel {
   var topicDescription: String {
-    do {
-      return try topicSubject.value().topic
-    } catch {
-      return ""
-    }
+    return topic.topic
   }
 }

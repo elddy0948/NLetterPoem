@@ -9,7 +9,9 @@ class MyPageViewController: DataLoadingViewController {
   
   //MARK: - Properties
   private let userProfileService = UserProfileService()
-  private let globalQueueScheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global(qos: .utility))
+  private let globalScheduler = ConcurrentDispatchQueueScheduler(
+    queue: DispatchQueue.global(qos: .utility)
+  )
   private let bag = DisposeBag()
   
   var userViewModel = UserViewModel()
@@ -35,9 +37,18 @@ class MyPageViewController: DataLoadingViewController {
     fetchUserProfile()
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    dismissLoadingView()
+  }
+  
   private func setupSubscription() {
-    combineObservable.subscribe(
+    combineObservable
+      .subscribe(on: globalScheduler)
+      .observe(on: MainScheduler.instance)
+      .subscribe(
       onNext: { [weak self] (user, poemViewModels) in
+        self?.dismissLoadingView()
         guard let self = self else { return }
         self.myPageCollectionView?.reloadSections(
           IndexSet(integer: 0)
@@ -53,7 +64,7 @@ class MyPageViewController: DataLoadingViewController {
     guard let currentUser = Auth.auth().currentUser,
           let email = currentUser.email else { return }
     
-//    showLoadingView()
+    showLoadingView()
     userViewModel.fetchUser(email: email)
     poemListViewModel.fetchPoems(email)
   }

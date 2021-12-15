@@ -9,14 +9,11 @@
 /* Begin PBXBuildFile section */
 		A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */; };
 		B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */; };
-		B40EB92A270CA50500FADFC6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40EB929270CA50500FADFC6 /* HomeViewModel.swift */; };
 		B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */; };
 		B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */; };
 		B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */; };
 		B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */; };
-		B41593B627318EE2002FBBD2 /* ProfileUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41593B527318EE2002FBBD2 /* ProfileUserViewModel.swift */; };
-		B41593B827318EE9002FBBD2 /* ProfilePoemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41593B727318EE9002FBBD2 /* ProfilePoemsViewModel.swift */; };
 		B417692426BA4D6300C5B3A7 /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */; };
 		B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */; };
 		B41A3C8D27097E3000192965 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A3C8C27097E3000192965 /* HomeViewController.swift */; };
@@ -73,7 +70,6 @@
 		B46EE4C627310B2800A3D640 /* ProfileCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */; };
 		B46EE4C827310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46EE4C727310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B46EE4CB2731118700A3D640 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46EE4CA2731118700A3D640 /* UserProfileHeaderView.swift */; };
-		B46EE4CE27315DCF00A3D640 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46EE4CD27315DCF00A3D640 /* UserProfileService.swift */; };
 		B4723B212738D2E9005F9098 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4723B202738D2E9005F9098 /* UINavigationController+Ext.swift */; };
 		B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
@@ -82,12 +78,10 @@
 		B47875222671F540002FE83F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B47875212671F540002FE83F /* Assets.xcassets */; };
 		B47875252671F540002FE83F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B47875232671F540002FE83F /* LaunchScreen.storyboard */; };
 		B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478752D2671FA8E002FE83F /* NLPUser.swift */; };
-		B47A2C2C270F355C0018AFE4 /* HotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47A2C2B270F355B0018AFE4 /* HotViewModel.swift */; };
 		B47B432126F0DAD3006C3EB6 /* DeveloperInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */; };
 		B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */; };
 		B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */; };
 		B47CC3EB269ABAFE00F1F003 /* PoemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CC3EA269ABAFE00F1F003 /* PoemDetailView.swift */; };
-		B47DB34E27100F2A007B6022 /* HotPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */; };
 		B48459EA26A45FE700BA1484 /* UserDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */; };
 		B486601F2758740A00ED0F6B /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B486601E2758740A00ED0F6B /* TopicViewModel.swift */; };
 		B48660222758923A00ED0F6B /* AlertControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48660212758923A00ED0F6B /* AlertControllerHelper.swift */; };
@@ -130,14 +124,11 @@
 /* Begin PBXFileReference section */
 		08FFBC47B769FF2A3675D51E /* Pods_NLetterPoem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NLetterPoem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40EB925270C41CB00FADFC6 /* Auth+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth+Rx.swift"; sourceTree = "<group>"; };
-		B40EB929270CA50500FADFC6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B414FBCF268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B414FBD2268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		B414FBD4268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
-		B41593B527318EE2002FBBD2 /* ProfileUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewModel.swift; sourceTree = "<group>"; };
-		B41593B727318EE9002FBBD2 /* ProfilePoemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePoemsViewModel.swift; sourceTree = "<group>"; };
 		B417692326BA4D6300C5B3A7 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
 		B417692526BA4D8800C5B3A7 /* CreateTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTopicView.swift; sourceTree = "<group>"; };
 		B41A3C8C27097E3000192965 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -188,7 +179,6 @@
 		B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionHelper.swift; sourceTree = "<group>"; };
 		B46EE4C727310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B46EE4CA2731118700A3D640 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
-		B46EE4CD27315DCF00A3D640 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		B4723B202738D2E9005F9098 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,12 +189,10 @@
 		B47875242671F540002FE83F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B47875262671F540002FE83F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B478752D2671FA8E002FE83F /* NLPUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPUser.swift; sourceTree = "<group>"; };
-		B47A2C2B270F355B0018AFE4 /* HotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotViewModel.swift; sourceTree = "<group>"; };
 		B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoViewController.swift; sourceTree = "<group>"; };
 		B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailViewController.swift; sourceTree = "<group>"; };
 		B47CC3E8269AB8C100F1F003 /* NLPBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPBoldLabel.swift; sourceTree = "<group>"; };
 		B47CC3EA269ABAFE00F1F003 /* PoemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailView.swift; sourceTree = "<group>"; };
-		B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotPoemViewModel.swift; sourceTree = "<group>"; };
 		B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDatabaseManager.swift; sourceTree = "<group>"; };
 		B486601E2758740A00ED0F6B /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
 		B48660212758923A00ED0F6B /* AlertControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerHelper.swift; sourceTree = "<group>"; };
@@ -280,8 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				B443BF5B2734461E00BDB314 /* Views */,
-				B46EE4CC273116FB00A3D640 /* ViewModels */,
-				B46EE4CD27315DCF00A3D640 /* UserProfileService.swift */,
 				B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */,
 				B46EE4BC2730FE8200A3D640 /* UserProfileScreen */,
 				B46EE4BB2730FE7A00A3D640 /* MyPageScreen */,
@@ -303,8 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				B41A3C9327098AEB00192965 /* HotViewController.swift */,
-				B47A2C2B270F355B0018AFE4 /* HotViewModel.swift */,
-				B47DB34D27100F2A007B6022 /* HotPoemViewModel.swift */,
 			);
 			path = HotScreen;
 			sourceTree = "<group>";
@@ -312,7 +296,6 @@
 		B41A3C9527098C9500192965 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				B443BF592734458C00BDB314 /* ViewModels */,
 				B443BF582734458100BDB314 /* Views */,
 				B443BF572734457A00BDB314 /* Controllers */,
 				B4C3F3EB2694184D00CED1A9 /* TodayScreen */,
@@ -442,14 +425,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B443BF592734458C00BDB314 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				B40EB929270CA50500FADFC6 /* HomeViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		B443BF5A273445FD00BDB314 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,15 +526,6 @@
 				B46EE4CA2731118700A3D640 /* UserProfileHeaderView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B46EE4CC273116FB00A3D640 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				B41593B527318EE2002FBBD2 /* ProfileUserViewModel.swift */,
-				B41593B727318EE9002FBBD2 /* ProfilePoemsViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B478750C2671F540002FE83F = {
@@ -937,8 +903,6 @@
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
 				B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */,
-				B40EB92A270CA50500FADFC6 /* HomeViewModel.swift in Sources */,
-				B46EE4CE27315DCF00A3D640 /* UserProfileService.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
 				B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */,
 				B466044E27007C780044C2F8 /* TodayViewController+Firebase.swift in Sources */,
@@ -973,12 +937,10 @@
 				B46EE4C4273108CB00A3D640 /* UserProfileViewController+UICollectionViewDataSource.swift in Sources */,
 				B4723B212738D2E9005F9098 /* UINavigationController+Ext.swift in Sources */,
 				B41A3C8F27097E9700192965 /* ContainerViewController.swift in Sources */,
-				B47DB34E27100F2A007B6022 /* HotPoemViewModel.swift in Sources */,
 				B48660222758923A00ED0F6B /* AlertControllerHelper.swift in Sources */,
 				B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
-				B41593B627318EE2002FBBD2 /* ProfileUserViewModel.swift in Sources */,
 				B4BE437E27570014002E565D /* FirestoreUserService.swift in Sources */,
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */,
@@ -991,7 +953,6 @@
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
 				B45822BD27573D93005BB13A /* Query+Rx.swift in Sources */,
 				B459CC3427683FE00084A845 /* FirebaseAuthService.swift in Sources */,
-				B47A2C2C270F355C0018AFE4 /* HotViewModel.swift in Sources */,
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
@@ -1000,7 +961,6 @@
 				B45822C02757421C005BB13A /* PoemListViewModel.swift in Sources */,
 				B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */,
 				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
-				B41593B827318EE9002FBBD2 /* ProfilePoemsViewModel.swift in Sources */,
 				B4BE438027572AE8002E565D /* WriteBatch+Rx.swift in Sources */,
 				B46EE4C627310B2800A3D640 /* ProfileCollectionHelper.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,

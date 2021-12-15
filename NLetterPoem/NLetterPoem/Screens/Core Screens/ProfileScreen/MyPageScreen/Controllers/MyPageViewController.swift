@@ -8,7 +8,6 @@ class MyPageViewController: DataLoadingViewController {
   private(set) var myPageCollectionView: ProfileCollectionView?
   
   //MARK: - Properties
-  private let userProfileService = UserProfileService()
   private let globalScheduler = ConcurrentDispatchQueueScheduler(
     queue: DispatchQueue.global(qos: .utility)
   )

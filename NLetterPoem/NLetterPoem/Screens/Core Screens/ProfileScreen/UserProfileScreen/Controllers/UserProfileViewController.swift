@@ -8,8 +8,6 @@ class UserProfileViewController: DataLoadingViewController {
   
   //MARK: - Properties
   private var userEmail: String?
-  private let userProfileService = UserProfileService()
-  
   let userViewModel = UserViewModel()
   let poemListViewModel = PoemListViewModel(
     .shared

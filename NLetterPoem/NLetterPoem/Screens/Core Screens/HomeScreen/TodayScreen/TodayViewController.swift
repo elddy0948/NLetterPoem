@@ -59,7 +59,6 @@ class TodayViewController: DataLoadingViewController {
   
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
-//    layout()
   }
   
   private func setupCombineSubscription() {
@@ -68,8 +67,6 @@ class TodayViewController: DataLoadingViewController {
       .observe(on: MainScheduler.instance)
       .subscribe(
         onNext: { [weak self] (topicViewModel, poemViewModels) in
-          print(topicViewModel.topicDescription)
-          print(poemViewModels)
           guard let self = self else { return }
           self.updateTableView(
             topic: topicViewModel.topicDescription,

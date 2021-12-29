@@ -28,7 +28,6 @@ final class FirestoreTopicService {
           let topic = try snapshot.data(
             as: NLPTopic.self
           ) ?? NLPTopic(topic: "")
-          print("\(topic.topic) in service")
           return topic
         } catch {
           return NLPTopic(topic: "")

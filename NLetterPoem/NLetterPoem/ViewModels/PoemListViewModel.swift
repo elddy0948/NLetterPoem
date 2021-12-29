@@ -33,16 +33,15 @@ final class PoemListViewModel {
             return PoemViewModel(poem)
           })
         })
-        .subscribe(onNext: { [weak self] poemViewModels in
-          guard let self = self else { return }
-          self.poemListSubject.onNext(poemViewModels)
-        }, onError: { error in
-          print(error.localizedDescription)
-        }, onCompleted: {
-          print("Completed")
-        }, onDisposed: {
-          print("Disposed")
-        })
+        .subscribe(
+          onNext: { [weak self] poemViewModels in
+            guard let self = self else { return }
+            self.poemListSubject.onNext(poemViewModels)
+          },
+          onError: { error in },
+          onCompleted: { },
+          onDisposed: { }
+        )
         .disposed(by: bag)
     }
   

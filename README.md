@@ -46,8 +46,8 @@
 
 
 ## <a name="app-updates">업데이트</a>
-- 1.3 (1.2.6) 🔜
-- 1.2.5 ✅ [Detail](https://github.com/elddy0948/NLetterPoem/wiki/NLP-1.2.5-(Release))
+- 1.3 (1.2.6) ✅ [Detail](https://github.com/elddy0948/NLetterPoem/wiki/NLP-1.3(1.2.6)(Release))
+- 1.2.5 ✅ [Detail](https://github.com/elddy0948/NLetterPoem/wiki/NLP-1.2.5)
 - 1.2.4 ✅ [Detail](https://github.com/elddy0948/NLetterPoem/wiki/NLP-1.2.4)
 - 1.2.1 ✅  [Detail](https://github.com/elddy0948/NLetterPoem/wiki/NLP1.2)
 - 출시 ✅ [Detail](https://github.com/elddy0948/NLetterPoem/wiki/출시!)

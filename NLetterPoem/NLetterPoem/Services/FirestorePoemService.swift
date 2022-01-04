@@ -21,9 +21,9 @@ final class FirestorePoemService: FirestoreService {
     reference = database.collection("poems")
   }
   
-  func create<T: Encodable>(_ object: T) -> Observable<Void> {
+  func create<T: Encodable>(_ object: T) -> Completable {
     guard let poem = object as? NLPPoem else {
-      return Observable.error(PoemServiceError.invalidPoem)
+      return Completable.error(PoemServiceError.invalidPoem)
     }
     
     let batch = database.batch()
@@ -39,13 +39,13 @@ final class FirestorePoemService: FirestoreService {
         "poems": FieldValue.arrayUnion([poem.id])
       ], forDocument: userDocument)
     } catch {
-      return Observable.error(PoemServiceError.invalidRequest)
+      return Completable.error(PoemServiceError.invalidRequest)
     }
     
     return batch.rx.commit()
   }
   
-  func read(_ id: String) -> Observable<NLPPoem> {
+  func read(_ id: String) -> Single<NLPPoem> {
     let todayDate = Date().toYearMonthDay()
     let query = reference
       .whereField("authorEmail", isEqualTo: id)
@@ -62,11 +62,12 @@ final class FirestorePoemService: FirestoreService {
         }
         return NLPPoem.emptyPoem()
       })
+      .asSingle() 
   }
   
-  func update<T: Encodable>(_ object: T) -> Observable<Void>{
+  func update<T: Encodable>(_ object: T) -> Completable{
     guard let poem = object as? NLPPoem else {
-      return Observable.error(PoemServiceError.invalidPoem)
+      return Completable.error(PoemServiceError.invalidPoem)
     }
     
     return reference.document(poem.id)
@@ -74,7 +75,7 @@ final class FirestorePoemService: FirestoreService {
       .setData(poem)
   }
   
-  func delete(_ id: String) -> Observable<Void> {
+  func delete(_ id: String) -> Completable {
     return reference.document(id)
       .rx
       .delete()

@@ -19,15 +19,16 @@ final class UserViewModel {
   
   func fetchUser(email: String) {
     service.read(email)
-      .subscribe(onNext: { [weak self] user in
-        guard let self = self else { return }
-        if let user = user {
-          self.userSubject.onNext(user)
-        }
-      }, onError: { error in
-      }, onCompleted: {
-      }, onDisposed: {
-      })
+      .subscribe(
+        onSuccess: { [weak self] user in
+          guard let self = self else { return }
+          if let user = user {
+            self.userSubject.onNext(user)
+          }
+        },
+        onFailure: { error in },
+        onDisposed: {}
+      )
       .disposed(by: bag)
   }
 }

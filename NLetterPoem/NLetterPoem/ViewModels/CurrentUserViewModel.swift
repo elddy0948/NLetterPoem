@@ -19,14 +19,14 @@ final class CurrentUserViewModel {
       .subscribe(on: globalScheduler)
       .observe(on: MainScheduler.instance)
       .subscribe(
-        onNext: { [weak self] user in
+        onSuccess: { [weak self] user in
           guard let self = self,
                 let user = user else { return }
           self.userSubject.onNext(user)
-        }, onError: { error in
-        }, onCompleted: {
-        }, onDisposed: {
-        })
+        },
+        onFailure: { error in },
+        onDisposed: {}
+      )
       .disposed(by: bag)
   }
   

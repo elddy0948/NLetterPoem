@@ -2,18 +2,14 @@ import RxSwift
 import FirebaseFirestore
 
 extension Reactive where Base: WriteBatch {
-  func commit() -> Observable<Void> {
-    return Observable.create({ observer in
+  func commit() -> Completable {
+    return Completable.create(subscribe: { completable in
       self.base.commit(completion: { error in
         guard let error = error else {
-          //If Error not occured
-          observer.onNext(())
-          observer.onCompleted()
+          completable(.completed)
           return
         }
-        
-        //If Error occured
-        observer.onError(error)
+        completable(.error(error))
       })
       return Disposables.create { }
     })

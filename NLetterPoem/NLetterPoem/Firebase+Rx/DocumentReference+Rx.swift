@@ -21,29 +21,29 @@ extension Reactive where Base: DocumentReference {
     })
   }
   
-  public func setData<T: Encodable>(_ data: T) -> Observable<Void> {
-    return Observable.create({ observer in
+  func setData<T: Encodable>(_ data: T) -> Completable {
+    return Completable.create(subscribe: { completable in
       do {
-        try self.base.setData(from: data)
-        observer.onNext(())
-        observer.onCompleted()
-      } catch let error {
-        observer.onError(error)
+        try base.setData(from: data)
+        completable(.completed)
+      } catch {
+        completable(.error(error))
       }
       return Disposables.create { }
     })
   }
   
-  public func delete() -> Observable<Void> {
-    return Observable.create({ observer in
-      self.base.delete(completion: { error in
+  func delete() -> Completable {
+    return Completable.create(subscribe: { completable in
+      base.delete(completion: { error in
         guard let error = error else {
-          observer.onNext(())
-          observer.onCompleted()
+          completable(.completed)
           return
         }
-        observer.onError(error)
+        
+        completable(.error(error))
       })
+      
       return Disposables.create {}
     })
   }

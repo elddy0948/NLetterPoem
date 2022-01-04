@@ -1,10 +1,3 @@
-//
-//  FirestoreUserService.swift
-//  NLetterPoem
-//
-//  Created by 김호준 on 2021/12/01.
-//
-
 import Foundation
 import FirebaseFirestore
 import RxSwift
@@ -24,9 +17,9 @@ final class FirestoreUserService: FirestoreService {
     reference = database.collection("users")
   }
   
-  func create<T>(_ object: T) -> Observable<Void> where T : Encodable {
+  func create<T: Encodable>(_ object: T) -> Completable {
     guard let user = object as? NLPUser else {
-      return Observable.error(UserServiceError.invalidUser)
+      return Completable.error(UserServiceError.invalidUser)
     }
     
     return reference.document(user.email)
@@ -34,7 +27,7 @@ final class FirestoreUserService: FirestoreService {
       .setData(user)
   }
   
-  func read(_ id: String) -> Observable<NLPUser?> {
+  func read(_ id: String) -> Single<NLPUser?> {
     return reference.document(id)
       .rx
       .getDocument()
@@ -44,11 +37,12 @@ final class FirestoreUserService: FirestoreService {
         }
         return nil
       })
+      .asSingle()
   }
   
-  func update<T>(_ object: T) -> Observable<Void> where T : Encodable {
+  func update<T: Encodable>(_ object: T) -> Completable {
     guard let user = object as? NLPUser else {
-      return Observable.error(UserServiceError.invalidUser)
+      return Completable.error(UserServiceError.invalidUser)
     }
     
     return reference.document(user.email)
@@ -56,7 +50,7 @@ final class FirestoreUserService: FirestoreService {
       .setData(user)
   }
   
-  func delete(_ id: String) -> Observable<Void> {
+  func delete(_ id: String) -> Completable {
     return reference.document(id)
       .rx
       .delete()

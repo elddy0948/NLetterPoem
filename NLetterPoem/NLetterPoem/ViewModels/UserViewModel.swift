@@ -10,7 +10,7 @@ import RxSwift
 
 final class UserViewModel {
   let userSubject: BehaviorSubject<NLPUser>
-  private let service = FirestoreUserService.shared
+  private let service = FirestoreUserApi.shared
   private let bag = DisposeBag()
   
   init(_ user: NLPUser = .empty) {

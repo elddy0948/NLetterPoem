@@ -9,11 +9,11 @@ import Foundation
 import RxSwift
 
 final class PoemListViewModel {
-  var service: FirestorePoemService
+  var service: FirestorePoemApi
   var poemListSubject: BehaviorSubject<[PoemViewModel]>
   private let bag = DisposeBag()
   
-  init(_ service: FirestorePoemService) {
+  init(_ service: FirestorePoemApi) {
     self.service = service
     poemListSubject = BehaviorSubject<[PoemViewModel]>(
       value: []

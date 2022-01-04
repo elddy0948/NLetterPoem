@@ -10,8 +10,8 @@ import FirebaseAuth
 import RxSwift
 
 
-class FirebaseAuthService {
-  static let shared = FirebaseAuthService()
+class FirebaseAuthApi {
+  static let shared = FirebaseAuthApi()
   
   private let auth = Auth.auth()
   private let bag = DisposeBag()

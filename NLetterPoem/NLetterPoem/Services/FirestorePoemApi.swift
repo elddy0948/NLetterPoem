@@ -2,13 +2,13 @@ import Foundation
 import RxSwift
 import Firebase
 
-final class FirestorePoemService: FirestoreService {
+final class FirestorePoemApi: FirestoreService {
   enum PoemServiceError: String, Error {
     case invalidPoem = "시의 형식을 확인해 주세요!"
     case invalidRequest = "다시 시도해 주세요!"
   }
   
-  static let shared = FirestorePoemService()
+  static let shared = FirestorePoemApi()
   
   typealias ResultType = NLPPoem
   
@@ -62,7 +62,7 @@ final class FirestorePoemService: FirestoreService {
         }
         return NLPPoem.emptyPoem()
       })
-      .asSingle() 
+      .asSingle()
   }
   
   func update<T: Encodable>(_ object: T) -> Completable{
@@ -82,7 +82,7 @@ final class FirestorePoemService: FirestoreService {
   }
 }
 
-extension FirestorePoemService {
+extension FirestorePoemApi {
   //Fetch today poems
   func fetchPoems(query: (field: String, value: String)) -> Observable<[ResultType]> {
     var fetchedResult = [ResultType]()

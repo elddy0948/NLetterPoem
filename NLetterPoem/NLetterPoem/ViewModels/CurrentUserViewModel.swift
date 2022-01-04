@@ -6,7 +6,7 @@ final class CurrentUserViewModel {
   
   let userSubject = BehaviorSubject<NLPUser>(value: .empty)
   
-  private let service = FirestoreUserService.shared
+  private let service = FirestoreUserApi.shared
   private let globalScheduler = ConcurrentDispatchQueueScheduler(
     queue: DispatchQueue.global()
   )

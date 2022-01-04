@@ -54,7 +54,7 @@
 		B45822C227574221005BB13A /* PoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45822C127574221005BB13A /* PoemViewModel.swift */; };
 		B45936C526AA95D600F51476 /* NanumScript.ttc in Resources */ = {isa = PBXBuildFile; fileRef = B45936C426AA95D600F51476 /* NanumScript.ttc */; };
 		B45936C726AA964300F51476 /* BMYeongSung-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */; };
-		B459CC3427683FE00084A845 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B459CC3327683FE00084A845 /* FirebaseAuthService.swift */; };
+		B459CC3427683FE00084A845 /* FirebaseAuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B459CC3327683FE00084A845 /* FirebaseAuthApi.swift */; };
 		B45BB30A271554120021D3D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BB309271554120021D3D4 /* SearchViewController.swift */; };
 		B45BB30C2715597B0021D3D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BB30B2715597B0021D3D4 /* SearchViewModel.swift */; };
 		B45F804A26CBEF300013C54E /* DataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F804926CBEF300013C54E /* DataLoadingViewController.swift */; };
@@ -93,9 +93,9 @@
 		B4ADCD4F270B0942005ADA93 /* HomeViewController+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */; };
 		B4B03B4326DF321300B59BF7 /* DatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */; };
 		B4B1D955272A4F340025AA84 /* TodayTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */; };
-		B4BE437A2756FFFF002E565D /* FirestorePoemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE43792756FFFF002E565D /* FirestorePoemService.swift */; };
-		B4BE437C27570009002E565D /* FirestoreTopicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437B27570009002E565D /* FirestoreTopicService.swift */; };
-		B4BE437E27570014002E565D /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437D27570014002E565D /* FirestoreUserService.swift */; };
+		B4BE437A2756FFFF002E565D /* FirestorePoemApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE43792756FFFF002E565D /* FirestorePoemApi.swift */; };
+		B4BE437C27570009002E565D /* FirestoreTopicApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437B27570009002E565D /* FirestoreTopicApi.swift */; };
+		B4BE437E27570014002E565D /* FirestoreUserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437D27570014002E565D /* FirestoreUserApi.swift */; };
 		B4BE438027572AE8002E565D /* WriteBatch+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437F27572AE8002E565D /* WriteBatch+Rx.swift */; };
 		B4BE438227572ED7002E565D /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE438127572ED7002E565D /* FirestoreService.swift */; };
 		B4C3F3ED269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */; };
@@ -163,7 +163,7 @@
 		B45822C127574221005BB13A /* PoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemViewModel.swift; sourceTree = "<group>"; };
 		B45936C426AA95D600F51476 /* NanumScript.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumScript.ttc; sourceTree = "<group>"; };
 		B45936C626AA964300F51476 /* BMYeongSung-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BMYeongSung-Regular.otf"; sourceTree = "<group>"; };
-		B459CC3327683FE00084A845 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		B459CC3327683FE00084A845 /* FirebaseAuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthApi.swift; sourceTree = "<group>"; };
 		B45BB309271554120021D3D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B45BB30B2715597B0021D3D4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B45F804926CBEF300013C54E /* DataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingViewController.swift; sourceTree = "<group>"; };
@@ -204,9 +204,9 @@
 		B4ADCD4E270B0942005ADA93 /* HomeViewController+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Firebase.swift"; sourceTree = "<group>"; };
 		B4B03B4226DF321300B59BF7 /* DatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRequest.swift; sourceTree = "<group>"; };
 		B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewDataSource.swift; sourceTree = "<group>"; };
-		B4BE43792756FFFF002E565D /* FirestorePoemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePoemService.swift; sourceTree = "<group>"; };
-		B4BE437B27570009002E565D /* FirestoreTopicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTopicService.swift; sourceTree = "<group>"; };
-		B4BE437D27570014002E565D /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
+		B4BE43792756FFFF002E565D /* FirestorePoemApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePoemApi.swift; sourceTree = "<group>"; };
+		B4BE437B27570009002E565D /* FirestoreTopicApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTopicApi.swift; sourceTree = "<group>"; };
+		B4BE437D27570014002E565D /* FirestoreUserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserApi.swift; sourceTree = "<group>"; };
 		B4BE437F27572AE8002E565D /* WriteBatch+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WriteBatch+Rx.swift"; sourceTree = "<group>"; };
 		B4BE438127572ED7002E565D /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodayViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -632,11 +632,11 @@
 		B4BE43782756FFE3002E565D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B4BE43792756FFFF002E565D /* FirestorePoemService.swift */,
-				B4BE437B27570009002E565D /* FirestoreTopicService.swift */,
-				B4BE437D27570014002E565D /* FirestoreUserService.swift */,
+				B459CC3327683FE00084A845 /* FirebaseAuthApi.swift */,
+				B4BE43792756FFFF002E565D /* FirestorePoemApi.swift */,
 				B4BE438127572ED7002E565D /* FirestoreService.swift */,
-				B459CC3327683FE00084A845 /* FirebaseAuthService.swift */,
+				B4BE437B27570009002E565D /* FirestoreTopicApi.swift */,
+				B4BE437D27570014002E565D /* FirestoreUserApi.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -916,7 +916,7 @@
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
 				B4BE438227572ED7002E565D /* FirestoreService.swift in Sources */,
 				B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */,
-				B4BE437A2756FFFF002E565D /* FirestorePoemService.swift in Sources */,
+				B4BE437A2756FFFF002E565D /* FirestorePoemApi.swift in Sources */,
 				B41A3C9127097F5800192965 /* UIFont+Ext.swift in Sources */,
 				B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */,
 				B47B432126F0DAD3006C3EB6 /* DeveloperInfoViewController.swift in Sources */,
@@ -941,7 +941,7 @@
 				B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
-				B4BE437E27570014002E565D /* FirestoreUserService.swift in Sources */,
+				B4BE437E27570014002E565D /* FirestoreUserApi.swift in Sources */,
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */,
 				B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */,
@@ -952,7 +952,7 @@
 				B466044C270067340044C2F8 /* FirstCreateView.swift in Sources */,
 				B4C3F3F526942F2E00CED1A9 /* String+Ext.swift in Sources */,
 				B45822BD27573D93005BB13A /* Query+Rx.swift in Sources */,
-				B459CC3427683FE00084A845 /* FirebaseAuthService.swift in Sources */,
+				B459CC3427683FE00084A845 /* FirebaseAuthApi.swift in Sources */,
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
@@ -981,7 +981,7 @@
 				B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */,
 				B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */,
 				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,
-				B4BE437C27570009002E565D /* FirestoreTopicService.swift in Sources */,
+				B4BE437C27570009002E565D /* FirestoreTopicApi.swift in Sources */,
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,
 				B46EE4C827310E8100A3D640 /* UserProfileViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B466044A270066B60044C2F8 /* FirstCreatePoemViewController.swift in Sources */,

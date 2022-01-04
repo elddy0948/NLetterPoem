@@ -1,17 +1,10 @@
-//
-//  FirestoreTopicService.swift
-//  NLetterPoem
-//
-//  Created by 김호준 on 2021/12/01.
-//
-
 import Foundation
 import RxSwift
 import Firebase
 
 
-final class FirestoreTopicService {
-  static let shared = FirestoreTopicService()
+final class FirestoreTopicApi {
+  static let shared = FirestoreTopicApi()
   
   private let firestore = Firestore.firestore()
   

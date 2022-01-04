@@ -2,13 +2,13 @@ import Foundation
 import FirebaseFirestore
 import RxSwift
 
-final class FirestoreUserService: FirestoreService {
+final class FirestoreUserApi: FirestoreService {
   enum UserServiceError: Error {
     case invalidUser
     case invalidRequest
   }
   
-  static let shared = FirestoreUserService()
+  static let shared = FirestoreUserApi()
   
   var database: Firestore = Firestore.firestore()
   var reference: CollectionReference

@@ -10,7 +10,7 @@ import RxSwift
 
 struct TopicViewModel {
   private let topic: NLPTopic
-  private let service = FirestoreTopicService.shared
+  private let service = FirestoreTopicApi.shared
   
   init(topic: NLPTopic = NLPTopic(topic: "")) {
     self.topic = topic

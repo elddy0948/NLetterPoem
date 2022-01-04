@@ -1130,7 +1130,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NLetterPoem/NLetterPoem.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 211215;
+				CURRENT_PROJECT_VERSION = 220104;
 				DEVELOPMENT_TEAM = SK9D9HK9A2;
 				INFOPLIST_FILE = NLetterPoem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1138,7 +1138,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.howift.NLetterPoem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1154,7 +1154,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NLetterPoem/NLetterPoem.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 211215;
+				CURRENT_PROJECT_VERSION = 220104;
 				DEVELOPMENT_TEAM = SK9D9HK9A2;
 				INFOPLIST_FILE = NLetterPoem/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1162,7 +1162,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.howift.NLetterPoem;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

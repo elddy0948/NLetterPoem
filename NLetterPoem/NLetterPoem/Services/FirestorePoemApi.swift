@@ -84,7 +84,12 @@ final class FirestorePoemApi: FirestoreService {
 
 extension FirestorePoemApi {
   //Fetch today poems
-  func fetchPoems(query: (field: String, value: String)) -> Observable<[ResultType]> {
+  func fetchPoems(
+    query: (
+      field: String,
+      value: String
+    )
+  ) -> Observable<[ResultType]> {
     var fetchedResult = [ResultType]()
     return reference
       .whereField(query.field, isEqualTo: query.value)
@@ -121,5 +126,52 @@ extension FirestorePoemApi {
           })
           return fetchedPoems
         })
+    }
+  
+  func updateLikeCount(_ id: String,
+                       author: String,
+                       isIncrease: Bool
+  ) -> Completable {
+    let count = isIncrease ? 1 : -1
+    let batch = database.batch()
+    let poemReference = reference.document(id)
+    let userReference = database.collection("users").document(author)
+    
+    batch.updateData(
+      [
+        "likeCount": FieldValue.increment(Int64(count)),
+      ],
+      forDocument: poemReference
+    )
+    
+    batch.updateData(
+      [
+        "fires": FieldValue.increment(Int64(count))
+      ],
+      forDocument: userReference
+    )
+    
+    return batch.rx.commit()
+  }
+  
+  func deletePoemFromUserAndPoemDB(
+    poemID: String,
+    userEmail: String
+  ) -> Completable {
+    let userDocument = database
+      .collection("users")
+      .document(userEmail)
+    let poemDocument = reference.document(poemID)
+    let batch = database.batch()
+    
+    batch.deleteDocument(poemDocument)
+    batch.updateData(
+      [
+        "poems": FieldValue.arrayRemove([poemID])
+      ],
+      forDocument: userDocument
+    )
+    
+    return batch.rx.commit()
   }
 }

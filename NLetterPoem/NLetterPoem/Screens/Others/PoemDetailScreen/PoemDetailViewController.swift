@@ -74,18 +74,21 @@ final class PoemDetailViewController: DataLoadingViewController {
     id: String,
     authorEmail: String,
     isIncrease: Bool) {
-      DispatchQueue.global(qos: .userInitiated).async {
-        PoemDatabaseManager.shared.updateLikeCount(
-          poemID: id,
+      
+      FirestorePoemApi.shared
+        .updateLikeCount(
+          id,
           author: authorEmail,
-          isIncrease: isIncrease) { error in
-            if error != nil {
-              self.showAlert(title: "⚠️", message: "문제가 발생했습니다!\n다시 시도해주세요!") { _ in
-                self.dismiss(animated: true, completion: nil)
-              }
-            }
-          }
-      }
+          isIncrease: isIncrease
+        )
+        .subscribe(on: globalScheduler)
+        .observe(on: MainScheduler.instance)
+        .subscribe(
+          onCompleted: {},
+          onError: { error in },
+          onDisposed: {}
+        )
+        .disposed(by: bag)
     }
   
   private func updateUserLikedPoem(
@@ -170,17 +173,31 @@ final class PoemDetailViewController: DataLoadingViewController {
   }
   
   private func deletePoem() {
-    DispatchQueue.global(qos: .utility)
-      .async { [weak self] in
-        guard let self = self else { return }
-        PoemDatabaseManager.shared.delete(
-          self.poemViewModel.id
-        ) { _ in }
-        UserDatabaseManager.shared.deletePoem(
-          to: self.currentUserViewModel.email,
-          poemID: self.poemViewModel.id
-        ) { _ in }
-      }
+    FirestorePoemApi.shared
+      .deletePoemFromUserAndPoemDB(
+        poemID: poemViewModel.id,
+        userEmail: currentUserViewModel.email
+      )
+      .subscribe(on: globalScheduler)
+      .observe(on: MainScheduler.instance)
+      .subscribe(
+        onCompleted: {
+          self.showAlert(
+            title: "성공",
+            message: "삭제되었습니다.",
+            action: nil
+          )
+        },
+        onError: { error in
+          self.showAlert(
+            title: "실패",
+            message: "삭제에 실패했습니다.",
+            action: nil
+          )
+        },
+        onDisposed: {}
+      )
+      .disposed(by: bag)
   }
 }
 

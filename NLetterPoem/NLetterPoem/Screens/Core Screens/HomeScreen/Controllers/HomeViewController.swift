@@ -17,6 +17,7 @@ final class HomeViewController: DataLoadingViewController {
   //MARK: - Properties
   let disposeBag = DisposeBag()
   let currentUserViewModel = CurrentUserViewModel.shared
+  var globalScheduler = SerialDispatchQueueScheduler(qos: .utility)
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nil, bundle: nil)

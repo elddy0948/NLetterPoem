@@ -162,12 +162,14 @@ final class PoemDetailViewController: DataLoadingViewController {
   }
   
   private func configureCreatePoemViewController() -> CreatePoemViewController {
-    let viewController = CreatePoemViewController()
     let poem = poemViewModel.currentPoem
-    viewController.action = .edit
+    
+    let viewController = CreatePoemViewController(
+      NLPTopic(topic: poem.topic),
+      type: .edit,
+      poem: poem
+    )
     viewController.user = currentUserViewModel.user
-    viewController.editPoem = poem
-    viewController.topic = poem.topic
     viewController.delegate = self
     return viewController
   }

@@ -1,10 +1,23 @@
 import UIKit
 
 protocol CreatePoemViewDelegate: AnyObject {
-  func createPoemView(_ createPoemView: CreatePoemView, didCancel button: UIBarButtonItem)
-  func createPoemView(_ createPoemView: CreatePoemView, didTapDone button: UIBarButtonItem, poem: String)
-  func createPoemView(_ createPoemView: CreatePoemView, emptyFieldExist message: String)
-  func createPoemView(_ createPoemView: CreatePoemView, specialCharacterExist message: String)
+  func createPoemView(
+    _ createPoemView: CreatePoemView,
+    didCancel button: UIBarButtonItem
+  )
+  func createPoemView(
+    _ createPoemView: CreatePoemView,
+    didTapDone button: UIBarButtonItem,
+    poemContent: String
+  )
+  func createPoemView(
+    _ createPoemView: CreatePoemView,
+    emptyFieldExist message: String
+  )
+  func createPoemView(
+    _ createPoemView: CreatePoemView,
+    specialCharacterExist message: String
+  )
 }
 
 final class CreatePoemView: UIView {
@@ -26,14 +39,6 @@ final class CreatePoemView: UIView {
     self.topic = topic
     self.poem = poem
     
-    configure()
-    configureTopicLabel()
-    configureLabels()
-    configureDoneButton()
-  }
-  
-  override init(frame: CGRect) {
-    super.init(frame: frame)
     configure()
     configureTopicLabel()
     configureLabels()
@@ -141,6 +146,6 @@ final class CreatePoemView: UIView {
       poemString.append(line + "\n")
     }
     
-    delegate?.createPoemView(self, didTapDone: sender, poem: poemString)
+    delegate?.createPoemView(self, didTapDone: sender, poemContent: poemString)
   }
 }

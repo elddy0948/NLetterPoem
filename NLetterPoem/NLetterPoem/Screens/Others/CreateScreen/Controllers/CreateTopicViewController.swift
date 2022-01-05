@@ -36,13 +36,24 @@ extension CreateTopicViewController: CreateTopicViewDelegate {
   func createTopicView(_ createTopicView: CreateTopicView, didTapNext topic: String?) {
     guard let topic = topic,
           topic != "" else {
-      self.showAlert(title: "⚠️", message: "주제를 입력해주세요!\n특수문자는 사용이 불가능합니다!", action: nil)
+      self.showAlert(
+        title: "⚠️",
+        message: "주제를 입력해주세요!\n특수문자는 사용이 불가능합니다!",
+        action: nil
+      )
       return
     }
     
-    let createPoemViewController = CreatePoemViewController()
+    let createPoemViewController = CreatePoemViewController(
+      NLPTopic(topic: topic),
+      poem: nil
+    )
+    
     createPoemViewController.user = user
-    createPoemViewController.topic = topic
-    navigationController?.pushViewController(createPoemViewController, animated: true)
+    
+    navigationController?.pushViewController(
+      createPoemViewController,
+      animated: true
+    )
   }
 }

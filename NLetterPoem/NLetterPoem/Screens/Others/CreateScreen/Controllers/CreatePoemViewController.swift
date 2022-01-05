@@ -1,8 +1,12 @@
 import UIKit
 import Firebase
+import RxSwift
 
 protocol CreatePoemViewControllerDelegate: AnyObject {
-  func createPoemViewController(_ viewController: CreatePoemViewController, didTapDone poem: NLPPoem)
+  func createPoemViewController(
+    _ viewController: CreatePoemViewController,
+    didTapDone poem: NLPPoem
+  )
 }
 
 class CreatePoemViewController: CreatorViewController {
@@ -16,12 +20,33 @@ class CreatePoemViewController: CreatorViewController {
   private(set) var createPoemView: CreatePoemView!
   
   //MARK: - Properties
-  var topic: String?
-  var action: ActionType = .create
-  var editPoem: NLPPoem?
+  var topic: NLPTopic
+  var type: ActionType
+  var poem: NLPPoem?
+  var globalScheduler = ConcurrentDispatchQueueScheduler(
+    qos: .utility
+  )
+  private let bag = DisposeBag()
   
   private var handler: AuthStateDidChangeListenerHandle?
   weak var delegate: CreatePoemViewControllerDelegate?
+  
+  //MARK: - Initializer
+  init(_ topic: NLPTopic,
+       type: ActionType = .create,
+       poem: NLPPoem?
+  ) {
+    self.topic = topic
+    self.type = type
+    self.poem = poem
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    self.topic = NLPTopic(topic: "")
+    self.type = .create
+    super.init(coder: coder)
+  }
   
   //MARK: - View Lifecycle
   override func viewDidLoad() {
@@ -33,9 +58,11 @@ class CreatePoemViewController: CreatorViewController {
   //MARK: - Privates
   private func configure() {
     view.backgroundColor = .systemBackground
-    guard let topic = topic else { return }
+    createPoemView = CreatePoemView(
+      topic: topic.topic,
+      poem: poem
+    )
     
-    createPoemView = CreatePoemView(topic: topic, poem: editPoem)
     createPoemView.delegate = self
     
     view.addSubview(createPoemView)
@@ -48,45 +75,86 @@ class CreatePoemViewController: CreatorViewController {
     ])
   }
   
-  private func createPoem(_ nlpPoem: NLPPoem) {
-    showLoadingView()
-    DispatchQueue.global(qos: .utility).async { [weak self] in
-      guard let self = self  else { return }
-      PoemDatabaseManager.shared.create(nlpPoem) { result in
-        self.dismissLoadingView()
-        switch result {
-        case .success(_):
-          self.showAlert(title: "🎉", message: "멋진 시네요!") { _ in
-            self.dismiss(animated: true, completion: nil)
-          }
-        case .failure(let error):
-          self.showAlert(title: "⚠️", message: error.message) { _ in
-            self.dismiss(animated: true, completion: nil)
-          }
-        }
-      }
+  private func createPoem(_ nlpPoem: NLPPoem?) {
+    guard let nlpPoem = nlpPoem else {
+      return
     }
+
+    showLoadingView()
+    
+    FirestorePoemApi.shared
+      .create(nlpPoem)
+      .subscribe(on: globalScheduler)
+      .observe(on: MainScheduler.instance)
+      .subscribe(
+        onCompleted: { [weak self] in
+          self?.dismissLoadingView()
+          guard let self = self else { return }
+          self.showAlert(
+            title: "🎉",
+            message: "멋진 시네요👏",
+            action: { _ in
+              self.dismiss(animated: true, completion: nil)
+            }
+          )
+        },
+        onError: { [weak self] error in
+          self?.dismissLoadingView()
+          guard let self = self else { return }
+          self.showAlert(
+            title: "⚠️",
+            message: "다시 시도해주세요!",
+            action: { _ in
+              self.dismiss(animated: true, completion: nil)
+            }
+          )
+        },
+        onDisposed: {}
+      )
+      .disposed(by: bag)
   }
   
-  private func updatePoem(_ nlpPoem: NLPPoem) {
-    showLoadingView()
-    DispatchQueue.global(qos: .utility).async { [weak self] in
-      guard let self = self else { return }
-      self.dismissLoadingView()
-      PoemDatabaseManager.shared.update(nlpPoem) { result in
-        switch result {
-        case .success(let poem):
-          self.showAlert(title: "✅", message: "업데이트 완료!") { _ in
-            self.delegate?.createPoemViewController(self, didTapDone: poem)
-            self.dismiss(animated: true, completion: nil)
-          }
-        case .failure(let error):
-          self.showAlert(title: "⚠️", message: error.message) { _ in
-            self.dismiss(animated: true, completion: nil)
-          }
-        }
-      }
+  private func updatePoem(_ nlpPoem: NLPPoem?) {
+    guard let nlpPoem = nlpPoem else {
+      return
     }
+    
+    showLoadingView()
+    
+    FirestorePoemApi.shared
+      .update(nlpPoem)
+      .subscribe(on: globalScheduler)
+      .observe(on: MainScheduler.instance)
+      .subscribe(
+        onCompleted: { [weak self] in
+          self?.dismissLoadingView()
+          guard let self = self else { return }
+          self.showAlert(
+            title: "✅",
+            message: "업데이트 완료!",
+            action: { _ in
+              self.delegate?.createPoemViewController(
+                self,
+                didTapDone: nlpPoem
+              )
+              self.dismiss(animated: true, completion: nil)
+            }
+          )
+        },
+        onError: { [weak self] error in
+          self?.dismissLoadingView()
+          guard let self = self else { return }
+          self.showAlert(
+            title: "⚠️",
+            message: "다시 시도해주세요!",
+            action: { _ in
+              self.dismiss(animated: true, completion: nil)
+            }
+          )
+        },
+        onDisposed: {}
+      )
+      .disposed(by: bag)
   }
 }
 
@@ -104,33 +172,32 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
     dismiss(animated: true, completion: nil)
   }
   
-  func createPoemView(_ createPoemView: CreatePoemView, didTapDone button: UIBarButtonItem, poem: String) {
-    let nlpPoem: NLPPoem?
+  func createPoemView(
+    _ createPoemView: CreatePoemView,
+    didTapDone button: UIBarButtonItem,
+    poemContent: String
+  ) {
+    let poemForRequest: NLPPoem?
     
-    guard let user = user,
-          let topic = topic else {
+    guard let user = user else {
       dismiss(animated: true, completion: nil)
       return
     }
     
-    if action == .edit {
-      nlpPoem = editPoem
-      nlpPoem?.content = poem
-    } else {
-      nlpPoem = NLPPoem(topic: topic,
-                        author: user.nickname,
-                        authorEmail: user.email,
-                        content: poem,
-                        ranking: Int.max)
-    }
-    
-    guard let nlpPoem = nlpPoem else { return }
-    
-    switch action {
+    switch type {
     case .create:
-      createPoem(nlpPoem)
+      poemForRequest = NLPPoem(
+        topic: topic.topic,
+        author: user.nickname,
+        authorEmail: user.email,
+        content: poemContent,
+        ranking: Int.max
+      )
+      createPoem(poemForRequest)
     case .edit:
-      updatePoem(nlpPoem)
+      poemForRequest = self.poem
+      poemForRequest?.content = poemContent
+      updatePoem(poemForRequest)
     }
   }
 }

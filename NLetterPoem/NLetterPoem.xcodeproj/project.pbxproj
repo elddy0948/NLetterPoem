@@ -38,7 +38,6 @@
 		B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE588267F04BE001848A5 /* NLPLogoImageView.swift */; };
 		B42EE58C267F0505001848A5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE58B267F0505001848A5 /* Constants.swift */; };
 		B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE58D267F0D57001848A5 /* SignUpViewController.swift */; };
-		B42EE591267F176F001848A5 /* PoemDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */; };
 		B43BBC392682F2D100B4A8DC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC382682F2D100B4A8DC /* SettingViewController.swift */; };
 		B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */; };
 		B44617E52685B718009AE2A5 /* ProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */; };
@@ -147,7 +146,6 @@
 		B42EE588267F04BE001848A5 /* NLPLogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPLogoImageView.swift; sourceTree = "<group>"; };
 		B42EE58B267F0505001848A5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B42EE58D267F0D57001848A5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDatabaseManager.swift; sourceTree = "<group>"; };
 		B43BBC382682F2D100B4A8DC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
 		B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionView.swift; sourceTree = "<group>"; };
@@ -444,7 +442,6 @@
 		B44D384526E514B60030E706 /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
-				B42EE590267F176F001848A5 /* PoemDatabaseManager.swift */,
 				B48459E926A45FE700BA1484 /* UserDatabaseManager.swift */,
 				B46D67DD26FC8A3E00FDD7FA /* ReportDatabaseManager.swift */,
 			);
@@ -929,7 +926,6 @@
 				B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */,
 				B4EB6AA426C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift in Sources */,
 				B44617E52685B718009AE2A5 /* ProfileCollectionView.swift in Sources */,
-				B42EE591267F176F001848A5 /* PoemDatabaseManager.swift in Sources */,
 				B46EE4C02730FF1F00A3D640 /* UserProfileViewController.swift in Sources */,
 				B4ADCD4B270AC3BC005ADA93 /* NLPBarButton.swift in Sources */,
 				B478751D2671F540002FE83F /* TodayViewController.swift in Sources */,

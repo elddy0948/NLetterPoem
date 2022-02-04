@@ -71,6 +71,8 @@
 		B46EE4CB2731118700A3D640 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46EE4CA2731118700A3D640 /* UserProfileHeaderView.swift */; };
 		B4723B212738D2E9005F9098 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4723B202738D2E9005F9098 /* UINavigationController+Ext.swift */; };
 		B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */; };
+		B476CE1D27ACEFE30035EB94 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE1C27ACEFE30035EB94 /* Router.swift */; };
+		B476CE1F27ACF1900035EB94 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE1E27ACF1900035EB94 /* Coordinator.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* TodayViewController.swift */; };
@@ -179,6 +181,8 @@
 		B46EE4CA2731118700A3D640 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B4723B202738D2E9005F9098 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		B476CE1C27ACEFE30035EB94 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		B476CE1E27ACF1900035EB94 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -525,6 +529,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B476CE1A27ACEFD80035EB94 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				B476CE1C27ACEFE30035EB94 /* Router.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		B476CE1B27ACEFDB0035EB94 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B476CE1E27ACF1900035EB94 /* Coordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		B478750C2671F540002FE83F = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +566,8 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
+				B476CE1B27ACEFDB0035EB94 /* Coordinators */,
+				B476CE1A27ACEFD80035EB94 /* Routers */,
 				B48660202758922900ED0F6B /* Helper */,
 				B45822BE2757420F005BB13A /* ViewModels */,
 				B4BE43782756FFE3002E565D /* Services */,
@@ -909,6 +931,7 @@
 				B466045027007D930044C2F8 /* CantCreatePoemViewController.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,
+				B476CE1D27ACEFE30035EB94 /* Router.swift in Sources */,
 				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
 				B4BE438227572ED7002E565D /* FirestoreService.swift in Sources */,
@@ -958,6 +981,7 @@
 				B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */,
 				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
 				B4BE438027572AE8002E565D /* WriteBatch+Rx.swift in Sources */,
+				B476CE1F27ACF1900035EB94 /* Coordinator.swift in Sources */,
 				B46EE4C627310B2800A3D640 /* ProfileCollectionHelper.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,
 				B4C3F3ED269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift in Sources */,

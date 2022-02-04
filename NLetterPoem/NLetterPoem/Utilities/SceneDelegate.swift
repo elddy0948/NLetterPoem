@@ -1,24 +1,31 @@
-//
-//  SceneDelegate.swift
-//  NLetterPoem
-//
-//  Created by 김호준 on 2021/06/10.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
   
+  private lazy var router: SceneRouter? = {
+    guard let window = window else { return nil }
+    let router = SceneRouter(window: window)
+    return router
+  }()
+  
+  private lazy var coordinator: SceneCoordinator? = {
+    guard let router = router else {
+      return nil
+    }
+    let coordinator = SceneCoordinator(router: router)
+    return coordinator
+  }()
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
-    window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-    window?.windowScene = windowScene
-    window?.rootViewController = UINavigationController(rootViewController: LaunchViewController())
-    window?.makeKeyAndVisible()
-    
+    window = UIWindow(windowScene: windowScene)
+    guard let coordinator = coordinator else { return }
+    coordinator.present(
+      animated: true,
+      onDismissed: nil
+    )
     UINavigationBar.appearance().tintColor = .label
   }
   

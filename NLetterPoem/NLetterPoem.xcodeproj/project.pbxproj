@@ -73,6 +73,8 @@
 		B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */; };
 		B476CE1D27ACEFE30035EB94 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE1C27ACEFE30035EB94 /* Router.swift */; };
 		B476CE1F27ACF1900035EB94 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE1E27ACF1900035EB94 /* Coordinator.swift */; };
+		B476CE2127ACF40F0035EB94 /* SceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2027ACF40F0035EB94 /* SceneRouter.swift */; };
+		B476CE2327ACF5120035EB94 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2227ACF5120035EB94 /* SceneCoordinator.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* TodayViewController.swift */; };
@@ -183,6 +185,8 @@
 		B4738DE8273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B476CE1C27ACEFE30035EB94 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		B476CE1E27ACF1900035EB94 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		B476CE2027ACF40F0035EB94 /* SceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRouter.swift; sourceTree = "<group>"; };
+		B476CE2227ACF5120035EB94 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -533,6 +537,7 @@
 			isa = PBXGroup;
 			children = (
 				B476CE1C27ACEFE30035EB94 /* Router.swift */,
+				B476CE2027ACF40F0035EB94 /* SceneRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				B476CE1E27ACF1900035EB94 /* Coordinator.swift */,
+				B476CE2227ACF5120035EB94 /* SceneCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -965,6 +971,7 @@
 				B47CC3E7269AB36D00F1F003 /* PoemDetailViewController.swift in Sources */,
 				B40EB926270C41CB00FADFC6 /* Auth+Rx.swift in Sources */,
 				B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */,
+				B476CE2127ACF40F0035EB94 /* SceneRouter.swift in Sources */,
 				B4ADCD4F270B0942005ADA93 /* HomeViewController+Firebase.swift in Sources */,
 				B42EE58E267F0D57001848A5 /* SignUpViewController.swift in Sources */,
 				B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */,
@@ -995,6 +1002,7 @@
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,
 				B41A3C8D27097E3000192965 /* HomeViewController.swift in Sources */,
 				B45BB30A271554120021D3D4 /* SearchViewController.swift in Sources */,
+				B476CE2327ACF5120035EB94 /* SceneCoordinator.swift in Sources */,
 				B43BBC392682F2D100B4A8DC /* SettingViewController.swift in Sources */,
 				B45F804A26CBEF300013C54E /* DataLoadingViewController.swift in Sources */,
 				B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */,

@@ -1,7 +1,7 @@
 import UIKit
 
 class SceneRouter: Router {
-  var window: UIWindow
+  private var window: UIWindow
   
   init(window: UIWindow) {
     self.window = window

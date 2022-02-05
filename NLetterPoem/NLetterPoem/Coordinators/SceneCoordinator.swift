@@ -12,14 +12,25 @@ final class SceneCoordinator: Coordinator {
     animated: Bool,
     onDismissed: (() -> Void)?
   ) {
-    let viewController = LaunchViewController()
-    let navigationController = UINavigationController(
-      rootViewController: viewController
+    let navigationController = UINavigationController()
+    
+    let navigationRouter = NavigationRouter(
+      navigationController: navigationController
+    )
+    
+    let coordinator = LaunchCoordinator(
+      router: navigationRouter
     )
     
     router.present(
       navigationController,
       animated: animated
+    )
+    
+    presentChild(
+      coordinator,
+      animated: true,
+      onDismissed: nil
     )
   }
 }

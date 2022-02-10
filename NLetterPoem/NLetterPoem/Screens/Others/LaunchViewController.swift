@@ -1,84 +1,88 @@
 import UIKit
 import Firebase
 
+//MARK: - ViewControllerType
+enum ViewControllerType {
+  case signin
+  case main
+}
+
+protocol LaunchViewControllerDelegate: AnyObject {
+  func presentNext(
+    _ viewController: LaunchViewController,
+    type: ViewControllerType
+  )
+}
+
 class LaunchViewController: UIViewController {
+
+  //MARK: - Views
+  private lazy var logoImageView = NLPLogoImageView(
+    frame: .zero
+  )
   
-  private var handle: AuthStateDidChangeListenerHandle?
+  //MARK: - Properties
+  weak var delegate: LaunchViewControllerDelegate?
   
-  private(set) var logoImageView: NLPLogoImageView!
+  //MARK: - Initializer
+  init() {
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+  }
   
   //MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupViewController()
+    setupLogoImageView()
+    layout()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    checkCurrentUser()
+  }
+
+  private func checkCurrentUser() {
+    if Auth.auth().currentUser != nil {
+      delegate?.presentNext(self, type: .main)
+    } else {
+      delegate?.presentNext(self, type: .signin)
+    }
+  }
+}
+
+//MARK: - UI Setup / Layout
+extension LaunchViewController {
+  private func setupViewController() {
     view.backgroundColor = .systemBackground
     navigationController?.isNavigationBarHidden = true
-    configureLogoImageView()
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    configureAuthStateChangeListener()
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    removeAuthStateChangeListener()
-  }
-  
-  private func configureAuthStateChangeListener() {
-    handle = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
-      guard let self = self else { return }
-      if let userEmail = user?.email {
-        self.checkIfUserExist(with: userEmail)
-      } else {
-        self.showSignInViewController()
-      }
-    })
-  }
-  
-  private func configureLogoImageView() {
-    let imageSize: CGFloat = 160
-    logoImageView = NLPLogoImageView(frame: .zero)
+  private func setupLogoImageView() {
     view.addSubview(logoImageView)
+  }
+  
+  private func layout() {
+    let safeAreaLayoutGuide = view.safeAreaLayoutGuide
+    let imageSize: CGFloat = 160
     
     NSLayoutConstraint.activate([
-      logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-      logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      logoImageView.widthAnchor.constraint(equalToConstant: imageSize),
-      logoImageView.heightAnchor.constraint(equalToConstant: imageSize),
+      logoImageView.centerXAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.centerXAnchor
+      ),
+      logoImageView.centerYAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.centerYAnchor
+      ),
+      logoImageView.widthAnchor.constraint(
+        equalToConstant: imageSize
+      ),
+      logoImageView.heightAnchor.constraint(
+        equalToConstant: imageSize
+      ),
     ])
-  }
-  
-  private func removeAuthStateChangeListener() {
-    if let handle = handle {
-      Auth.auth().removeStateDidChangeListener(handle)
-    }
-  }
-  
-  private func checkIfUserExist(with email: String) {
-    UserDatabaseManager.shared.read(email) { [weak self] result in
-      guard let self = self else { return }
-      switch result {
-      case .success(_):
-        self.dismissAndReplaceRootViewController()
-      case .failure(_):
-        try? Auth.auth().signOut()
-      }
-    }
-  }
-  
-  private func showSignInViewController() {
-    let viewController = SignInViewController()
-    viewController.modalPresentationStyle = .fullScreen
-    navigationController?.pushViewController(viewController, animated: false)
-  }
-  
-  private func dismissAndReplaceRootViewController() {
-    dismiss(animated: true) {
-      guard let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
-        return
-      }
-      window.rootViewController = NLPTabBarController()
-    }
   }
 }

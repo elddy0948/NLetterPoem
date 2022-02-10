@@ -12,23 +12,55 @@ final class SceneCoordinator: Coordinator {
     animated: Bool,
     onDismissed: (() -> Void)?
   ) {
-    let navigationController = UINavigationController()
+    let launchViewController = LaunchViewController()
     
-    let navigationRouter = NavigationRouter(
-      navigationController: navigationController
-    )
-    
-    let coordinator = LaunchCoordinator(
-      router: navigationRouter
-    )
+    launchViewController.delegate = self
     
     router.present(
-      navigationController,
-      animated: animated
+      launchViewController,
+      animated: false
     )
+  }
+}
+
+//MARK: - LaunchViewControllerDelegate
+extension SceneCoordinator: LaunchViewControllerDelegate {
+  func presentNext(
+    _ viewController: LaunchViewController,
+    type: ViewControllerType
+  ) {
+    let nextViewController: UIViewController
     
-    presentChild(
-      coordinator,
+    switch type {
+    case .signin:
+      let signinViewController = SignInViewController()
+      signinViewController.delegate = self
+      nextViewController = signinViewController
+    case .main:
+      nextViewController = NLPTabBarController()
+    }
+    
+    router.present(
+      nextViewController,
+      animated: false
+    )
+  }
+}
+
+extension SceneCoordinator: SignInViewControllerDelegate {
+  func signInAction(_ viewController: UIViewController) {
+    let tabBarController = NLPTabBarController()
+    router.present(tabBarController, animated: false)
+  }
+  
+  func registerAction(_ viewController: UIViewController) {
+    guard let router = router as? SceneRouter else {
+      return
+    }
+    
+    let signupViewController = SignUpViewController()
+    router.presentModal(
+      signupViewController,
       animated: true,
       onDismissed: nil
     )

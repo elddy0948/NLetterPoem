@@ -41,6 +41,8 @@
 		B43BBC392682F2D100B4A8DC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC382682F2D100B4A8DC /* SettingViewController.swift */; };
 		B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */; };
 		B44617E52685B718009AE2A5 /* ProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */; };
+		B44D81B727B0CB8300AB168B /* ModalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D81B627B0CB8300AB168B /* ModalRouter.swift */; };
+		B44D81B927B0CDBF00AB168B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D81B827B0CDBF00AB168B /* MainTabBarCoordinator.swift */; };
 		B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494062681A1A50075D16C /* MyPageViewController.swift */; };
 		B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageHeaderView.swift */; };
 		B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B454940A2681A4400075D16C /* NLPTabBarController.swift */; };
@@ -77,7 +79,6 @@
 		B476CE2327ACF5120035EB94 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2227ACF5120035EB94 /* SceneCoordinator.swift */; };
 		B476CE2527AD2DD60035EB94 /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2427AD2DD60035EB94 /* TabBarRouter.swift */; };
 		B476CE2727AD30330035EB94 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2627AD30330035EB94 /* NavigationRouter.swift */; };
-		B476CE2927AD31ED0035EB94 /* LaunchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2827AD31ED0035EB94 /* LaunchCoordinator.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* TodayViewController.swift */; };
@@ -92,6 +93,8 @@
 		B486601F2758740A00ED0F6B /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B486601E2758740A00ED0F6B /* TopicViewModel.swift */; };
 		B48660222758923A00ED0F6B /* AlertControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48660212758923A00ED0F6B /* AlertControllerHelper.swift */; };
 		B48660242758A25800ED0F6B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48660232758A25800ED0F6B /* UserViewModel.swift */; };
+		B48AC7DB27B4D263007BBD27 /* SignInRegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AC7DA27B4D263007BBD27 /* SignInRegisterCoordinator.swift */; };
+		B48AC7DD27B4D440007BBD27 /* SignInRegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AC7DC27B4D440007BBD27 /* SignInRegisterRouter.swift */; };
 		B48BD9BE26A000F70044A2B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BD26A000F70044A2B8 /* SignUpView.swift */; };
 		B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9BF26A002660044A2B8 /* AuthManager.swift */; };
 		B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */; };
@@ -156,6 +159,8 @@
 		B43BBC382682F2D100B4A8DC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
 		B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionView.swift; sourceTree = "<group>"; };
+		B44D81B627B0CB8300AB168B /* ModalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalRouter.swift; sourceTree = "<group>"; };
+		B44D81B827B0CDBF00AB168B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		B45494062681A1A50075D16C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		B45494082681A1B60075D16C /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
 		B454940A2681A4400075D16C /* NLPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPTabBarController.swift; sourceTree = "<group>"; };
@@ -192,7 +197,6 @@
 		B476CE2227ACF5120035EB94 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		B476CE2427AD2DD60035EB94 /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
 		B476CE2627AD30330035EB94 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
-		B476CE2827AD31ED0035EB94 /* LaunchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCoordinator.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 		B486601E2758740A00ED0F6B /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
 		B48660212758923A00ED0F6B /* AlertControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerHelper.swift; sourceTree = "<group>"; };
 		B48660232758A25800ED0F6B /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		B48AC7DA27B4D263007BBD27 /* SignInRegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRegisterCoordinator.swift; sourceTree = "<group>"; };
+		B48AC7DC27B4D440007BBD27 /* SignInRegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRegisterRouter.swift; sourceTree = "<group>"; };
 		B48BD9BD26A000F70044A2B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B48BD9BF26A002660044A2B8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B48BD9C126A005A40044A2B8 /* NLPNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPNavigationBar.swift; sourceTree = "<group>"; };
@@ -546,6 +552,8 @@
 				B476CE2027ACF40F0035EB94 /* SceneRouter.swift */,
 				B476CE2427AD2DD60035EB94 /* TabBarRouter.swift */,
 				B476CE2627AD30330035EB94 /* NavigationRouter.swift */,
+				B44D81B627B0CB8300AB168B /* ModalRouter.swift */,
+				B48AC7DC27B4D440007BBD27 /* SignInRegisterRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -555,7 +563,8 @@
 			children = (
 				B476CE1E27ACF1900035EB94 /* Coordinator.swift */,
 				B476CE2227ACF5120035EB94 /* SceneCoordinator.swift */,
-				B476CE2827AD31ED0035EB94 /* LaunchCoordinator.swift */,
+				B44D81B827B0CDBF00AB168B /* MainTabBarCoordinator.swift */,
+				B48AC7DA27B4D263007BBD27 /* SignInRegisterCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -944,6 +953,7 @@
 				B45822BB27573D6E005BB13A /* DocumentReference+Rx.swift in Sources */,
 				B42DDDC9275D1C6F00A9A2E0 /* CurrentUserViewModel.swift in Sources */,
 				B466045027007D930044C2F8 /* CantCreatePoemViewController.swift in Sources */,
+				B44D81B727B0CB8300AB168B /* ModalRouter.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,
 				B476CE1D27ACEFE30035EB94 /* Router.swift in Sources */,
@@ -968,7 +978,6 @@
 				B4ADCD4B270AC3BC005ADA93 /* NLPBarButton.swift in Sources */,
 				B478751D2671F540002FE83F /* TodayViewController.swift in Sources */,
 				B4C3F3F1269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift in Sources */,
-				B476CE2927AD31ED0035EB94 /* LaunchCoordinator.swift in Sources */,
 				B46EE4C4273108CB00A3D640 /* UserProfileViewController+UICollectionViewDataSource.swift in Sources */,
 				B4723B212738D2E9005F9098 /* UINavigationController+Ext.swift in Sources */,
 				B41A3C8F27097E9700192965 /* ContainerViewController.swift in Sources */,
@@ -990,6 +999,7 @@
 				B45822BD27573D93005BB13A /* Query+Rx.swift in Sources */,
 				B459CC3427683FE00084A845 /* FirebaseAuthApi.swift in Sources */,
 				B417692626BA4D8800C5B3A7 /* CreateTopicView.swift in Sources */,
+				B44D81B927B0CDBF00AB168B /* MainTabBarCoordinator.swift in Sources */,
 				B4F2598D2692EC4A00FF95A4 /* NLPTopic.swift in Sources */,
 				B4C3F3F72694394200CED1A9 /* CreatePoemViewController.swift in Sources */,
 				B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */,
@@ -998,6 +1008,7 @@
 				B4738DE9273250E80063915D /* UserProfileViewController+UICollectionViewDelegate.swift in Sources */,
 				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
 				B4BE438027572AE8002E565D /* WriteBatch+Rx.swift in Sources */,
+				B48AC7DD27B4D440007BBD27 /* SignInRegisterRouter.swift in Sources */,
 				B476CE2727AD30330035EB94 /* NavigationRouter.swift in Sources */,
 				B476CE1F27ACF1900035EB94 /* Coordinator.swift in Sources */,
 				B46EE4C627310B2800A3D640 /* ProfileCollectionHelper.swift in Sources */,
@@ -1009,6 +1020,7 @@
 				B4F6AA1726A3F5DA00DB119D /* RankingTableViewCell.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
+				B48AC7DB27B4D263007BBD27 /* SignInRegisterCoordinator.swift in Sources */,
 				B45822C227574221005BB13A /* PoemViewModel.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,
 				B41A3C8D27097E3000192965 /* HomeViewController.swift in Sources */,

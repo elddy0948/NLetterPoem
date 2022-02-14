@@ -41,7 +41,6 @@
 		B43BBC392682F2D100B4A8DC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC382682F2D100B4A8DC /* SettingViewController.swift */; };
 		B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */; };
 		B44617E52685B718009AE2A5 /* ProfileCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */; };
-		B44D81B727B0CB8300AB168B /* ModalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D81B627B0CB8300AB168B /* ModalRouter.swift */; };
 		B44D81B927B0CDBF00AB168B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D81B827B0CDBF00AB168B /* MainTabBarCoordinator.swift */; };
 		B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494062681A1A50075D16C /* MyPageViewController.swift */; };
 		B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45494082681A1B60075D16C /* MyPageHeaderView.swift */; };
@@ -78,7 +77,6 @@
 		B476CE2127ACF40F0035EB94 /* SceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2027ACF40F0035EB94 /* SceneRouter.swift */; };
 		B476CE2327ACF5120035EB94 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2227ACF5120035EB94 /* SceneCoordinator.swift */; };
 		B476CE2527AD2DD60035EB94 /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2427AD2DD60035EB94 /* TabBarRouter.swift */; };
-		B476CE2727AD30330035EB94 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B476CE2627AD30330035EB94 /* NavigationRouter.swift */; };
 		B47875192671F540002FE83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47875182671F540002FE83F /* AppDelegate.swift */; };
 		B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751A2671F540002FE83F /* SceneDelegate.swift */; };
 		B478751D2671F540002FE83F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478751C2671F540002FE83F /* TodayViewController.swift */; };
@@ -159,7 +157,6 @@
 		B43BBC382682F2D100B4A8DC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B43BBC3B2682F31000B4A8DC /* SettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
 		B44617E42685B718009AE2A5 /* ProfileCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionView.swift; sourceTree = "<group>"; };
-		B44D81B627B0CB8300AB168B /* ModalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalRouter.swift; sourceTree = "<group>"; };
 		B44D81B827B0CDBF00AB168B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		B45494062681A1A50075D16C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		B45494082681A1B60075D16C /* MyPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHeaderView.swift; sourceTree = "<group>"; };
@@ -196,7 +193,6 @@
 		B476CE2027ACF40F0035EB94 /* SceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRouter.swift; sourceTree = "<group>"; };
 		B476CE2227ACF5120035EB94 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		B476CE2427AD2DD60035EB94 /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
-		B476CE2627AD30330035EB94 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		B47875152671F540002FE83F /* NLetterPoem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLetterPoem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47875182671F540002FE83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B478751A2671F540002FE83F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -551,8 +547,6 @@
 				B476CE1C27ACEFE30035EB94 /* Router.swift */,
 				B476CE2027ACF40F0035EB94 /* SceneRouter.swift */,
 				B476CE2427AD2DD60035EB94 /* TabBarRouter.swift */,
-				B476CE2627AD30330035EB94 /* NavigationRouter.swift */,
-				B44D81B627B0CB8300AB168B /* ModalRouter.swift */,
 				B48AC7DC27B4D440007BBD27 /* SignInRegisterRouter.swift */,
 			);
 			path = Routers;
@@ -953,7 +947,6 @@
 				B45822BB27573D6E005BB13A /* DocumentReference+Rx.swift in Sources */,
 				B42DDDC9275D1C6F00A9A2E0 /* CurrentUserViewModel.swift in Sources */,
 				B466045027007D930044C2F8 /* CantCreatePoemViewController.swift in Sources */,
-				B44D81B727B0CB8300AB168B /* ModalRouter.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,
 				B476CE1D27ACEFE30035EB94 /* Router.swift in Sources */,
@@ -1009,7 +1002,6 @@
 				B4660452270081020044C2F8 /* PoemCreator.swift in Sources */,
 				B4BE438027572AE8002E565D /* WriteBatch+Rx.swift in Sources */,
 				B48AC7DD27B4D440007BBD27 /* SignInRegisterRouter.swift in Sources */,
-				B476CE2727AD30330035EB94 /* NavigationRouter.swift in Sources */,
 				B476CE1F27ACF1900035EB94 /* Coordinator.swift in Sources */,
 				B46EE4C627310B2800A3D640 /* ProfileCollectionHelper.swift in Sources */,
 				B47875192671F540002FE83F /* AppDelegate.swift in Sources */,

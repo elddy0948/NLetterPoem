@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     return router
   }()
   
-  private lazy var coordinator: SceneCoordinator? = {
+  lazy var coordinator: SceneCoordinator? = {
     guard let router = router else {
       return nil
     }

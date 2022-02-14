@@ -32,11 +32,13 @@ class SettingViewController: UIViewController {
   }
   
   private func showLauchViewController() {
-    let viewController = UINavigationController(rootViewController: LaunchViewController())
-    guard let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
-      return
-    }
-    window.rootViewController = viewController
+    guard let scene = UIApplication.shared.connectedScenes.first,
+          let sceneDelegate = (scene.delegate as? SceneDelegate),
+          let coordinator = sceneDelegate.coordinator else {
+            return
+          }
+    
+    coordinator.present(animated: false, onDismissed: nil)
   }
   
   //MARK: - Section Type

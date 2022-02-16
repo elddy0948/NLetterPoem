@@ -2,7 +2,6 @@ import UIKit
 
 class SceneRouter: Router {
   private var window: UIWindow
-  private var rootViewController: UIViewController?
   
   init(window: UIWindow) {
     self.window = window

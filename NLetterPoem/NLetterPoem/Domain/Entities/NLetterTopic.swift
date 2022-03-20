@@ -1,5 +1,5 @@
 import Foundation
 
-struct NLetterTopic {
+public struct NLetterTopic {
   let topic: String
 }

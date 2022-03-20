@@ -1,6 +1,6 @@
 import Foundation
 
-struct NLetterPoemUser {
+public struct NLetterPoemUser {
   let email: String
   let nickname: String
   let bio: String

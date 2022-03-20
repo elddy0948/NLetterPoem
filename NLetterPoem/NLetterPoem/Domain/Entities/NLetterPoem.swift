@@ -1,6 +1,6 @@
 import Foundation
 
-struct NLetterPoem {
+public struct NLetterPoem {
   let id: String
   let topic: String
   let author: String

@@ -106,6 +106,8 @@
 		B4B1375127E700D20084F471 /* NLetterTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375027E700D20084F471 /* NLetterTopic.swift */; };
 		B4B1375327E704FB0084F471 /* PoemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375227E704FB0084F471 /* PoemsUseCase.swift */; };
 		B4B1375527E706C80084F471 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375427E706C80084F471 /* UserUseCase.swift */; };
+		B4B1375727E707D80084F471 /* TopicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375627E707D80084F471 /* TopicUseCase.swift */; };
+		B4B1375927E7096D0084F471 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375827E7096D0084F471 /* UseCaseProvider.swift */; };
 		B4B1D955272A4F340025AA84 /* TodayTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */; };
 		B4BE437A2756FFFF002E565D /* FirestorePoemApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE43792756FFFF002E565D /* FirestorePoemApi.swift */; };
 		B4BE437C27570009002E565D /* FirestoreTopicApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BE437B27570009002E565D /* FirestoreTopicApi.swift */; };
@@ -231,6 +233,8 @@
 		B4B1375027E700D20084F471 /* NLetterTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLetterTopic.swift; sourceTree = "<group>"; };
 		B4B1375227E704FB0084F471 /* PoemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsUseCase.swift; sourceTree = "<group>"; };
 		B4B1375427E706C80084F471 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		B4B1375627E707D80084F471 /* TopicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicUseCase.swift; sourceTree = "<group>"; };
+		B4B1375827E7096D0084F471 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewDataSource.swift; sourceTree = "<group>"; };
 		B4BE43792756FFFF002E565D /* FirestorePoemApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePoemApi.swift; sourceTree = "<group>"; };
 		B4BE437B27570009002E565D /* FirestoreTopicApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTopicApi.swift; sourceTree = "<group>"; };
@@ -707,6 +711,8 @@
 			children = (
 				B4B1375227E704FB0084F471 /* PoemsUseCase.swift */,
 				B4B1375427E706C80084F471 /* UserUseCase.swift */,
+				B4B1375627E707D80084F471 /* TopicUseCase.swift */,
+				B4B1375827E7096D0084F471 /* UseCaseProvider.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -979,6 +985,7 @@
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
 				B45BB30C2715597B0021D3D4 /* SearchViewModel.swift in Sources */,
+				B4B1375727E707D80084F471 /* TopicUseCase.swift in Sources */,
 				B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */,
 				B41A3C9427098AEB00192965 /* HotViewController.swift in Sources */,
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
@@ -1002,6 +1009,7 @@
 				B4BE437A2756FFFF002E565D /* FirestorePoemApi.swift in Sources */,
 				B41A3C9127097F5800192965 /* UIFont+Ext.swift in Sources */,
 				B46D67DE26FC8A3E00FDD7FA /* ReportDatabaseManager.swift in Sources */,
+				B4B1375927E7096D0084F471 /* UseCaseProvider.swift in Sources */,
 				B47B432126F0DAD3006C3EB6 /* DeveloperInfoViewController.swift in Sources */,
 				B43BBC3C2682F31000B4A8DC /* SettingTableView.swift in Sources */,
 				B4B1375527E706C80084F471 /* UserUseCase.swift in Sources */,

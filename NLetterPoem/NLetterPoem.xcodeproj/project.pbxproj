@@ -128,6 +128,8 @@
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */; };
 		B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */; };
+		B4DB5A8527E9A5DC000858C2 /* PoemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8427E9A5DC000858C2 /* PoemCollection.swift */; };
+		B4DB5A8C27E9A695000858C2 /* PoemDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8B27E9A695000858C2 /* PoemDTO+Mapping.swift */; };
 		B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */; };
 		B4EB6AA426C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */; };
 		B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB6AA526C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift */; };
@@ -254,6 +256,8 @@
 		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CantCreatePoemView.swift; sourceTree = "<group>"; };
 		B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPYeonSungFontLabel.swift; sourceTree = "<group>"; };
+		B4DB5A8427E9A5DC000858C2 /* PoemCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemCollection.swift; sourceTree = "<group>"; };
+		B4DB5A8B27E9A695000858C2 /* PoemDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoemDTO+Mapping.swift"; sourceTree = "<group>"; };
 		B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCell.swift; sourceTree = "<group>"; };
 		B4E4957526F796E8000EE48B /* NLetterPoem.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NLetterPoem.entitlements; sourceTree = "<group>"; };
 		B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -604,6 +608,7 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
+				B4B1375A27E709DF0084F471 /* Platform */,
 				B4B1374927E700560084F471 /* Domain */,
 				B476CE1B27ACEFDB0035EB94 /* Coordinators */,
 				B476CE1A27ACEFD80035EB94 /* Routers */,
@@ -717,6 +722,14 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		B4B1375A27E709DF0084F471 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB5A7E27E9913A000858C2 /* FirestorePlatform */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
 		B4BE43782756FFE3002E565D /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -821,6 +834,33 @@
 				B48BD9BD26A000F70044A2B8 /* SignUpView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B4DB5A7E27E9913A000858C2 /* FirestorePlatform */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB5A8A27E9A661000858C2 /* DataMapping */,
+				B4DB5A8327E9A5C9000858C2 /* Collections */,
+				B4DB5A7F27E99156000858C2 /* FirestoreNetwork.swift */,
+				B4DB5A8127E9A532000858C2 /* FirestoreNetworkProvider.swift */,
+			);
+			path = FirestorePlatform;
+			sourceTree = "<group>";
+		};
+		B4DB5A8327E9A5C9000858C2 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB5A8427E9A5DC000858C2 /* PoemCollection.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		B4DB5A8A27E9A661000858C2 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				B4DB5A8B27E9A695000858C2 /* PoemDTO+Mapping.swift */,
+			);
+			path = DataMapping;
 			sourceTree = "<group>";
 		};
 		B4EB6AA226C108CB0024B4FD /* SettingScreen */ = {
@@ -984,6 +1024,7 @@
 				B46EE4CB2731118700A3D640 /* UserProfileHeaderView.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
+				B4DB5A8527E9A5DC000858C2 /* PoemCollection.swift in Sources */,
 				B45BB30C2715597B0021D3D4 /* SearchViewModel.swift in Sources */,
 				B4B1375727E707D80084F471 /* TopicUseCase.swift in Sources */,
 				B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */,
@@ -1068,6 +1109,7 @@
 				B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */,
 				B4F6AA1726A3F5DA00DB119D /* RankingTableViewCell.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
+				B4DB5A8C27E9A695000858C2 /* PoemDTO+Mapping.swift in Sources */,
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
 				B48AC7DB27B4D263007BBD27 /* SignInRegisterCoordinator.swift in Sources */,
 				B45822C227574221005BB13A /* PoemViewModel.swift in Sources */,
@@ -1083,6 +1125,7 @@
 				B4C6404626806DAE007A7B59 /* NLPError.swift in Sources */,
 				B478751B2671F540002FE83F /* SceneDelegate.swift in Sources */,
 				B454940B2681A4400075D16C /* NLPTabBarController.swift in Sources */,
+				B4DB5A8227E9A532000858C2 /* FirestoreNetworkProvider.swift in Sources */,
 				B4BE437C27570009002E565D /* FirestoreTopicApi.swift in Sources */,
 				B476CE2527AD2DD60035EB94 /* TabBarRouter.swift in Sources */,
 				B42EE58C267F0505001848A5 /* Constants.swift in Sources */,

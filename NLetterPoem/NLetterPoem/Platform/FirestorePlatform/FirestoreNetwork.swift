@@ -44,4 +44,9 @@ final class FirestoreNetwork<T: Codable> {
       .rx
       .delete()
   }
+  
+  func create(itemId: String, item: T) -> Completable {
+    return reference.document(itemId).rx
+      .setData(item)
+  }
 }

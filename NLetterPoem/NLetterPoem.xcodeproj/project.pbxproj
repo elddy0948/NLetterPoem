@@ -128,8 +128,14 @@
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */; };
 		B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */; };
+		B4DB5A8027E99156000858C2 /* FirestoreNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A7F27E99156000858C2 /* FirestoreNetwork.swift */; };
+		B4DB5A8227E9A532000858C2 /* FirestoreNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8127E9A532000858C2 /* FirestoreNetworkProvider.swift */; };
 		B4DB5A8527E9A5DC000858C2 /* PoemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8427E9A5DC000858C2 /* PoemCollection.swift */; };
+		B4DB5A8727E9A5E2000858C2 /* UserCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8627E9A5E2000858C2 /* UserCollection.swift */; };
+		B4DB5A8927E9A5F1000858C2 /* TopicCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8827E9A5F1000858C2 /* TopicCollection.swift */; };
 		B4DB5A8C27E9A695000858C2 /* PoemDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8B27E9A695000858C2 /* PoemDTO+Mapping.swift */; };
+		B4DB5A8E27EA21A7000858C2 /* UserDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8D27EA21A7000858C2 /* UserDTO+Mapping.swift */; };
+		B4DB5A9027EA34C8000858C2 /* TopicDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB5A8F27EA34C8000858C2 /* TopicDTO+Mapping.swift */; };
 		B4DC3F4E26AD3A9000652E4C /* HomeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */; };
 		B4EB6AA426C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */; };
 		B4EB6AA626C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB6AA526C1091E0024B4FD /* SettingViewController+UITableViewDataSource.swift */; };
@@ -256,8 +262,14 @@
 		B4D1BE96268D903A00968C5B /* Privacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Privacy.swift; sourceTree = "<group>"; };
 		B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CantCreatePoemView.swift; sourceTree = "<group>"; };
 		B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPYeonSungFontLabel.swift; sourceTree = "<group>"; };
+		B4DB5A7F27E99156000858C2 /* FirestoreNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreNetwork.swift; sourceTree = "<group>"; };
+		B4DB5A8127E9A532000858C2 /* FirestoreNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreNetworkProvider.swift; sourceTree = "<group>"; };
 		B4DB5A8427E9A5DC000858C2 /* PoemCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemCollection.swift; sourceTree = "<group>"; };
+		B4DB5A8627E9A5E2000858C2 /* UserCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollection.swift; sourceTree = "<group>"; };
+		B4DB5A8827E9A5F1000858C2 /* TopicCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCollection.swift; sourceTree = "<group>"; };
 		B4DB5A8B27E9A695000858C2 /* PoemDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoemDTO+Mapping.swift"; sourceTree = "<group>"; };
+		B4DB5A8D27EA21A7000858C2 /* UserDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDTO+Mapping.swift"; sourceTree = "<group>"; };
+		B4DB5A8F27EA34C8000858C2 /* TopicDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopicDTO+Mapping.swift"; sourceTree = "<group>"; };
 		B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyCell.swift; sourceTree = "<group>"; };
 		B4E4957526F796E8000EE48B /* NLetterPoem.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NLetterPoem.entitlements; sourceTree = "<group>"; };
 		B4EB6AA326C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -851,6 +863,8 @@
 			isa = PBXGroup;
 			children = (
 				B4DB5A8427E9A5DC000858C2 /* PoemCollection.swift */,
+				B4DB5A8627E9A5E2000858C2 /* UserCollection.swift */,
+				B4DB5A8827E9A5F1000858C2 /* TopicCollection.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -859,6 +873,8 @@
 			isa = PBXGroup;
 			children = (
 				B4DB5A8B27E9A695000858C2 /* PoemDTO+Mapping.swift */,
+				B4DB5A8D27EA21A7000858C2 /* UserDTO+Mapping.swift */,
+				B4DB5A8F27EA34C8000858C2 /* TopicDTO+Mapping.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -1023,7 +1039,10 @@
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
 				B46EE4CB2731118700A3D640 /* UserProfileHeaderView.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
+				B4DB5A8027E99156000858C2 /* FirestoreNetwork.swift in Sources */,
 				B4F6AA1526A3F29D00DB119D /* RankingTableView.swift in Sources */,
+				B4DB5A9027EA34C8000858C2 /* TopicDTO+Mapping.swift in Sources */,
+				B4DB5A8927E9A5F1000858C2 /* TopicCollection.swift in Sources */,
 				B4DB5A8527E9A5DC000858C2 /* PoemCollection.swift in Sources */,
 				B45BB30C2715597B0021D3D4 /* SearchViewModel.swift in Sources */,
 				B4B1375727E707D80084F471 /* TopicUseCase.swift in Sources */,
@@ -1061,6 +1080,7 @@
 				B414FBD5268AE43500AFAAA8 /* MyPageViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B45494092681A1B60075D16C /* MyPageHeaderView.swift in Sources */,
 				B4EB6AA426C108E70024B4FD /* SettingViewController+UITableViewDelegate.swift in Sources */,
+				B4DB5A8E27EA21A7000858C2 /* UserDTO+Mapping.swift in Sources */,
 				B44617E52685B718009AE2A5 /* ProfileCollectionView.swift in Sources */,
 				B46EE4C02730FF1F00A3D640 /* UserProfileViewController.swift in Sources */,
 				B4ADCD4B270AC3BC005ADA93 /* NLPBarButton.swift in Sources */,
@@ -1115,6 +1135,7 @@
 				B45822C227574221005BB13A /* PoemViewModel.swift in Sources */,
 				B4B1375327E704FB0084F471 /* PoemsUseCase.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,
+				B4DB5A8727E9A5E2000858C2 /* UserCollection.swift in Sources */,
 				B41A3C8D27097E3000192965 /* HomeViewController.swift in Sources */,
 				B4B1375127E700D20084F471 /* NLetterTopic.swift in Sources */,
 				B45BB30A271554120021D3D4 /* SearchViewController.swift in Sources */,

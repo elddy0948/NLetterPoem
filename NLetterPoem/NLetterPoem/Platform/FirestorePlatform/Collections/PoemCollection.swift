@@ -27,5 +27,5 @@ public final class PoemCollection {
   
   public func deletePoem(_ poem: PoemDTO) -> Completable {
     return network.delete(poem.id)
-  } 
+  }
 }

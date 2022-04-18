@@ -1,8 +1,14 @@
 import Foundation
 import FirebaseFirestore
+import Firebase
 import RxSwift
 
 final class FirestoreNetwork<T: Codable> {
+  enum QueryType {
+    case poem
+    case user
+  }
+  
   private let reference: CollectionReference
   private let scheduler: ConcurrentDispatchQueueScheduler
   
@@ -23,8 +29,24 @@ final class FirestoreNetwork<T: Codable> {
       })
   }
   
-  func getItems(_ query: Query) -> Observable<[T]> {
-    return query.rx.getDocuments()
+  func getItems(_ query: NLetterQuery, queryType: QueryType) -> Observable<[T]> {
+    let firestoreQuery = FirestoreQuery(query, reference: reference)
+    let queryToRequest: Query?
+    
+    switch queryType {
+    case .poem:
+      queryToRequest = firestoreQuery.toPoemQuery()
+    case .user:
+      queryToRequest = firestoreQuery.toUserQuery()
+    }
+    
+    guard let queryToRequest = queryToRequest else {
+      return Observable.just([])
+    }
+
+    return queryToRequest
+      .rx
+      .getDocuments()
       .observe(on: scheduler)
       .map({ snapshot -> [T] in
         return snapshot.documents.compactMap({ document -> T? in

@@ -1,7 +1,7 @@
 import Foundation
 
 public protocol UseCaseProvider {
-  func makePoemsUseCase() -> PoemsUseCase
+  func makePoemsUseCase() -> PoemUseCase
   func makeUserUseCase() -> UserUseCase
   func makeTopicUseCase() -> TopicUseCase
 }

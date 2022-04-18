@@ -95,9 +95,8 @@ extension UserDatabaseManager {
         
         _ = documents.map { document in
           do {
-            if let user = try document.data(as: NLPUser.self) {
-              topTenUsers.append(user)
-            }
+            let user = try document.data(as: NLPUser.self)
+            topTenUsers.append(user)
           } catch {
             completed(.failure(.failedToFetchTopTenUsers))
             return

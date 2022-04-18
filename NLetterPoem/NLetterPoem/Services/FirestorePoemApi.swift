@@ -57,10 +57,8 @@ final class FirestorePoemApi: FirestoreService {
         guard let document = snapshot.documents.first else {
           return NLPPoem.emptyPoem()
         }
-        if let poem = try document.data(as: NLPPoem.self) {
-          return poem
-        }
-        return NLPPoem.emptyPoem()
+        let poem = try document.data(as: NLPPoem.self)
+        return poem
       })
       .asSingle()
   }
@@ -98,9 +96,8 @@ extension FirestorePoemApi {
       .map({ querySnapshot in
         querySnapshot.documents.forEach({ document in
           do {
-            if let result = try document.data(as: ResultType.self) {
-              fetchedResult.append(result)
-            }
+            let result = try document.data(as: ResultType.self)
+            fetchedResult.append(result)
           } catch { }
         })
         return fetchedResult
@@ -119,9 +116,8 @@ extension FirestorePoemApi {
         .map({ snapshot in
           snapshot.documents.forEach({ document in
             do {
-              if let result = try document.data(as: ResultType.self) {
-                fetchedPoems.append(result)
-              }
+              let result = try document.data(as: ResultType.self)
+              fetchedPoems.append(result)
             } catch  { }
           })
           return fetchedPoems

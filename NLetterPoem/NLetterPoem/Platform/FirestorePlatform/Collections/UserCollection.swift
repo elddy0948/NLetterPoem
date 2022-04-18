@@ -13,8 +13,12 @@ final class UserCollection {
     return network.create(itemId: user.email, item: user)
   }
   
-  public func readUser(_ user: UserDTO) -> Observable<UserDTO> {
-    return network.getItem(user.email)
+  public func readUser(_ email: String) -> Observable<UserDTO> {
+    return network.getItem(email)
+  }
+  
+  public func readUsers(_ query: UserQuery) -> Observable<[UserDTO]> {
+    return network.getItems(query, queryType: .user)
   }
   
   public func updateUser(_ user: UserDTO) -> Completable {

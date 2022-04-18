@@ -20,18 +20,21 @@
 		B41A3C8F27097E9700192965 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A3C8E27097E9700192965 /* ContainerViewController.swift */; };
 		B41A3C9127097F5800192965 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A3C9027097F5800192965 /* UIFont+Ext.swift */; };
 		B41A3C9427098AEB00192965 /* HotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41A3C9327098AEB00192965 /* HotViewController.swift */; };
+		B41AE64F27FFDEE900174042 /* FirestorePoemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE64E27FFDEE900174042 /* FirestorePoemUseCase.swift */; };
+		B41AE65127FFE91700174042 /* PoemQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE65027FFE91700174042 /* PoemQuery.swift */; };
+		B41AE65327FFEC6E00174042 /* FirestoreQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE65227FFEC6E00174042 /* FirestoreQuery.swift */; };
+		B41AE65527FFECAD00174042 /* NLetterQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE65427FFECAD00174042 /* NLetterQuery.swift */; };
+		B41AE65727FFECC700174042 /* UserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE65627FFECC700174042 /* UserQuery.swift */; };
+		B41AE65927FFF58000174042 /* FirestoreUsecaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE65827FFF58000174042 /* FirestoreUsecaseProvider.swift */; };
+		B41AE65B27FFF8EC00174042 /* FirestoreTopicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE65A27FFF8EC00174042 /* FirestoreTopicUseCase.swift */; };
+		B41AE65D27FFFA8400174042 /* FirestoreUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE65C27FFFA8400174042 /* FirestoreUserUseCase.swift */; };
+		B41AE66E2800067F00174042 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE66D2800067F00174042 /* HomeViewModel.swift */; };
 		B41AE87126A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */; };
 		B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F42691AFC70088119D /* HomeTableView.swift */; };
 		B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B421C4F62691B0810088119D /* HomeHeaderView.swift */; };
 		B424C6ED26959B20003EC0F9 /* NLPPoemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B424C6EC26959B20003EC0F9 /* NLPPoemFormView.swift */; };
 		B42DDDC9275D1C6F00A9A2E0 /* CurrentUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42DDDC8275D1C6F00A9A2E0 /* CurrentUserViewModel.swift */; };
 		B42EE571267EF5FA001848A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */; };
-		B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE573267EF6C7001848A5 /* FirebaseAnalytics */; };
-		B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */; };
-		B42EE578267EF6C7001848A5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE577267EF6C7001848A5 /* FirebaseStorage */; };
-		B42EE57A267EF6C7001848A5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE579267EF6C7001848A5 /* FirebaseAuth */; };
-		B42EE57C267EF6C7001848A5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57B267EF6C7001848A5 /* FirebaseFirestore */; };
-		B42EE57E267EF6C7001848A5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = B42EE57D267EF6C7001848A5 /* FirebaseDatabase */; };
 		B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE580267EFA55001848A5 /* SignInViewController.swift */; };
 		B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE584267EFD6D001848A5 /* NLPButton.swift */; };
 		B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42EE586267EFD7D001848A5 /* NLPTextField.swift */; };
@@ -104,7 +107,7 @@
 		B4B1374D27E700B80084F471 /* NLetterPoemUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1374C27E700B80084F471 /* NLetterPoemUser.swift */; };
 		B4B1374F27E700C80084F471 /* NLetterPoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1374E27E700C80084F471 /* NLetterPoem.swift */; };
 		B4B1375127E700D20084F471 /* NLetterTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375027E700D20084F471 /* NLetterTopic.swift */; };
-		B4B1375327E704FB0084F471 /* PoemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375227E704FB0084F471 /* PoemsUseCase.swift */; };
+		B4B1375327E704FB0084F471 /* PoemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375227E704FB0084F471 /* PoemUseCase.swift */; };
 		B4B1375527E706C80084F471 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375427E706C80084F471 /* UserUseCase.swift */; };
 		B4B1375727E707D80084F471 /* TopicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375627E707D80084F471 /* TopicUseCase.swift */; };
 		B4B1375927E7096D0084F471 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1375827E7096D0084F471 /* UseCaseProvider.swift */; };
@@ -124,7 +127,11 @@
 		B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6404826806F13007A7B59 /* ViewController+Ext.swift */; };
 		B4CB3771268310CA00CD4F10 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB3770268310CA00CD4F10 /* RankingViewController.swift */; };
 		B4CDD1EB268841630086AADE /* NLPPoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CDD1EA268841630086AADE /* NLPPoem.swift */; };
-		B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */; };
+		B4CEC903280D08DD00FDA56C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B4CEC902280D08DD00FDA56C /* FirebaseAnalytics */; };
+		B4CEC905280D08DD00FDA56C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B4CEC904280D08DD00FDA56C /* FirebaseAuth */; };
+		B4CEC907280D08DD00FDA56C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B4CEC906280D08DD00FDA56C /* FirebaseCrashlytics */; };
+		B4CEC909280D08DD00FDA56C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B4CEC908280D08DD00FDA56C /* FirebaseFirestore */; };
+		B4CEC90B280D08DD00FDA56C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4CEC90A280D08DD00FDA56C /* FirebaseFirestoreSwift */; };
 		B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D1BE96268D903A00968C5B /* Privacy.swift */; };
 		B4D637A026D7B3E900FF1720 /* CantCreatePoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6379F26D7B3E900FF1720 /* CantCreatePoemView.swift */; };
 		B4D637A226D7B52800FF1720 /* NLPYeonSungFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D637A126D7B52800FF1720 /* NLPYeonSungFontLabel.swift */; };
@@ -159,6 +166,15 @@
 		B41A3C8E27097E9700192965 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		B41A3C9027097F5800192965 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
 		B41A3C9327098AEB00192965 /* HotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotViewController.swift; sourceTree = "<group>"; };
+		B41AE64E27FFDEE900174042 /* FirestorePoemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorePoemUseCase.swift; sourceTree = "<group>"; };
+		B41AE65027FFE91700174042 /* PoemQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemQuery.swift; sourceTree = "<group>"; };
+		B41AE65227FFEC6E00174042 /* FirestoreQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuery.swift; sourceTree = "<group>"; };
+		B41AE65427FFECAD00174042 /* NLetterQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLetterQuery.swift; sourceTree = "<group>"; };
+		B41AE65627FFECC700174042 /* UserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuery.swift; sourceTree = "<group>"; };
+		B41AE65827FFF58000174042 /* FirestoreUsecaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUsecaseProvider.swift; sourceTree = "<group>"; };
+		B41AE65A27FFF8EC00174042 /* FirestoreTopicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTopicUseCase.swift; sourceTree = "<group>"; };
+		B41AE65C27FFFA8400174042 /* FirestoreUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserUseCase.swift; sourceTree = "<group>"; };
+		B41AE66D2800067F00174042 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B41AE87026A5B45F006F75AF /* MyPageViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B421C4F42691AFC70088119D /* HomeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableView.swift; sourceTree = "<group>"; };
 		B421C4F62691B0810088119D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
@@ -239,7 +255,7 @@
 		B4B1374C27E700B80084F471 /* NLetterPoemUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLetterPoemUser.swift; sourceTree = "<group>"; };
 		B4B1374E27E700C80084F471 /* NLetterPoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLetterPoem.swift; sourceTree = "<group>"; };
 		B4B1375027E700D20084F471 /* NLetterTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLetterTopic.swift; sourceTree = "<group>"; };
-		B4B1375227E704FB0084F471 /* PoemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsUseCase.swift; sourceTree = "<group>"; };
+		B4B1375227E704FB0084F471 /* PoemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemUseCase.swift; sourceTree = "<group>"; };
 		B4B1375427E706C80084F471 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		B4B1375627E707D80084F471 /* TopicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicUseCase.swift; sourceTree = "<group>"; };
 		B4B1375827E7096D0084F471 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
@@ -287,14 +303,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B42EE57E267EF6C7001848A5 /* FirebaseDatabase in Frameworks */,
-				B42EE574267EF6C7001848A5 /* FirebaseAnalytics in Frameworks */,
-				B4CDD1EE26884AA40086AADE /* FirebaseFirestoreSwift-Beta in Frameworks */,
-				B42EE576267EF6C7001848A5 /* FirebaseCrashlytics in Frameworks */,
-				B42EE578267EF6C7001848A5 /* FirebaseStorage in Frameworks */,
-				B42EE57C267EF6C7001848A5 /* FirebaseFirestore in Frameworks */,
-				B42EE57A267EF6C7001848A5 /* FirebaseAuth in Frameworks */,
+				B4CEC903280D08DD00FDA56C /* FirebaseAnalytics in Frameworks */,
+				B4CEC907280D08DD00FDA56C /* FirebaseCrashlytics in Frameworks */,
+				B4CEC905280D08DD00FDA56C /* FirebaseAuth in Frameworks */,
+				B4CEC909280D08DD00FDA56C /* FirebaseFirestore in Frameworks */,
 				A841BBBC12351867A5F7C113 /* Pods_NLetterPoem.framework in Frameworks */,
+				B4CEC90B280D08DD00FDA56C /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,54 +326,172 @@
 			path = "Firebase+\U0010Rx";
 			sourceTree = "<group>";
 		};
-		B414FBD1268AE3DE00AFAAA8 /* ProfileScreen */ = {
-			isa = PBXGroup;
-			children = (
-				B443BF5B2734461E00BDB314 /* Views */,
-				B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */,
-				B46EE4BC2730FE8200A3D640 /* UserProfileScreen */,
-				B46EE4BB2730FE7A00A3D640 /* MyPageScreen */,
-			);
-			path = ProfileScreen;
-			sourceTree = "<group>";
-		};
-		B417692726BA6C2800C5B3A7 /* CreateScreen */ = {
+		B417692726BA6C2800C5B3A7 /* CreateScene */ = {
 			isa = PBXGroup;
 			children = (
 				B443BF562734455800BDB314 /* Views */,
 				B443BF552734454C00BDB314 /* Controllers */,
 				B4660451270081020044C2F8 /* PoemCreator.swift */,
 			);
-			path = CreateScreen;
+			path = CreateScene;
 			sourceTree = "<group>";
 		};
-		B41A3C9227098ADB00192965 /* HotScreen */ = {
+		B41AE64D27FFDEC800174042 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				B41AE64E27FFDEE900174042 /* FirestorePoemUseCase.swift */,
+				B41AE65827FFF58000174042 /* FirestoreUsecaseProvider.swift */,
+				B41AE65A27FFF8EC00174042 /* FirestoreTopicUseCase.swift */,
+				B41AE65C27FFFA8400174042 /* FirestoreUserUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		B41AE65E2800033D00174042 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				B41AE66A2800057100174042 /* OtherScenes */,
+				B41AE6692800056900174042 /* CoreScenes */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B41AE65F280003A100174042 /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				B41AE66C2800067900174042 /* ViewModels */,
+				B443BF572734457A00BDB314 /* Controllers */,
+				B443BF582734458100BDB314 /* Views */,
+				B41AE661280003AD00174042 /* HotScene */,
+				B41AE660280003A700174042 /* TodayScene */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		B41AE660280003A700174042 /* TodayScene */ = {
+			isa = PBXGroup;
+			children = (
+				B41AE6622800047200174042 /* Controllers */,
+			);
+			path = TodayScene;
+			sourceTree = "<group>";
+		};
+		B41AE661280003AD00174042 /* HotScene */ = {
+			isa = PBXGroup;
+			children = (
+				B41AE6632800048700174042 /* Controllers */,
+			);
+			path = HotScene;
+			sourceTree = "<group>";
+		};
+		B41AE6622800047200174042 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B478751C2671F540002FE83F /* TodayViewController.swift */,
+				B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */,
+				B4C3F3F0269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift */,
+				B466044D27007C780044C2F8 /* TodayViewController+Firebase.swift */,
+				B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B41AE6632800048700174042 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B41A3C9327098AEB00192965 /* HotViewController.swift */,
 			);
-			path = HotScreen;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		B41A3C9527098C9500192965 /* HomeScreen */ = {
+		B41AE664280004A300174042 /* RankingScene */ = {
 			isa = PBXGroup;
 			children = (
-				B443BF582734458100BDB314 /* Views */,
-				B443BF572734457A00BDB314 /* Controllers */,
-				B4C3F3EB2694184D00CED1A9 /* TodayScreen */,
-				B41A3C9227098ADB00192965 /* HotScreen */,
+				B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */,
+				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
 			);
-			path = HomeScreen;
+			path = RankingScene;
 			sourceTree = "<group>";
 		};
-		B42EE57F267EFA39001848A5 /* Screens */ = {
+		B41AE665280004B200174042 /* SearchScene */ = {
 			isa = PBXGroup;
 			children = (
-				B4AEA41326C4F3870012C398 /* Core Screens */,
-				B4AEA41526C4F3BF0012C398 /* Others */,
-				B4AEA41426C4F3A70012C398 /* SignInSignUpScreen */,
+				B45BB309271554120021D3D4 /* SearchViewController.swift */,
+				B45BB30B2715597B0021D3D4 /* SearchViewModel.swift */,
 			);
-			path = Screens;
+			path = SearchScene;
+			sourceTree = "<group>";
+		};
+		B41AE666280004D800174042 /* ProfileScene */ = {
+			isa = PBXGroup;
+			children = (
+				B443BF5B2734461E00BDB314 /* Views */,
+				B46EE4C527310B2800A3D640 /* ProfileCollectionHelper.swift */,
+				B41AE668280004EB00174042 /* MyPageScene */,
+				B41AE667280004E600174042 /* UserProfileScene */,
+			);
+			path = ProfileScene;
+			sourceTree = "<group>";
+		};
+		B41AE667280004E600174042 /* UserProfileScene */ = {
+			isa = PBXGroup;
+			children = (
+				B46EE4C92731116600A3D640 /* Views */,
+				B46EE4BE2730FF0F00A3D640 /* Controllers */,
+			);
+			path = UserProfileScene;
+			sourceTree = "<group>";
+		};
+		B41AE668280004EB00174042 /* MyPageScene */ = {
+			isa = PBXGroup;
+			children = (
+				B443BF5A273445FD00BDB314 /* Views */,
+				B46EE4BD2730FE8F00A3D640 /* Controllers */,
+			);
+			path = MyPageScene;
+			sourceTree = "<group>";
+		};
+		B41AE6692800056900174042 /* CoreScenes */ = {
+			isa = PBXGroup;
+			children = (
+				B41AE65F280003A100174042 /* HomeScene */,
+				B41AE666280004D800174042 /* ProfileScene */,
+				B41AE664280004A300174042 /* RankingScene */,
+				B41AE665280004B200174042 /* SearchScene */,
+			);
+			path = CoreScenes;
+			sourceTree = "<group>";
+		};
+		B41AE66A2800057100174042 /* OtherScenes */ = {
+			isa = PBXGroup;
+			children = (
+				B417692726BA6C2800C5B3A7 /* CreateScene */,
+				B4CE31DF273442B60090C181 /* EditProfileScene */,
+				B41AE66B2800058800174042 /* HelperViewControllers */,
+				B4CE31DA2734299D0090C181 /* PoemDetailScene */,
+				B4EB6AA226C108CB0024B4FD /* SettingScene */,
+				B4AEA41426C4F3A70012C398 /* SignInSignUpScene */,
+			);
+			path = OtherScenes;
+			sourceTree = "<group>";
+		};
+		B41AE66B2800058800174042 /* HelperViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B454940C2681B3480075D16C /* LaunchViewController.swift */,
+				B45F804926CBEF300013C54E /* DataLoadingViewController.swift */,
+				B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */,
+				B41A3C8E27097E9700192965 /* ContainerViewController.swift */,
+			);
+			path = HelperViewControllers;
+			sourceTree = "<group>";
+		};
+		B41AE66C2800067900174042 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B41AE66D2800067F00174042 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B42EE582267EFD43001848A5 /* Views */ = {
@@ -422,15 +554,6 @@
 				B4DC3F4D26AD3A9000652E4C /* HomeEmptyCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		B443BF542734450F00BDB314 /* RankingScreen */ = {
-			isa = PBXGroup;
-			children = (
-				B4F6AA1426A3F29D00DB119D /* RankingTableView.swift */,
-				B4CB3770268310CA00CD4F10 /* RankingViewController.swift */,
-			);
-			path = RankingScreen;
 			sourceTree = "<group>";
 		};
 		B443BF552734454C00BDB314 /* Controllers */ = {
@@ -520,33 +643,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		B45BB308271553FC0021D3D4 /* SearchScreen */ = {
-			isa = PBXGroup;
-			children = (
-				B45BB309271554120021D3D4 /* SearchViewController.swift */,
-				B45BB30B2715597B0021D3D4 /* SearchViewModel.swift */,
-			);
-			path = SearchScreen;
-			sourceTree = "<group>";
-		};
-		B46EE4BB2730FE7A00A3D640 /* MyPageScreen */ = {
-			isa = PBXGroup;
-			children = (
-				B443BF5A273445FD00BDB314 /* Views */,
-				B46EE4BD2730FE8F00A3D640 /* Controllers */,
-			);
-			path = MyPageScreen;
-			sourceTree = "<group>";
-		};
-		B46EE4BC2730FE8200A3D640 /* UserProfileScreen */ = {
-			isa = PBXGroup;
-			children = (
-				B46EE4C92731116600A3D640 /* Views */,
-				B46EE4BE2730FF0F00A3D640 /* Controllers */,
-			);
-			path = UserProfileScreen;
-			sourceTree = "<group>";
-		};
 		B46EE4BD2730FE8F00A3D640 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,24 +716,24 @@
 		B47875172671F540002FE83F /* NLetterPoem */ = {
 			isa = PBXGroup;
 			children = (
-				B4B1375A27E709DF0084F471 /* Platform */,
-				B4B1374927E700560084F471 /* Domain */,
+				B41AE65E2800033D00174042 /* Application */,
 				B476CE1B27ACEFDB0035EB94 /* Coordinators */,
-				B476CE1A27ACEFD80035EB94 /* Routers */,
-				B48660202758922900ED0F6B /* Helper */,
-				B45822BE2757420F005BB13A /* ViewModels */,
-				B4BE43782756FFE3002E565D /* Services */,
+				B4B1374927E700560084F471 /* Domain */,
 				B4C6404726806F05007A7B59 /* Extensions */,
 				B40EB924270C41B900FADFC6 /* Firebase+Rx */,
 				B4F259892692D02D00FF95A4 /* Fonts */,
 				B42EE570267EF5FA001848A5 /* GoogleService-Info.plist */,
+				B48660202758922900ED0F6B /* Helper */,
 				B47875262671F540002FE83F /* Info.plist */,
 				B42EE58F267F175C001848A5 /* Managers */,
 				B478752C2671FA82002FE83F /* Models */,
 				B4B03B4126DF320800B59BF7 /* Networking */,
 				B4E4957526F796E8000EE48B /* NLetterPoem.entitlements */,
-				B42EE57F267EFA39001848A5 /* Screens */,
+				B4B1375A27E709DF0084F471 /* Platform */,
+				B476CE1A27ACEFD80035EB94 /* Routers */,
+				B4BE43782756FFE3002E565D /* Services */,
 				B42EE58A267F04FB001848A5 /* Utilities */,
+				B45822BE2757420F005BB13A /* ViewModels */,
 				B42EE582267EFD43001848A5 /* Views */,
 			);
 			path = NLetterPoem;
@@ -661,39 +757,13 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		B4AEA41326C4F3870012C398 /* Core Screens */ = {
-			isa = PBXGroup;
-			children = (
-				B443BF542734450F00BDB314 /* RankingScreen */,
-				B45BB308271553FC0021D3D4 /* SearchScreen */,
-				B41A3C9527098C9500192965 /* HomeScreen */,
-				B414FBD1268AE3DE00AFAAA8 /* ProfileScreen */,
-			);
-			path = "Core Screens";
-			sourceTree = "<group>";
-		};
-		B4AEA41426C4F3A70012C398 /* SignInSignUpScreen */ = {
+		B4AEA41426C4F3A70012C398 /* SignInSignUpScene */ = {
 			isa = PBXGroup;
 			children = (
 				B4CE31E32734439D0090C181 /* Views */,
 				B4CE31E2273443960090C181 /* Controllers */,
 			);
-			path = SignInSignUpScreen;
-			sourceTree = "<group>";
-		};
-		B4AEA41526C4F3BF0012C398 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				B417692726BA6C2800C5B3A7 /* CreateScreen */,
-				B4EB6AA226C108CB0024B4FD /* SettingScreen */,
-				B4CE31DF273442B60090C181 /* EditProfileScreen */,
-				B4CE31DA2734299D0090C181 /* PoemDetailScreen */,
-				B454940C2681B3480075D16C /* LaunchViewController.swift */,
-				B45F804926CBEF300013C54E /* DataLoadingViewController.swift */,
-				B47B432026F0DAD3006C3EB6 /* DeveloperInfoViewController.swift */,
-				B41A3C8E27097E9700192965 /* ContainerViewController.swift */,
-			);
-			path = Others;
+			path = SignInSignUpScene;
 			sourceTree = "<group>";
 		};
 		B4B03B4126DF320800B59BF7 /* Networking */ = {
@@ -719,6 +789,9 @@
 				B4B1374C27E700B80084F471 /* NLetterPoemUser.swift */,
 				B4B1374E27E700C80084F471 /* NLetterPoem.swift */,
 				B4B1375027E700D20084F471 /* NLetterTopic.swift */,
+				B41AE65027FFE91700174042 /* PoemQuery.swift */,
+				B41AE65427FFECAD00174042 /* NLetterQuery.swift */,
+				B41AE65627FFECC700174042 /* UserQuery.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -726,7 +799,7 @@
 		B4B1374B27E700600084F471 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				B4B1375227E704FB0084F471 /* PoemsUseCase.swift */,
+				B4B1375227E704FB0084F471 /* PoemUseCase.swift */,
 				B4B1375427E706C80084F471 /* UserUseCase.swift */,
 				B4B1375627E707D80084F471 /* TopicUseCase.swift */,
 				B4B1375827E7096D0084F471 /* UseCaseProvider.swift */,
@@ -752,18 +825,6 @@
 				B4BE437D27570014002E565D /* FirestoreUserApi.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		B4C3F3EB2694184D00CED1A9 /* TodayScreen */ = {
-			isa = PBXGroup;
-			children = (
-				B478751C2671F540002FE83F /* TodayViewController.swift */,
-				B4C3F3EC269418A600CED1A9 /* TodayViewController+UITableViewDelegate.swift */,
-				B4C3F3F0269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift */,
-				B466044D27007C780044C2F8 /* TodayViewController+Firebase.swift */,
-				B4B1D954272A4F340025AA84 /* TodayTableViewDataSource.swift */,
-			);
-			path = TodayScreen;
 			sourceTree = "<group>";
 		};
 		B4C6404426806D7E007A7B59 /* Storyboards */ = {
@@ -794,22 +855,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B4CE31DA2734299D0090C181 /* PoemDetailScreen */ = {
+		B4CE31DA2734299D0090C181 /* PoemDetailScene */ = {
 			isa = PBXGroup;
 			children = (
 				B47CC3EA269ABAFE00F1F003 /* PoemDetailView.swift */,
 				B47CC3E6269AB36D00F1F003 /* PoemDetailViewController.swift */,
 			);
-			path = PoemDetailScreen;
+			path = PoemDetailScene;
 			sourceTree = "<group>";
 		};
-		B4CE31DF273442B60090C181 /* EditProfileScreen */ = {
+		B4CE31DF273442B60090C181 /* EditProfileScene */ = {
 			isa = PBXGroup;
 			children = (
 				B414FBD8268AFE4C00AFAAA8 /* EditProfileView.swift */,
 				B414FBD6268AFD7900AFAAA8 /* EditProfileViewController.swift */,
 			);
-			path = EditProfileScreen;
+			path = EditProfileScene;
 			sourceTree = "<group>";
 		};
 		B4CE31E0273443610090C181 /* Controllers */ = {
@@ -851,6 +912,7 @@
 		B4DB5A7E27E9913A000858C2 /* FirestorePlatform */ = {
 			isa = PBXGroup;
 			children = (
+				B41AE64D27FFDEC800174042 /* UseCases */,
 				B4DB5A8A27E9A661000858C2 /* DataMapping */,
 				B4DB5A8327E9A5C9000858C2 /* Collections */,
 				B4DB5A7F27E99156000858C2 /* FirestoreNetwork.swift */,
@@ -875,17 +937,18 @@
 				B4DB5A8B27E9A695000858C2 /* PoemDTO+Mapping.swift */,
 				B4DB5A8D27EA21A7000858C2 /* UserDTO+Mapping.swift */,
 				B4DB5A8F27EA34C8000858C2 /* TopicDTO+Mapping.swift */,
+				B41AE65227FFEC6E00174042 /* FirestoreQuery.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
 		};
-		B4EB6AA226C108CB0024B4FD /* SettingScreen */ = {
+		B4EB6AA226C108CB0024B4FD /* SettingScene */ = {
 			isa = PBXGroup;
 			children = (
 				B4CE31E12734436A0090C181 /* Views */,
 				B4CE31E0273443610090C181 /* Controllers */,
 			);
-			path = SettingScreen;
+			path = SettingScene;
 			sourceTree = "<group>";
 		};
 		B4F259892692D02D00FF95A4 /* Fonts */ = {
@@ -925,13 +988,11 @@
 			);
 			name = NLetterPoem;
 			packageProductDependencies = (
-				B42EE573267EF6C7001848A5 /* FirebaseAnalytics */,
-				B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */,
-				B42EE577267EF6C7001848A5 /* FirebaseStorage */,
-				B42EE579267EF6C7001848A5 /* FirebaseAuth */,
-				B42EE57B267EF6C7001848A5 /* FirebaseFirestore */,
-				B42EE57D267EF6C7001848A5 /* FirebaseDatabase */,
-				B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */,
+				B4CEC902280D08DD00FDA56C /* FirebaseAnalytics */,
+				B4CEC904280D08DD00FDA56C /* FirebaseAuth */,
+				B4CEC906280D08DD00FDA56C /* FirebaseCrashlytics */,
+				B4CEC908280D08DD00FDA56C /* FirebaseFirestore */,
+				B4CEC90A280D08DD00FDA56C /* FirebaseFirestoreSwift */,
 			);
 			productName = NLetterPoem;
 			productReference = B47875152671F540002FE83F /* NLetterPoem.app */;
@@ -961,7 +1022,7 @@
 			);
 			mainGroup = B478750C2671F540002FE83F;
 			packageReferences = (
-				B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B4CEC901280D08DD00FDA56C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = B47875162671F540002FE83F /* Products */;
 			projectDirPath = "";
@@ -1036,6 +1097,7 @@
 			files = (
 				B4B1D955272A4F340025AA84 /* TodayTableViewDataSource.swift in Sources */,
 				B486601F2758740A00ED0F6B /* TopicViewModel.swift in Sources */,
+				B41AE65327FFEC6E00174042 /* FirestoreQuery.swift in Sources */,
 				B414FBD9268AFE4C00AFAAA8 /* EditProfileView.swift in Sources */,
 				B46EE4CB2731118700A3D640 /* UserProfileHeaderView.swift in Sources */,
 				B414FBD7268AFD7900AFAAA8 /* EditProfileViewController.swift in Sources */,
@@ -1051,6 +1113,8 @@
 				B4C6404926806F13007A7B59 /* ViewController+Ext.swift in Sources */,
 				B4C3F3F9269439C400CED1A9 /* CreatePoemView.swift in Sources */,
 				B454940D2681B3480075D16C /* LaunchViewController.swift in Sources */,
+				B41AE65D27FFFA8400174042 /* FirestoreUserUseCase.swift in Sources */,
+				B41AE65527FFECAD00174042 /* NLetterQuery.swift in Sources */,
 				B45656A126A2A42600EAB3C9 /* SignInView.swift in Sources */,
 				B4D1BE97268D903A00968C5B /* Privacy.swift in Sources */,
 				B466044827002C8E0044C2F8 /* NLPCheckBoxButton.swift in Sources */,
@@ -1058,11 +1122,13 @@
 				B4C3F3F326941C5800CED1A9 /* HomeTableViewCell.swift in Sources */,
 				B45822BB27573D6E005BB13A /* DocumentReference+Rx.swift in Sources */,
 				B42DDDC9275D1C6F00A9A2E0 /* CurrentUserViewModel.swift in Sources */,
+				B41AE65927FFF58000174042 /* FirestoreUsecaseProvider.swift in Sources */,
 				B466045027007D930044C2F8 /* CantCreatePoemViewController.swift in Sources */,
 				B478752E2671FA8E002FE83F /* NLPUser.swift in Sources */,
 				B421C4F52691AFC70088119D /* HomeTableView.swift in Sources */,
 				B476CE1D27ACEFE30035EB94 /* Router.swift in Sources */,
 				B414FBD3268AE3FE00AFAAA8 /* MyPageViewController+UICollectionViewDataSource.swift in Sources */,
+				B41AE65727FFECC700174042 /* UserQuery.swift in Sources */,
 				B421C4F72691B0810088119D /* HomeHeaderView.swift in Sources */,
 				B4BE438227572ED7002E565D /* FirestoreService.swift in Sources */,
 				B48BD9C226A005A40044A2B8 /* NLPNavigationBar.swift in Sources */,
@@ -1088,12 +1154,15 @@
 				B4C3F3F1269418C500CED1A9 /* TodayViewController+HomeTableViewDelegate.swift in Sources */,
 				B46EE4C4273108CB00A3D640 /* UserProfileViewController+UICollectionViewDataSource.swift in Sources */,
 				B4723B212738D2E9005F9098 /* UINavigationController+Ext.swift in Sources */,
+				B41AE64F27FFDEE900174042 /* FirestorePoemUseCase.swift in Sources */,
 				B41A3C8F27097E9700192965 /* ContainerViewController.swift in Sources */,
 				B48660222758923A00ED0F6B /* AlertControllerHelper.swift in Sources */,
 				B47CC3E9269AB8C100F1F003 /* NLPBoldLabel.swift in Sources */,
 				B42EE589267F04BE001848A5 /* NLPLogoImageView.swift in Sources */,
 				B42EE585267EFD6D001848A5 /* NLPButton.swift in Sources */,
+				B41AE65127FFE91700174042 /* PoemQuery.swift in Sources */,
 				B4B1374D27E700B80084F471 /* NLetterPoemUser.swift in Sources */,
+				B41AE66E2800067F00174042 /* HomeViewModel.swift in Sources */,
 				B4BE437E27570014002E565D /* FirestoreUserApi.swift in Sources */,
 				B4F2598B2692EA6300FF95A4 /* Date+Ext.swift in Sources */,
 				B461D38B27D092EA008D15C4 /* HotViewModel.swift in Sources */,
@@ -1127,13 +1196,14 @@
 				B4B03B4326DF321300B59BF7 /* DatabaseRequest.swift in Sources */,
 				B414FBD0268ADB9C00AFAAA8 /* MyPageCollectionViewCell.swift in Sources */,
 				B48BD9C026A002660044A2B8 /* AuthManager.swift in Sources */,
+				B41AE65B27FFF8EC00174042 /* FirestoreTopicUseCase.swift in Sources */,
 				B4F6AA1726A3F5DA00DB119D /* RankingTableViewCell.swift in Sources */,
 				B42EE587267EFD7D001848A5 /* NLPTextField.swift in Sources */,
 				B4DB5A8C27E9A695000858C2 /* PoemDTO+Mapping.swift in Sources */,
 				B45494072681A1A50075D16C /* MyPageViewController.swift in Sources */,
 				B48AC7DB27B4D263007BBD27 /* SignInRegisterCoordinator.swift in Sources */,
 				B45822C227574221005BB13A /* PoemViewModel.swift in Sources */,
-				B4B1375327E704FB0084F471 /* PoemsUseCase.swift in Sources */,
+				B4B1375327E704FB0084F471 /* PoemUseCase.swift in Sources */,
 				B42EE581267EFA55001848A5 /* SignInViewController.swift in Sources */,
 				B4DB5A8727E9A5E2000858C2 /* UserCollection.swift in Sources */,
 				B41A3C8D27097E3000192965 /* HomeViewController.swift in Sources */,
@@ -1362,51 +1432,41 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		B4CEC901280D08DD00FDA56C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.1.1;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B42EE573267EF6C7001848A5 /* FirebaseAnalytics */ = {
+		B4CEC902280D08DD00FDA56C /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B4CEC901280D08DD00FDA56C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		B42EE575267EF6C7001848A5 /* FirebaseCrashlytics */ = {
+		B4CEC904280D08DD00FDA56C /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		B42EE577267EF6C7001848A5 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-		B42EE579267EF6C7001848A5 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B4CEC901280D08DD00FDA56C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		B42EE57B267EF6C7001848A5 /* FirebaseFirestore */ = {
+		B4CEC906280D08DD00FDA56C /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B4CEC901280D08DD00FDA56C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		B4CEC908280D08DD00FDA56C /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4CEC901280D08DD00FDA56C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		B42EE57D267EF6C7001848A5 /* FirebaseDatabase */ = {
+		B4CEC90A280D08DD00FDA56C /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-		B4CDD1ED26884AA40086AADE /* FirebaseFirestoreSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B42EE572267EF6C7001848A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreSwift-Beta";
+			package = B4CEC901280D08DD00FDA56C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

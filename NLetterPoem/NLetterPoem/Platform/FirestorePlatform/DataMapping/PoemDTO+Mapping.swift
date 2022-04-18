@@ -10,6 +10,18 @@ public struct PoemDTO: Codable {
   let likeCount: Int
   let createdAt: String
   let created: String
+  
+  init(poem: NLetterPoem) {
+    self.id = poem.id
+    self.topic = poem.topic
+    self.author = poem.author
+    self.authorEmail = poem.authorEmail
+    self.content = poem.content
+    self.ranking = poem.ranking
+    self.likeCount = poem.likeCount
+    self.createdAt = poem.createdAt
+    self.created = poem.created
+  }
 }
 
 extension PoemDTO {

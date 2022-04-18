@@ -9,6 +9,17 @@ struct UserDTO: Codable {
   let poems: [String]
   let likedPoem: [String]
   let blockedUser: [String]
+  
+  init(_ user: NLetterPoemUser) {
+    self.email = user.email
+    self.nickname = user.nickname
+    self.bio = user.bio
+    self.fires = user.fires
+    self.participationCount = user.participationCount
+    self.poems = user.poems
+    self.likedPoem = user.likedPoem
+    self.blockedUser = user.blockedUser
+  }
 }
 
 extension UserDTO {

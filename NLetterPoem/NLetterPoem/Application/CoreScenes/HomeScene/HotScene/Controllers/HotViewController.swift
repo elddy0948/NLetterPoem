@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import RxCocoa
 
 protocol HotViewControllerDelegate: AnyObject {
   func hotViewController(
@@ -27,8 +28,12 @@ final class HotViewController: UIViewController {
   }()
   
   //MARK: - Properties
-  private var poemListViewModel = PoemListViewModel(.shared)
+  private let hotViewModel = HotViewModel()
   private let disposeBag = DisposeBag()
+  private let isLastCell = BehaviorSubject<Void>(value: ())
+  private let poemsRelay = BehaviorRelay<[NLPPoem]>(value: [])
+  private var isPaging = false
+  private var hasNextPage = false
   
   weak var delegate: HotViewControllerDelegate?
   
@@ -36,8 +41,13 @@ final class HotViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     setupTableView()
-    setupSubscription()
-    fetchHotPoems()
+    bindToViewModel()
+    isLastCell.onNext(())
+    
+    let usecase = FirestoreUsecaseProvider().makePoemsUseCase()
+    usecase.readPoems(query: PoemQuery(authorEmail: "howift@naver.com", createdAt: nil))
+      .subscribe(onNext: { print($0) })
+      .disposed(by: disposeBag)
   }
   
   override func viewWillLayoutSubviews() {
@@ -45,36 +55,16 @@ final class HotViewController: UIViewController {
     layout()
   }
   
-  private func setupSubscription() {
-    poemListViewModel.poemListSubject
-      .subscribe(
-        onNext: { [weak self] poemViewModels in
-          guard let self = self else { return }
-          self.homeTableView.reloadData()
-          if let refreshControl = self.homeTableView.refreshControl {
-            if refreshControl.isRefreshing {
-              refreshControl.endRefreshing()
-            }
-          }
-        },
-        onError: { error in
-        },
-        onCompleted: {
-        },
-        onDisposed: {
-        }
-      )
-      .disposed(by: disposeBag)
-  }
-  
-  private func fetchHotPoems() {
-    //Fetch Poems
-    poemListViewModel.fetchPoems(
-      order: (
-        "likeCount", true
-      ),
-      limit: 30
+  private func bindToViewModel() {
+    let inputs = HotViewModel.Input(
+      fetchNextPoems: isLastCell.asObservable()
     )
+    
+    let outputs = hotViewModel.transform(input: inputs)
+    
+    outputs.poems
+      .drive(poemsRelay)
+      .disposed(by: disposeBag)
   }
 }
 
@@ -85,19 +75,32 @@ extension HotViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView,
                  didSelectRowAt indexPath: IndexPath) {
-    let selectedPoemViewModel = poemListViewModel.selectedPoem(
-      at: indexPath.row
-    )
-    delegate?.hotViewController(
-      self,
-      didSelected: selectedPoemViewModel)
+//    let selectedPoemViewModel = poemsRelay.value[indexPath.row]
+//
+//    delegate?.hotViewController(
+//      self,
+//      didSelected: selectedPoemViewModel)
+  }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let offsetY = scrollView.contentOffset.y
+    let contentHeight = scrollView.contentSize.height
+    let height = scrollView.frame.height
+    
+    if offsetY > (contentHeight - height) {
+      //Call next page
+      if !isPaging && hasNextPage {
+        isLastCell.onNext(())
+      }
+    }
   }
 }
 
 extension HotViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
-    return poemListViewModel.count
+    print(poemsRelay.value.count)
+    return poemsRelay.value.count
   }
   
   func tableView(_ tableView: UITableView,
@@ -106,14 +109,12 @@ extension HotViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     
-    let poemViewModel = poemListViewModel.poemViewModel(
-      at: indexPath.row
-    )
+    let poem = poemsRelay.value[indexPath.row]
 
     cell.setCellData(
-      shortDes: poemViewModel.shortDescription,
-      writer: poemViewModel.author,
-      topic: poemViewModel.topic)
+      shortDes: poem.content.makeShortDescription(),
+      writer: poem.author,
+      topic: poem.topic)
     
     return cell
   }
@@ -121,7 +122,8 @@ extension HotViewController: UITableViewDataSource {
 
 extension HotViewController: HomeTableViewDelegate {
   func handleRefreshHomeTableView(_ tableView: HomeTableView) {
-    fetchHotPoems()
+//    fetchHotPoems()
+    tableView.reloadData()
   }
 }
 
@@ -138,7 +140,6 @@ extension HotViewController {
       homeTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       homeTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       homeTableView.bottomAnchor.constraint(equalTo: NLPTabBarController.tabBarTopAnchor),
-//      homeTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
   }
 }

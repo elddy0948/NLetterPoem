@@ -32,10 +32,8 @@ final class FirestoreUserApi: FirestoreService {
       .rx
       .getDocument()
       .map({ document in
-        if let user = try document.data(as: NLPUser.self) {
-          return user
-        }
-        return nil
+        let user = try document.data(as: NLPUser.self)
+        return user
       })
       .asSingle()
   }

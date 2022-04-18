@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       onDismissed: nil
     )
     UINavigationBar.appearance().tintColor = .label
+    
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {

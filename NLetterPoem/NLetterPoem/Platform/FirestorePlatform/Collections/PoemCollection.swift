@@ -9,8 +9,8 @@ public final class PoemCollection {
     self.network = network
   }
   
-  public func fetchPoems(query: Query) -> Observable<[PoemDTO]> {
-    return network.getItems(query)
+  public func fetchPoems(query: PoemQuery) -> Observable<[PoemDTO]> {
+    return network.getItems(query, queryType: .poem)
   }
   
   public func fetchPoem(_ id: String) -> Observable<PoemDTO> {

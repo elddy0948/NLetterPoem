@@ -24,15 +24,17 @@ final class PoemDetailView: UIView {
   
   //MARK: - init
   init(
-    poemViewModel: PoemViewModel,
+    poem: Poem,
     fireState: Bool,
     enableAuthorButton: Bool
   ) {
     super.init(frame: .zero)
     configure()
-    setPoem(poemViewModel,
-            fireState: fireState,
-            enableAuthorButton: enableAuthorButton)
+    setPoem(
+      poem,
+      fireState: fireState,
+      enableAuthorButton: enableAuthorButton
+    )
   }
   
   override init(frame: CGRect) {
@@ -127,21 +129,21 @@ final class PoemDetailView: UIView {
   }
   
   private func setPoem(
-    _ poemViewModel: PoemViewModel,
+    _ poem: Poem,
     fireState: Bool, enableAuthorButton: Bool) {
       DispatchQueue.main.async { [weak self] in
         guard let self = self else { return }
-        self.titleLabel.text = poemViewModel.topic
+        self.titleLabel.text = poem.topic
         self.authorButton.setTitle(
-          "-\(poemViewModel.author)-",
+          "-\(poem.author)-",
           for: .normal)
-        self.poemLabel.text = poemViewModel.content
+        self.poemLabel.text = poem.content
         self.fireButton.isSelected = fireState
       }
       authorButton.isUserInteractionEnabled = enableAuthorButton
     }
   
-  func updatePoem(with poem: NLPPoem?) {
+  func updatePoem(with poem: Poem?) {
     guard let poem = poem else { return }
     
     DispatchQueue.main.async { [weak self] in

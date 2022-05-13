@@ -13,7 +13,7 @@ final class UserProfileHeaderView: UICollectionReusableView {
   private(set) var verticalStackView: UIStackView!
   
   //MARK: - Properties
-  private var user: NLPUser!
+  private var user: NLetterPoemUser!
   
   //MARK: - initializer
   override init(frame: CGRect) {
@@ -27,10 +27,10 @@ final class UserProfileHeaderView: UICollectionReusableView {
   }
   
   //MARK: - Configure Mypage Data
-  func configureUser(with userViewModel: UserViewModel) {
-    bioLabel.text = userViewModel.bio
-    userNameLabel.text = userViewModel.nickname
-    firesLabel.text = "\(userViewModel.fires)🔥"
+  func configureUser(with user: NLetterPoemUser) {
+    bioLabel.text = user.bio
+    userNameLabel.text = user.nickname
+    firesLabel.text = "\(user.fires)🔥"
   }
   
   //MARK: - Privates

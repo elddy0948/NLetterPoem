@@ -6,11 +6,6 @@ class RankingViewController: UIViewController {
   private(set) var rankingTableView: RankingTableView!
   
   //MARK: - Properties
-  private var users: [NLPUser]? {
-    didSet {
-      rankingTableView.reloadData()
-    }
-  }
   
   //MARK: - View Lifecycle
   override func viewDidLoad() {
@@ -45,24 +40,15 @@ class RankingViewController: UIViewController {
   }
   
   private func fetchTopTenUsers() {
-    UserDatabaseManager.shared.fetchTopTenUsers { [weak self] result in
-      guard let self = self else { return }
-      switch result {
-      case .success(let users):
-        self.users = users
-      case .failure(_):
-        self.users = []
-      }
-    }
   }
 }
 
 
 extension RankingViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let users = users {
-      return users.count
-    }
+  func tableView(
+    _ tableView: UITableView,
+    numberOfRowsInSection section: Int
+  ) -> Int {
     return 0
   }
   
@@ -72,9 +58,6 @@ extension RankingViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     
-    if let user = users?[indexPath.row] {
-      cell.setCellData(with: user, ranking: indexPath.row)
-    }
     
     return cell
   }
@@ -85,10 +68,9 @@ extension RankingViewController: UITableViewDelegate {
     return 80
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if let user = users?[indexPath.row] {
-      let viewController = UserProfileViewController(userEmail: user.email)
-      navigationController?.pushViewController(viewController, animated: true)
-    }
+  func tableView(
+    _ tableView: UITableView,
+    didSelectRowAt indexPath: IndexPath
+  ) {
   }
 }

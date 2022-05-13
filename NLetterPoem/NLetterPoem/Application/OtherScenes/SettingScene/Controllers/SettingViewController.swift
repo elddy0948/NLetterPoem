@@ -55,19 +55,6 @@ extension SettingViewController {
   }
   
   private func authDelete(with email: String) {
-    AuthManager.shared.authDelete(userEmail: email, completed: { result in
-      var flag = false
-      defer {
-        if flag { self.showLauchViewController() }
-      }
-      switch result {
-      case .success(let message):
-        flag = true
-        self.showAlert(title: "✅", message: message, action: nil)
-      case .failure(let error):
-        self.showAlert(title: "⚠️", message: error.localizedDescription, action: nil)
-      }
-    })
   }
 
   private func showLauchViewController() {

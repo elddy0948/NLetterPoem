@@ -8,15 +8,6 @@ class UserProfileViewController: DataLoadingViewController {
   
   //MARK: - Properties
   private var userEmail: String?
-  let userViewModel = UserViewModel()
-  let poemListViewModel = PoemListViewModel(
-    .shared
-  )
-  
-  private var combinedObservable: Observable<(
-    NLPUser,
-    [PoemViewModel]
-  )>
   
   private let globalQueueScheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global(qos: .utility))
   
@@ -24,11 +15,6 @@ class UserProfileViewController: DataLoadingViewController {
   
   //MARK: - Initializer
   init(userEmail: String) {
-    combinedObservable = Observable.combineLatest(
-      userViewModel.userSubject,
-      poemListViewModel.poemListSubject
-    )
-    
     super.init(nibName: nil, bundle: nil)
     self.userEmail = userEmail
   }
@@ -42,7 +28,6 @@ class UserProfileViewController: DataLoadingViewController {
     super.viewDidLoad()
     configureViewController()
     configureCollectionView()
-    setupCombinedObservableSubscription()
     layout()
     
     guard let email = userEmail else {
@@ -53,24 +38,7 @@ class UserProfileViewController: DataLoadingViewController {
     fetchUserProfileInformation(with: email)
   }
   
-  func setupCombinedObservableSubscription() {
-    combinedObservable
-      .subscribe(
-        onNext: { [weak self] user, poemViewModels in
-          guard let self = self else { return }
-          self.userProfileCollectionView?.reloadSections(
-            IndexSet(integer: 0)
-          )
-        }, onError: { error in },
-        onCompleted: {},
-        onDisposed: {}
-      )
-      .disposed(by: bag)
-  }
-  
   func fetchUserProfileInformation(with email: String) {
-    poemListViewModel.fetchPoems(email)
-    userViewModel.fetchUser(email: email)
   }
 }
 

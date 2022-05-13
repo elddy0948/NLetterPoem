@@ -76,7 +76,7 @@ final class RankingTableViewCell: UITableViewCell {
         firesLabel.textAlignment = .center
     }
     
-    func setCellData(with user: NLPUser, ranking: Int) {
+    func setCellData(with user: NLetterPoemUser, ranking: Int) {
         nicknameLabel.text = user.nickname
         firesLabel.text = "\(user.fires)🔥"
     }

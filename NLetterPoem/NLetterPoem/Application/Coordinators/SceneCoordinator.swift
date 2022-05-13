@@ -25,24 +25,10 @@ final class SceneCoordinator: Coordinator {
 
 //MARK: - LaunchViewControllerDelegate
 extension SceneCoordinator: LaunchViewControllerDelegate {
-  func presentNext(
-    _ viewController: LaunchViewController,
-    type: ViewControllerType
-  ) {
-    switch type {
-    case .signin:
-      presentSignInViewController()
-    case .main:
-      presentMainTabBarController()
-    }
+  func presentTabBarController(_ viewController: LaunchViewController) {
+    presentMainTabBarController()
   }
-  
-  private func presentSignInViewController() {
-    let signinViewController = SignInViewController()
-    signinViewController.delegate = self
-    router.present(signinViewController, animated: false)
-  }
-  
+
   private func presentMainTabBarController() {
     let tabBarController = NLPTabBarController()
     let tabBarRouter = TabBarRouter(
@@ -58,26 +44,6 @@ extension SceneCoordinator: LaunchViewControllerDelegate {
     presentChild(
       mainTabBarCoordinator,
       animated: false,
-      onDismissed: nil
-    )
-  }
-}
-
-extension SceneCoordinator: SignInViewControllerDelegate {
-  func signInAction(_ viewController: UIViewController) {
-    presentMainTabBarController()
-  }
-  
-  func registerAction(_ viewController: UIViewController) {
-    guard let router = router as? SceneRouter else {
-      return
-    }
-    
-    let signupViewController = SignUpViewController()
-    
-    router.presentModal(
-      signupViewController,
-      animated: true,
       onDismissed: nil
     )
   }

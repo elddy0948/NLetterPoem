@@ -7,7 +7,7 @@ extension UserProfileViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
-    return poemListViewModel.count
+    return 0
   }
   
   func collectionView(_ collectionView: UICollectionView,
@@ -17,12 +17,6 @@ extension UserProfileViewController: UICollectionViewDataSource {
             for: indexPath) as? MyPageCollectionViewCell else {
       return UICollectionViewCell()
     }
-    let poemViewModel = poemListViewModel.poemViewModel(
-      at: indexPath.item
-    )
-    
-    cell.setPoemData(with: poemViewModel)
-    
     return cell
   }
   
@@ -35,8 +29,8 @@ extension UserProfileViewController: UICollectionViewDataSource {
                                                                        withReuseIdentifier: UserProfileHeaderView.reuseIdentifier,
                                                                        for: indexPath)
       guard let typeHeaderView = headerView as? UserProfileHeaderView else { return headerView }
-      let userViewModel = userViewModel
-      typeHeaderView.configureUser(with: userViewModel)
+//      let userViewModel = userViewModel
+//      typeHeaderView.configureUser(with: userViewModel)
       return typeHeaderView
     default:
       assert(false)

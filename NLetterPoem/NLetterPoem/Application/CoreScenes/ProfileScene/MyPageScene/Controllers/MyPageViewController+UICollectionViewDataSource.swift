@@ -7,7 +7,8 @@ extension MyPageViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView,
                       numberOfItemsInSection section: Int) -> Int {
-    return poemListViewModel.count
+//    return poemListViewModel.count
+    return 0
   }
   
   func collectionView(_ collectionView: UICollectionView,
@@ -17,11 +18,11 @@ extension MyPageViewController: UICollectionViewDataSource {
       for: indexPath) as? MyPageCollectionViewCell else {
         return UICollectionViewCell()
       }
-    
-    let poemViewModel = poemListViewModel.poemViewModel(
-      at: indexPath.item
-    )
-    cell.setPoemData(with: poemViewModel)
+//
+//    let poemViewModel = poemListViewModel.poemViewModel(
+//      at: indexPath.item
+//    )
+//    cell.setPoemData(with: poemViewModel)
     
     return cell
   }
@@ -37,12 +38,12 @@ extension MyPageViewController: UICollectionViewDataSource {
         for: indexPath
       )
       guard let typeHeaderView = headerView as? MyPageHeaderView else { return headerView }
-      typeHeaderView.configureUser(
-        with: userViewModel,
-        isEditButtonHidden: false
-      )
-      typeHeaderView.delegate = self
-      
+//      typeHeaderView.configureUser(
+//        with: userViewModel,
+//        isEditButtonHidden: false
+//      )
+//      typeHeaderView.delegate = self
+//      
       return typeHeaderView
     default:
       assert(false)

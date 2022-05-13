@@ -4,7 +4,7 @@ protocol HomeTableViewDelegate: AnyObject {
   func handleRefreshHomeTableView(_ tableView: HomeTableView)
 }
 
-class HomeTableView: UITableView {
+final class HomeTableView: UITableView {
   
   private let homeRefreshControl = UIRefreshControl()
   weak var homeTableViewDelegate: HomeTableViewDelegate?
@@ -27,7 +27,10 @@ class HomeTableView: UITableView {
     separatorStyle = .none
     clipsToBounds = false
     
-    refreshControl?.addTarget(self, action: #selector(handleRefreshHome(_:)), for: UIControl.Event.valueChanged)
+    refreshControl?.addTarget(
+      self, action: #selector(handleRefreshHome(_:)),
+      for: UIControl.Event.valueChanged
+    )
   }
   
   @objc func handleRefreshHome(_ sender: UIRefreshControl) {

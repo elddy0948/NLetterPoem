@@ -1,6 +1,6 @@
 import UIKit
 
-class NLPTabBarController: UITabBarController {
+final class NLPTabBarController: UITabBarController {
   
   static var tabBarTopAnchor: NSLayoutYAxisAnchor = NSLayoutYAxisAnchor()
   

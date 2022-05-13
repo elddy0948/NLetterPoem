@@ -23,108 +23,70 @@ protocol CreatePoemViewDelegate: AnyObject {
 final class CreatePoemView: UIView {
   
   //MARK: - Views
-  private(set) var topicLabel: UILabel!
-  private(set) var lettersStackView: UIStackView!
-  private(set) var inputViews: [NLPPoemFormView]!
-  private(set) var doneButton: UIButton!
+  private lazy var topicLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .label
+    label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+    label.textAlignment = .center
+    return label
+  }()
+  private lazy var contentStackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    stackView.distribution = .fill
+    return stackView
+  }()
+  private lazy var inputViews: [NLPPoemFormView] = []
+  private lazy var doneButton: UIButton = {
+    let button = UIButton()
+    button.setImage(
+      UIImage(systemName: "checkmark.circle"),
+      for: .normal
+    )
+    button.contentHorizontalAlignment = .fill
+    button.contentVerticalAlignment = .fill
+    button.tintColor = .label
+    button.addTarget(
+      self,
+      action: #selector(didTappedDoneButton(_:)),
+      for: .touchUpInside
+    )
+    return button
+  }()
   
   //MARK: - Properties
-  var topic: String?
-  var poem: NLPPoem?
+  var poem: Poem?
   weak var delegate: CreatePoemViewDelegate?
   
   //MARK: - init
-  init(topic: String, poem: NLPPoem?) {
+  init(poem: Poem?) {
     super.init(frame: .zero)
-    self.topic = topic
     self.poem = poem
-    
-    configure()
-    configureTopicLabel()
-    configureLabels()
-    configureDoneButton()
+    layout()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private func configure() {
-    backgroundColor = .systemBackground
-    translatesAutoresizingMaskIntoConstraints = false
-  }
-  
-  private func configureTopicLabel() {
-    topicLabel = UILabel()
-    addSubview(topicLabel)
-    
-    topicLabel.translatesAutoresizingMaskIntoConstraints = false
-    topicLabel.textColor = .label
-    topicLabel.font = UIFont.systemFont(ofSize: 32, weight: .bold)
-    topicLabel.text = topic
-    topicLabel.textAlignment = .center
-    
-    let padding: CGFloat = 8
-    NSLayoutConstraint.activate([
-      topicLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: padding),
-      topicLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-      topicLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-      topicLabel.heightAnchor.constraint(equalToConstant: 80),
-    ])
-  }
-  
   private func configureLabels() {
-    guard let topic = topic else { return }
-    let poemArray = poem?.content.makePoemArray()
-    let topicArray = Array(topic)
+    guard let poem = poem else { return }
+
+    let poemArray = poem.content.makePoemArray()
+    let topicArray = poem.topic.map{ String($0) }
     
-    lettersStackView = UIStackView()
-    inputViews = [NLPPoemFormView]()
-    
-    for letter in 0..<topicArray.count {
+    for index in 0 ..< topicArray.count {
       let poemLetterView = NLPPoemFormView()
-      poemLetterView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-      poemLetterView.configureLetter(with: String(topicArray[letter]), line: poemArray?[letter])
+      
+      poemLetterView.heightAnchor.constraint(
+        equalToConstant: 50
+      ).isActive = true
+      poemLetterView.configureLetter(
+        with: topicArray[index], line: poemArray[index]
+      )
       inputViews.append(poemLetterView)
-      lettersStackView.addArrangedSubview(poemLetterView)
+      contentStackView.addArrangedSubview(poemLetterView)
     }
-    
-    addSubview(lettersStackView)
-    
-    lettersStackView.axis = .vertical
-    lettersStackView.distribution = .fill
-    lettersStackView.translatesAutoresizingMaskIntoConstraints = false
-    
-    let padding: CGFloat = 8
-    NSLayoutConstraint.activate([
-      lettersStackView.topAnchor.constraint(equalTo: topicLabel.bottomAnchor,
-                                            constant: padding),
-      lettersStackView.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                constant: padding),
-      lettersStackView.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                 constant: -padding),
-    ])
-  }
-  
-  private func configureDoneButton() {
-    let padding: CGFloat = 8
-    doneButton = UIButton()
-    addSubview(doneButton)
-    
-    doneButton.translatesAutoresizingMaskIntoConstraints = false
-    doneButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-    doneButton.contentHorizontalAlignment = .fill
-    doneButton.contentVerticalAlignment = .fill
-    doneButton.tintColor = .label
-    
-    doneButton.addTarget(self, action: #selector(didTappedDoneButton(_:)), for: .touchUpInside)
-    
-    NSLayoutConstraint.activate([
-      doneButton.topAnchor.constraint(equalTo: lettersStackView.bottomAnchor, constant: padding),
-      doneButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-      doneButton.widthAnchor.constraint(equalToConstant: 52),
-      doneButton.heightAnchor.constraint(equalToConstant: 52),
-    ])
   }
   
   @objc func didTappedCancelButton(_ sender: UIBarButtonItem) {
@@ -147,5 +109,51 @@ final class CreatePoemView: UIView {
     }
     
     delegate?.createPoemView(self, didTapDone: sender, poemContent: poemString)
+  }
+}
+
+//MARK: - Layout
+extension CreatePoemView {
+  private func layout() {
+    let padding: CGFloat = 8
+    
+    self.addSubview(topicLabel)
+    self.addSubview(contentStackView)
+    self.addSubview(doneButton)
+    
+    topicLabel.translatesAutoresizingMaskIntoConstraints = false
+    contentStackView.translatesAutoresizingMaskIntoConstraints = false
+    doneButton.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      topicLabel.topAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.topAnchor, constant: padding
+      ),
+      topicLabel.leadingAnchor.constraint(
+        equalTo: leadingAnchor, constant: padding
+      ),
+      topicLabel.trailingAnchor.constraint(
+        equalTo: trailingAnchor, constant: -padding
+      ),
+      topicLabel.heightAnchor.constraint(equalToConstant: 80),
+      doneButton.bottomAnchor.constraint(
+        equalTo: bottomAnchor, constant: -padding
+      ),
+      doneButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+      doneButton.widthAnchor.constraint(equalToConstant: 52),
+      doneButton.heightAnchor.constraint(equalToConstant: 52),
+      contentStackView.topAnchor.constraint(
+        equalTo: topicLabel.bottomAnchor, constant: padding
+      ),
+      contentStackView.leadingAnchor.constraint(
+        equalTo: leadingAnchor, constant: padding
+      ),
+      contentStackView.trailingAnchor.constraint(
+        equalTo: trailingAnchor, constant: -padding
+      ),
+      contentStackView.bottomAnchor.constraint(
+        equalTo: doneButton.topAnchor, constant: -padding
+      )
+    ])
   }
 }

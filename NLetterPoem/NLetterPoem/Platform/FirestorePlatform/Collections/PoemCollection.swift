@@ -1,6 +1,5 @@
 import Foundation
 import RxSwift
-import FirebaseFirestore
 
 public final class PoemCollection {
   private let network: FirestoreNetwork<PoemDTO>
@@ -27,5 +26,13 @@ public final class PoemCollection {
   
   public func deletePoem(_ poem: PoemDTO) -> Completable {
     return network.delete(poem.id)
+  }
+  
+  public func fetchPoems(query: NLetterQuery?, order: String, limit: Int) -> Observable<(NLetterQuery?, [PoemDTO])> {
+    return network.getItems(
+      query: query,
+      order: order,
+      limit: limit
+    )
   }
 }

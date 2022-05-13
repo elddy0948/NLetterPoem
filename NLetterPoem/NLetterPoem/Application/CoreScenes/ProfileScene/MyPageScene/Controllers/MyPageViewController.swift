@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import RxSwift
 
-class MyPageViewController: DataLoadingViewController {
+final class MyPageViewController: DataLoadingViewController {
   
   //MARK: - Views
   private(set) var myPageCollectionView: ProfileCollectionView?
@@ -13,16 +13,9 @@ class MyPageViewController: DataLoadingViewController {
   )
   private let bag = DisposeBag()
   
-  var userViewModel = UserViewModel()
-  var poemListViewModel = PoemListViewModel(.shared)
-  lazy var combineObservable: Observable<(
-    NLPUser,
-    [PoemViewModel])> = {
-    return Observable.combineLatest(
-      userViewModel.userSubject,
-      poemListViewModel.poemListSubject)
-  }()
-  
+//  var userViewModel = UserViewModel()
+//  var poemListViewModel = PoemListViewModel(.shared)
+//
   //MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -42,30 +35,9 @@ class MyPageViewController: DataLoadingViewController {
   }
   
   private func setupSubscription() {
-    combineObservable
-      .subscribe(on: globalScheduler)
-      .observe(on: MainScheduler.instance)
-      .subscribe(
-      onNext: { [weak self] (user, poemViewModels) in
-        self?.dismissLoadingView()
-        guard let self = self else { return }
-        self.myPageCollectionView?.reloadSections(
-          IndexSet(integer: 0)
-        )
-      },
-      onError: { error in },
-      onCompleted: { },
-      onDisposed: { }
-    ).disposed(by: bag)
   }
   
   private func fetchUserProfile() {
-    guard let currentUser = Auth.auth().currentUser,
-          let email = currentUser.email else { return }
-    
-    showLoadingView()
-    userViewModel.fetchUser(email: email)
-    poemListViewModel.fetchPoems(email)
   }
   
   @objc func didTapSettingButton(_ sender: UIBarButtonItem) {
@@ -76,16 +48,12 @@ class MyPageViewController: DataLoadingViewController {
 
 extension MyPageViewController: MyPageHeaderViewDelegate {
   func didTappedEditProfileButton(_ sender: NLPButton) {
-    let viewController = EditProfileViewController(userViewModel.user)
-    viewController.modalPresentationStyle = .fullScreen
-    viewController.delegate = self
-    present(viewController, animated: true, completion: nil)
   }
 }
 
 extension MyPageViewController: EditProfileViewControllerDelegate {
   func editProfileViewController(_ viewController: EditProfileViewController,
-                                 didFinishEditing user: NLPUser?) {
+                                 didFinishEditing user: NLetterPoemUser?) {
     fetchUserProfile()
   }
 }

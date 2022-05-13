@@ -4,6 +4,15 @@ import Firebase
 class FirstCreateViewController: CreatorViewController {
   private var firstCreateView: FirstCreateView!
   
+  init(user: NLetterPoemUser) {
+    super.init(nibName: nil, bundle: nil)
+    self.user = user
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
@@ -46,8 +55,10 @@ extension FirstCreateViewController: FirstCreateViewDelegate {
   }
   
   func firstCreateView(_ firstCreateView: FirstCreateView, didTapNextButton nextButton: UIButton) {
-    let viewController = CreateTopicViewController()
-    viewController.user = user
+    guard let user = user else { return }
+    let viewController = CreateTopicViewController(
+      user: user
+    )
     self.navigationController?.pushViewController(viewController, animated: true)
   }
 }

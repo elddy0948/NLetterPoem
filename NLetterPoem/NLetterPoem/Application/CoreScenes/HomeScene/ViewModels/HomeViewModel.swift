@@ -4,7 +4,7 @@ import RxCocoa
 
 final class HomeViewModel: ViewModelType {
   struct Input {
-    let currentUserEmail: Driver<String>
+    let currentUserEmail: Observable<String>
   }
   
   struct Output {
@@ -17,9 +17,8 @@ final class HomeViewModel: ViewModelType {
     let user = input.currentUserEmail
       .flatMapLatest({ email in
         return self.usecase.read(email)
-          .asDriver(onErrorJustReturn: NLetterPoemUser(email: "", nickname: "", bio: ""))
       })
-      .asDriver()
+      .asDriver(onErrorJustReturn: NLetterPoemUser(email: "", nickname: "", bio: ""))
     
     return Output(user: user)
   }

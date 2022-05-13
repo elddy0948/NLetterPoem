@@ -2,18 +2,17 @@ import UIKit
 import Firebase
 import RxSwift
 
+protocol PoemDetailViewControllerDelegate: AnyObject {
+  
+}
+
 final class PoemDetailViewController: DataLoadingViewController {
   
   private(set) var detailPoemView: PoemDetailView?
   
   //MARK: - Properties
-  private var poemViewModel: PoemViewModel
-  private let currentUserViewModel = CurrentUserViewModel.shared
-  private var currentUser = NLPUser.empty {
-    didSet {
-      setupFireState()
-    }
-  }
+  private var poem: Poem?
+  private let currentUser = Auth.auth().currentUser
   private let bag = DisposeBag()
   var fireState = false
   var enableAuthorButton = true
@@ -22,8 +21,8 @@ final class PoemDetailViewController: DataLoadingViewController {
   )
   
   //MARK: - Initializer
-  init(_ poemViewModel: PoemViewModel) {
-    self.poemViewModel = poemViewModel
+  init(poem: Poem?) {
+    self.poem = poem
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -37,36 +36,6 @@ final class PoemDetailViewController: DataLoadingViewController {
     view.backgroundColor = .systemBackground
     setupPoemDetailView()
     checkIsEditable()
-    setupUserSubscription()
-    showLoadingView()
-    currentUserViewModel.fetchCurrentUser(
-      currentUserViewModel.email
-    )
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    currentUserViewModel.fetchCurrentUser(
-      currentUserViewModel.email
-    )
-  }
-  
-  private func setupUserSubscription() {
-    currentUserViewModel.userSubject
-      .subscribe(on: globalScheduler)
-      .observe(on: MainScheduler.instance)
-      .subscribe(
-        onNext: { [weak self] user in
-          guard let self = self else { return }
-          self.dismissLoadingView()
-          self.currentUser = user
-        },
-        onError: { error in },
-        onCompleted: {},
-        onDisposed: { [weak self] in
-          self?.dismissLoadingView()
-        }
-      ).disposed(by: bag)
   }
   
   //MARK: - LikeCount Logic
@@ -74,21 +43,6 @@ final class PoemDetailViewController: DataLoadingViewController {
     id: String,
     authorEmail: String,
     isIncrease: Bool) {
-      
-      FirestorePoemApi.shared
-        .updateLikeCount(
-          id,
-          author: authorEmail,
-          isIncrease: isIncrease
-        )
-        .subscribe(on: globalScheduler)
-        .observe(on: MainScheduler.instance)
-        .subscribe(
-          onCompleted: {},
-          onError: { error in },
-          onDisposed: {}
-        )
-        .disposed(by: bag)
     }
   
   private func updateUserLikedPoem(
@@ -97,13 +51,7 @@ final class PoemDetailViewController: DataLoadingViewController {
     isRemove: Bool) {
       DispatchQueue.global(qos: .userInitiated).async {
         if isRemove {
-          UserDatabaseManager.shared.unLikedPoem(
-            to: email,
-            poemID: id) { _ in }
         } else {
-          UserDatabaseManager.shared.likedPoem(
-            to: email,
-            poemID: id) { _ in }
         }
       }
     }
@@ -115,12 +63,15 @@ final class PoemDetailViewController: DataLoadingViewController {
   }
   
   @objc func reportButtonAction(_ sender: UIBarButtonItem) {
+    guard let currentUser = currentUser,
+          let email = currentUser.email else { return }
     self.present(
       AlertControllerHelper.configureReportAlertController(
         self,
-        user: currentUserViewModel.user,
-        poemViewModel: poemViewModel
-      ), animated: true, completion: nil)
+        userEmail: email,
+        poem: poem
+      ), animated: true, completion: nil
+    )
   }
   
   private func configureAlertController() -> UIAlertController {
@@ -135,8 +86,7 @@ final class PoemDetailViewController: DataLoadingViewController {
       style: .default
     ) { [weak self] action in
       guard let self = self else { return }
-      let viewController = self.configureCreatePoemViewController()
-      self.present(viewController, animated: true, completion: nil)
+      self.presentCreatePoemViewController()
     }
     
     let deleteAction = UIAlertAction(
@@ -161,45 +111,20 @@ final class PoemDetailViewController: DataLoadingViewController {
     return alertController
   }
   
-  private func configureCreatePoemViewController() -> CreatePoemViewController {
-    let poem = poemViewModel.currentPoem
+  private func presentCreatePoemViewController() {
+    guard let poem = poem else { return }
     
     let viewController = CreatePoemViewController(
-      NLPTopic(topic: poem.topic),
-      type: .edit,
+      NLetterTopic(topic: poem.topic),
       poem: poem
     )
-    viewController.user = currentUserViewModel.user
     viewController.delegate = self
-    return viewController
+    
+    present(viewController, animated: true)
   }
   
   private func deletePoem() {
-    FirestorePoemApi.shared
-      .deletePoemFromUserAndPoemDB(
-        poemID: poemViewModel.id,
-        userEmail: currentUserViewModel.email
-      )
-      .subscribe(on: globalScheduler)
-      .observe(on: MainScheduler.instance)
-      .subscribe(
-        onCompleted: {
-          self.showAlert(
-            title: "성공",
-            message: "삭제되었습니다.",
-            action: nil
-          )
-        },
-        onError: { error in
-          self.showAlert(
-            title: "실패",
-            message: "삭제에 실패했습니다.",
-            action: nil
-          )
-        },
-        onDisposed: {}
-      )
-      .disposed(by: bag)
+    //    guard let user = user else { return }
   }
 }
 
@@ -209,63 +134,38 @@ extension PoemDetailViewController: PoemDetailViewDelegate {
     _ view: PoemDetailView,
     didTapAuthor author: String?
   ) {
-    let email = poemViewModel.authorEmail
-    let viewController = UserProfileViewController(
-      userEmail: email
-    )
-    navigationController?.pushViewController(
-      viewController,
-      animated: true
-    )
+    //    let email = poemViewModel.authorEmail
+    //    let viewController = UserProfileViewController(
+    //      userEmail: email
+    //    )
+    //    navigationController?.pushViewController(
+    //      viewController,
+    //      animated: true
+    //    )
   }
   
   func didTappedFireButton(
     _ detailPoemView: PoemDetailView,
-    _ fireButton: UIButton) {
-      let user = currentUserViewModel.user
-      let poem = poemViewModel.currentPoem
-      
-      fireState.toggle()
-      if fireState {
-        updateLikeCount(
-          id: poem.id,
-          authorEmail: poem.authorEmail,
-          isIncrease: true)
-        updateUserLikedPoem(
-          email: user.email,
-          id: poem.id,
-          isRemove: false)
-      } else {
-        updateLikeCount(
-          id: poem.id,
-          authorEmail: poem.authorEmail,
-          isIncrease: false)
-        updateUserLikedPoem(
-          email: user.email,
-          id: poem.id,
-          isRemove: true)
-      }
-      detailPoemView.fireButtonState(fireState: fireState)
-    }
+    _ fireButton: UIButton
+  ) {
+  }
 }
 
 //MARK: - CreatePoemViewControllerDelegate
 extension PoemDetailViewController: CreatePoemViewControllerDelegate {
   func createPoemViewController(
     _ viewController: CreatePoemViewController,
-    didTapDone poem: NLPPoem) {
-      self.poemViewModel = PoemViewModel(poem)
-      detailPoemView?.updatePoem(
-        with: poemViewModel.currentPoem
-      )
+    didTapDone poem: Poem) {
+      
     }
 }
 
 //MARK: - UI Logic
 extension PoemDetailViewController {
   private func setupPoemDetailView() {
+    guard let poem = poem else { return }
     detailPoemView = PoemDetailView(
-      poemViewModel: poemViewModel,
+      poem: poem,
       fireState: fireState,
       enableAuthorButton: enableAuthorButton
     )
@@ -285,43 +185,47 @@ extension PoemDetailViewController {
   }
   
   private func setupFireState() {
-    currentUserViewModel.likedPoems.contains(poemViewModel.id) ?
-    (fireState = true) : (fireState = false)
-    detailPoemView?.fireButtonState(fireState: fireState)
+    //    guard let user = user else { return }
+    //    user.likedPoem.contains(
+    //      poemViewModel.id
+    //    ) ? (fireState = true) : (fireState = false)
+    //    detailPoemView?.fireButtonState(fireState: fireState)
   }
   
   private func checkIsEditable() {
-    let isEditable = navigationController?.viewControllers.first is MyPageViewController
-    
-    if (poemViewModel.authorEmail == currentUserViewModel.email) && isEditable {
-      configureRightBarButtonItem(isEditable: true)
-    } else {
-      configureRightBarButtonItem(isEditable: false)
-    }
+    //    guard let user = user else { return }
+    //    let isEditable = navigationController?.viewControllers.first is MyPageViewController
+    //
+    //    if (poemViewModel.authorEmail == user.email) && isEditable {
+    //      configureRightBarButtonItem(isEditable: true)
+    //    } else {
+    //      configureRightBarButtonItem(isEditable: false)
+    //    }
   }
   
   private func configureRightBarButtonItem(
-    isEditable: Bool) {
-      let reportBarButtonItem = UIBarButtonItem(
-        image: UIImage(systemName: "megaphone"),
-        style: .plain,
+    isEditable: Bool
+  ) {
+    let reportBarButtonItem = UIBarButtonItem(
+      image: UIImage(systemName: "megaphone"),
+      style: .plain,
+      target: self,
+      action: #selector(reportButtonAction(_:))
+    )
+    
+    navigationItem.rightBarButtonItem = reportBarButtonItem
+    
+    if isEditable {
+      let editBarButtonItem = UIBarButtonItem(
+        barButtonSystemItem: .edit,
         target: self,
-        action: #selector(reportButtonAction(_:))
+        action: #selector(editButtonAction(_:))
       )
       
-      navigationItem.rightBarButtonItem = reportBarButtonItem
-      
-      if isEditable {
-        let editBarButtonItem = UIBarButtonItem(
-          barButtonSystemItem: .edit,
-          target: self,
-          action: #selector(editButtonAction(_:))
-        )
-        
-        navigationItem.rightBarButtonItems = [
-          reportBarButtonItem,
-          editBarButtonItem
-        ]
-      }
+      navigationItem.rightBarButtonItems = [
+        reportBarButtonItem,
+        editBarButtonItem
+      ]
     }
+  }
 }

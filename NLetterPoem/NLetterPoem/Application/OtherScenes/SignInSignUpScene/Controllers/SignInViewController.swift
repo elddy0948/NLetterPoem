@@ -110,28 +110,6 @@ extension SignInViewController: SigninViewDelegate {
   }
   
   private func signin(email: String, password: String) {
-    AuthManager.shared.signin(
-      email: email,
-      password: password
-    ) { [weak self] error in
-      guard let self = self else { return }
-      defer {
-        if self.isUserSignin {
-          self.delegate?.signInAction(self)
-        }
-      }
-      if let error = error {
-        debugPrint(error)
-        self.showAlert(
-          title: "⚠️",
-          message: "로그인에 실패했어요!\n다시 시도해주세요!",
-          action: nil
-        )
-        self.isUserSignin = false
-        return
-      }
-      self.isUserSignin = true
-    }
   }
 }
 

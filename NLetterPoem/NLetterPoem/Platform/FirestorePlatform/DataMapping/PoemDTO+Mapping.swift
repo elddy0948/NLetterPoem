@@ -11,7 +11,7 @@ public struct PoemDTO: Codable {
   let createdAt: String
   let created: String
   
-  init(poem: NLetterPoem) {
+  init(poem: Poem) {
     self.id = poem.id
     self.topic = poem.topic
     self.author = poem.author
@@ -25,8 +25,8 @@ public struct PoemDTO: Codable {
 }
 
 extension PoemDTO {
-  func toDomain() -> NLetterPoem {
-    return NLetterPoem(
+  func toDomain() -> Poem {
+    return Poem(
       id: id,
       topic: topic,
       author: author,

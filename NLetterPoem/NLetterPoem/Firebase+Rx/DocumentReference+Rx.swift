@@ -1,30 +1,30 @@
 import Foundation
 import RxSwift
+import Firebase
 import FirebaseFirestore
 
-
 extension Reactive where Base: DocumentReference {
-  public func getDocument() -> Observable<DocumentSnapshot> {
-    return Observable.create({ observer in
-      self.base.getDocument { documentSnapshot, error in
+  
+  func getDocument() -> Observable<DocumentSnapshot> {
+    return Observable.create { observer in
+      self.base.getDocument { snapshot, error in
         if let error = error {
           observer.onError(error)
-        } else if let documentSnapshot = documentSnapshot,
-                  documentSnapshot.exists {
-          observer.onNext(documentSnapshot)
+        } else if let snapshot = snapshot, snapshot.exists {
+          observer.onNext(snapshot)
           observer.onCompleted()
         } else {
           observer.onError(DocumentError.documentNotFound)
         }
       }
-      return Disposables.create { }
-    })
+      return Disposables.create()
+    }
   }
   
   func setData<T: Encodable>(_ data: T) -> Completable {
     return Completable.create(subscribe: { completable in
       do {
-        try base.setData(from: data)
+        //        try base.setData(from: data)
         completable(.completed)
       } catch {
         completable(.error(error))
@@ -46,5 +46,20 @@ extension Reactive where Base: DocumentReference {
       
       return Disposables.create {}
     })
+  }
+  
+  func listen() -> Observable<DocumentSnapshot> {
+    return Observable<DocumentSnapshot>.create { observer in
+      let listener = self.base.addSnapshotListener() { snapshot, error in
+        if let error = error {
+          observer.onError(error)
+        } else if let snapshot = snapshot {
+          observer.onNext(snapshot)
+        }
+      }
+      return Disposables.create {
+        listener.remove()
+      }
+    }
   }
 }

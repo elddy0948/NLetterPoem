@@ -1,7 +1,7 @@
-import Foundation
-import FirebaseFirestore
 import Firebase
 import RxSwift
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 final class FirestoreNetwork<T: Codable> {
   enum QueryType {
@@ -20,12 +20,11 @@ final class FirestoreNetwork<T: Codable> {
   }
   
   func getItem(_ itemId: String) -> Observable<T> {
-    return reference.document(itemId)
+    reference.document(itemId)
       .rx
       .getDocument()
-      .observe(on: scheduler)
-      .compactMap({ snapshot -> T? in
-        return try snapshot.data(as: T.self)
+      .map({ snapshot -> T in
+        try snapshot.data(as: T.self)
       })
   }
   
@@ -55,6 +54,42 @@ final class FirestoreNetwork<T: Codable> {
       })
   }
   
+  func getItems(query: NLetterQuery?, order: String, limit: Int) -> Observable<(NLetterQuery?, [T])> {
+    let firQuery: Query?
+    
+    if let query = query {
+      firQuery = query as? Query
+    } else {
+      firQuery = reference
+        .order(by: order, descending: true)
+        .limit(to: limit)
+    }
+    
+    guard let firQuery = firQuery else {
+      return Observable.just((nil, []))
+    }
+
+    
+    return firQuery.rx.listen()
+      .observe(on: scheduler)
+      .map({ snapshot -> (Query?, [T]) in
+        guard let lastSnapshot = snapshot.documents.last else {
+          return (nil, [])
+        }
+        
+        let next = self.reference
+          .order(by: order, descending: true)
+          .limit(to: limit)
+          .start(afterDocument: lastSnapshot)
+        
+        let results = snapshot.documents.compactMap({ document -> T? in
+          return try? document.data(as: T.self)
+        })
+        
+        return (next, results)
+      })
+  }
+  
   func update(_ itemId: String, item: T) -> Completable {
     return reference.document(itemId)
       .rx
@@ -72,3 +107,5 @@ final class FirestoreNetwork<T: Codable> {
       .setData(item)
   }
 }
+
+extension Query: NLetterQuery { }

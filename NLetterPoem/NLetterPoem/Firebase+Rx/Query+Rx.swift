@@ -9,7 +9,7 @@ import RxSwift
 import FirebaseFirestore
 
 extension Reactive where Base: Query {
-  public func getDocuments() -> Observable<QuerySnapshot> {
+  func getDocuments() -> Observable<QuerySnapshot> {
     return Observable.create({ observer in
       self.base.getDocuments(completion: { querySnapshot, error in
         if let error = error {
@@ -23,5 +23,20 @@ extension Reactive where Base: Query {
       })
       return Disposables.create { }
     })
+  }
+  
+  func listen() -> Observable<QuerySnapshot> {
+    return Observable<QuerySnapshot>.create { observer in
+      let listener = self.base.addSnapshotListener { snapshot, error in
+        if let error = error {
+          observer.onError(error)
+        } else if let snapshot = snapshot {
+          observer.onNext(snapshot)
+        }
+      }
+      return Disposables.create {
+        listener.remove()
+      }
+    }
   }
 }

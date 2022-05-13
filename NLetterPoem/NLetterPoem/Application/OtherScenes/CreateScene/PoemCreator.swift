@@ -1,9 +1,9 @@
 import UIKit
 
 protocol PoemCreator: AnyObject {
-  var user: NLPUser? { get set }
+  var user: NLetterPoemUser? { get set }
 }
 
 class CreatorViewController: DataLoadingViewController, PoemCreator {
-  var user: NLPUser?
+  var user: NLetterPoemUser?
 }

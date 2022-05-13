@@ -10,7 +10,7 @@ class MyPageCollectionViewCell: UICollectionViewCell {
   private(set) var topicLabel: NLPYeonSungFontLabel!
   
   //MARK: - Properties
-  var poem: NLPPoem?
+  var poem: Poem?
   
   //MARK: - init
   override init(frame: CGRect) {
@@ -23,7 +23,7 @@ class MyPageCollectionViewCell: UICollectionViewCell {
   }
   
   //MARK: - Configure Cell Data
-  func setPoemData(with poemViewModel: PoemViewModel) {
+  func setPoemData(with poemViewModel: Poem) {
     topicLabel.text = poemViewModel.topic
   }
   

@@ -1,22 +1,24 @@
 import UIKit
 import RxSwift
+import Firebase
 
 final class SearchViewController: UIViewController {
   
+  //MARK: - Views
   private let searchController = UISearchController(searchResultsController: nil)
   private var tableView: HomeTableView!
   
+  //MARK: - Properties
   private let search = BehaviorSubject(value: "")
   private let disposeBag = DisposeBag()
   private let searchViewModel = SearchViewModel()
-  
-  private var resultPoemViewModels: [PoemViewModel] = [] {
+  private var resultPoemViewModels: [Poem] = [] {
     didSet {
       tableView.reloadData()
     }
   }
-  private let currentUserViewModel = CurrentUserViewModel.shared
   
+  //MARK: - Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     configure()
@@ -59,20 +61,20 @@ final class SearchViewController: UIViewController {
   }
   
   private func configureSearchBehaviorSubject() {
-    search
-      .filter { $0.count >= 1 }
-      .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
-      .distinctUntilChanged()
-      .flatMapLatest({ [weak self] query -> Observable<[PoemViewModel]> in
-        guard let self = self else { return .empty() }
-        return self.searchViewModel.search(topic: query)
-          .catchAndReturn([])
-      })
-      .observe(on: MainScheduler.instance)
-      .subscribe(onNext: { [weak self] poemviewmodels in
-        self?.resultPoemViewModels = poemviewmodels
-      })
-      .disposed(by: disposeBag)
+//    search
+//      .filter { $0.count >= 1 }
+//      .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+//      .distinctUntilChanged()
+//      .flatMapLatest({ [weak self] query -> Observable<[PoemViewModel]> in
+//        guard let self = self else { return .empty() }
+//        return self.searchViewModel.search(topic: query)
+//          .catchAndReturn([])
+//      })
+//      .observe(on: MainScheduler.instance)
+//      .subscribe(onNext: { [weak self] poemviewmodels in
+//        self?.resultPoemViewModels = poemviewmodels
+//      })
+//      .disposed(by: disposeBag)
   }
 }
 
@@ -97,12 +99,9 @@ extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView,
                  didSelectRowAt indexPath: IndexPath) {
     let selectedPoem = resultPoemViewModels[indexPath.row]
-    let viewController = PoemDetailViewController(
-      selectedPoem
-    )
-    
+    let vc = PoemDetailViewController(poem: nil)
     navigationController?.pushViewController(
-      viewController,
+      vc,
       animated: true
     )
   }
@@ -120,10 +119,10 @@ extension SearchViewController: UITableViewDataSource {
       for: indexPath) as? HomeTableViewCell else {
         return UITableViewCell()
       }
-    let poem = resultPoemViewModels[indexPath.row]
-    cell.setCellData(shortDes: poem.shortDescription,
-                     writer: poem.author,
-                     topic: poem.topic)
+//    let poem = resultPoemViewModels[indexPath.row]
+//    cell.setCellData(shortDes: poem.shortDescription,
+//                     writer: poem.author,
+//                     topic: poem.topic)
     return cell
   }
 }

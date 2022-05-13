@@ -5,7 +5,7 @@ import RxCocoa
 protocol HotViewControllerDelegate: AnyObject {
   func hotViewController(
     _ viewController: HotViewController,
-    didSelected poemViewModel: PoemViewModel
+    didSelected poem: Poem
   )
 }
 
@@ -28,26 +28,32 @@ final class HotViewController: UIViewController {
   }()
   
   //MARK: - Properties
-  private let hotViewModel = HotViewModel()
-  private let disposeBag = DisposeBag()
-  private let isLastCell = BehaviorSubject<Void>(value: ())
-  private let poemsRelay = BehaviorRelay<[NLPPoem]>(value: [])
   private var isPaging = false
-  private var hasNextPage = false
-  
+  private var isLastPage = false
+  private let usecase = FirestoreUsecaseProvider().makePoemsUseCase()
+  private lazy var viewModel = HotViewModel(usecase: usecase)
   weak var delegate: HotViewControllerDelegate?
+  private var poems = [Poem]() {
+    didSet {
+      DispatchQueue.main.async {
+        self.homeTableView.reloadData()
+      }
+    }
+  }
+  
+  //Rx
+  private let triggerSubject = PublishSubject<Void>()
+  private let bag = DisposeBag()
+  private let globalScheduler = ConcurrentDispatchQueueScheduler(
+    queue: .global(qos: .utility)
+  )
   
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     setupTableView()
     bindToViewModel()
-    isLastCell.onNext(())
-    
-    let usecase = FirestoreUsecaseProvider().makePoemsUseCase()
-    usecase.readPoems(query: PoemQuery(authorEmail: "howift@naver.com", createdAt: nil))
-      .subscribe(onNext: { print($0) })
-      .disposed(by: disposeBag)
+    triggerSubject.onNext(())
   }
   
   override func viewWillLayoutSubviews() {
@@ -57,14 +63,21 @@ final class HotViewController: UIViewController {
   
   private func bindToViewModel() {
     let inputs = HotViewModel.Input(
-      fetchNextPoems: isLastCell.asObservable()
+      trigger: triggerSubject.asObservable()
     )
     
-    let outputs = hotViewModel.transform(input: inputs)
+    let outputs = viewModel.transform(input: inputs)
     
     outputs.poems
-      .drive(poemsRelay)
-      .disposed(by: disposeBag)
+      .observe(on: globalScheduler)
+      .subscribe(onNext: { [weak self] poems in
+        if poems.count < 10 {
+          self?.isLastPage = true
+        }
+        self?.isPaging = false
+        self?.poems += poems
+      })
+      .disposed(by: bag)
   }
 }
 
@@ -73,24 +86,23 @@ extension HotViewController: UITableViewDelegate {
     return 150
   }
   
-  func tableView(_ tableView: UITableView,
-                 didSelectRowAt indexPath: IndexPath) {
-//    let selectedPoemViewModel = poemsRelay.value[indexPath.row]
-//
-//    delegate?.hotViewController(
-//      self,
-//      didSelected: selectedPoemViewModel)
+  func tableView(
+    _ tableView: UITableView,
+    didSelectRowAt indexPath: IndexPath
+  ) {
+    let selectedPoem = poems[indexPath.row]
+    delegate?.hotViewController(self, didSelected: selectedPoem)
   }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    let offsetY = scrollView.contentOffset.y
+    let yOffset = scrollView.contentOffset.y
     let contentHeight = scrollView.contentSize.height
     let height = scrollView.frame.height
     
-    if offsetY > (contentHeight - height) {
-      //Call next page
-      if !isPaging && hasNextPage {
-        isLastCell.onNext(())
+    if yOffset > (contentHeight - height) {
+      if !isPaging && !isLastPage {
+        isPaging = true
+        triggerSubject.onNext(())
       }
     }
   }
@@ -99,8 +111,7 @@ extension HotViewController: UITableViewDelegate {
 extension HotViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
-    print(poemsRelay.value.count)
-    return poemsRelay.value.count
+    return poems.count
   }
   
   func tableView(_ tableView: UITableView,
@@ -109,7 +120,7 @@ extension HotViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     
-    let poem = poemsRelay.value[indexPath.row]
+    let poem = poems[indexPath.row]
 
     cell.setCellData(
       shortDes: poem.content.makeShortDescription(),
@@ -122,8 +133,9 @@ extension HotViewController: UITableViewDataSource {
 
 extension HotViewController: HomeTableViewDelegate {
   func handleRefreshHomeTableView(_ tableView: HomeTableView) {
-//    fetchHotPoems()
-    tableView.reloadData()
+    viewModel.resetQuery()
+    poems = []
+    triggerSubject.onNext(())
   }
 }
 

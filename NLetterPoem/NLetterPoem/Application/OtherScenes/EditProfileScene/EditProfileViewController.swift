@@ -2,22 +2,25 @@ import UIKit
 import Firebase
 
 protocol EditProfileViewControllerDelegate: AnyObject {
-  func editProfileViewController(_ viewController: EditProfileViewController, didFinishEditing user: NLPUser?)
+  func editProfileViewController(
+    _ viewController: EditProfileViewController,
+    didFinishEditing user: NLetterPoemUser?
+  )
 }
 
-class EditProfileViewController: DataLoadingViewController {
+final class EditProfileViewController: DataLoadingViewController {
   
   //MARK: - Views
   private(set) var editProfileView: EditProfileView!
   
   //MARK: - Properties
-  var updatedUser: NLPUser?
+  var updatedUser: NLetterPoemUser?
   weak var delegate: EditProfileViewControllerDelegate?
   
   //MARK: - Initializer
-  init(_ user: NLPUser) {
+  init(_ user: NLetterPoemUser) {
     super.init(nibName: nil, bundle: nil)
-    editProfileView = EditProfileView(user: user)
+//    editProfileView = EditProfileView(user: user)
   }
   
   required init?(coder: NSCoder) {
@@ -52,37 +55,20 @@ extension EditProfileViewController {
 
 //MARK: - EditProfileViewDelegate
 extension EditProfileViewController: EditProfileViewDelegate {
-  func editProfileView(_ editProfileView: EditProfileView, cancelEdit button: UIBarButtonItem) {
+  func editProfileView(
+    _ editProfileView: EditProfileView,
+    doneEdit info: [String : String?]
+  ) {
+    
+  }
+  
+  func editProfileView(
+    _ editProfileView: EditProfileView,
+    cancelEdit button: UIBarButtonItem
+  ) {
     dismiss(animated: true, completion: nil)
   }
   
-  func editProfileView(_ editProfileView: EditProfileView, doneEdit user: NLPUser) {
-    showLoadingView()
-    updatedUser = user
-    DispatchQueue.global(qos: .utility).async { [weak self] in
-      guard let self = self,
-            let updatedUser = self.updatedUser else { return }
-      self.updateUserData(updatedUser)
-    }
-  }
-  
-  private func updateUserData(_ user: NLPUser?) {
-    guard let user = user else { return }
-    UserDatabaseManager.shared.update(user) { [weak self] result in
-      guard let self = self else { return }
-      self.dismissLoadingView()
-      switch result {
-      case .success(_):
-        self.showAlert(title: "🎉", message: "정보 변경을 완료했습니다!") { _ in
-          self.dismiss(animated: true, completion: {
-            self.delegate?.editProfileViewController(self, didFinishEditing: self.updatedUser)
-          })
-        }
-      case .failure(_):
-        self.showAlert(title: "⚠️", message: "정보 변경에 실패했습니다!!") { _ in
-          self.dismiss(animated: true, completion: nil)
-        }
-      }
-    }
+  private func updateUserData() {
   }
 }

@@ -18,7 +18,7 @@ final class MyPageHeaderView: UICollectionReusableView {
   private(set) var verticalStackView: UIStackView!
   
   //MARK: - Properties
-  private var user: NLPUser!
+  private var user: NLetterPoemUser!
   weak var delegate: MyPageHeaderViewDelegate?
   
   //MARK: - initializer
@@ -33,12 +33,12 @@ final class MyPageHeaderView: UICollectionReusableView {
   }
   
   //MARK: - Configure Mypage Data
-  func configureUser(with userViewModel: UserViewModel,
+  func configureUser(with user: NLetterPoemUser,
                      isEditButtonHidden: Bool) {
-    bioLabel.text = userViewModel.bio
-    userNameLabel.text = userViewModel.nickname
+    bioLabel.text = user.bio
+    userNameLabel.text = user.nickname
     editProfileButton.isHidden = isEditButtonHidden
-    firesLabel.text = "\(userViewModel.fires)🔥"
+    firesLabel.text = "\(user.fires)🔥"
   }
   
   //MARK: - Privates

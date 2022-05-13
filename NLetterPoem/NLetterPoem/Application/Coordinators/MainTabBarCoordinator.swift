@@ -48,6 +48,13 @@ extension MainTabBarCoordinator {
     navController.configureNavigationBarAppearance(
       .systemBackground
     )
+    let homeRouter = HomeRouter(
+      navController: navController
+    )
+    let homeCoordinator = HomeCoordinator(
+      router: homeRouter
+    )
+    
     return navController
   }
   

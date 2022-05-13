@@ -1,29 +1,48 @@
 import UIKit
 
 protocol EditProfileViewDelegate: AnyObject {
-  func editProfileView(_ editProfileView: EditProfileView, cancelEdit button: UIBarButtonItem)
-  func editProfileView(_ editProfileView: EditProfileView, doneEdit user: NLPUser)
+  func editProfileView(
+    _ editProfileView: EditProfileView,
+    cancelEdit button: UIBarButtonItem
+  )
+  func editProfileView(
+    _ editProfileView: EditProfileView,
+    doneEdit info: [String: String?]
+  )
 }
 
-class EditProfileView: UIView {
+final class EditProfileView: UIView {
   
   //MARK: - Views
-  private(set) var navigationBar: UINavigationBar!
-  private(set) var nicknameTextField: NLPTextField!
-  private(set) var bioTextView: UITextView!
+  private lazy var navigationBar: UINavigationBar = {
+    let navBar = UINavigationBar()
+    navBar.barTintColor = .systemBackground
+    navBar.tintColor = .label
+    return navBar
+  }()
+  private lazy var nicknameTextField = NLPTextField(type: .nickname)
+  private lazy var bioTextView: UITextView = {
+    let textView = UITextView()
+    textView.autocorrectionType = .no
+    textView.autocapitalizationType = .none
+    textView.backgroundColor = .secondarySystemBackground
+    textView.layer.borderColor = UIColor.systemGray.cgColor
+    textView.layer.borderWidth = 3
+    textView.layer.cornerRadius = 16
+    textView.layer.masksToBounds = true
+    return textView
+  }()
   
   //MARK: - Properties
-  private var user: NLPUser!
   weak var delegate: EditProfileViewDelegate?
   
   //MARK: - init
-  init(user: NLPUser) {
+  init(user: NLetterPoemUser) {
     super.init(frame: .zero)
-    self.user = user
     configure()
-    configureNavigationBar()
-    configureNicknameTextField()
-    configureBioTextView()
+    configureNavigationItem()
+    configureSubViewData(with: user)
+    layout()
   }
   
   override init(frame: CGRect) {
@@ -41,27 +60,20 @@ class EditProfileView: UIView {
     translatesAutoresizingMaskIntoConstraints = false
   }
   
-  private func configureNavigationBar() {
-    navigationBar = UINavigationBar()
-    addSubview(navigationBar)
-    
-    navigationBar.translatesAutoresizingMaskIntoConstraints = false
-    navigationBar.barTintColor = .systemBackground
-    navigationBar.tintColor = .label
-    
-    configureNavigationItem()
-    
-    NSLayoutConstraint.activate([
-      navigationBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-      navigationBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-      navigationBar.trailingAnchor.constraint(equalTo: trailingAnchor),
-    ])
-  }
-  
   private func configureNavigationItem() {
     let item = UINavigationItem(title: "프로필 수정")
-    let cancelButton = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(didTappedCancelButton(_:)))
-    let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(didTappedDoneButton(_:)))
+    let cancelButton = UIBarButtonItem(
+      title: "닫기",
+      style: .plain,
+      target: self,
+      action: #selector(didTappedCancelButton(_:))
+    )
+    let doneButton = UIBarButtonItem(
+      title: "완료",
+      style: .done,
+      target: self,
+      action: #selector(didTappedDoneButton(_:))
+    )
     
     item.leftBarButtonItem = cancelButton
     item.rightBarButtonItem = doneButton
@@ -69,39 +81,9 @@ class EditProfileView: UIView {
     navigationBar.pushItem(item, animated: true)
   }
   
-  private func configureNicknameTextField() {
-    nicknameTextField = NLPTextField(type: .nickname)
-    addSubview(nicknameTextField)
+  private func configureSubViewData(with user: NLetterPoemUser) {
     nicknameTextField.text = user.nickname
-    
-    NSLayoutConstraint.activate([
-      nicknameTextField.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 16),
-      nicknameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-      nicknameTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-      nicknameTextField.heightAnchor.constraint(equalToConstant: 52),
-    ])
-  }
-  
-  private func configureBioTextView() {
-    bioTextView = UITextView()
-    addSubview(bioTextView)
-    
-    bioTextView.translatesAutoresizingMaskIntoConstraints = false
     bioTextView.text = user.bio
-    bioTextView.autocorrectionType = .no
-    bioTextView.autocapitalizationType = .none
-    bioTextView.backgroundColor = .secondarySystemBackground
-    bioTextView.layer.borderColor = UIColor.systemGray.cgColor
-    bioTextView.layer.borderWidth = 3
-    bioTextView.layer.cornerRadius = 16
-    bioTextView.layer.masksToBounds = true
-    
-    NSLayoutConstraint.activate([
-      bioTextView.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor, constant: 16),
-      bioTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-      bioTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-      bioTextView.heightAnchor.constraint(equalToConstant: 150),
-    ])
   }
   
   //MARK: - Actions
@@ -110,15 +92,58 @@ class EditProfileView: UIView {
   }
   
   @objc func didTappedDoneButton(_ sender: UIBarButtonItem) {
-    guard let nickname = nicknameTextField.text,
-          let bio = bioTextView.text,
-          let user = user else {
-      delegate?.editProfileView(self, cancelEdit: sender)
-      return
-    }
-    user.nickname = nickname
-    user.bio = bio
+    let info = [
+      "nickname" : nicknameTextField.text,
+      "bio" : bioTextView.text
+    ]
+    delegate?.editProfileView(self, doneEdit: info)
+  }
+}
+
+//MARK: - Layout / UI Setup
+extension EditProfileView {
+  private func layout() {
+    self.addSubview(navigationBar)
+    self.addSubview(nicknameTextField)
+    self.addSubview(bioTextView)
     
-    delegate?.editProfileView(self, doneEdit: user)
+    navigationBar.translatesAutoresizingMaskIntoConstraints = false
+    nicknameTextField.translatesAutoresizingMaskIntoConstraints = false
+    bioTextView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      navigationBar.topAnchor.constraint(
+        equalTo: safeAreaLayoutGuide.topAnchor
+      ),
+      navigationBar.leadingAnchor.constraint(
+        equalTo: leadingAnchor
+      ),
+      navigationBar.trailingAnchor.constraint(
+        equalTo: trailingAnchor
+      ),
+      nicknameTextField.topAnchor.constraint(
+        equalTo: navigationBar.bottomAnchor, constant: 16
+      ),
+      nicknameTextField.leadingAnchor.constraint(
+        equalTo: leadingAnchor, constant: 16
+      ),
+      nicknameTextField.trailingAnchor.constraint(
+        equalTo: trailingAnchor, constant: -16
+      ),
+      nicknameTextField.heightAnchor.constraint(
+        equalToConstant: 52
+      ),
+      bioTextView.topAnchor.constraint(
+        equalTo: nicknameTextField.bottomAnchor,
+        constant: 16
+      ),
+      bioTextView.leadingAnchor.constraint(
+        equalTo: leadingAnchor, constant: 16
+      ),
+      bioTextView.trailingAnchor.constraint(
+        equalTo: trailingAnchor, constant: -16
+      ),
+      bioTextView.heightAnchor.constraint(equalToConstant: 150),
+    ])
   }
 }

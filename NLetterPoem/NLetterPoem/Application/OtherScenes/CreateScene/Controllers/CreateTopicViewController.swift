@@ -6,6 +6,15 @@ final class CreateTopicViewController: CreatorViewController {
   //MARK: - Views
   private(set) var createTopicView: CreateTopicView!
   
+  init(user: NLetterPoemUser) {
+    super.init(nibName: nil, bundle: nil)
+    self.user = user
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+  }
+  
   //MARK: - Life cycles
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,17 +52,5 @@ extension CreateTopicViewController: CreateTopicViewDelegate {
       )
       return
     }
-    
-    let createPoemViewController = CreatePoemViewController(
-      NLPTopic(topic: topic),
-      poem: nil
-    )
-    
-    createPoemViewController.user = user
-    
-    navigationController?.pushViewController(
-      createPoemViewController,
-      animated: true
-    )
   }
 }

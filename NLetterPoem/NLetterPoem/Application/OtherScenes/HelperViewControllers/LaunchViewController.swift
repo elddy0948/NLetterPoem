@@ -8,10 +8,7 @@ enum ViewControllerType {
 }
 
 protocol LaunchViewControllerDelegate: AnyObject {
-  func presentNext(
-    _ viewController: LaunchViewController,
-    type: ViewControllerType
-  )
+  func presentTabBarController(_ viewController: LaunchViewController)
 }
 
 class LaunchViewController: UIViewController {
@@ -43,15 +40,7 @@ class LaunchViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    checkCurrentUser()
-  }
-
-  private func checkCurrentUser() {
-    if Auth.auth().currentUser != nil {
-      delegate?.presentNext(self, type: .main)
-    } else {
-      delegate?.presentNext(self, type: .signin)
-    }
+    delegate?.presentTabBarController(self)
   }
 }
 

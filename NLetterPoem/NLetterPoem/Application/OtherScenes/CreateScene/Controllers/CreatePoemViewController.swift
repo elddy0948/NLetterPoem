@@ -5,11 +5,11 @@ import RxSwift
 protocol CreatePoemViewControllerDelegate: AnyObject {
   func createPoemViewController(
     _ viewController: CreatePoemViewController,
-    didTapDone poem: NLPPoem
+    didTapDone poem: Poem
   )
 }
 
-class CreatePoemViewController: CreatorViewController {
+final class CreatePoemViewController: CreatorViewController {
   
   enum ActionType {
     case edit
@@ -17,24 +17,26 @@ class CreatePoemViewController: CreatorViewController {
   }
   
   //MARK: - Views
-  private(set) var createPoemView: CreatePoemView!
+  private lazy var createPoemView: CreatePoemView = {
+    let view = CreatePoemView(poem: self.poem)
+    return view
+  }()
   
   //MARK: - Properties
-  var topic: NLPTopic
-  var type: ActionType
-  var poem: NLPPoem?
-  var globalScheduler = ConcurrentDispatchQueueScheduler(
-    qos: .utility
-  )
-  private let bag = DisposeBag()
-  
-  private var handler: AuthStateDidChangeListenerHandle?
   weak var delegate: CreatePoemViewControllerDelegate?
   
+  private var topic: NLetterTopic
+  private var type: ActionType
+  private var poem: Poem?
+  private let bag = DisposeBag()
+  private var globalScheduler = ConcurrentDispatchQueueScheduler(
+    qos: .utility
+  )
+  
   //MARK: - Initializer
-  init(_ topic: NLPTopic,
+  init(_ topic: NLetterTopic,
        type: ActionType = .create,
-       poem: NLPPoem?
+       poem: Poem?
   ) {
     self.topic = topic
     self.type = type
@@ -43,7 +45,7 @@ class CreatePoemViewController: CreatorViewController {
   }
   
   required init?(coder: NSCoder) {
-    self.topic = NLPTopic(topic: "")
+    self.topic = NLetterTopic(topic: "")
     self.type = .create
     super.init(coder: coder)
   }
@@ -52,109 +54,47 @@ class CreatePoemViewController: CreatorViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    configure()
+    
+    setupCreatePoemView()
+    layout()
   }
   
-  //MARK: - Privates
-  private func configure() {
-    view.backgroundColor = .systemBackground
-    createPoemView = CreatePoemView(
-      topic: topic.topic,
-      poem: poem
-    )
-    
+  private func setupCreatePoemView() {
     createPoemView.delegate = self
-    
+    createPoemView.backgroundColor = .systemBackground
+  }
+  
+  private func layout() {
     view.addSubview(createPoemView)
     
+    createPoemView.translatesAutoresizingMaskIntoConstraints = false
+    
     NSLayoutConstraint.activate([
-      createPoemView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      createPoemView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      createPoemView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      createPoemView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      createPoemView.topAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.topAnchor
+      ),
+      createPoemView.leadingAnchor.constraint(
+        equalTo: view.leadingAnchor
+      ),
+      createPoemView.trailingAnchor.constraint(
+        equalTo: view.trailingAnchor
+      ),
+      createPoemView.bottomAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.bottomAnchor
+      ),
     ])
   }
   
-  private func createPoem(_ nlpPoem: NLPPoem?) {
+  private func createPoem(_ nlpPoem: Poem?) {
     guard let nlpPoem = nlpPoem else {
       return
     }
-
-    showLoadingView()
-    
-    FirestorePoemApi.shared
-      .create(nlpPoem)
-      .subscribe(on: globalScheduler)
-      .observe(on: MainScheduler.instance)
-      .subscribe(
-        onCompleted: { [weak self] in
-          self?.dismissLoadingView()
-          guard let self = self else { return }
-          self.showAlert(
-            title: "🎉",
-            message: "멋진 시네요👏",
-            action: { _ in
-              self.dismiss(animated: true, completion: nil)
-            }
-          )
-        },
-        onError: { [weak self] error in
-          self?.dismissLoadingView()
-          guard let self = self else { return }
-          self.showAlert(
-            title: "⚠️",
-            message: "다시 시도해주세요!",
-            action: { _ in
-              self.dismiss(animated: true, completion: nil)
-            }
-          )
-        },
-        onDisposed: {}
-      )
-      .disposed(by: bag)
   }
   
-  private func updatePoem(_ nlpPoem: NLPPoem?) {
+  private func updatePoem(_ nlpPoem: Poem?) {
     guard let nlpPoem = nlpPoem else {
       return
     }
-    
-    showLoadingView()
-    
-    FirestorePoemApi.shared
-      .update(nlpPoem)
-      .subscribe(on: globalScheduler)
-      .observe(on: MainScheduler.instance)
-      .subscribe(
-        onCompleted: { [weak self] in
-          self?.dismissLoadingView()
-          guard let self = self else { return }
-          self.showAlert(
-            title: "✅",
-            message: "업데이트 완료!",
-            action: { _ in
-              self.delegate?.createPoemViewController(
-                self,
-                didTapDone: nlpPoem
-              )
-              self.dismiss(animated: true, completion: nil)
-            }
-          )
-        },
-        onError: { [weak self] error in
-          self?.dismissLoadingView()
-          guard let self = self else { return }
-          self.showAlert(
-            title: "⚠️",
-            message: "다시 시도해주세요!",
-            action: { _ in
-              self.dismiss(animated: true, completion: nil)
-            }
-          )
-        },
-        onDisposed: {}
-      )
-      .disposed(by: bag)
   }
 }
 
@@ -177,7 +117,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
     didTapDone button: UIBarButtonItem,
     poemContent: String
   ) {
-    let poemForRequest: NLPPoem?
+    var poemForRequest: Poem?
     
     guard let user = user else {
       dismiss(animated: true, completion: nil)
@@ -186,7 +126,7 @@ extension CreatePoemViewController: CreatePoemViewDelegate {
     
     switch type {
     case .create:
-      poemForRequest = NLPPoem(
+      poemForRequest = Poem(
         topic: topic.topic,
         author: user.nickname,
         authorEmail: user.email,

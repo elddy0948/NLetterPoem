@@ -1,18 +1,18 @@
 import Foundation
 
-public struct NLetterPoem {
+public struct Poem: Codable {
   let id: String
   let topic: String
   let author: String
   let authorEmail: String
-  let content: String
+  var content: String
   let ranking: Int
   let likeCount: Int
   let createdAt: String
   let created: String
 }
 
-extension NLetterPoem {
+extension Poem {
   init(topic: String,
        author: String,
        authorEmail: String,
@@ -29,9 +29,9 @@ extension NLetterPoem {
   }
 }
 
-extension NLetterPoem {
-  var empty: NLetterPoem {
-    return NLetterPoem(
+extension Poem {
+  static var empty: Poem {
+    return Poem(
       topic: "",
       author: "",
       authorEmail: "",

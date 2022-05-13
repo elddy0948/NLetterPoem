@@ -62,43 +62,13 @@ extension SignUpViewController: SignUpViewDelegate {
     showLoadingView()
     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       guard let self = self else { return }
-      AuthManager.shared.createUser(with: info) { result in
-        switch result {
-        case .success(let message):
-          self.storeUserInDatabase(with: info)
-          debugPrint(message)
-        case .failure(_):
-          self.showAlert(
-            title: "⚠️", message: "회원가입이 실패했어요!\n다시 시도해주세요!",
-            action: nil
-          )
-          return
-        }
-      }
     }
   }
   
   private func storeUserInDatabase(with info: SignupInfo) {
-    let user = NLPUser(
-      email: info.email, nickname: info.nickname, bio: "")
-    
-    UserDatabaseManager.shared.create(user) { [weak self] result in
-      guard let self = self else { return }
-      self.dismissLoadingView()
-      switch result {
-      case .success(_):
-        self.showAlert(
-          title: "🎉", message: "회원가입을 축하합니다!"
-        ) { _ in
-          self.dismiss(animated: true, completion: nil)
-        }
-      case .failure(_):
-        self.showAlert(
-          title: "⚠️",
-          message: "회원 저장에 실패했어요!\n다시 시도해주세요!", action: nil
-        )
-      }
-    }
+    let user = NLetterPoemUser(
+      email: info.email, nickname: info.nickname, bio: ""
+    )
   }
 }
 
